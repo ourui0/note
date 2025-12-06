@@ -1917,3 +1917,692 @@ void clobber(Sneaky& s) {
 //     b.prot_mem = 0;  // 错误：不能访问BaseFriend的protected成员
 // }
 ```
+# C++面对对象编程（Part 3）复习
+
+## 1. 虚函数与多态
+虚函数是C++中实现运行时多态的关键机制。它允许在基类中声明一个函数，并在派生类中重新定义该函数，程序在运行时根据对象的实际类型来决定调用哪个版本的函数。
+### 基本虚函数示例
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 抽象基类
+class Shape {
+public:
+    virtual void draw() const = 0;  // 纯虚函数
+    virtual double area() const = 0;
+    virtual ~Shape() = default;     // 虚析构函数
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
+    
+    void draw() const override {
+        cout << "Drawing Circle with radius " << radius << endl;
+    }
+    
+    double area() const override {
+        return 3.14159 * radius * radius;
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    double width, height;
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+    
+    void draw() const override {
+        cout << "Drawing Rectangle " << width << "x" << height << endl;
+    }
+    
+    double area() const override {
+        return width * height;
+    }
+};
+
+// 使用示例
+void demonstrateShapes() {
+    Shape* shapes[] = {new Circle(5), new Rectangle(4, 6)};
+    
+    for (int i = 0; i < 2; i++) {
+        shapes[i]->draw();
+        cout << "Area: " << shapes[i]->area() << endl;
+        delete shapes[i];
+    }
+}
+```
+
+### 抽象工厂模式示例
+抽象工厂模式是一种创建型设计模式，它提供一个接口用于创建相关或依赖对象的家族，而不需要指定具体类。
+```cpp
+// 抽象产品
+class Button {
+public:
+    virtual void render() = 0;
+    virtual ~Button() = default;
+};
+
+class Label {
+public:
+    virtual void display() = 0;
+    virtual ~Label() = default;
+};
+
+// 具体产品 - Windows
+class WinButton : public Button {
+public:
+    void render() override {
+        cout << "Rendering Windows Button" << endl;
+    }
+};
+
+class WinLabel : public Label {
+public:
+    void display() override {
+        cout << "Displaying Windows Label" << endl;
+    }
+};
+
+// 具体产品 - Mac
+class MacButton : public Button {
+public:
+    void render() override {
+        cout << "Rendering Mac Button" << endl;
+    }
+};
+
+class MacLabel : public Label {
+public:
+    void display() override {
+        cout << "Displaying Mac Label" << endl;
+    }
+};
+
+// 抽象工厂
+class AbstractFactory {
+public:
+    virtual Button* createButton() = 0;
+    virtual Label* createLabel() = 0;
+    virtual ~AbstractFactory() = default;
+};
+
+// 具体工厂
+class WinFactory : public AbstractFactory {
+public:
+    Button* createButton() override { return new WinButton(); }
+    Label* createLabel() override { return new WinLabel(); }
+};
+
+class MacFactory : public AbstractFactory {
+public:
+    Button* createButton() override { return new MacButton(); }
+    Label* createLabel() override { return new MacLabel(); }
+};
+
+// 使用示例
+void demonstrateFactory() {
+    AbstractFactory* factory;
+    
+    // 根据配置选择工厂
+    string config = "Windows"; // 或 "Mac"
+    if (config == "Windows") {
+        factory = new WinFactory();
+    } else {
+        factory = new MacFactory();
+    }
+    
+    Button* btn = factory->createButton();
+    Label* lbl = factory->createLabel();
+    
+    btn->render();
+    lbl->display();
+    
+    delete btn;
+    delete lbl;
+    delete factory;
+}
+```
+
+## 2. 操作符重载
+操作符重载允许我们为类定义操作符（如`+`,`-`,`==`,`[]`等）的特殊含义，使得这些操作符能够用于自定义数据类型。
+### 复数类操作符重载
+```cpp
+class Complex {
+private:
+    double real, imag;
+public:
+    Complex(double r = 0, double i = 0) : real(r), imag(i) {}
+    
+    // 成员函数形式重载 +
+    Complex operator+(const Complex& other) const {
+        return Complex(real + other.real, imag + other.imag);
+    }
+    
+    // 成员函数形式重载 -
+    Complex operator-(const Complex& other) const {
+        return Complex(real - other.real, imag - other.imag);
+    }
+    
+    // 友元函数形式重载 *
+    friend Complex operator*(const Complex& c1, const Complex& c2);
+    
+    // 赋值操作符重载
+    Complex& operator=(const Complex& other) {
+        if (this != &other) {  // 证同测试
+            real = other.real;
+            imag = other.imag;
+        }
+        return *this;
+    }
+    
+    // 类型转换操作符
+    operator double() const {
+        return real;  // 转换为实部值
+    }
+    
+    // 前置++
+    Complex& operator++() {
+        ++real;
+        return *this;
+    }
+    
+    // 后置++
+    Complex operator++(int) {
+        Complex temp = *this;
+        ++real;
+        return temp;
+    }
+    
+    void display() const {
+        cout << real << " + " << imag << "i" << endl;
+    }
+};
+
+// 友元函数实现
+Complex operator*(const Complex& c1, const Complex& c2) {
+    return Complex(c1.real * c2.real - c1.imag * c2.imag,
+                   c1.real * c2.imag + c1.imag * c2.real);
+}
+
+// 使用示例
+void demonstrateComplex() {
+    Complex a(1, 2), b(3, 4);
+    Complex c = a + b;  // 调用 operator+
+    Complex d = a * b;  // 调用友元 operator*
+    
+    c.display();
+    d.display();
+    
+    double realValue = a;  // 调用类型转换操作符
+    cout << "Real part of a: " << realValue << endl;
+}
+```
+
+### 字符串类操作符重载
+```cpp
+class MyString {
+private:
+    char* data;
+    size_t length;
+    
+    void copyString(const char* str) {
+        if (str) {
+            length = strlen(str);
+            data = new char[length + 1];
+            strcpy(data, str);
+        } else {
+            data = nullptr;
+            length = 0;
+        }
+    }
+    
+public:
+    // 构造函数
+    MyString(const char* str = nullptr) {
+        copyString(str);
+    }
+    
+    // 拷贝构造函数
+    MyString(const MyString& other) {
+        copyString(other.data);
+    }
+    
+    // 析构函数
+    ~MyString() {
+        delete[] data;
+    }
+    
+    // 赋值操作符重载
+    MyString& operator=(const MyString& other) {
+        if (this != &other) {  // 证同测试
+            delete[] data;
+            copyString(other.data);
+        }
+        return *this;
+    }
+    
+    // 下标操作符重载
+    char& operator[](size_t index) {
+        if (index >= length) {
+            throw out_of_range("Index out of range");
+        }
+        return data[index];
+    }
+    
+    // const版本下标操作符
+    const char& operator[](size_t index) const {
+        if (index >= length) {
+            throw out_of_range("Index out of range");
+        }
+        return data[index];
+    }
+    
+    // + 操作符重载（字符串连接）
+    MyString operator+(const MyString& other) const {
+        char* newData = new char[length + other.length + 1];
+        strcpy(newData, data);
+        strcat(newData, other.data);
+        MyString result(newData);
+        delete[] newData;
+        return result;
+    }
+    
+    // == 操作符重载
+    bool operator==(const MyString& other) const {
+        return strcmp(data, other.data) == 0;
+    }
+    
+    // 输出流操作符重载（友元）
+    friend ostream& operator<<(ostream& os, const MyString& str);
+    
+    size_t getLength() const { return length; }
+    const char* c_str() const { return data; }
+};
+
+// 输出流操作符实现
+ostream& operator<<(ostream& os, const MyString& str) {
+    if (str.data) {
+        os << str.data;
+    }
+    return os;
+}
+
+// 使用示例
+void demonstrateString() {
+    MyString s1 = "Hello";
+    MyString s2 = " World";
+    MyString s3 = s1 + s2;  // 字符串连接
+    
+    cout << "s1: " << s1 << endl;
+    cout << "s2: " << s2 << endl;
+    cout << "s3: " << s3 << endl;
+    
+    s1[0] = 'h';  // 修改第一个字符
+    cout << "Modified s1: " << s1 << endl;
+    
+    if (s1 == "hello") {
+        cout << "Strings are equal" << endl;
+    }
+}
+```
+
+### 多维数组类（代理类模式）
+```cpp
+class Array2D {
+private:
+    class Array1D {  // 代理类
+    private:
+        int* data;
+        size_t cols;
+    public:
+        Array1D(int* ptr, size_t c) : data(ptr), cols(c) {}
+        
+        int& operator[](size_t col) {
+            if (col >= cols) throw out_of_range("Column index out of range");
+            return data[col];
+        }
+        
+        const int& operator[](size_t col) const {
+            if (col >= cols) throw out_of_range("Column index out of range");
+            return data[col];
+        }
+    };
+    
+    int* data;
+    size_t rows, cols;
+    
+public:
+    Array2D(size_t r, size_t c) : rows(r), cols(c) {
+        data = new int[rows * cols]();  // 初始化为0
+    }
+    
+    ~Array2D() {
+        delete[] data;
+    }
+    
+    // 禁止拷贝（简化示例）
+    Array2D(const Array2D&) = delete;
+    Array2D& operator=(const Array2D&) = delete;
+    
+    Array1D operator[](size_t row) {
+        if (row >= rows) throw out_of_range("Row index out of range");
+        return Array1D(data + row * cols, cols);
+    }
+    
+    const Array1D operator[](size_t row) const {
+        if (row >= rows) throw out_of_range("Row index out of range");
+        return Array1D(data + row * cols, cols);
+    }
+    
+    size_t getRows() const { return rows; }
+    size_t getCols() const { return cols; }
+};
+
+// 使用示例
+void demonstrate2DArray() {
+    Array2D arr(3, 4);
+    
+    // 初始化数组
+    for (size_t i = 0; i < arr.getRows(); i++) {
+        for (size_t j = 0; j < arr.getCols(); j++) {
+            arr[i][j] = i * 10 + j;  // 使用[][]操作符
+        }
+    }
+    
+    // 打印数组
+    for (size_t i = 0; i < arr.getRows(); i++) {
+        for (size_t j = 0; j < arr.getCols(); j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+```
+
+### 函数对象（Functor）
+```cpp
+#include <vector>
+#include <algorithm>
+
+class Adder {
+private:
+    int value;
+public:
+    Adder(int v) : value(v) {}
+    
+    // 函数调用操作符重载
+    int operator()(int x) const {
+        return x + value;
+    }
+};
+
+class Comparator {
+public:
+    bool operator()(int a, int b) const {
+        return a < b;  // 升序排序
+    }
+};
+
+// 使用示例
+void demonstrateFunctors() {
+    vector<int> numbers = {5, 2, 8, 1, 9};
+    
+    // 使用函数对象排序
+    sort(numbers.begin(), numbers.end(), Comparator());
+    
+    cout << "Sorted: ";
+    for (int n : numbers) {
+        cout << n << " ";
+    }
+    cout << endl;
+    
+    // 使用函数对象变换
+    Adder add5(5);
+    vector<int> result;
+    for (int n : numbers) {
+        result.push_back(add5(n));  // 调用 operator()
+    }
+    
+    cout << "After adding 5: ";
+    for (int n : result) {
+        cout << n << " ";
+    }
+    cout << endl;
+}
+```
+
+## 3. Lambda表达式和std::function
+Lambda表达式是一种创建匿名函数对象的方式，它允许在代码中直接定义函数，而无需单独声明
+
+`std::function`是一个通用的函数包装器，它可以储存、复制和调用任何可调用对象（函数、函数对象、Lambda表达式、成员函数等）
+```cpp
+#include <functional>
+#include <vector>
+#include <algorithm>
+
+void demonstrateLambda() {
+    vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    
+    // Lambda表达式示例
+    auto isEven = [](int n) { return n % 2 == 0; };
+    auto square = [](int n) { return n * n; };
+    
+    // 使用Lambda过滤偶数
+    vector<int> evens;
+    copy_if(numbers.begin(), numbers.end(), back_inserter(evens), isEven);
+    
+    cout << "Even numbers: ";
+    for (int n : evens) cout << n << " ";
+    cout << endl;
+    
+    // 使用Lambda变换（平方）
+    vector<int> squares;
+    transform(numbers.begin(), numbers.end(), back_inserter(squares), square);
+    
+    cout << "Squares: ";
+    for (int n : squares) cout << n << " ";
+    cout << endl;
+    
+    // 捕获列表示例
+    int base = 100;
+    auto addBase = [base](int x) { return x + base; };  // 值捕获
+    
+    cout << "100 + 5 = " << addBase(5) << endl;
+    
+    // std::function示例
+    function<int(int, int)> operations[] = {
+        [](int a, int b) { return a + b; },
+        [](int a, int b) { return a - b; },
+        [](int a, int b) { return a * b; },
+        [](int a, int b) { return b != 0 ? a / b : 0; }
+    };
+    
+    int x = 10, y = 3;
+    const char* opNames[] = {"Addition", "Subtraction", "Multiplication", "Division"};
+    
+    for (size_t i = 0; i < 4; i++) {
+        cout << opNames[i] << ": " << operations[i](x, y) << endl;
+    }
+}
+```
+
+## 4. 智能指针和箭头操作符重载
+智能指针是C++中用于自动管理内存分配内存的类的模板，它们通过RAII（资源获取即初始化）技术确保内存被正确释放。
+
+箭头操作符是唯一一个"传递性"的操作符，编译器会对重载结果继续应用箭头操作符，直到获得真正的指针。
+```cpp
+#include <memory>
+
+template<typename T>
+class SimpleSmartPtr {
+private:
+    T* ptr;
+public:
+    explicit SimpleSmartPtr(T* p = nullptr) : ptr(p) {}
+    
+    ~SimpleSmartPtr() {
+        delete ptr;
+    }
+    
+    // 禁止拷贝（简化版本）
+    SimpleSmartPtr(const SimpleSmartPtr&) = delete;
+    SimpleSmartPtr& operator=(const SimpleSmartPtr&) = delete;
+    
+    // 允许移动
+    SimpleSmartPtr(SimpleSmartPtr&& other) noexcept : ptr(other.ptr) {
+        other.ptr = nullptr;
+    }
+    
+    SimpleSmartPtr& operator=(SimpleSmartPtr&& other) noexcept {
+        if (this != &other) {
+            delete ptr;
+            ptr = other.ptr;
+            other.ptr = nullptr;
+        }
+        return *this;
+    }
+    
+    // 箭头操作符重载
+    T* operator->() const {
+        return ptr;
+    }
+    
+    // 解引用操作符重载
+    T& operator*() const {
+        return *ptr;
+    }
+    
+    // 布尔转换（用于if检查）
+    explicit operator bool() const {
+        return ptr != nullptr;
+    }
+};
+
+class Resource {
+public:
+    void doWork() {
+        cout << "Resource working..." << endl;
+    }
+    
+    int getValue() const {
+        return 42;
+    }
+};
+
+// 使用示例
+void demonstrateSmartPtr() {
+    SimpleSmartPtr<Resource> ptr(new Resource());
+    
+    // 使用箭头操作符访问成员
+    ptr->doWork();
+    cout << "Value: " << ptr->getValue() << endl;
+    
+    // 使用解引用操作符
+    (*ptr).doWork();
+    
+    // 布尔转换检查
+    if (ptr) {
+        cout << "Pointer is valid" << endl;
+    }
+}
+```
+
+## 5. 自定义new/delete操作符
+自定义 new 和 delete 操作符允许我们重载内存分配和释放的行为，实现自定义的内存管理策略。
+```cpp
+#include <cstdlib>
+
+class MemoryDemo {
+private:
+    int data;
+    static size_t allocationCount;
+public:
+    MemoryDemo(int d = 0) : data(d) {}
+    
+    // 自定义new操作符
+    static void* operator new(size_t size) {
+        allocationCount++;
+        cout << "Custom new called, size: " << size 
+             << ", total allocations: " << allocationCount << endl;
+        return malloc(size);
+    }
+    
+    // 自定义delete操作符
+    static void operator delete(void* ptr) noexcept {
+        cout << "Custom delete called" << endl;
+        free(ptr);
+    }
+    
+    // Placement new
+    static void* operator new(size_t size, void* ptr) noexcept {
+        cout << "Placement new called" << endl;
+        return ptr;
+    }
+    
+    int getData() const { return data; }
+};
+
+size_t MemoryDemo::allocationCount = 0;
+
+// 使用示例
+void demonstrateCustomMemory() {
+    // 使用自定义new
+    MemoryDemo* obj1 = new MemoryDemo(10);
+    cout << "Object data: " << obj1->getData() << endl;
+    delete obj1;
+    
+    // 使用placement new
+    char buffer[sizeof(MemoryDemo)];
+    MemoryDemo* obj2 = new (buffer) MemoryDemo(20);
+    cout << "Placement object data: " << obj2->getData() << endl;
+    obj2->~MemoryDemo();  // 需要显式调用析构函数
+}
+```
+
+## 6. 综合测试函数
+**综合测试函数**是一个将多个独立功能模块的测试代码整合在一起的函数，用于全面验证程序各个部分的正确性和协同工作能力
+```cpp
+int main() {
+    cout << "=== 虚函数与多态示例 ===" << endl;
+    demonstrateShapes();
+    cout << endl;
+    
+    cout << "=== 抽象工厂模式示例 ===" << endl;
+    demonstrateFactory();
+    cout << endl;
+    
+    cout << "=== 复数操作符重载示例 ===" << endl;
+    demonstrateComplex();
+    cout << endl;
+    
+    cout << "=== 字符串操作符重载示例 ===" << endl;
+    demonstrateString();
+    cout << endl;
+    
+    cout << "=== 多维数组示例 ===" << endl;
+    demonstrate2DArray();
+    cout << endl;
+    
+    cout << "=== 函数对象示例 ===" << endl;
+    demonstrateFunctors();
+    cout << endl;
+    
+    cout << "=== Lambda表达式示例 ===" << endl;
+    demonstrateLambda();
+    cout << endl;
+    
+    cout << "=== 智能指针示例 ===" << endl;
+    demonstrateSmartPtr();
+    cout << endl;
+    
+    cout << "=== 自定义内存管理示例 ===" << endl;
+    demonstrateCustomMemory();
+    
+    return 0;
+}
+```

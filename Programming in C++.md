@@ -2875,3 +2875,398 @@ int main() {
 | 内存管理 | 手动管理易泄漏         | 智能指针自动生命周期       |
 
 通过结合Visitor模式、类型安全联合体和RAII原则，C++实现了高效、可维护的多态编程，同时避免传统方式的常见陷阱。代码示例展示了从问题到解决方案的演进路径，突出了现代C++的最佳实践。
+
+# 函数式编程
+
+**Functional Programming**
+  “What” 
+      将计算视为数学函数的求值，避免状态和可变数据
+
+**Pure Function**
+      相同的输入总是产生相同的输出
+      没有可观察的副作用 
+
+## FP核心"三大操作"及其C++实现详解
+
+### 1. Filter（过滤）
+
+#### 概念与示例
+
+**Filter** 是函数式编程中最基础的操作之一，它的核心思想是"筛选"。
+
+**定义**：从一个集合中选出满足特定条件的元素，形成一个新的集合。
+
+**数学表示**：
+
+```
+filter(p, [x₁, x₂, ..., xₙ]) = [xᵢ | p(xᵢ) = true]
+```
+
+**示例**：
+
+- 从数字列表中筛选偶数：`[1,2,3,4,5] → [2,4]`
+- 从字符串列表中筛选长度大于3的：`["a","ab","abc","abcd"] → ["abc","abcd"]`
+
+#### C++实现方式
+
+##### a) `std::copy_if`（传统STL方式）
+
+```
+#include <algorithm>
+#include <vector>
+#include <iterator>
+
+std::vector<int> numbers = {1, 2, 3, 4, 5, 6};
+std::vector<int> even_numbers;
+
+// 使用copy_if过滤偶数
+std::copy_if(numbers.begin(), numbers.end(),
+             std::back_inserter(even_numbers),
+             [](int n) { return n % 2 == 0; });
+// even_numbers = {2, 4, 6}
+```
+
+**特点**：
+
+- 需要预定义目标容器
+- 使用插入迭代器管理插入操作
+- 非原地操作，创建新容器
+
+##### b) "擦除-移除"惯用法（原地操作）
+
+```
+#include <algorithm>
+#include <vector>
+
+std::vector<int> numbers = {1, 2, 3, 4, 5, 6};
+
+// 移除所有奇数（即保留偶数）
+auto new_end = std::remove_if(numbers.begin(), numbers.end(),
+                             [](int n) { return n % 2 != 0; });
+numbers.erase(new_end, numbers.end());
+// numbers = {2, 4, 6}
+```
+
+**特点**：
+
+- 原地修改，节省内存
+- 两步操作：`remove_if`+ `erase`
+- 会丢失被移除的元素
+
+##### c) C++20 Ranges视图（现代推荐方式）
+
+```
+#include <ranges>
+#include <vector>
+#include <iostream>
+
+std::vector<int> numbers = {1, 2, 3, 4, 5, 6};
+
+// 创建过滤视图
+auto even_view = numbers | std::views::filter([](int n) { 
+    return n % 2 == 0; 
+});
+
+// 惰性求值：只有在使用时才计算
+for (int n : even_view) {
+    std::cout << n << " "; // 输出: 2 4 6
+}
+
+// 如果需要具体容器，可以构造
+std::vector<int> result(even_view.begin(), even_view.end());
+```
+
+**核心优势**：
+
+- **惰性求值**：不立即计算，按需生成
+- **可组合性**：可与其他操作管道连接
+- **无内存开销**：只是视图，不复制数据
+
+---
+
+
+
+### 2.Map/Transform（映射/变换）
+
+#### 概念与示例
+
+**Map** 操作将函数应用于集合中的每个元素，产生一个新的集合。
+
+**定义**：
+
+```
+map(f, [x₁, x₂, ..., xₙ]) = [f(x₁), f(x₂), ..., f(xₙ)]
+```
+
+**示例**：
+
+- 数字平方：`[1,2,3] → [1,4,9]`
+- 字符串转大写：`["a","b","c"] → ["A","B","C"]`
+
+#### C++20 Ranges视图的强大功能
+
+##### a) 基本数值变换
+
+```
+#include <ranges>
+#include <vector>
+
+std::vector<int> numbers = {1, 2, 3, 4, 5};
+
+// 计算平方
+auto squares = numbers | std::views::transform([](int n) {
+    return n * n;
+});
+// squares: [1, 4, 9, 16, 25]（惰性视图）
+```
+
+##### b) 类型转换
+
+```
+#include <ranges>
+#include <vector>
+#include <string>
+
+std::vector<int> numbers = {1, 2, 3};
+
+// 整数转字符串
+auto strings = numbers | std::views::transform([](int n) {
+    return "Value: " + std::to_string(n);
+});
+// strings: ["Value: 1", "Value: 2", "Value: 3"]
+```
+
+##### c) 字符串处理
+
+```
+#include <ranges>
+#include <vector>
+#include <string>
+#include <cctype>
+
+std::vector<std::string> words = {"hello", "world", "cpp"};
+
+// 转大写
+auto upper_words = words | std::views::transform([](const std::string& s) {
+    std::string result = s;
+    for (char& c : result) {
+        c = std::toupper(c);
+    }
+    return result;
+});
+// upper_words: ["HELLO", "WORLD", "CPP"]
+```
+
+##### d) 惰性求值 vs 立即求值对比
+
+```
+#include <ranges>
+#include <vector>
+#include <iostream>
+
+// 昂贵的计算函数
+int expensive_operation(int n) {
+    std::cout << "computing: " << n << std::endl;
+    return n * n;
+}
+
+std::vector<int> numbers = {1, 2, 3};
+
+// 方式1：传统transform（立即求值）
+std::vector<int> immediate_result;
+std::transform(numbers.begin(), numbers.end(),
+              std::back_inserter(immediate_result),
+              expensive_operation);
+// 立即输出：computing: 1, computing: 2, computing: 3
+
+// 方式2：Ranges视图（惰性求值）
+auto lazy_view = numbers | std::views::transform(expensive_operation);
+// 此时没有任何计算发生！
+
+// 只有在迭代时才计算
+for (int n : lazy_view) {
+    std::cout << "result: " << n << std::endl;
+}
+// 输出：
+// computing: 1
+// result: 1
+// computing: 2  
+// result: 4
+// computing: 3
+// result: 9
+```
+
+##### e) 处理无限序列
+
+```
+#include <ranges>
+#include <iostream>
+
+// 生成无限序列，只取前5个元素的平方
+auto infinite_squares = std::views::iota(1)        // 无限序列: 1,2,3,4,5,6,...
+                      | std::views::transform([](int n) { return n * n; })
+                      | std::views::take(5);       // 只取前5个
+
+for (int square : infinite_squares) {
+    std::cout << square << " "; // 输出: 1 4 9 16 25
+}
+```
+
+---
+
+### 3. Reduce/Accumulate（归约/累积）
+
+#### 概念与示例
+
+**Reduce** 将集合中的所有元素通过二元操作合并成一个单一结果。
+
+**定义**：
+
+```
+reduce(⊕, init, [x₁, x₂, ..., xₙ]) = init ⊕ x₁ ⊕ x₂ ⊕ ... ⊕ xₙ
+```
+
+**示例**：
+
+- 求和：`reduce(+, 0, [1,2,3,4]) = 10`
+- 求积：`reduce(×, 1, [1,2,3,4]) = 24`
+
+#### C++实现：`std::accumulate`的多种应用
+
+##### a) 基本语法
+
+```
+template<class InputIt, class T, class BinaryOperation>
+T accumulate(InputIt first, InputIt last, T init, BinaryOperation op);
+```
+
+##### b) 求和（默认操作）
+
+```
+#include <numeric>
+#include <vector>
+
+std::vector<int> nums = {1, 2, 3, 4, 5};
+int sum = std::accumulate(nums.begin(), nums.end(), 0);
+// sum = 15 (0 + 1 + 2 + 3 + 4 + 5)
+```
+
+##### c) 字符串拼接
+
+```
+#include <numeric>
+#include <vector>
+#include <string>
+
+std::vector<std::string> words = {"Hello", " ", "World", "!"};
+std::string sentence = std::accumulate(words.begin(), words.end(), 
+                                      std::string(""));
+// sentence = "Hello World!"
+```
+
+##### d) 求乘积
+
+```
+#include <numeric>
+#include <vector>
+
+std::vector<double> nums = {1.0, 2.0, 3.0, 4.0};
+double product = std::accumulate(nums.begin(), nums.end(), 1.0,
+                                [](double a, double b) { return a * b; });
+// product = 24.0 (((1.0 * 1.0) * 2.0) * 3.0) * 4.0)
+```
+
+##### e) 展平嵌套向量
+
+```
+#include <numeric>
+#include <vector>
+
+std::vector<std::vector<int>> vecOfVecs = {{1, 2}, {3, 4, 5}, {6}};
+std::vector<int> flattened = std::accumulate(vecOfVecs.begin(), vecOfVecs.end(),
+                                            std::vector<int>{},
+                                            [](std::vector<int> acc, const std::vector<int>& b) {
+                                                acc.insert(acc.end(), b.begin(), b.end());
+                                                return acc;
+                                            });
+// flattened = {1, 2, 3, 4, 5, 6}
+```
+
+##### f) 求最大值
+
+```
+#include <numeric>
+#include <vector>
+#include <algorithm>
+
+std::vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
+int max_value = std::accumulate(nums.begin() + 1, nums.end(),
+                               nums[0], // 初始值为第一个元素
+                               [](int current_max, int value) {
+                                   return std::max(current_max, value);
+                               });
+// max_value = 9
+```
+
+##### g) 复杂归约：计算平均值
+
+```
+#include <numeric>
+#include <vector>
+
+struct AverageResult {
+    double sum;
+    int count;
+    double average() const { return sum / count; }
+};
+
+std::vector<double> numbers = {1.0, 2.0, 3.0, 4.0, 5.0};
+
+AverageResult result = std::accumulate(numbers.begin(), numbers.end(),
+                                     AverageResult{0.0, 0},
+                                     [](AverageResult acc, double value) {
+                                         return AverageResult{acc.sum + value, acc.count + 1};
+                                     });
+
+double average = result.average(); // 3.0
+```
+
+### 三大操作的组合使用示例
+
+```
+#include <ranges>
+#include <vector>
+#include <numeric>
+#include <iostream>
+
+std::vector<int> data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+// 函数式管道：过滤偶数 → 平方 → 求和
+int result = data 
+    | std::views::filter([](int n) { return n % 2 == 0; })  // [2,4,6,8,10]
+    | std::views::transform([](int n) { return n * n; })    // [4,16,36,64,100]
+    | std::ranges::to<std::vector>()                        // 转换为vector（C++23）
+    | std::accumulate(0, std::plus<int>());                // 220
+
+// 或者使用reduce（C++17）
+int result2 = std::reduce(
+    (data | std::views::filter([](int n) { return n % 2 == 0; })
+          | std::views::transform([](int n) { return n * n; })
+          | std::ranges::to<std::vector>()).begin(),
+    (data | std::views::filter([](int n) { return n % 2 == 0; })
+          | std::views::transform([](int n) { return n * n; })
+          | std::ranges::to<std::vector>()).end(),
+    0);
+
+std::cout << "Result: " << result << std::endl; // 输出: Result: 220
+```
+
+### 总结对比
+
+| 操作       | 函数式概念 | C++传统实现       | C++20现代实现           | 核心特点               |
+| ---------- | ---------- | ----------------- | ----------------------- | ---------------------- |
+| **Filter** | 条件筛选   | `std::copy_if`    | `std::views::filter`    | 惰性求值，可组合       |
+| **Map**    | 元素变换   | `std::transform`  | `std::views::transform` | 处理无限序列，类型转换 |
+| **Reduce** | 归约累积   | `std::accumulate` | `std::reduce`（并行）   | 灵活多变，支持复杂归约 |
+
+**现代C++最佳实践**：优先使用C++20 Ranges库的组合操作，它们提供了声明式、惰性求值的函数式编程体验，代码更简洁、性能更优。

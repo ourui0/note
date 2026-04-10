@@ -1,0 +1,68 @@
+#（单行注释）数据库实验1，2026春季，智能软件与工程学院
+# 创建 mycap 数据库，2026.04.06
+
+use mysql;
+drop schema if exists mycap;
+
+/**************************************************************** 
+在创建模式时，指定：
+该模式所使用的字符集为gb2312（中文国标）
+字符排序规则为gb2312_bin（英文区分大小写，中文按照汉语拼音排序）
+****************************************************************/
+create schema mycap charset gb2312 collate gb2312_bin;
+
+#将 mycap 设为当前工作模式
+use mycap;
+
+#创建基表
+create table customers (cid char(4) primary key, cname varchar(13), city varchar(20), discnt real);
+create table agents (aid char(3) primary key, aname varchar(13), city varchar(20), percent smallint);
+create table products (pid char(3) primary key, pname varchar(13), city varchar(20), quantity integer, price double precision);
+create table orders (ordno integer primary key, orddate date, cid char(4), aid char(3), pid char(3), qty integer, dollars double precision);
+
+#插入元组
+insert into customers values
+    ('c001', 'Tiptop', 'Duluth', 10.00),
+    ('c002', 'Basics', 'Dallas', 12.00),
+    ('c003', 'Allied', 'Dallas', 8.00),
+    ('c004', 'ACME',   'Kyoto', 8.00),
+    ('c005', 'Adidas',   'Nuremberg', NULL),
+    ('c006', 'ACME',   'Duluth',  0);
+
+insert into agents values
+    ('a01', 'Smith', 'New York', 6),
+    ('a02', 'Jones', 'Newark',   6),
+    ('a03', 'Brown', 'Tokyo',    7),
+    ('a04', 'Gray',  'New York', 6),
+    ('a05', 'Otasi', 'Duluth',   5),
+    ('a06', 'Smith', 'Dallas',   5);
+
+insert into products values
+    ('p01', 'comb',   'Dallas', 111400, 0.50),
+    ('p02', 'brush',  'Newark', 203000, 0.50),
+    ('p03', 'razor',  'Duluth', 150600, 1.00),
+    ('p04', 'pen',    'Duluth', 125300, 1.00),
+    ('p05', 'pencil', 'Dallas', 221400, 1.00),
+    ('p06', 'folder', 'Dallas', 123100, 2.00),
+    ('p07', 'case',   'Newark', 100500, 1.00);
+
+insert into orders values
+    (1011, '2026-01-08', 'c001', 'a01', 'p01', 1000, 450.00),
+    (1012, '2026-01-12', 'c001', 'a05', 'p01', 1000, 520.00),
+    (1019, '2026-02-24', 'c001', 'a02', 'p02', 400,  180.00),
+    (1017, '2026-02-10', 'c001', 'a06', 'p03', 600,  540.00),
+    (1018, '2026-02-16', 'c001', 'a03', 'p04', 600,  540.00),
+    (1023, '2026-03-12', 'c001', 'a04', 'p05', 500,  450.00),
+    (1022, '2026-03-08', 'c006', 'a05', 'p06', 400,  720.00),
+    (1025, '2026-03-27', 'c001', 'a05', 'p07', 800,  720.00),
+    (1013, '2026-01-13', 'c002', 'a03', 'p03', 1000, 880.00),
+    (1026, '2026-03-28', 'c002', 'a05', 'p03', 800,  704.00),
+    (1015, '2026-01-23', 'c003', 'a03', 'p05', 1200, 1104.00),
+    (1014, '2026-01-18', 'c003', 'a03', 'p05', 1200, 1104.00),
+    (1021, '2026-02-28', 'c004', 'a06', 'p01', 1000, 460.00),
+    (1016, '2026-01-25', 'c006', 'a01', 'p01', 1000, 500.00),
+    (1020, '2026-02-05', 'c006', 'a03', 'p07', 600,  600.00),
+    (1024, '2026-03-12', 'c006', 'a03', 'p01', 800,  510.00),
+    (1030, '2026-03-15', 'c003', 'a06', 'p02', 520, 630.00);
+
+# 数据库创建结束

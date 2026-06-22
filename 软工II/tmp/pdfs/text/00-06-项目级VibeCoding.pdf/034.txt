@@ -1,0 +1,14 @@
+其他 MCP Server 在 VibeCoding 中的应⽤
+除 chrome-devtools 外，列表中其他 M CP Server 同样能加速开发：
+github
+直接对  Claude Code 说：
+" 帮我查看仓库最近  5 个  Issue ，找出与登录相关的  bug"
+" 把当前修改提交并创建  PR ，标题写明修复了什么 "
+mcp-server-sqlite
+" 查询  tasks 表中所有  status='todo' 的记录，统计各  priority 数量 "
+" 帮我检查数据库中是否存在重复的⽤户邮箱 "
+mcp-server-chart
+" 根据数据库中的任务完成数据，⽣成⼀个按周统计的折线图 "
+vercel（配置后）
+" 帮我把前端项⽬部署到  Vercel ，项⽬名叫  my-app"
+34

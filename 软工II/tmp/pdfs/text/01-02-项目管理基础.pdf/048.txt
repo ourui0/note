@@ -1,0 +1,10 @@
+AI 时代的配置管理新范式
+领域 变化 代表⼯具/实践
+AI 代码助⼿的模型版本模型版本影响⽣成代码质量，需纳⼊配置管理Model cards、版本固定
+Prompt 版本管理 Prompt 是新的"源代码"，需版本控制 LangSmith、Prompt Flow
+AI Pipeline 配置 RAG 参数、向量库、Embedding 模型构成新配置项ML ﬂow、Weights & Biases
+AI 辅助运维（AIO ps） AI ⾃动检测异常、预测故障、建议修复 Datadog AI、PagerDuty AI
+AI ⽣成的 IaC AI 根据需求⾃动⽣成基础设施配置 Pulumi AI、Terraform AI
+ LLMO ps = DevO ps + ML 模型管理 + Prompt ⼯程——
+这是配置管理在 AI 时代的全新战场
+48

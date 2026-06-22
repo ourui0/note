@@ -1,0 +1,23 @@
+案例：Spring Boot 项⽬结构
+bookstore/
+├── src/main/java/com/bookstore/
+│   ├── BookstoreApplication.java        ← 启动类
+│   ├── controller/
+│   │   ├── BookController.java
+│   │   └── OrderController.java
+│   ├── service/
+│   │   ├── BookService.java             ← 接⼝
+│   │   ├── OrderService.java            ← 接⼝
+│   │   └── impl/
+│   │       ├── BookServiceImpl.java
+│   │       └── OrderServiceImpl.java
+│   ├── dao/
+│   │   ├── BookDao.java                 ← 接⼝
+│   │   └── OrderDao.java               ← 接⼝
+│   └── entity/
+│       ├── Book.java
+│       └── Order.java
+├── src/main/resources/
+│   └── application.properties
+└── pom.xml
+48

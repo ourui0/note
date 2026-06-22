@@ -1,0 +1,17 @@
+基础设施即代码（IaC）
+IaC：⽤代码描述基础设施，使环境配置可版本化、可审计、可重复
+# Kubernetes 声明式配置  — 假设  Knight Capital 使⽤  IaC# Kubernetes 声明式配置  — 假设  Knight Capital 使⽤  IaC
+apiVersion:apiVersion:  apps/v1apps/v1
+kind:kind:  DeploymentDeployment
+metadata:metadata:
+    name:name:  trading-servicetrading-service
+spec:spec:
+    replicas:replicas:  88                                        # ← 所有  8 台服务器统⼀定义# ← 所有  8 台服务器统⼀定义
+    template:template:
+        spec:spec:
+            containers:containers:
+            --  name:name:  tradingtrading
+                image:image:  trading:v2.1.0trading:v2.1.0        # ← 版本统⼀，不可能遗漏  1 台# ← 版本统⼀，不可能遗漏  1 台
+ 如果 Knight Capital 使⽤ IaC，8 台服务器的配置不可能出现不⼀致——
+因为"期望状态"在代码中只定义⼀次，由系统⾃动保证⼀致
+46

@@ -1,0 +1,15 @@
+分⽀策略：从混乱⾛向有序
+ 仅有  main ，所有⼈直接提交：
+   未完成功能污染主线  → 随时可能产⽣ "Knight Capital 1 台旧版本 " 的问题
+ 推荐的  Git Flow 简化版：
+  feature/xxx ──┐
+                ├──  develop ─── 集成测试通过  ──  main （⽣产稳定版）
+  feature/yyy ──┘
+                                                      ↑
+  hotfix/zzz ───────────────────────────────────────── （紧急修复）
+分⽀ ⽤途 保护规则
+main ⽣产环境稳定版本禁⽌直接 push，只接受合并请求
+develop 持续集成分⽀ 合并前必须通过 CI 测试
+feature/xxx 功能开发隔离 完成后合并到 develop
+hotﬁx/xxx ⽣产紧急修复 合并到 main 后同步到 develop
+40

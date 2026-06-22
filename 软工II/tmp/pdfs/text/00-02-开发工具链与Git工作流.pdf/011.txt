@@ -1,0 +1,16 @@
+6 个最常⽤的 Git 命令
+# 1. 克隆远程仓库到本地
+git clone https://github.com/username/repo.git
+# 2. 将⽂件添加到暂存区（准备提交）
+git add filename.py        # 指定⽂件
+git add .                  # 当前⽬录全部⽂件
+# 3. 提交到本地仓库（附上有意义的提交信息！）
+git commit -m "feat: 添加⽤户登录功能 "
+# 4. 推送到远程仓库
+git push origin main
+# 5. 从远程仓库拉取最新代码（ = fetch + merge ）
+git pull origin main
+# 6. 切换分⽀  / 查看分⽀
+git checkout -b feature/login   # 创建并切换到新分⽀
+git checkout main               # 切换回主分⽀
+11

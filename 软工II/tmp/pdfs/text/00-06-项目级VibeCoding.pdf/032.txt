@@ -1,0 +1,12 @@
+Claude Code 中的 MCP 服务器列表
+在 Claude Code 的设置⾯板中，可以看到已配置的 M CP Server 及其连接状态：
+图标 M CP Server 状态 ⽤途
+vercel 连接失败 ⾃动部署到 Vercel 平台
+github 已连接 读写 Issue、PR、仓库⽂件
+chrome-devtools 连接失败 读取浏览器 Console / Network / DO M
+mastergo-magic-mcp 已连接 读取 M asterGo 设计稿，⽣成代码
+mcp-server-chart 已连接 ⽣成 ECharts / Chart.js 图表
+mcp-server-sqlite 已连接 直接查询 SQL ite 数据库
+ 表示 M CP Server 进程未启动或配置有误； 表示已正常连接
+chrome-devtools  连接失败 通常原因：Chrome 未以调试端⼝启动，⻅下⻚解决⽅法。
+32

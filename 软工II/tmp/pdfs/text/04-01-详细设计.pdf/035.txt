@@ -1,0 +1,15 @@
+Centralized Control（集中式控制）
+优点
+Easy to ﬁnd where decisions are made
+Easy to see how decisions are made and to alter the
+decision-making process
+缺点
+Controllers may become bloated — large, complex,
+and hard to understand / maintain / test
+Controller may treat other components as data
+repositories
+Increases coupling
+Destroys information hiding
+集中式形态（顺序图）
+控制器统⼀发起所有调⽤，呈"星形"。
+35

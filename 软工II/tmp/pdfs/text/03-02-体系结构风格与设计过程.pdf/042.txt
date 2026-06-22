@@ -1,0 +1,11 @@
+案例：连锁超市 — 功能到逻辑包映射
+功能域 展示层 (U I) 业务逻辑层 (BL ) 数据层 (Data)
+销售 SalesUI Sales SalesData
+库存 InventoryUI Inventory InventoryData
+商品 CommodityUI Commodity CommodityData
+会员 MemberUI Member MemberData
+促销 PromotionUI Promotion PromotionData
+财务 FinanceUI Finance FinanceData
+⼈员 StaﬀUI Staﬀ StaﬀData
+每个功能域在三层中各有对应的包，形成纵向切⽚。
+42

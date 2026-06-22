@@ -1,0 +1,11 @@
+软件⼯程 ≈ 硬件⼯程（1950s）
+商业计算机出现：
+Ferranti Mark I · UNIVAC I · LEO  I · IBM 701 · IBM 650
+⾼级编程语⾔诞⽣：
+年份 语⾔ 意义
+1955 FO RTRAN ⾸个⾼级语⾔，⾯向科学计算
+1958 L ISP 函数式编程⿐祖，AI 领域根基
+1959 CO BO L ⾯向商业应⽤，⾄今仍在银⾏系统运⾏
+ 1958 年，John W . Tukey 在《American Mathematical Monthly》上⾸次定义了运⾏在电⼦计算器上的程序
+——"Software"⼀词由此诞⽣
+14

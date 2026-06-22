@@ -1,0 +1,14 @@
+SW EBO K §1.4 软件设计原则全图
+SW EBO K 原则 含义 本课对应原则编号
+Abstraction（抽象） 聚焦必要属性，忽略其余细节P4（接⼝=抽象）
+SoC（关注点分离） 将系统分解为相互独⽴的关注点P13 SRP；P6 ISP
+Modularization（模块化） 分解为具名、接⼝良好的独⽴单元P1–P4（基础）；P8–P9
+Encapsulation（封装/信息隐藏）隐藏设计决策，只暴露稳定接⼝P1–P4；P9–P10
+Separation of Interface & Impl 接⼝对客户可⻅，实现对客户不可⻅P4（⾯向接⼝）；P12 DIP
+Coupling（耦合） 模块间依赖强度，越低越好 P5 LoD；P6 ISP；P8 组合
+Cohesion（内聚） 模块内部元素关联程度，越⾼越好P13 SRP
+U niformity（⼀致性） 命名、接⼝、约定在系统内保持⼀致P14 SO FA（A — 抽象层次⼀致）
+Completeness（完备性） 设计充分捕获抽象的所有重要特征P11 O CP（对所有扩展点开放）
+Veriﬁability（可验证性） 设计信息⾜以验证约束与需求 P7 LSP（契约可验证）
+📖  SW EBO K v4 §1.4 · Software Design Principles
+47

@@ -1,0 +1,10 @@
+两个变量用于两种用途
+• //compute roots of a quadratic equation
+• //this code assumes that (b*b-4*a*c) is positive
+• discriminant=Sqrt(b*b-4*a*c);
+• Root[0]=(-b+discriminant)/(2*a);
+• Root[0]=(-b-discriminant)/(2*a);
+• //swap the roots
+• oldRoot= root[0];
+• Root[0] = root[1];
+• Root[1]=oldRoot;

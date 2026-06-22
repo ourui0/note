@@ -1,0 +1,30 @@
+L L M  辅助设计：代码质量 ① — 结构性缺陷
+量质反⽐定律
+代码体积⼏乎是结构退化的完美预测因⼦。
+— arXiv:2605.02741, AI-Generated Smells, 2025
+LLM  ⽣成代码⽐⼈类基线多 42%–85% 代码异味
+（arXiv:2510.03029）
+简单异味可修复：Magic Number、Empty Catch
+复杂结构性异味⽆法有效修复：Broken M odularization、Deﬁcient
+Encapsulation（ACM  TO SEM  2024）
+模型能⼒越强 → 代码体积越⼤ → 结构越臃肿、耦合越⾼
+模块化悖论
+"即使给出显式的模块化指导，LLM  仍产⽣含有隐藏依赖和过度⼯程
+的代码。"
+— The M odular Imperative, Harvard, ICFP/SPLASH 2025
+LLM  倾向于把新功能加⼊已有类⽽⾮新建职责单⼀的类 → 默认违反
+SRP
+异味修复能⼒对⽐
+异味类型 L L M 能⼒
+M agic Number / Empty
+Catch  ~62% 解决率
+Broken M odularization  显著劣于⼈类
+Deﬁcient Encapsulation  显著劣于⼈类
+God Class（有⼯具辅助）  iSM ELL F1=75%
+架构级异味（SmellBench）  47.7% 解决；63.1%
+误报
+少样本重构  42.97% 减少率
+结构性规律：LLM  可以修复表层语法级异
+味，但对涉及职责边界和模块语义的架构级
+异味束⼿⽆策。
+56

@@ -1,0 +1,13 @@
+前端项⽬初始化
+Step 1：创建 React 项⽬
+# 使⽤  Vite 初始化前端项⽬（推荐）
+npm create vite@latest my-app-frontend -- --template react
+cd my-app-frontend
+npm install
+# 安装常⽤依赖
+npm install axios react-router-dom tailwindcss
+Step 2：在 AI Studio 中输⼊提示词
+我⽤ Stitch 设计了⼀个任务看板应⽤的原型（截图已上传）。
+请⽤ React + Tailwind CSS 实现⾸⻚看板组件。
+数据先⽤ mock 数据，API 接⼝后端地址为 http://localhost:3000/api 。
+12

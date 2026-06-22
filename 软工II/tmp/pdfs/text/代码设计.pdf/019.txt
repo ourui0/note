@@ -1,0 +1,10 @@
+Javadoc
+• 为了方便使用注释文档化程序代码，人们还为 Java程序提供了Javadoc工具
+。只要程序员注释程序时使用特定的标签， Javadoc就能从代码中抽取出注
+释形成一个HTML格式的代码文档。
+• 在描述类与接口时，Javadoc常用的标签是：
+• @author：作者名
+• @version：版本号
+• @see：引用
+• @since：最早使用该方法/类/接口的JDK版本
+• @deprecated 引起不推荐使用的警告

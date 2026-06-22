@@ -1,0 +1,9 @@
+案例：在线书店 — 开发视图（组件图）
+代码组织 → 构建单元 → 交付物
+模块 Maven 模块 / 包 构建产出 负责团队
+bookstore-web controller + 静态资源 W AR ⼊⼝ 前端 + A
+bookstore-service service 接⼝ + 实现 JAR 后端 B/C
+bookstore-dao dao 接⼝ + M yBatis mapperJAR DBA E
+bookstore-entity 实体类 + 枚举 JAR（公共依赖）全员共享
+UML 组件图
+31

@@ -1,0 +1,16 @@
+P12 · 依赖倒置原则（DIP）
+⾼层模块不应依赖低层模块；两者都应依赖抽象。
+抽象不应依赖细节；细节应依赖抽象。
+违反 DIP
+class BusinessLogic {
+    private MySQLDatabase db;  // 依赖具体类！
+    void process() {
+        db.query(...);
+    }
+}
+符合 DIP
+class BusinessLogic {
+    private Database db;  // 依赖接⼝
+    BusinessLogic(Database db) {
+        this.db = db;  // 依赖注⼊
+34

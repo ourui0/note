@@ -1,0 +1,16 @@
+详细设计的输⼊
+来⾃需求⼯程（RE）
+⽤例（Use Case） —— 功能场景
+领域模型 / 概念类图 —— 业务实体
+系统顺序图 —— 系统级交互
+状态图 —— 复杂对象⽣命周期
+⾮功能需求 —— 性能、可靠性、安全等
+来⾃体系结构
+模块的规格（Speciﬁcation）
+导⼊/导出接⼝（Export / Import）
+⻛格约束（分层、MVC、微服务……）
+构件间接⼝（如 SalesBLService、SalesDataService）
+桥接类⽐：需求规格说明（"在两座⼭间建⼀座桥，5 分钟内 100km/h 通过"）+ 体系结构（"斜拉桥⻛格：桥墩、桥身、
+悬索"）→ 详细设计（"悬索：拉索的根数；路⾯：路⾯材质"）。
+📖  SW EBO K v4 §1.2 · Context of Software Design  |  §2.2 · Detailed Design
+9

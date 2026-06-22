@@ -1,0 +1,26 @@
+内聚 / 耦合 · 代码案例
+案例 A：低内聚（坏）
+public class Rous {
+    public static int findPattern(
+        String text, String pattern) { ... }
+    public static int average(
+        Vector numbers) { ... }
+    public static OutputStream openFile(
+        String fileName) { ... }
+}
+逻辑内聚（甚⾄偶然内聚）：三个⽅法毫⽆关联，硬塞在
+⼀起。
+案例 B：⾼耦合（坏）
+public class Employee {
+    public String name, emailID;
+    ...
+}
+public class Emailer {
+    public void sendEmail(
+        Employee e, String text) { ... }
+    ...
+}
+数据耦合：Emailer 直接访问 Employee 的公开字段，破
+坏封装。改进：让 Employee 提供 getEmailID() ，或
+传递 String email。
+45

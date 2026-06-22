@@ -1,0 +1,14 @@
+Principles in GU I Design（⼆）
+Feedback
+及时反馈
+Identify exit clear
+清晰标识出⼝
+Shortcut
+提供快捷⽅式
+Good error message
+良好的错误提示
+Avoid mistake
+帮助⽤户避免错误
+Help and document
+提供帮助与⽂档
+46

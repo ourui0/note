@@ -1,0 +1,13 @@
+L L M  ⾃动⽣成⽤户故事 —— 前沿⼯具
+GeneU S（2024）
+⾸个基于 GPT-4 从需求⽂档⾃动创建⽤户故事的⼯具
+使⽤ Quality U ser Story（QU S） 框架评估⽣成质量
+QU S 质量维度 含义
+原⼦性（Atomic） ⼀个⽤户故事只描述⼀件事
+独⽴性（Independent） 故事之间不相互依赖
+可协商性（Negotiable） 不包含具体实现细节
+有价值（Valuable） 对⽤户有明确价值
+可估算（Estimable） 可以估算⼯作量
+⼩巧（Small） ⼀个迭代内可完成
+研究发现：RaT prompting 可将⽤户故事的重复率降⾄ 0.5% （arXiv, 2024）
+49

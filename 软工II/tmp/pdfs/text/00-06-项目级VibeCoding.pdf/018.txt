@@ -1,0 +1,14 @@
+Claude Code ⽣成后端 API
+继续对话：
+实现任务管理的 CRUD API：
+GET  /api/tasks  获取全部任务列表
+POST /api/tasks  新建任务
+PATCH /api/tasks/:id  更新任务状态
+DELETE /api/tasks/:id  删除任务
+每个任务包含：id、title、status（todo/doing/done）、priority、assignee、dueDate
+Claude Code 会⾃动：
+创建 SQL ite 数据库表
+编写路由处理函数
+添加基本的输⼊校验
+⽣成测试⽤的 seed 数据
+18

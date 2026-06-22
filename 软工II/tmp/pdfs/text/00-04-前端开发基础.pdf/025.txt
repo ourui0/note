@@ -1,0 +1,13 @@
+Vue 核⼼指令速查
+指令 ⽤途 示例
+v-bind  / : 动态绑定属性 :href="url"  :class="cls"
+v-model 双向数据绑定（表单） <input v-model="name">
+v-if  / v-else 条件渲染（真正增删DOM） <p v-if="show">
+v-show 条件显示（切换 display） <p v-show="show">
+v-for 列表渲染 <li v-for="item in list" :key="item.id">
+v-on  / @ 事件监听 @click="fn"  @input="fn"
+v-if vs v-show 的选择：
+v-if  ── 元素频繁切换少，或初始不渲染  → 适合条件分⽀
+v-show ── 元素频繁切换（只改  CSS ）    → 适合  tab / 折叠⾯板
+记忆⼝诀： bind绑属性，model双向，if条件，for列表，on事件。
+25

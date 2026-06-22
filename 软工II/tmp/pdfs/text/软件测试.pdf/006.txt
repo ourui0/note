@@ -1,0 +1,9 @@
+AT&T long distance service fails: 1990
+• Switching errors in AT&T's call-handling 
+computers caused the company's long-
+distance network to go down for nine hours, 
+the worst of several telephone outages in 
+the history of the system
+• The meltdown affected thousands of 
+services and was eventually traced to a 
+single faulty line of code

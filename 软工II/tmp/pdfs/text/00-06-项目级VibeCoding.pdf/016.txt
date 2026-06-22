@@ -1,0 +1,13 @@
+什么是 Claude Code？
+Anthropic 推出的 终端 AI 编程 Agent：
+在本地终端运⾏，直接读写项⽬⽂件
+理解整个代码库上下⽂，不只是单个⽂件
+⾃主执⾏命令（npm install 、git 、运⾏测试）
+⽀持多轮对话，持续完善代码
+# 安装  Claude Code
+npm install -g @anthropic-ai/claude-code
+# 在项⽬⽬录中启动
+cd my-app-backend
+claude
+VibeCoding 中的定位：负责⽣成和维护后端 API，与前端对接
+16

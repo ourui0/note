@@ -1,0 +1,15 @@
+认证 vs 授权
+概念 英⽂ 要回答的问题 举例
+认证 Authentication（AuthN） 你是谁？ ⽤户名 + 密码登录
+授权 Authorization（AuthZ） 你能做什么？管理员才能删除⽤户
+Spring Security 的核⼼：过滤器链（Filter Chain）
+HTTP 请求进来
+  ├── UsernamePasswordAuthenticationFilter  ← 处理表单登录
+  ├── JwtAuthenticationFilter               ← 验证  Token （⾃定义）
+  ├── ExceptionTranslationFilter            ← 将异常转为  401 / 403 响应
+  └── FilterSecurityInterceptor             ← 最终权限检查
+  │
+  ▼
+Controller （只有通过全部过滤器才能到达）
+核⼼设计：安全横切关注点——不侵⼊业务代码，全部在过滤器链中处理
+36

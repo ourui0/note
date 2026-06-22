@@ -1,0 +1,17 @@
+下课前，三分钟回顾
+今天学了什么？
+Web 前端三层架构
+├── HTML  ── ⻣架：标签、语义、结构
+├── CSS   ── ⽪肤：选择器、样式、布局
+└── JS    ── 动作： DOM 操作、事件、 Fetch
+Vue.js
+├── MVVM ：数据驱动视图，告别⼿动  DOM
+├── SFC (.vue) ： template + script + style 三合⼀
+├── 核⼼指令： v-bind / v-model / v-if / v-for / v-on
+└── Composition API ： <script setup> + ref + ⽣命周期钩⼦
+Node.js
+├── V8 引擎  + 事件循环  + ⾮阻塞  I/O
+├── 内置  http 模块  → 构建服务器
+├── Express 框架  → 路由  + 中间件
+└── 前后端联动： Vue(5173) ←axios→ Node.js(8081)
+38

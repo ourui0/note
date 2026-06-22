@@ -1,0 +1,4 @@
+Part 5
+为变更⽽设计
+P9 变更封装 · P10 权限最⼩化 · P11 O CP · P12 DIP · P13 SRP · P14 SO FA
+30

@@ -1,0 +1,9 @@
+Rule of Thumb（设计抉择经验法则）
+W hen there are alternative design choices, take a closer look at the cohesion and coupling implications of the
+alternatives and possibly the future evolution pressures on the alternatives. Choose an alternative with good
+cohesion, coupling and stability.
+不存在"唯⼀正确"的设计 —— 只存在多个候选之间的权衡
+耦合、内聚、稳定性是三⼤评价标尺
+未来演化压⼒：考虑"哪个⽅案更经得起变更"
+GRASP 给出的不是公式，⽽是讨论候选⽅案的框架
+26

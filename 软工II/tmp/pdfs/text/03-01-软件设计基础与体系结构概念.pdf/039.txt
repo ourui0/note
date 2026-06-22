@@ -1,0 +1,13 @@
+案例 —— 让 L L M  识别架构⽓味
+Prompt 示例
+以下是在线书店系统的包依赖关系：
+- presentation → businesslogic, data
+- businesslogic → data
+- data → businesslogic （反向依赖）
+请识别其中的架构⽓味，并给出修复建议。
+L L M  可能的输出
+发现 类型 修复建议
+data → businesslogic 反向依赖 循环依赖 提取接⼝到独⽴包，⽤依赖倒置
+presentation → data 跨层调⽤ 层违规 删除直接引⽤，通过 businesslogic 中转
+AI 能快速发现依赖问题，但修复⽅案需⼈⼯判断权衡
+39

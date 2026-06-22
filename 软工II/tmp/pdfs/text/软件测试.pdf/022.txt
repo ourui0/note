@@ -1,0 +1,8 @@
+developer independent tester
+Understands the system but, 
+will test "gently"and, is driven 
+by "delivery"
+Must learn about the 
+system, but, will attempt 
+to break it and, is driven 
+by quality

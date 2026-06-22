@@ -1,0 +1,10 @@
+JavaScript 四⼤核⼼能⼒
+能⼒ 说明 典型⽤法
+DO M 操作 动态增删改查 HTML  元素 getElementById  querySelector
+事件处理 响应点击、输⼊、滚动等addEventListener('click', fn)
+异步通信 fetch  / XHR 与服务器交互fetch('/api').then(...)
+逻辑计算 变量、函数、条件、循环ES6+ 语法：箭头函数、解构、模块
+为什么这很重要？
+AJAX 之后，JS 从"点击弹窗的玩具"变成了构建完整应⽤的语⾔，
+催⽣了 Node.js（服务端）和现代前端框架（Vue / React）。
+17

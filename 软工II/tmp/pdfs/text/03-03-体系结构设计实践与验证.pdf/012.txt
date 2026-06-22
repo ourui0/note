@@ -1,0 +1,12 @@
+CRP 共同重⽤原则 [Robert C. M artin]
+Classes that are used together belong together.
+⼀起被使⽤的类应放在⼀起。
+ 
+含义
+CRP 告诉我们哪些类不该放在⼀起：如果⽤了包中 A 类但不需要 B 类，说明 A 和 B 不该在同⼀个包
+案例：连锁超市
+功能 对应逻辑包 CRP 分析
+销售 SalesUI, Sales, SalesData 三个总是⼀起使⽤ ✓
+库存 CommodityUI, Commodity, CommodityData 三个总是⼀起使⽤ ✓
+销售+库存放⼀个包？违反 CRP 修改库存时被迫重新测试销售
+12

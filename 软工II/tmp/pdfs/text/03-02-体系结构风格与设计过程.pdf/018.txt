@@ -1,0 +1,11 @@
+三层架构 — 各层职责
+层次 英⽂名 核⼼职责 典型技术
+展示层 Presentation 接收请求、渲染视图、⽤户交互JSP, Thymeleaf, Vue, React
+业务逻辑层Business Logic 实现业务规则、协调⼯作流 Spring Service, EJB
+数据访问层Data Access CRUD 操作、数据映射、事务管理MyBatis, JPA, Hibernate
+关键设计约束
+展示层不直接访问数据库
+业务逻辑层不包含 UI 代码
+数据访问层不包含业务规则
+各层通过**接⼝（Interface）**解耦
+18

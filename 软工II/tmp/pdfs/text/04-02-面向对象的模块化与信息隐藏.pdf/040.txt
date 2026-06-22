@@ -1,0 +1,22 @@
+LLM 对耦合/内聚的理解：实证发现
+"当前 LLM  是有效的辅助设计⼯具，但不是⾃主设计主体。"
+— arXiv:2511.20933, Hierarchical Evaluation of Software Design Capabilities of LLM s (2024)
+实验设置（DeepSeek-R1 系列）
+三种引导级别逐步增加噪声：
+1. Veriﬁcation — 验证给定答案
+2. Guided Generation — 有提示的⽣成
+3. O pen-ended Generation — 完全开放
+关键发现：耦合
+有引导时：基准正确率尚可
+开放场景 + 噪声：F1 降幅 >50%
+模型对耦合问题存在"认知捷径"（Cognitive
+Shortcutting）
+关键发现：内聚 vs 耦合
+维度 L L M  表现 原因
+内聚分析 较稳定 局部信息⾜够
+耦合推理 噪声下崩溃需要跨类全局推理
+教学含义：让 LLM  帮你评估"这段代码的内聚性"通常有
+效；让它评估"跨多个类的耦合关系"需要额外的上下⽂和
+结构化提示，结果不可盲信。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Cohesion  |  §6.3 · Quality Analysis
+40

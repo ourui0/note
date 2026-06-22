@@ -1,0 +1,10 @@
+继承耦合的四种类型
+类型 说明 耦合强度 推荐度
+M odiﬁcation（修改） ⼦类覆盖⽗类⽅法并改变⾏为语义 最⾼ ✗  避免
+Reﬁnement（精化） ⼦类调⽤ super 并在前后添加⾏为，不改变语义中 △ 谨慎
+Extension（扩展） ⼦类只新增⽅法，不覆盖⽗类任何⽅法 低 ✓  安全
+Nil（⽆实现） ⽗类是纯抽象接⼝，⼦类提供实现 最低 ✓✓  最佳
+从设计视⻆：Nil → Extension → Reﬁnement → M odiﬁcation 是耦合由低到⾼的排列。推荐优先使⽤抽象⽗类（Nil）
+和扩展继承（Extension）。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Coupling
+15

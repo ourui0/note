@@ -1,0 +1,11 @@
+如何写好⼀份 AI 时代的 Spec？
+来源：Addy O smani (Google Chrome 团队) · O 'Reilly 2025
+好 Spec 的结构（6 ⼤要素）
+要素 说明
+Commands AI 可执⾏的具体指令
+Testing 验收标准和测试计划
+Project Structure 代码组织和⽬录约定
+Code Style 编码规范和约束
+Git W orkﬂow 分⽀和提交规范
+Boundaries AI ⾏为的边界约束
+46

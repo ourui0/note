@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="95" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="95" y1="380" x2="95" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20">Q</text>
+  <text x="62" y="45" font-size="20">成本/收益</text>
+  <line x1="145" y1="110" x2="640" y2="345" stroke="#2563eb" stroke-width="4"/>
+  <line x1="150" y1="325" x2="635" y2="105" stroke="#dc2626" stroke-width="4"/>
+  <line x1="150" y1="265" x2="635" y2="45" stroke="#ef4444" stroke-width="3" stroke-dasharray="8 7"/>
+  <circle cx="365" cy="167" r="7" fill="#111"/>
+  <circle cx="455" cy="185" r="7" fill="#111"/>
+  <line x1="365" y1="167" x2="365" y2="380" stroke="#666" stroke-dasharray="6 6"/>
+  <line x1="455" y1="185" x2="455" y2="380" stroke="#666" stroke-dasharray="6 6"/>
+  <text x="638" y="346" font-size="20" fill="#2563eb">MSB/MPB</text>
+  <text x="638" y="108" font-size="20" fill="#dc2626">MPC</text>
+  <text x="638" y="48" font-size="20" fill="#ef4444">MSC</text>
+  <text x="320" y="410" font-size="18">Q效率</text>
+  <text x="430" y="410" font-size="18">Q私人</text>
+  <text x="206" y="36" font-size="24" font-weight="700">负外部性：私人产量大于效率产量</text>
+  <text x="125" y="424" font-size="18" fill="#444">庇古税使 MPC 上移到 MSC，使私人决策接近社会最优</text>
+</svg>

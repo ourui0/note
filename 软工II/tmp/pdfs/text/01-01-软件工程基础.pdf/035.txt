@@ -1,0 +1,7 @@
+⼯程的四⼤要素
+要素 在软件⼯程中的⻆⾊
+Problem（问题） 动机（Motivation）——现实世界的混乱状态驱动⼯程
+Scientiﬁc Knowledge（科学知识） ⼯具（Instrument）——计算科学作为科学基础
+Solution/Machine（解决⽅案） ⽬标（Objective）——虚拟计算机 = 通⽤机器 + 特定解决⽅案
+Cost-Beneﬁt Eﬀective（成本效益有效） 条件（Condition）——追求⾜够好，⽽不是最好
+35

@@ -1,0 +1,23 @@
+登录与注册接⼝
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
+        // 1. 委托  Spring Security 验证⽤户名  + 密码
+        Authentication auth = authManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                req.getUsername(), req.getPassword()));
+        // 2. 验证通过，⽣成  JWT Token （有效期  24h ）
+        String token = jwtUtil.generateToken(auth.getName());
+        return ResponseEntity.ok(Map.of("token", token));
+    }
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RegisterRequest req) {
+        // 3. 注册时  BCrypt 加密密码再存⼊数据库
+        String encoded = passwordEncoder.encode(req.getPassword());
+        userMapper.insert(new User(req.getUsername(), encoded, "USER"));
+        return ResponseEntity.ok(Map.of("message", " 注册成功 "));
+    }
+}
+40

@@ -1,0 +1,22 @@
+单元 0：前置导⼊——技术基础补全
+前导模块同时覆盖项⽬实践所需的全栈技术基础，确保学⽣具备动⼿能⼒：
+00-04  前端开发基础
+  ├── PART 1 ： Web 前端三层架构
+  │     └── HTML 结构  · CSS 样式  · JavaScript ⾏为； AJAX 与  SPA 演进史
+  ├── PART 2 ： Vue.js 与现代前端框架
+  │     └── 声明式渲染  · 响应式数据  · SFC （ template / script / style ）三合⼀
+  │     └── v-bind · v-model · v-if · v-for · Composition API
+  └── PART 3 ： Node.js 与全栈联动
+        └── V8 引擎  · 事件循环  · Express 框架  · Vue(5173) ←axios→ Node.js(8081)
+00-05  Java Web 后端开发
+  ├── PART 1 ： Spring Boot — RESTful API 快速构建
+  │     └── 注解驱动  · ⾃动配置  · @RestController / @GetMapping / @PostMapping
+  ├── PART 2 ： MyBatis — 安全⾼效操作数据库
+  │     └── 参数化  SQL （ #{} 防注⼊） · Mapper 接⼝  · 结果映射
+  └── PART 3 ： Spring Security — ⽤户认证与权限控制
+        └── 过滤器链  · JWT ⽆状态认证  · BCrypt 密码存储
+00-06  项⽬级  VibeCoding — AI 驱动全栈开发实战
+  ├── Stitch 设计界⾯原型  → AI Studio ⽣成前端代码
+  ├── Claude Code ⽣成后端  API · 通义灵码开发移动端  App
+  ├── Expo Go 真机热重载调试
+  └── MCP chrome-devtools ⾃动调试  Web 端 15

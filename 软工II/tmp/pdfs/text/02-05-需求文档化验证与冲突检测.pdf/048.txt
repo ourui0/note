@@ -1,0 +1,6 @@
+GitHub Spec Kit：开源 SDD ⼯具包
+核⼼能⼒
+Feature Spec 模板：明确 WHAT（⽤户需要什么）和 W HY（为什么），避免 HO W
+⽀持 Claude Code、GitHub Copilot、Gemini CLI 等 22+ AI Agent
+模板本质上是引导 L L M  ⾏为的结构化 Prompt
+48

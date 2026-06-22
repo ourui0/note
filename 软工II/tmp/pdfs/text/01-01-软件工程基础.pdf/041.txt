@@ -1,0 +1,9 @@
+软件开发活动与产物（详细版）
+活动 ⽬标 产物
+Software Requirement W hat（做什么） SRS（需求规格说明书）
+Software Design How（怎么做） SDD（设计⽂档）
+Software Construction Build（构建） 代码与可执⾏⽂件
+Software Testing Are you building the "right" thing? Are you building it "right"? 测试报告
+Software Deliver Install（安装部署） ⽤户⽂档与系统⽂档
+Software Maintenance Revolution（演化） 新版本软件
+41

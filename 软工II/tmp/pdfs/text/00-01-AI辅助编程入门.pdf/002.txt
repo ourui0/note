@@ -1,0 +1,6 @@
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+模块 关键问题
+AI4Coding 是什么 ⼯具能做什么，不能做什么
+四⼤主流⼯具 GitHub Copilot · Cursor · 通义灵码 · Claude Code
+提示词⼯程 如何让 AI 输出⾼质量代码
+2

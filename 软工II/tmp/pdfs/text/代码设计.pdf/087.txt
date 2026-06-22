@@ -1,0 +1,6 @@
+空语句
+• While(recordArray.Read(index++)!=recordAr
+ray.EmptyRecord());   
+• ->可以通过加{}等来强调空语句
+• 或者为创建一个DoNothing()预处理宏或者
+内联函数

@@ -1,0 +1,16 @@
+MCP chrome-devtools：实战示例
+场景：登录后⻚⾯空⽩，不知道原因
+对 Claude Code 说：
+登录成功后跳转到⾸⻚，但⻚⾯空⽩。
+请⽤ chrome-devtools 帮我查明原因。
+Claude Code 通过 M CP ⾃动完成：
+// 1. 读取  Console 错误
+// → 发现： Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+// → 位置： TaskList.jsx:42
+// 2. 读取  Network 请求
+// → 发现： GET /api/tasks 返回  200 ，但  response body 为  { "data": null }
+//    ⽽前端代码直接  tasks.map(...) ，没有处理  null 情况
+// 3. ⾃动修复建议：
+const tasks = data?.tasks ?? [];  // 添加空值保护
+M CP 的价值：AI 从"盲⼈摸象"变为"亲眼观察"，调试效率提升 5–10x
+36

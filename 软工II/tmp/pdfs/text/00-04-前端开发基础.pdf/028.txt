@@ -1,0 +1,19 @@
+ 动⼿练习：创建第⼀个 Vue 项⽬
+ 5 分钟，跟着步骤操作
+# 前提：已安装  Node.js （ node -v 验证）
+# 1. ⽤  Vite 创建项⽬
+npm create vite@latest my-app -- --template vue
+# 2. 进⼊项⽬⽬录，安装依赖
+cd my-app
+npm install
+# 3. 启动开发服务器
+npm run dev
+# 浏览器打开  http://localhost:5173
+修改 src/App.vue ，把标题改成你的名字：
+<template>
+  <h1> 你好， {{ name }} ！ </h1>
+</template>
+<script setup>
+const name = ' 张三 '  // 改成你的名字
+</script>
+28

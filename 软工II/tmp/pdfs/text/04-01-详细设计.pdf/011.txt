@@ -1,0 +1,10 @@
+详细设计的输出
+视⻆ 产出物 U ML  表示
+静态结构 模块内部的类、接⼝与关系 类图、包图
+动态⾏为 类之间的协作与消息传递 顺序图、通讯图
+状态⾏为 复杂对象的⽣命周期 状态图
+实现注解 构造⽅法、枚举、常量、静态⽅法说明⽂字 + 代码⽚段
+质量论证 为何这样设计：耦合/内聚/扩展性设计理由（Rationale）
+详细设计输出≠"画⼏张图"，⽽是为后继开发者提供⾜够、清晰、可论证的实现蓝图。
+📖  SW EBO K v4 §4 · Recording Software Designs  |  §4.2 · Structural Design Descriptions  |  §4.3 · Behavioral Design Descriptions  |  §4.6 · Design Rationale
+11

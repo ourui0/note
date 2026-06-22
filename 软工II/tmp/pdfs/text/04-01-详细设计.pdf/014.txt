@@ -1,0 +1,11 @@
+Responsibilities（职责）
+A responsibility is an obligation to perform a task（operational responsibility）or to maintain some data（data
+responsibility）.
+O perational responsibilities are usually fulﬁlled by operations（⽅法）.
+Data responsibilities are usually fulﬁlled by attributes（属性）.
+Class collaborations may be involved.
+Responsibility-Driven Decomposition（职责驱动分解）
+Responsibilities may be stated at diﬀerent levels of abstraction.
+High-level responsibilities → high-level components；可逐层分解。
+职责驱动的分解可能不同于功能分解 —— 职责同时反映"操作"与"数据"两⽅⾯的义务。
+14

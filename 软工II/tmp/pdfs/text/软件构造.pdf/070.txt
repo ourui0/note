@@ -1,0 +1,12 @@
+-9- The Toolbox Metaphor Continues to be 
+Illuminating
+• Toolbox Metaphor
+• What’s best? Agile? XP? Scrum? CMM?
+• Toolbox explains there’s no one right tool for every job
+• Different industry segments will have different tools and even 
+different toolboxes
+• What’s in the Software Engineering Toolbox?
+• Best practices
+• Lifecycle models
+• Templates, checklists, patterns, examples
+• Software tools

@@ -1,0 +1,13 @@
+L L M  辅助设计：代码质量 ② — 推荐⼯具链
+⼯具 ⽤途 效果 来源
+iSMEL L LLM  + 7 专家静态分析⼯具；检测 God Class、Feature Envy 等 F1 提升 +35% vs 纯 LLM ASE 2024
+SmellBench 架构级代码异味修复基准（11 智能体 × 4 模型 × 65 种异味） 最佳解决率 47.7%；误报率 63.1% arXiv:2605.07001
+NO MAD 多智能体 UM L 类图⽣成；认知启发式⼦任务分解 显著优于单智能体 arXiv:2511.22409
+DRAFT RAG + 微调；⾃动⽣成架构决策记录（ADR） 相关性优于零样本 LLM arXiv:2504.08207
+L L M-ADD LLM  融⼊属性驱动设计（ADD）迭代流程 设计迭代时间缩短 40% arXiv:2506.22688
+MS Arch Agent 上传代码/YAM L ，⾃动⽣成架构图并检测⻛险 ⼯业实践验证 M icrosoft 2024
+ClarifyGPT 检测模糊需求并追问澄清，再⽣成代码 Pass@1 提升 +10% FSE 2024
+使⽤建议：⼯具链的价值在于组合——⽤ iSM ELL 检测、SmellBench 评估、NOM AD ⽣成初稿、ClarifyGPT 澄清需
+求，各⼯具覆盖 LLM  独⽴完成时的盲区。
+📖  SW EBO K v4 §6.3 · Quality Analysis  |  §6.2 · Quality Attributes  |  §4.4 · Design Patterns and Styles
+57

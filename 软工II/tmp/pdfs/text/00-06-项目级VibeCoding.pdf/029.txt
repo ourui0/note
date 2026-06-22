@@ -1,0 +1,15 @@
+Expo Go 调试：与灵码协作
+最佳实践：红屏报错 → 直接截图粘贴给灵码
+【截图 Expo Go 红屏错误信息】
+上⾯是我的 Expo Go 报错，请分析原因并修复。
+灵码会⾃动：
+1. 读取相关源⽂件
+2. 定位错误原因
+3. 修改代码并说明改动
+常⻅错误对应提示：
+"Unable to resolve module '@/components/ChatScreen'"
+→ 告诉灵码： " 路径别名  @ 没有配置，请修复  tsconfig.json 中的  paths"
+"Network request failed"
+→ 告诉灵码： " 后端地址  localhost 在真机上不可⽤，
+              请替换为本机  IP 地址，并在灵码帮我找到正确的  IP"
+注意：⼿机调试时后端地址不能⽤ localhost，需改为电脑的局域⽹ IP（如 192.168.1.x:3000） 29

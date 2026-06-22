@@ -1,0 +1,7 @@
+需求优先级排序（续） [SW EBO K 7.2]
+优先级计算公式（⼀种常⻅⽅法）
+Priority = Value × (1 − Risk) / Cost
+Value：利益相关⼈感知价值
+Risk：技术实现⻛险
+Cost：实现成本
+39

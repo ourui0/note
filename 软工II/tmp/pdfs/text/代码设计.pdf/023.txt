@@ -1,0 +1,15 @@
+大模型辅助提升代码可读性
+智能命名建议
+• 描述变量/方法功能，大模型推荐符合规范的名称（如 isIdValid、
+computeTaxTotal）
+自动生成文档注释（Javadoc）
+• 输入方法代码，大模型自动生成 @param、@return、@throws 规范
+注释
+代码风格审查
+• 识别命名不一致、注释缺失、缩进混乱等可读性问题
+常用工具
+• GitHub Copilot（IDE集成）、Claude / ChatGPT（对话式）、Cursor（
+AI原生IDE）
+Prompt 示例
+• "请为以下Java方法生成完整的Javadoc注释，包含功能说明、参数描
+述、返回值和可能抛出的异常"

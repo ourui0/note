@@ -1,0 +1,14 @@
+为什么需要前端框架？
+原⽣ JS 的痛苦：⼤量⼿动 DOM 操作
+// 数据变了，必须⼿动找到  DOM 元素并更新
+const count = 0;
+document.getElementById('counter').textContent = count;
+document.getElementById('btn').onclick = () => {
+  count++;
+  document.getElementById('counter').textContent = count; // ⼿动同步！
+};
+随着⻚⾯复杂度增加，这会演变为噩梦：
+数据与视图严重耦合，改⼀处要同步改多处 DO M
+状态分散在多个变量中，难以追踪
+代码重复，模块间通信混乱，维护成本爆炸
+20

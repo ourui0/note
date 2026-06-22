@@ -1,0 +1,14 @@
+BDD 与⽤例描述的关系 [SW EBO K 4.3]
+  ⽤例描述（正常流程  + 扩展流程）
+         │
+         │  等价转换
+         ▼
+  BDD 场景集（ Given-When-Then ）
+         │
+         │  ⾃动化框架（ Cucumber / Behave / SpecFlow ）
+         ▼
+  可执⾏的验收测试
+ 
+ BDD 不是替代⽤例描述，⽽是⽤例描述的精确化补充。
+在 SDD（Spec 驱动开发）中，Acceptance Criteria 通常采⽤ BDD 格式。
+47

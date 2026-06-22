@@ -1,0 +1,15 @@
+Git 的四个区域
+⼯作区（ Working Directory ）
+    ↓  git add
+暂存区（ Index / Staging Area ）        ← " 准备提交 " 的快照
+    ↓  git commit
+本地仓库（ Local Repository ）           ← 完整的版本历史，存在  .git ⽬录
+    ↓  git push
+远程仓库（ Remote Repository ）          ← GitHub / GitLab 上的副本，团队共享
+    ↑  git pull / git fetch
+类⽐：
+⼯作区 = 你的桌⾯草稿纸
+暂存区 = 你决定要装进信封的内容
+本地仓库 = 你⾃⼰的档案柜（有完整历史）
+远程仓库 = 办公室公⽤的云端⽂件柜
+10

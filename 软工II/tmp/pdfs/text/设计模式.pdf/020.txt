@@ -1,0 +1,1 @@
+•Expert designers know not to solve every problem from first principles•They reuse solutions•These patterns make OO designs more flexible, elegant, and ultimately reusable

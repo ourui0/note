@@ -1,0 +1,6 @@
+ADP 修复⽅案 B：接⼝定义在调⽤⽅包内（反转依赖⽅向）
+在 order 包内定义 InventoryPort 接⼝
+InventoryServiceImpl （inventory 包）反过来依赖 order 包的接⼝
+依赖⽅向从 order→inventory 反转为 inventory→order，循环打破
+⽅案 A = 提取第三⽅；⽅案 B = 反转⽅向。核⼼都是⾯向接⼝编程。
+23

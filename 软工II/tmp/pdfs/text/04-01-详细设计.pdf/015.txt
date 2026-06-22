@@ -1,0 +1,14 @@
+Responsibility Heuristics & Delegation
+职责分配启发式
+分配良好的职责 → ⾼内聚、低耦合
+模块之间的职责不重叠
+把操作和数据放在某个模块⾥，仅当它们帮助该模块履⾏
+其职责
+Delegation（委托）
+Delegation is a tactic wherein one module (the
+delegator) entrusts another module (the delegate)
+with a responsibility.
+⼀个对象可以保留⾼层职责，把具体执⾏委托给更专⻔的
+对象
+委托 = 解耦 + 关注点分离
+15

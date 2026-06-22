@@ -1,0 +1,24 @@
+A2U I — Agent 驱动界⾯的开放标准
+A2U I（Agent-to-User Interface）是 Google 2025 年发布的声明式 JSO N 流式协议，让 AI Agent 能"说 UI 语⾔"，将
+界⾯描述发送给客户端，由客户端⽤原⽣组件渲染。
+核⼼设计原则
+原则 机制
+安全性 U I 是数据不是代码；Agent 只能引⽤客户端预批准的组件⽬
+录，⽆法注⼊任意脚本
+L L M 友
+好
+扁平化流式 JSO N；⽀持逐步⽣成、增量更新，⽆需⼀次输
+出完整 JSO N
+跨平台 同⼀ A2U I 载荷可渲染为 Angular / Flutter / React /
+SwiftU I
+四种协议消息
+createSurface    → 创建新界⾯容器
+updateComponents → 添加 / 更新组件定义
+updateDataModel  → 推送新数据（与结构分离）
+deleteSurface    → 移除界⾯
+HCI 意义
+传统 GUI：开发者静态设计界⾯
+A2UI：Agent 动态⽣成适合当前对话的界⾯
+分离关注点：结构（组件树） vs 数据（数据模型）
+A2UI v0.9（Public Preview，2025.12）。规格⻅ a2ui.org，开源实现⻅ github.com/google/A2UI。
+60

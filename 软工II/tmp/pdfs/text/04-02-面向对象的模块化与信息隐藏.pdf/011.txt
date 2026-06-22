@@ -1,0 +1,17 @@
+P5 · 迪⽶特法则（Law of Demeter）
+只与你的直接朋友交谈。
+A method should only call methods on: itself, its parameters, objects it creates, and its direct ﬁelds.
+合法的调⽤对象
+1. this （⾃身）
+2. ⽅法的参数对象
+3. ⽅法内新创建的对象
+4. 类的成员变量（直接持有）
+违反示例
+// 违反：通过  getB() 拿到中间对象再调⽤
+a.getB().doSomething();
+// 合规：委托给  B 的操作封装在  A 中
+a.delegateToB();
+迪⽶特法则是对访问耦合级别的直接约束：避免消息链，
+减少对间接对象的依赖。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Coupling
+11

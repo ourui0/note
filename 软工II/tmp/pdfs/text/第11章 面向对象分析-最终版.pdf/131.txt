@@ -1,0 +1,10 @@
+130
+2025/5/29
+对象约束语言OCL
+OCL的应用
+➢OCL在UML模型中有很多的用途
+➢最常见的是用来定义UML模型元素的四类约束：
+➢ 不变量（Invariant）
+➢ 前置条件（Precondition）
+➢ 后置条件（Postcondition）
+➢ 监护条件（Guard）。

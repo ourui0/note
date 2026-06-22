@@ -1,0 +1,12 @@
+AI Agent 时代的架构决策 [arxiv 2604.04990, 2025]
+"Architecture W ithout Architects" — AI Coding Agent 正在隐式地做出架构决策
+发现 影响
+Agent 在秒级做出架构决策 决策速度远超⼈类，但缺乏深思熟虑
+不同 LLM ⽣成结构性不同的代码 模型选择本身就是⼀个架构决策
+决策⽆记录，缺乏透明性 ⽆法追溯架构 Rationale
+Agent 的决策⾯覆盖全架构维度 分层/模块划分/依赖关系/API 设计全被 Agent 决定
+ 
+推荐实践
+Humans own architecture, AI validates it.
+⼈负责架构决策，AI 负责验证和⽣成。
+35

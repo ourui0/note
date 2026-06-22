@@ -1,0 +1,21 @@
+UserDetailsService：连接 Security 与数据库
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+    @Autowired
+    private UserMapper userMapper;   // MyBatis Mapper ，从数据库查⽤户
+    @Override
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        User user = userMapper.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(" ⽤户不存在 : " + username);
+        }
+        // 构建  Spring Security ⽤户对象，供框架进⾏密码⽐对
+        return org.springframework.security.core.userdetails.User
+            .withUsername(user.getUsername())
+            .password(user.getPassword())   // 数据库存的是  BCrypt 哈希值
+            .roles(user.getRole())          // ⻆⾊： USER / ADMIN
+            .build();
+    }
+}
+密码存储⻩⾦法则：永远使⽤ BCryptPasswordEncoder ，绝不存储明⽂密码 39

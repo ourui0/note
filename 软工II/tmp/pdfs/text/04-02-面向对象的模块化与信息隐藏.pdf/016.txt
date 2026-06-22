@@ -1,0 +1,26 @@
+P7 · ⾥⽒替换原则（LSP）
+⼦类型必须能够替换其⽗类型⽽不改变程序的正确性。
+— Barbara Liskov, 1987
+经典反例：正⽅形 ≠ ⻓⽅形
+class Rectangle {
+    void setWidth(int w)  { ... }
+    void setHeight(int h) { ... }
+    // 不变式： w 与  h 独⽴
+}
+class Square extends Rectangle {
+    void setWidth(int w) {
+        super.setWidth(w);
+        super.setHeight(w); // 破坏不变式！
+    }
+}
+为什么违反 L SP？
+void resize(Rectangle r) {
+    r.setWidth(5);
+    r.setHeight(3);
+    // 期望⾯积  = 15
+    assert r.area() == 15; // Square 中失败！
+}
+Square 在⼏何上是 Rectangle 的⼦集，但在⾏为契约
+上不能替换。"IS-A" 关系应由⾏为定义，⽽⾮数学定义。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (SO L ID — L iskov Substitution)
+16

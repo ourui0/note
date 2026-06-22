@@ -1,0 +1,9 @@
+静态模型 · 完整类图示例
+案例：销售业务 设计要点
+业务逻辑层包 pkg
+Sales 实现接⼝ SalesBLService （被表现层调⽤）
+Sales 依赖接⼝ SalesDataService （调⽤数据层）
+Sales 聚合多个 Commodity
+关键：双向依赖接⼝ —— 上下都通过接⼝解耦，便于替
+换与测试
+20

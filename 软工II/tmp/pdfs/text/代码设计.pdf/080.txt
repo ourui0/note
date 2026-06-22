@@ -1,0 +1,17 @@
+好的子程序名字
+• 描述子程序所做的所有事情
+• computReportTotals
+• computReportTotalsAndOpenOutputFile
+• 避免使用无意义的、模糊或者表述不清的动词
+• HandleCalculation, PerformService,ProcessInput
+• 不要同多数字来形成不同的子程序名字
+• Part1,part2
+• 根据需要确定子程序名字的长度
+• 9-15为佳
+• 给函数命名时要对返回值有所描述
+• isReady, currentColor
+• 给过程起名时使用语气强烈的动词加宾语的形式
+• printDocument
+• 准确使用对仗词
+• Add/remove
+• 为常用操作确立命名规则

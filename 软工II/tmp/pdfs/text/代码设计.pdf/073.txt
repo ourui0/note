@@ -1,0 +1,5 @@
+变量的命名
+• X =x-xx;
+• Xxx= fido+SalesTax(fido);
+• X = x+ LateFee(x1, x) + xxx;
+• X = x + Interest(x1,x);

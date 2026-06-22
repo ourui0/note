@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="110" y1="380" x2="650" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="110" y1="380" x2="110" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="110" y1="380" x2="650" y2="70" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 6"/>
+  <path d="M110 380 C230 370, 340 340, 450 270 C535 215, 600 130, 650 70" fill="none" stroke="#2563eb" stroke-width="5"/>
+  <path d="M110 380 C230 370, 340 340, 450 270 C535 215, 600 130, 650 70 L110 380" fill="#f97316" opacity="0.18"/>
+  <text x="657" y="75" font-size="18">100%</text>
+  <text x="82" y="388" font-size="18">0</text>
+  <text x="640" y="405" font-size="18">100%</text>
+  <text x="275" y="430" font-size="20">累计人口百分比</text>
+  <text x="24" y="215" font-size="20" transform="rotate(-90 24 215)">累计收入百分比</text>
+  <text x="445" y="155" font-size="20" fill="#64748b">绝对平等线</text>
+  <text x="420" y="295" font-size="20" fill="#2563eb">洛伦兹曲线</text>
+  <text x="250" y="45" font-size="26" font-weight="700">收入分配：洛伦兹曲线与基尼系数</text>
+  <text x="166" y="250" font-size="18" fill="#b45309">曲线离平等线越远，基尼系数越大</text>
+</svg>

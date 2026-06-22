@@ -1,0 +1,27 @@
+动态模型 · 状态图 ① — 概念与符号
+描述对象在⽣命周期内经历的离散状态及事件驱动下的状态转移。
+要素 说明
+状态（State） 对象满⾜某条件、执⾏某活动的
+时期
+转移（Transition） event [guard] / action
+事件（Event） 触发转移的信号
+防护条件（Guard） 允许转移的布尔前提 [cond]
+动作（Action） 进⼊/退出/转移时执⾏的操作
+entry / do / exit 状态的三种内部⾏为
+状态 A
+状态 B（含⾏为）
+entry / 进⼊时执⾏的动作
+do / 状态内持续活动
+exit / 离开时执⾏的动作
+状态 C
+① 简单状态（Sim ple State）
+圆⻆矩形，包含状态名称
+② 含内部⾏为的状态
+entry / do / exit 三类⾏为
+事件 [防护条件] / 动作
+重试事件 [次数 < 3]
+完成事件 / 记录结果
+③ 转移：event [guard] / action
+④ ⾃转移：回到⾃身的转移
+📖  SW EBO K v4 §4.3 · Behavioral Design Descriptions  |  §2.2 · Detailed Design
+22

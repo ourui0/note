@@ -1,0 +1,19 @@
+Spec 案例：Spec.md —— 功能级规格说明
+ 
+与项⽬级的 CLAUDE.md 不同，Spec.md 描述单个功能的详细规格：
+# Spec: ⽤户注册与登录
+## 背景
+在线考试系统需要⽀持学⽣和教师两种⻆⾊的注册与登录。
+## 功能需求
+1. 学⽣使⽤学号  + 密码注册，教师使⽤⼯号  + 邀请码注册
+2. 登录后根据⻆⾊跳转到不同的⾸⻚
+3. 连续  5 次登录失败后锁定账户  30 分钟
+## 接⼝定义
+- POST /api/auth/register  { role, id, password }
+- POST /api/auth/login     { id, password }
+- GET  /api/auth/me         → { role, name, ... }
+## 验收标准
+- Given 学⽣输⼊正确学号和密码 , When 点击登录 , Then 跳转到学⽣⾸⻚
+- Given ⽤户连续输⼊错误密码 5 次 , When 第 6 次尝试 , Then 返回 " 账户已锁定 "
+ 
+48

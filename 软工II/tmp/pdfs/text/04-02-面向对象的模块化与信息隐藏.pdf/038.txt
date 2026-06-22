@@ -1,0 +1,12 @@
+原则汇总（P8–P14）：封装变更 · SO LID · SO FA
+编号 缩写 原则 核⼼思想 SW EBO K
+P8 — 组合优于继承⿊盒复⽤，避免继承耦合 §5.4 GoF
+P9 — 为变更⽽封装隔离可变部分，稳定不变部分 §1.4 Encapsulation
+P10 — 权限最⼩化 从 private 开始，按需放宽 §1.4
+P11 O CP 开闭原则 对扩展开放，对修改关闭 §5.4 SO LID-O
+P12 DIP 依赖倒置 ⾼层依赖抽象，不依赖具体实现§5.4 SO LID-D
+P13 SRP 单⼀职责 ⼀个类只有⼀个变化原因 §5.4 SO LID-S
+P14 SO FA ⽅法设计 Short · O ne thing · Few args · Abstraction §5.4 SO FA
+记忆结构：P1–P4 防⽌"隐式依赖"；P5–P8 控制"耦合来源"；P9–P13 管理"变化封装"；P14 约束"⽅法粒度"。
+📖  SW EBO K v4 §1.4 · Software Design Principles  |  §5.4 · O bject-O riented Design (SO L ID)
+38

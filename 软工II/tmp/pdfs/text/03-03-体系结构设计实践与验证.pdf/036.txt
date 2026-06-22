@@ -1,0 +1,10 @@
+从逻辑层到物理节点的映射
+逻辑层 职责 部署位置 技术选型
+controller 接收请求、参数校验Tomcat Spring M VC
+service 业务逻辑、事务管理Tomcat Spring Service
+dao 数据持久化 Tomcat M yBatis / JPA
+entity 数据实体定义 Tomcat PO JO
+前端 ⻚⾯渲染、⽤户交互浏览器 HTM L/CSS/JS
+数据库 数据存储 M ySQL 服务器 M ySQL 5.7+
+逻辑分层 ≠ 物理分离。单体架构中逻辑层共享同⼀进程。
+36

@@ -1,0 +1,9 @@
+协作（Collaboration）：本质
+An application can be broken down into a set of many diﬀerent behaviors.
+每⼀个⾏为由⼀组对象之间的协作实现
+协作是对象⽹络中沿关系流动的消息模式，为完成某个⾏为⽽存在
+协作分布在对象⽹络中，不存在于任何单⼀位置
+Grady Booch（1992）："Equally important [as inheritance] is the invention of societies of objects that
+responsibly collaborate with one another. These societies form what I call the mechanisms of a system, and
+thus represent strategic architectural decisions because they transcend individual classes."
+16

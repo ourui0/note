@@ -1,0 +1,11 @@
+Pentium FDIV bug
+(4195835/3145727) * 3145727 - 4195835 ≠ 0
+• Test engineers found bug
+• Management decided it was not severe
+• A user reported it 10/30/1994, Intel attempted to play 
+down the bug. Offered to replace chips if you could prove 
+you were affected
+• Ultimately, they apologized; replaced all chips, cost  $450 
+million
+• Interestingly, 1.13 MHz Pentium III
+caused software freezes

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="95" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="95" y1="380" x2="95" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20">Q</text>
+  <text x="75" y="45" font-size="20">P</text>
+  <line x1="145" y1="105" x2="625" y2="345" stroke="#2563eb" stroke-width="4"/>
+  <line x1="145" y1="325" x2="625" y2="85" stroke="#dc2626" stroke-width="4"/>
+  <line x1="145" y1="275" x2="625" y2="35" stroke="#ef4444" stroke-width="3" stroke-dasharray="9 6"/>
+  <text x="630" y="346" font-size="20" fill="#2563eb">D</text>
+  <text x="630" y="88" font-size="20" fill="#dc2626">S</text>
+  <text x="630" y="39" font-size="20" fill="#ef4444">S + 税</text>
+  <line x1="327" y1="194" x2="327" y2="380" stroke="#666" stroke-dasharray="6 6"/>
+  <line x1="95" y1="194" x2="327" y2="194" stroke="#666" stroke-dasharray="6 6"/>
+  <line x1="327" y1="284" x2="95" y2="284" stroke="#666" stroke-dasharray="6 6"/>
+  <line x1="95" y1="239" x2="416" y2="239" stroke="#aaa" stroke-dasharray="6 6"/>
+  <line x1="416" y1="239" x2="416" y2="380" stroke="#aaa" stroke-dasharray="6 6"/>
+  <line x1="327" y1="194" x2="327" y2="284" stroke="#111" stroke-width="5"/>
+  <text x="38" y="199" font-size="18">Pb</text>
+  <text x="38" y="290" font-size="18">Ps</text>
+  <text x="38" y="245" font-size="18">P*</text>
+  <text x="292" y="410" font-size="18">Qt</text>
+  <text x="395" y="410" font-size="18">Q*</text>
+  <text x="344" y="245" font-size="19" fill="#111">税收楔子</text>
+  <text x="220" y="36" font-size="24" font-weight="700">税收归宿：弹性小的一方承担更多</text>
+  <text x="125" y="426" font-size="18" fill="#444">征税后：买方支付 Pb，卖方得到 Ps，交易量从 Q* 降到 Qt</text>
+</svg>

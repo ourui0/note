@@ -1,0 +1,12 @@
+⽬标、交互与⾏为序列 [SW EBO K 4.2]
+ 
+Essential U se Case vs Real U se Case
+类型 Actor 动作 System  响应
+Essential（本质⽤例）Actor 表明身份系统呈现可⽤选项
+Real（真实⽤例） 顾客插⼊银⾏卡系统提示输⼊ PIN 码
+顾客输⼊ PIN 系统验证并显示菜单
+ 
+Essential U se Case：抽象描述，不涉及具体技术实现
+Real U se Case：具体描述，包含界⾯与操作细节
+需求阶段通常先写 Essential，设计阶段再转为 Real
+9

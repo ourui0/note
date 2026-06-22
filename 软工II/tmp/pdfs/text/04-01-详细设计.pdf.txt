@@ -1,0 +1,1081 @@
+
+
+--- PAGE 1 ---
+详细设计：从体系结构到代码
+软件⼯程与计算 II · 详细设计模块 · 第 1 讲
+南京⼤学 · 刘钦
+1
+
+
+--- PAGE 2 ---
+今⽇学习路径
+①  详细设计基础  → ②  ⾯向对象详细设计  → ③  GRASP 模式  → ④  控制⻛格  → ⑤  模块化与信息隐藏  → ⑥  集成测试  → ⑦  AI 辅助
+  ──────────────────────────────────────────────────────────────────────────
+  输⼊ / 输出 / 上下⽂    职责与协作          5 ⼤职责模式     集中 / 委托 / 分散     Parnas 思想        Mock 对象          LLM 辅助详设
+今⽇核⼼问题
+1. 详细设计的输⼊是什么？输出⼜是什么？它在 SDLC 中的位置？
+2. ⾯向对象详细设计如何通过职责和协作建⽴静态/动态模型？
+3. 如何⽤ GRASP 模式指导职责分配？如何选择合适的控制⻛格？
+2
+
+
+--- PAGE 3 ---
+预习测试（5 分钟）
+请在纸上完成以下两题：
+1. ⾯向对象⽅法下，详细设计的过程包括哪些主要步骤？
+2. 现在要写⼀个 Sink-the-Dot-Com 游戏，其中"棋盘 Board"和"Dot-Com 战舰"两个对象，各应该由哪个类负责创建？
+说明理由。
+提示：回顾第 3 讲的体系结构设计；想想"谁拥有创建所需的数据"。
+3
+
+
+--- PAGE 4 ---
+PART 1 · 详细设计基础
+输⼊ / 输出 / 上下⽂：详细设计在 SDL C 中的位置
+4
+
+
+--- PAGE 5 ---
+什么是详细设计（Detail Design）
+体系结构 vs 详细设计
+软件体系结构定义了模块的规格（部件、连接件、配置）
+详细设计⽤详细设计机制实现模块
+中层：（⼦模块化）→ OO → 类的规格
+低层：DS + ALG → 类的实现
+详细设计的关注点
+美学、功能性及模块的多个⽅⾯
+质量属性：
+M odiﬁcation（可修改）
+M aintenance（可维护）
+Performance（性能）
+......
+详细设计 = 中层设计（过程、调⽤；类、协作） + 低层设计（数据结构、算法、类型、语句、控制结构）。
+📖  SW EBO K v4 §2 · Software Design Processes  |  §2.2 · Detailed Design  |  §1.3 · Key Issues in Software Design
+5
+
+
+--- PAGE 6 ---
+设计的抽象层次
+体系结构设计回答："系统有哪些⼤模块？它们怎么连接？"
+6
+
+
+--- PAGE 7 ---
+设计思维（Design Thinking）
+Design is a form of problem-solving. Software design particularly faces W icked Problems — problems with no
+deﬁnitive solution, only better or worse trade-oﬀs.
+五步设计过程 （Ross, Goodenough & Irvine）
+步骤 核⼼动作 软件设计产物
+1 · Crystallize 明确⽬的与⽬标 功能需求 + 质量属性（NFR）
+2 · Formulate 构想实现概念 体系结构⻛格 / 设计模式选择
+3 · Devise 设计实现机制 类图 + 顺序图 + 算法选择
+4 · Introduce 引⼊表达符号 UM L / 伪代码 / 接⼝定义语⾔（IDL ）
+5 · Describe 描述具体使⽤场景设计⽂档 + 设计理由（Rationale）
+这五步在体系结构设计和详细设计两个阶段都会反复出现 —— 详细设计就是把体系结构决策递归精化到可直接编码的粒
+度。
+📖  SW EBO K v4 §1.1 · Design Thinking  |  §1.3 · Key Issues in Software Design
+7
+
+
+--- PAGE 8 ---
+思考：什么影响详细设计？
+RE 的⼯作
+哪些会影响详细设计？
+⽤例 → 控制器 / 操作
+领域模型 → 实体类
+顺序图 → 类之间的协作
+状态图 → 状态机实现
+NFR → 算法选择、并发策略
+软件体系结构的⼯作
+哪些会影响详细设计？
+⻛格 → 类的分布⽅式
+模块规格 → 类的规格上限
+接⼝规范 → PO / VO  / DTO
+部署 → 远程调⽤、序列化
+集成策略 → 模块间依赖⽅向
+结论：详细设计是 RE 与体系结构在"类粒度"上的具体化与综合。
+8
+
+
+--- PAGE 9 ---
+详细设计的输⼊
+来⾃需求⼯程（RE）
+⽤例（Use Case） —— 功能场景
+领域模型 / 概念类图 —— 业务实体
+系统顺序图 —— 系统级交互
+状态图 —— 复杂对象⽣命周期
+⾮功能需求 —— 性能、可靠性、安全等
+来⾃体系结构
+模块的规格（Speciﬁcation）
+导⼊/导出接⼝（Export / Import）
+⻛格约束（分层、MVC、微服务……）
+构件间接⼝（如 SalesBLService、SalesDataService）
+桥接类⽐：需求规格说明（"在两座⼭间建⼀座桥，5 分钟内 100km/h 通过"）+ 体系结构（"斜拉桥⻛格：桥墩、桥身、
+悬索"）→ 详细设计（"悬索：拉索的根数；路⾯：路⾯材质"）。
+📖  SW EBO K v4 §1.2 · Context of Software Design  |  §2.2 · Detailed Design
+9
+
+
+--- PAGE 10 ---
+详细设计的上下⽂：从何处开始？
+Context（上下⽂）
+Speciﬁcation of modules：Export / Import interfaces（接⼝规格）
+Responsibility assignment（职责分配）
+Some responsibilities are from RE (SRS)
+Typically use cases, domain models, sequence diagrams, state diagrams
+Some others are from implementation decisions
+核⼼问题：详细设计的本质，就是把"系统的总体职责"逐步分配到具体的类与⽅法上 —— 既要忠于需求，⼜要做出合理
+的实现决策。
+10
+
+
+--- PAGE 11 ---
+详细设计的输出
+视⻆ 产出物 U ML  表示
+静态结构 模块内部的类、接⼝与关系 类图、包图
+动态⾏为 类之间的协作与消息传递 顺序图、通讯图
+状态⾏为 复杂对象的⽣命周期 状态图
+实现注解 构造⽅法、枚举、常量、静态⽅法说明⽂字 + 代码⽚段
+质量论证 为何这样设计：耦合/内聚/扩展性设计理由（Rationale）
+详细设计输出≠"画⼏张图"，⽽是为后继开发者提供⾜够、清晰、可论证的实现蓝图。
+📖  SW EBO K v4 §4 · Recording Software Designs  |  §4.2 · Structural Design Descriptions  |  §4.3 · Behavioral Design Descriptions  |  §4.6 · Design Rationale
+11
+
+
+--- PAGE 12 ---
+PART 2 · ⾯向对象详细设计
+职责（Responsibility）与 协作（Collaboration）
+12
+
+
+--- PAGE 13 ---
+⾯向对象详细设计的思想
+两⼤核⼼概念
+职责（Responsibility）
+类要做什么、维护什么
+协作（Collaboration）
+类之间如何通过消息⼀起完成⼤职责
+设计过程
+设计模型建⽴
+通过职责建⽴静态设计模型
+通过协作建⽴动态设计模型
+设计模型重构
+模块化（⾼内聚低耦合）
+信息隐藏（隐藏职责与变更）
+设计模式
+Rebecca Wirfs-Brock："The objects within a program must collaborate; otherwise, the program would consist
+of only one big object that does everything."
+13
+
+
+--- PAGE 14 ---
+Responsibilities（职责）
+A responsibility is an obligation to perform a task（operational responsibility）or to maintain some data（data
+responsibility）.
+O perational responsibilities are usually fulﬁlled by operations（⽅法）.
+Data responsibilities are usually fulﬁlled by attributes（属性）.
+Class collaborations may be involved.
+Responsibility-Driven Decomposition（职责驱动分解）
+Responsibilities may be stated at diﬀerent levels of abstraction.
+High-level responsibilities → high-level components；可逐层分解。
+职责驱动的分解可能不同于功能分解 —— 职责同时反映"操作"与"数据"两⽅⾯的义务。
+14
+
+
+--- PAGE 15 ---
+Responsibility Heuristics & Delegation
+职责分配启发式
+分配良好的职责 → ⾼内聚、低耦合
+模块之间的职责不重叠
+把操作和数据放在某个模块⾥，仅当它们帮助该模块履⾏
+其职责
+Delegation（委托）
+Delegation is a tactic wherein one module (the
+delegator) entrusts another module (the delegate)
+with a responsibility.
+⼀个对象可以保留⾼层职责，把具体执⾏委托给更专⻔的
+对象
+委托 = 解耦 + 关注点分离
+15
+
+
+--- PAGE 16 ---
+协作（Collaboration）：本质
+An application can be broken down into a set of many diﬀerent behaviors.
+每⼀个⾏为由⼀组对象之间的协作实现
+协作是对象⽹络中沿关系流动的消息模式，为完成某个⾏为⽽存在
+协作分布在对象⽹络中，不存在于任何单⼀位置
+Grady Booch（1992）："Equally important [as inheritance] is the invention of societies of objects that
+responsibly collaborate with one another. These societies form what I call the mechanisms of a system, and
+thus represent strategic architectural decisions because they transcend individual classes."
+16
+
+
+--- PAGE 17 ---
+⾯向对象详细设计的过程
+设计模型建⽴
+├── 通过职责建⽴静态设计模型
+│   ├── 抽象类的职责（数据职责  + ⾏为职责）
+│   ├── 抽象类之间的关系（关联 / 聚合 / 组合；继承 / 实现）
+│   └── 添加辅助类（ DTO 、 Helper 、 Util... ）
+└── 通过协作建⽴动态设计模型
+    ├── 抽象对象之间协作（顺序图  / 通讯图）
+    ├── 明确对象的创建（ GRASP-Creator ）
+    └── 选择合适的控制⻛格（集中  / 委托  / 分散）
+设计模型重构
+├── 根据模块化的思想进⾏重构（⽬标：⾼内聚、低耦合）
+├── 根据信息隐藏的思想进⾏重构（⽬标：隐藏职责与变更）
+└── 利⽤设计模式重构（ GoF 23 / DDD / ... ）
+17
+
+
+--- PAGE 18 ---
+静态模型 · 抽象类的职责
+类是什么？
+类表达了对对象族本质特征的抽象
+类是构建的蓝图
+类承载职责：
+数据职责 → 属性
+⾏为职责 → ⽅法
+单⼀类图示例
+18
+
+
+--- PAGE 19 ---
+静态模型 · 类之间的关系
+类型 关系 短语 解释 多重性 U ML
+对象级 普通关联A has a B A ⻓期持有 B 引⽤ A: 0..* B: 0..* ──
+对象级 聚合 A owns B 集合所属，被聚合对象可共享 A:0..1 B:0..* ──◇
+对象级 组合 B is a part of A 整体存在则部分必存在，⽣命周期相同A:0..1 B:1..1 ──◆
+类级 继承 B is A 强关系，⼦类继承⽗类接⼝与实现— ── ▷
+类级 实现 B implements A 类实现接⼝，必须实现所有⽅法— ╌╌▷
+选择关系时优先考虑⽣命周期和共享性：能⽤关联就不⽤聚合，能⽤聚合就不⽤组合。
+19
+
+
+--- PAGE 20 ---
+静态模型 · 完整类图示例
+案例：销售业务 设计要点
+业务逻辑层包 pkg
+Sales 实现接⼝ SalesBLService （被表现层调⽤）
+Sales 依赖接⼝ SalesDataService （调⽤数据层）
+Sales 聚合多个 Commodity
+关键：双向依赖接⼝ —— 上下都通过接⼝解耦，便于替
+换与测试
+20
+
+
+--- PAGE 21 ---
+动态模型 · 顺序图（Sequence Diagram）
+⽤途
+表示对象之间的协作
+顺序图是交互图的⼀种
+表达对象之间如何通过消息的传递来完成⽐较⼤的职责
+示例消息编号
+1: addCommodity(id, qty)
+　1.1: addCommodity(id, qty)
+　　1.1.1: <<create>> CreateMessage()
+　　1.1.1.1: CommodityPO find(id)
+21
+
+
+--- PAGE 22 ---
+动态模型 · 状态图 ① — 概念与符号
+描述对象在⽣命周期内经历的离散状态及事件驱动下的状态转移。
+要素 说明
+状态（State） 对象满⾜某条件、执⾏某活动的
+时期
+转移（Transition） event [guard] / action
+事件（Event） 触发转移的信号
+防护条件（Guard） 允许转移的布尔前提 [cond]
+动作（Action） 进⼊/退出/转移时执⾏的操作
+entry / do / exit 状态的三种内部⾏为
+状态 A
+状态 B（含⾏为）
+entry / 进⼊时执⾏的动作
+do / 状态内持续活动
+exit / 离开时执⾏的动作
+状态 C
+① 简单状态（Sim ple State）
+圆⻆矩形，包含状态名称
+② 含内部⾏为的状态
+entry / do / exit 三类⾏为
+事件 [防护条件] / 动作
+重试事件 [次数 < 3]
+完成事件 / 记录结果
+③ 转移：event [guard] / action
+④ ⾃转移：回到⾃身的转移
+📖  SW EBO K v4 §4.3 · Behavioral Design Descriptions  |  §2.2 · Detailed Design
+22
+
+
+--- PAGE 23 ---
+动态模型 · 状态图 ② — 例图：⾃动售货机
+状态 entry / do
+空闲 entry / 显示欢迎界⾯
+接收货款do / 显示余额
+出货中 do / 出货 & 扣款
+找零 entry / 退还余额差
+关键设计点
+投⼊货币  [ 余额  < 价格 ] → ⾃转移，继续累
+计
+选择商品  [ 余额  ≥ 价格 ] / 扣款 → 防护条
+件
+取消操作（红⾊）→ 直接进⼊找零
+空闲
+entry / 显示欢迎界⾯
+接收货款
+do / 显示当前余额
+出货中
+do / 出货 & 扣款
+找零
+entry / 退还余额差
+投⼊货币
+投⼊货币 [余额 < 价格]
+选择商品 [余额 ≥ 价格] / 扣款
+取消操作
+出货完成
+📖  SW EBO K v4 §4.3 · Behavioral Design Descriptions  |  §5.4 · O bject-O riented Design
+23
+
+
+--- PAGE 24 ---
+PART 3 · GRASP 模式
+通⽤职责分配软件模式 · Craig L arman
+24
+
+
+--- PAGE 25 ---
+GRASP Patterns
+GRASP = General Responsibility Assignment Software Patterns
+Not 'design patterns', rather fundamental principles of object design
+Focus on one of the most important aspects of object design: assigning responsibilities to classes
+5 个核⼼模式（本讲覆盖）
+# 模式 解决的问题
+1 L ow Coupling 降低模块之间的耦合
+2 High Cohesion 保持模块职责的聚焦
+3 Information Expert 把职责分配给"拥有信息"的类
+4 Creator 由谁负责创建对象
+5 Controller 由谁负责处理系统事件
+Larman 著《UM L 和模式应⽤》是 O O  详设的经典参考。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Software Design Principles (Coupling, Cohesion)
+25
+
+
+--- PAGE 26 ---
+Rule of Thumb（设计抉择经验法则）
+W hen there are alternative design choices, take a closer look at the cohesion and coupling implications of the
+alternatives and possibly the future evolution pressures on the alternatives. Choose an alternative with good
+cohesion, coupling and stability.
+不存在"唯⼀正确"的设计 —— 只存在多个候选之间的权衡
+耦合、内聚、稳定性是三⼤评价标尺
+未来演化压⼒：考虑"哪个⽅案更经得起变更"
+GRASP 给出的不是公式，⽽是讨论候选⽅案的框架
+26
+
+
+--- PAGE 27 ---
+① L ow Coupling & ② High Cohesion
+L ow Coupling（低耦合）
+Problem：如何减少变更的影响？如何⽀持低依赖、提⾼
+复⽤？
+Solution：分配职责时保持低耦合
+若 B 已耦合于 A，则把新职责也给 A，不引⼊额外
+依赖
+优先依赖接⼝⽽⾮具体类（→ P4）
+Eﬀect：某类的变更对其他类影响极⼩；类更易独⽴理解
+与复⽤。
+High Cohesion（⾼内聚）
+Problem：如何让对象保持聚焦、易理解、易管理？
+Solution：分配职责时保持⾼内聚
+⼀个类只承担紧密相关的⼀组职责
+不要为了复⽤⽽拼凑不相关的操作
+Eﬀect：类的职责清晰，维护时改动范围⼩，⾃然导向低
+耦合。
+Low Coupling 与 High Cohesion 是 GRASP 的两个元原则 —— Information Expert、Creator、Controller 的取舍，最
+终都以"是否提升内聚 / 降低耦合"为评判标准。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Cohesion  |  §5.4 · O bject-O riented Design
+27
+
+
+--- PAGE 28 ---
+③ Information Expert（信息专家）
+Problem：What is the most basic principle by which responsibilities are assigned in object-oriented design?
+Solution：Assign a responsibility to the class that has the information necessary to fulﬁll the responsibility.
+案例
+要计算 Sales.total() ：
+谁知道每个 SalesLineItem 的数量？→ SalesLineItem
+谁知道每个 Commodity 的价格？→ Commodity
+→ Sales.total() 委托给 SalesLineItem.subtotal() ，后者再调 Commodity.getPrice()
+"谁有数据，谁负责" —— ⾃然形成职责链，避免数据外泄。
+28
+
+
+--- PAGE 29 ---
+④ Creator（创建者）
+Q: W ho has responsibility to create an object?
+A: By Creator, assign class B responsibility of creating instance of class A if（满⾜越多，优先级越⾼）：
+B aggregates A objects
+B contains A objects
+B records instances of A objects
+B closely uses A objects
+B has the initializing data for creating A objects
+where there is a choice, prefer B aggregates or contains A objects.
+案例：Who is responsible for creating SalesLineItem objects? → Sale （because Sale contains
+SalesLineItem，组合关系）。
+29
+
+
+--- PAGE 30 ---
+Creator · 优先级表
+优先
+级 场景 创建地点 创建时机 备注
+⾼ 唯⼀属于某个整体的密不可分的⼀部分
+（组合关系）
+整体对象的属性定义和构造
+⽅法 整体对象的创建 销售业务逻辑对象由销售⻚⾯对
+象创建
+↑ 被某⼀对象记录和管理（单向被关联） 关联对象的⽅法 业务⽅法执⾏中对象的⽣命
+周期起始点
+连接池管理对象负责创建连接池
+对象
+↓ 创建所需的数据被某个对象所持有持有数据的对象的业务⽅法业务⽅法执⾏中 不知创建时机时可由别的对象创
+建并初始化
+低 被某个整体包含（聚合关系） 整体对象的业务⽅法（⾮构
+造⽅法） 业务⽅法执⾏中 多个聚合时考虑⾼内聚低耦合决
+定
+优势：Promotes low coupling by making instances of a class responsible for creating objects they need to
+reference. By creating the objects themselves, they avoid being dependent on another class to create the object
+for them.
+30
+
+
+--- PAGE 31 ---
+⑤ Controller（控制器）
+Problem：How to assign responsibility for handling a system event?
+Solution：If a program receives events from external sources other than its graphical interface, add an event
+class to decouple the event source(s) from the objects that actually handle the events.
+4 种可选的控制器
+1. The business or overall organization（façade controller）— e.g. Store
+2. The overall "system"（façade controller）— e.g. POST
+3. An animate thing in the domain that would perform the work（role controller）— e.g. Cashier
+4. An artiﬁcial class (Pure Fabrication) representing the use case（use case controller）— e.g. BuyItemsHandler
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §3.2 · Control and Event Handling
+31
+
+
+--- PAGE 32 ---
+Controller · Bad Design vs Good Design
+反例：Presentation 直接调 Domain
+问题：表现层 PO STCommand 直接调⽤领域对象
+Sale。业务逻辑泄漏到表现层，不可复⽤ / 不可测试 / 难
+以维护。
+正例：通过 Controller 解耦
+优势：表现层只发系统事件消息，由 Controller（PO ST）
+负责协调领域对象。表现层与领域层独⽴演化。
+32
+
+
+--- PAGE 33 ---
+PART 4 · 控制⻛格
+集中式 / 委托式 / 分散式：系统⾏为如何在对象⽹络中分布
+33
+
+
+--- PAGE 34 ---
+Collaboration（Control）Styles
+A control style is a way that all system behavior is distributed among objects (components) network.
+⻛格 特征 控制复杂度
+Centralized（集中
+式） A few controllers record logics of all system behaviors 控制器⾼复杂度，其他对象低
+复杂度
+Delegated（委托式）Decision making is distributed through the object networks with a few controllers
+making the main decisions
+中复杂度对象有⼏个，其他低
+复杂度
+Dispersed（分散式）All system behavior is spread widely through the objects network 所有对象都低复杂度，但交互
+密集
+34
+
+
+--- PAGE 35 ---
+Centralized Control（集中式控制）
+优点
+Easy to ﬁnd where decisions are made
+Easy to see how decisions are made and to alter the
+decision-making process
+缺点
+Controllers may become bloated — large, complex,
+and hard to understand / maintain / test
+Controller may treat other components as data
+repositories
+Increases coupling
+Destroys information hiding
+集中式形态（顺序图）
+控制器统⼀发起所有调⽤，呈"星形"。
+35
+
+
+--- PAGE 36 ---
+Delegated Control（委托式控制）
+思想
+控制器保留主要决策，把次要的⼦任务委托给更专⻔的对
+象
+形成"控制器→中间协调者→执⾏者"的链条
+平衡了"集中"的清晰性和"分散"的灵活性
+是⼤多数实际系统采⽤的折中⽅案
+案例：业务逻辑层
+LoginController → User
+SalesController → Sales 、Commodity 、Member
+委托式形态（顺序图）
+36
+
+
+--- PAGE 37 ---
+Dispersed Control（分散式控制）
+Characterized by having many components holding little data and having few responsibilities.
+It is hard to understand the ﬂow of control.
+Components are unable to do much on their own, increasing coupling.
+It is hard to hide information.
+Cohesion is usually poor.
+Few modularity principles can be satisﬁed.
+Heuristic（启发式经验）：Avoid interactions that require each component to send many messages —— 分散式控制
+⼏乎在所有情况下都应该避免。
+37
+
+
+--- PAGE 38 ---
+控制⻛格的选择
+场景 推荐⻛格 理由
+⽤例步骤清晰、状态机驱动Centralized ⼀个 Controller / FSM  容易调试
+业务复杂、多个⼦领域协作Delegated 主控保留决策，⼦领域专精
+简单 CRUD、消息频繁 Delegated 避免集中式臃肿
+完全 P2P 的对象交互  Dispersed 控制流难追踪，慎⽤
+Heuristics for Centralized Controller
+Avoid interaction designs where most messages originate from a single component.
+Keep components small.
+M ake sure operational responsibilities are not all assigned to just a few components.
+M ake sure operational responsibilities are consistent with data responsibilities.
+38
+
+
+--- PAGE 39 ---
+PART 5 · 模块化与信息隐藏
+Parnas 思想 · 内聚 / 耦合 · 详细设计的重构指南
+39
+
+
+--- PAGE 40 ---
+模块化思想的历史发展
+阶段 年代 代表 核⼼思想
+萌芽 1971-72 W irth、Parnas 逐步求精；按"职责"分解
+形成 1974-85 Stevens、Parnas 耦合 / 内聚定义；信息隐藏的精细化
+发展 1992-95 Eder、Hitz O O  模块化、⾯向对象耦合度量
+反思 1996+ M cConnell、DeM arco ⼯程实践 / 软件度量
+Good Software 关⼼什么？
+Parnas 1972：Managerial / Product ﬂexibility / Comprehensibility
+Stevens 1974：简洁性（易调试 / 易分解）、可观察性（易修改）
+Boehm 1976：Maintainability / Extendibility / Understandability / Reusability
+40
+
+
+--- PAGE 41 ---
+W irth 1971 · Stepwise Reﬁnement
+"Program Development by Stepwise Reﬁnement" —— 逐步求精
+The program is gradually developed in a sequence of reﬁnement steps
+To decompose decisions as much as possible
+To untangle aspects which are only seemingly interdependent
+To defer those decisions which concern details of representation as long as possible
+Reﬁnement of the description of program and data structure should proceed in parallel.
+The degree of modularity obtained in this way will determine the ease or diﬃculty with which a program can be
+adapted to changes or extensions of the purpose or changes in the environment.
+"Careful programming is not a trivial subject." —— W irth
+41
+
+
+--- PAGE 42 ---
+Parnas 1972 · 信息隐藏的提出
+"O n the Criteria To Be Used in Decomposing Systems into M odules" —— 软件⼯程史上影响最深的论⽂之⼀
+W hat is M odularization?
+M odule: to be a responsibility assignment rather than a subprogram
+M odularizations：include the design decisions which must be made before the work on independent modules
+can begin（"System level" decisions）
+The Criterion of Decomposition：Information Hiding
+Every module in the decomposition is characterized by its knowledge of a design decision which it hides from
+all others.
+模块化⽬标：① 允许⼀个模块在对其他模块代码知之甚少的情况下编写；② 允许模块被重新组装和替换⽽⽆需重新组装
+整个系统。
+📖  SW EBO K v4 §1.4 · M odularization  |  §1.4 · Encapsulation (information hiding)  |  §5.4 · O bject-O riented Design
+42
+
+
+--- PAGE 43 ---
+Parnas · 层次结构与封装
+Hierarchical Structure
+模块或程序之间可定义某种关系
+该关系是偏序
+我们关⼼的关系是 "use" or "depends upon"
+数据结构、其内部链接、访问过程与修改过程都是单⼀模块的⼀部分 —— 即封装（encapsulation）的思想
+控制块的格式必须隐藏在 "control block module" 内部
+模块化 ≠ 把代码切碎。模块化的本质是：让每个模块封装⼀个"会改变的设计决策" —— 当那个决策改变时，只需修改⼀
+个模块。
+43
+
+
+--- PAGE 44 ---
+Stevens 1974 · 结构化设计
+三⼤概念
+M odule：A set of one or more contiguous program statements having a name by which other parts of the
+system can invoke it and preferably having its own distinct set of variable names
+Coupling（耦合）：The measure of the strength of association established by a connection from one module to
+another
+Cohesiveness（内聚）：模块内部元素相关程度
+内聚 6 等级（弱→强）
+Coincidental（偶然）→ Logical（逻辑）→ Temporal（时间）→ Communicational（通信）→ Sequential（顺序）→
+Functional（功能）
+设计⽬标：追求最强的功能内聚（Functional Cohesion）。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Cohesion  |  §5.2 · Function-O riented (Structured) Design
+44
+
+
+--- PAGE 45 ---
+内聚 / 耦合 · 代码案例
+案例 A：低内聚（坏）
+public class Rous {
+    public static int findPattern(
+        String text, String pattern) { ... }
+    public static int average(
+        Vector numbers) { ... }
+    public static OutputStream openFile(
+        String fileName) { ... }
+}
+逻辑内聚（甚⾄偶然内聚）：三个⽅法毫⽆关联，硬塞在
+⼀起。
+案例 B：⾼耦合（坏）
+public class Employee {
+    public String name, emailID;
+    ...
+}
+public class Emailer {
+    public void sendEmail(
+        Employee e, String text) { ... }
+    ...
+}
+数据耦合：Emailer 直接访问 Employee 的公开字段，破
+坏封装。改进：让 Employee 提供 getEmailID() ，或
+传递 String email。
+45
+
+
+--- PAGE 46 ---
+P1–P4 · 信息隐藏基础原则
+编号 原则 含义
+P1 全局变量有害 全局变量穿透所有模块，是隐藏的反义词
+P2 优先显示表达 ⽤清晰的接⼝、命名、⽂档显式表达约束，⽽不是依赖隐式约定
+P3 不要重复（DRY） 同⼀个决策不应在多处编码；重复 = 多处都需修改
+P4 ⾯向接⼝编程 客户端依赖接⼝（抽象），⽽⾮具体实现；便于替换
+这 4 条原则全部源⾃⼀个共同⽬标：让"会变的部分"集中在⼀个模块⾥，并对外只暴露稳定的接⼝。
+📖  SW EBO K v4 §1.4 · Software Design Principles  |  §1.4 · Separation of Interface and Implementation
+46
+
+
+--- PAGE 47 ---
+SW EBO K §1.4 软件设计原则全图
+SW EBO K 原则 含义 本课对应原则编号
+Abstraction（抽象） 聚焦必要属性，忽略其余细节P4（接⼝=抽象）
+SoC（关注点分离） 将系统分解为相互独⽴的关注点P13 SRP；P6 ISP
+Modularization（模块化） 分解为具名、接⼝良好的独⽴单元P1–P4（基础）；P8–P9
+Encapsulation（封装/信息隐藏）隐藏设计决策，只暴露稳定接⼝P1–P4；P9–P10
+Separation of Interface & Impl 接⼝对客户可⻅，实现对客户不可⻅P4（⾯向接⼝）；P12 DIP
+Coupling（耦合） 模块间依赖强度，越低越好 P5 LoD；P6 ISP；P8 组合
+Cohesion（内聚） 模块内部元素关联程度，越⾼越好P13 SRP
+U niformity（⼀致性） 命名、接⼝、约定在系统内保持⼀致P14 SO FA（A — 抽象层次⼀致）
+Completeness（完备性） 设计充分捕获抽象的所有重要特征P11 O CP（对所有扩展点开放）
+Veriﬁability（可验证性） 设计信息⾜以验证约束与需求 P7 LSP（契约可验证）
+📖  SW EBO K v4 §1.4 · Software Design Principles
+47
+
+
+--- PAGE 48 ---
+PART 6 · 为类间协作开发集成测试
+M ock O bject · ⾃顶向下 / ⾃底向上集成
+48
+
+
+--- PAGE 49 ---
+详细设计的集成测试
+类间协作的集成测试
+重点针对复杂逻辑（交互⽐较多）的协作
+⾃顶向下 或 ⾃底向上 的集成
+M ock O bject
+不是 Stub —— M ock 是更轻量的"占位类"
+测试⽤例
+输⼊：协作中需要的对象 + 触发消息
+输出：验证最终状态或返回值（assertEquals ）
+协作图示意（被测⽬标）
+salesController → Sales.total() → SalesList.total() → SalesLineItem.subtotal() → Commodity.getPrice()
+49
+
+
+--- PAGE 50 ---
+M ock O bject（模拟对象）
+M ockO bject 示例
+public class MockCommodity
+        extends Commodity {
+    double price;
+    public MockCommodity(double p) {
+        price = p;
+    }
+    public double getPrice() {
+        return price;
+    }
+}
+类似于 Stub，但更简单 —— 只需返回固定值⽤于测试。
+集成测试代码
+public class TotalIntegrationTester {
+    @Test
+    public void testTotal() {
+        MockCommodity c1 = new MockCommodity(50);
+        MockCommodity c2 = new MockCommodity(40);
+        SalesLineItem li1 = new SalesLineItem(c1, 2);
+        SalesLineItem li2 = new SalesLineItem(c2, 3);
+        Sales sale = new Sales();
+        sale.addSalesLineItem(li1);
+        sale.addSalesLineItem(li2);
+        assertEquals(220, sale.total());
+    }
+}
+M ock 让我们只关⼼被测协作的逻辑，把外部依赖替换为可控的"假对象"。
+50
+
+
+--- PAGE 51 ---
+PART 7 · AI 增强：LLM  辅助详细设计
+让⼤模型成为你的"职责分配教练"
+51
+
+
+--- PAGE 52 ---
+AI 辅助 · 职责分配 Prompt 模板
+你是⼀位资深⾯向对象设计教练，请帮我⽤  GRASP 模式分配职责。
+【需求】
+我在做⼀个  Monopoly （⼤富翁）游戏。每个回合玩家执⾏：
+(1) 掷骰⼦计算随机数；
+(2) 找到玩家当前位置；
+(3) 根据随机数和当前位置确定新  Square ；
+(4) 将玩家移动到新  Square 。
+【已有概念类】
+- MonopolyGame 、 Die 、 Player 、 Piece 、 Board 、 Square
+请按以下顺序回答：
+1. ⽤  Information Expert / Creator / Controller 三种  GRASP
+   分别评估每⼀步应分配给哪个类，给出理由。
+2. 画出顺序图（ PlantUML ⽂本格式）。
+3. 评估两种候选⽅案的耦合  / 内聚  / 演化稳定性。
+4. 推荐最终⽅案并说明权衡。
+课堂实操：把这个 Prompt 喂给 Claude / GPT，对⽐ AI 答案与你的设计 —— 培养"批判性使⽤ AI"的能⼒。
+52
+
+
+--- PAGE 53 ---
+AI vs 详细设计师 · 能⼒边界 ①：图表⽣成与模式识别
+能⼒维度 L L M 表现 ⼈类设计师优势 研究依据
+单类 UM L 类图⽣成  88% 元素正确率 — GPT-4V, LLM 4Code 2024
+多类关系类图  语义错误显著增多  正确处理多元关系ESEM  2024
+多智能体 UM L 类图（NO M AD）  认知启发式多智能体，优于单智能体 — arXiv:2511.22409
+多模态顺序图⽣成（MM -LLM ）  BLEU=0.779，SSIM =0.942 — arXiv:2503.12293
+设计模式实现代码  ⽐⼈类更准确  识别何时需⽤模式JSS 2025
+设计模式识别  特定模式类型存在系统性弱点  上下⽂感知识别arXiv:2501.04835
+耦合/内聚（有引导）  基准正确率可接受 — arXiv:2511.20933
+耦合推理（复杂/噪声）  F1 降幅 >50%  系统性分析 arXiv:2511.20933
+规律：LLM  在局部、有约束的⽣成任务（单类图、标准模式实现）表现良好；跨类语义推理和多重关系建模是核⼼弱
+点。
+📖  SW EBO K v4 §4.2/4.3 · U M L  Descriptions  |  §5.4 · O bject-O riented Design
+53
+
+
+--- PAGE 54 ---
+AI vs 详细设计师 · 能⼒边界 ②：规范遵守与代码质量
+能⼒维度 L L M 表现 ⼈类设计师优势 研究依据
+SO LID 原则检测（⼩⽅法） O CP 71.2%；DIP 64.8%（GPT-4o M ini） — arXiv:2509.03093
+SO LID 检测（复杂代码）  每 +5 LO C，F1 下降约 15%  复杂类体系分析arXiv:2509.03093
+遵守 SRP / 模块化  默认违反 SRP，耦合度上升 34%  识别职责边界 arXiv:2605.02741
+修复简单代码异味  GPT-4o 解决约 62% — IEEE TSE 2025
+修复架构级代码异味  解决率 47.7%；63.1% 检测为误报  架构级重构 arXiv:2605.07001
+库级系统设计（全任务） 完成率仅 3%；函数级 82% 降⾄库级 45%  全局系统设计 arXiv:2605.03546
+⽣成架构决策记录（ADR）  相关但低于⼈类质量  决策权衡与上下⽂arXiv:2403.01709
+选择控制⻛格  倾向"集中式"  结合质量属性权衡经验观察
+结论：LLM  是⾼效的"设计初稿⽣成器"，但当任务涉及语义正确性、模块化约束、架构级权衡时，⼈类设计师仍不可缺。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §6 · Software Design Quality Analysis and Evaluation
+54
+
+
+--- PAGE 55 ---
+L L M  辅助设计：研究进展（U M L ⽣成）
+能做什么
+GPT-4V 单类图 88% 元素正确率；多类图显著下降（LLM4Code
+2024, arXiv:2404.14370）
+Rubei et al. 评估 ChatGPT ⽣成顺序图：⼀致性尚可，需求模糊时
+完整性明显下降（SoSyM  2025, arXiv:2404.06371）
+ESEM  2024：LLM  类图与⼈类在可理解性相近，但语义错误（关
+系、多重度）更多
+NO M AD（arXiv:2511.22409, 2025）：多智能体认知架构分解类图⽣
+成⼦任务，优于单智能体
+多模态 MM-LLM （arXiv:2503.12293, 2026）：顺序图
+BLEU=0.779，SSIM =0.942；领域⾃适应⼤幅提升精度
+JSS 2025：设计模式实现优于⼈类，但识别何时需要模式仍是⼈类
+优势
+还不能做什么
+多类关系与语义完整性
+多个类之间的依赖、继承、组合关系是 LLM
+的弱点——单个类可以处理，跨类语义经常
+出错。
+需求质量依赖
+LLM  ⽣成质量与输⼊需求质量⾼度相关；模
+糊需求输⼊会导致图表结构性偏差。
+M DD ⼯具链：Sadik et al. (2024) ⽤
+PlantUM L 作为 GPT-4 的形式化桥接，构建
+Agile M DD 流⽔线（arXiv:2310.04304）。
+55
+
+
+--- PAGE 56 ---
+L L M  辅助设计：代码质量 ① — 结构性缺陷
+量质反⽐定律
+代码体积⼏乎是结构退化的完美预测因⼦。
+— arXiv:2605.02741, AI-Generated Smells, 2025
+LLM  ⽣成代码⽐⼈类基线多 42%–85% 代码异味
+（arXiv:2510.03029）
+简单异味可修复：Magic Number、Empty Catch
+复杂结构性异味⽆法有效修复：Broken M odularization、Deﬁcient
+Encapsulation（ACM  TO SEM  2024）
+模型能⼒越强 → 代码体积越⼤ → 结构越臃肿、耦合越⾼
+模块化悖论
+"即使给出显式的模块化指导，LLM  仍产⽣含有隐藏依赖和过度⼯程
+的代码。"
+— The M odular Imperative, Harvard, ICFP/SPLASH 2025
+LLM  倾向于把新功能加⼊已有类⽽⾮新建职责单⼀的类 → 默认违反
+SRP
+异味修复能⼒对⽐
+异味类型 L L M 能⼒
+M agic Number / Empty
+Catch  ~62% 解决率
+Broken M odularization  显著劣于⼈类
+Deﬁcient Encapsulation  显著劣于⼈类
+God Class（有⼯具辅助）  iSM ELL F1=75%
+架构级异味（SmellBench）  47.7% 解决；63.1%
+误报
+少样本重构  42.97% 减少率
+结构性规律：LLM  可以修复表层语法级异
+味，但对涉及职责边界和模块语义的架构级
+异味束⼿⽆策。
+56
+
+
+--- PAGE 57 ---
+L L M  辅助设计：代码质量 ② — 推荐⼯具链
+⼯具 ⽤途 效果 来源
+iSMEL L LLM  + 7 专家静态分析⼯具；检测 God Class、Feature Envy 等 F1 提升 +35% vs 纯 LLM ASE 2024
+SmellBench 架构级代码异味修复基准（11 智能体 × 4 模型 × 65 种异味） 最佳解决率 47.7%；误报率 63.1% arXiv:2605.07001
+NO MAD 多智能体 UM L 类图⽣成；认知启发式⼦任务分解 显著优于单智能体 arXiv:2511.22409
+DRAFT RAG + 微调；⾃动⽣成架构决策记录（ADR） 相关性优于零样本 LLM arXiv:2504.08207
+L L M-ADD LLM  融⼊属性驱动设计（ADD）迭代流程 设计迭代时间缩短 40% arXiv:2506.22688
+MS Arch Agent 上传代码/YAM L ，⾃动⽣成架构图并检测⻛险 ⼯业实践验证 M icrosoft 2024
+ClarifyGPT 检测模糊需求并追问澄清，再⽣成代码 Pass@1 提升 +10% FSE 2024
+使⽤建议：⼯具链的价值在于组合——⽤ iSM ELL 检测、SmellBench 评估、NOM AD ⽣成初稿、ClarifyGPT 澄清需
+求，各⼯具覆盖 LLM  独⽴完成时的盲区。
+📖  SW EBO K v4 §6.3 · Quality Analysis  |  §6.2 · Quality Attributes  |  §4.4 · Design Patterns and Styles
+57
+
+
+--- PAGE 58 ---
+L L M  辅助软件设计：2025–2026 最新进展
+U M L  ⽣成与设计辅助
+NO M AD（arXiv:2511.22409, 2025）：认知启发式多智能体，将类图
+⽣成分解为⽬标导向⼦任务，优于单智能体⽅案
+多模态 MM-LLM （arXiv:2503.12293, 2026）：顺序图⽣成
+BLEU=0.779，SSIM =0.942；领域⾃适应模型显著提升图→代码精
+度
+LLM -ADD（arXiv:2506.22688, 2026）：将 LLM  融⼊属性驱动设计
+（ADD），设计迭代时间缩短 40%，质量接近⼈类架构师
+C4 架构多智能体（arXiv:2510.22787, 2025）：⻆⾊专属智能体协
+作，C4 架构图⽣成准确率 78%
+实践调研（arXiv:2605.01392, 2026）：分析 291 次 ChatGPT-开发
+者对话，识别 9 类设计任务；68% 对话成功解答设计问题
+规模化设计的新挑战
+规模化崩溃（arXiv:2605.03546）
+函数级正确率 82% → 库级全任务完成率仅
+3%
+结构化规格说明可缓解，提升精度 +23%
+架构级代码异味新证据
+（arXiv:2605.02741）
+LLM  ⽣成代码的"管理者类"使耦合度平均上
+升 34%；智能体拆分⽂件但⽆法实现语义内
+聚
+SmellBench 2026 最新基准
+11 种智能体 × 4 种模型 × 65 个架构异味：
+最佳解决率 47.7%，但 63.1% 检测结果是误
+报
+→ ⼈⼯验证仍不可省
+58
+
+
+--- PAGE 59 ---
+如何正确使⽤ L L M  辅助详细设计
+推荐⼯作流
+①  ⼈类主导：职责边界识别（ GRASP Expert/Creator ）
+        ↓
+②  LLM ⽣成：类图⻣架  / 顺序图初稿（ PlantUML ）
+        ↓
+③  ⼈类验证：语义正确性  / 多类关系  / 耦合级别
+        ↓
+④  LLM 辅助：简单代码异味修复  / Javadoc / 测试⽣成
+        ↓
+⑤  ⼈类决策：架构级重构  / 信息隐藏决策  / 设计理由
+关键 Prompt ⼯程技巧
+给 LLM  约束，⽽⾮只给需求
+请帮我设计  [ 模块名 ] 的类图。
+约束条件：
+- 每个类只有⼀个变化原因（ **P13** SRP ）
+- 类之间只通过接⼝依赖（ **P12** DIP ）
+- 不暴露集合类型字段（封装 B ）
+请先列出每个类的 " 主要秘密 "
+（隐藏的设计决策），再画类图。
+研究结论：加⼊设计约束的提示词
+（Context-speciﬁc Prompting）可将代码
+异味减少最⾼ 89%，Chain-of-Thought 提
+示对结构性设计决策也有显著帮助
+（Information and Software Technology,
+2025）。
+59
+
+
+--- PAGE 60 ---
+详细设计⽂档结构
+1 引⾔
+  1.1 编制⽬的          —— ⽂档读者与主题
+  1.2 词汇表            —— 缩写、专业词汇
+  1.3 参考资料          —— 相关⽂献
+2 中层设计
+  2.1 xxx 模块的静态结构和动态⾏为
+    2.1.1 局部模块的职责（逻辑视⻆  / 结构视⻆  / 依赖视⻆）
+    2.1.2 局部模块的接⼝规范（供接⼝  / 需接⼝）
+    2.1.3 模块的⾏为（顺序图  / 通讯图  / 状态图）
+    2.1.4 模块的实现注解（构造⽅法、枚举、常量、静态⽅法）
+    2.1.5 业务逻辑模块的设计原理（ Rationale ）
+3 低层设计（如需要）
+  3.1 关键数据结构与算法
+📖  SW EBO K v4 §4 · Recording Software Designs  |  §4.2 · Structural Design Descriptions  |  §4.3 · Behavioral Design Descriptions  |  §4.6 · Design Rationale
+60
+
+
+--- PAGE 61 ---
+详细设计的评审（16 项检查清单）
+⼀、基本
+1. 设计⽅案⾃身是否⼀致？ 2) 设计制品的详细程度是否合适？ 3) 设计是否包含了各个视⻆？ 4) 多个视⻆之间是否⼀致？
+⼆、设计考量
+5. 是否采⽤标准技术？ 6) 是否强调简洁性重于灵活性？ 7) 是否尽可能简单？ 8) 是否精⼲？每个部分都必需？ 9) 维护时
+需求变更是否⽀持？是否⽀持未来的扩展？ 10) 是否⽀持重⽤？ 11) 是否具有低复杂性？ 12) 是否可理解？
+三、过程考量
+13. 是否覆盖了所有需求？ 14) 设计的功能对应需求的哪些部分？ 15) 是否⾜够遵循软件体系结构的设计决策？ 16) 详细程度
+对后继开发⼈员是否⾜够？
+📖  SW EBO K v4 §6.1 · Design Reviews and Audits  |  §6.3 · Quality Analysis and Evaluation Techniques
+61
+
+
+--- PAGE 62 ---
+详细设计的验证
+评审（Review）
+团队⾛查（Walkthrough）
+检查清单（Checklist）
+形式化评审（Inspection）
+度量（M etrics）
+模块化度量
+耦合度 Ca / Ce
+不稳定性 I = Ce / (Ca+Ce)
+抽象度 A
+主序列距离 D = |A + I − 1|
+测试
+协作测试（Class Collaboration Test）
+M ock-Driven 测试
+变化测试（Mutation Testing）
+评审的常⻅缺陷
+多视⻆不⼀致（类图 vs 顺序图）
+接⼝规格不完整
+缺失实现注解
+设计理由（Rationale）缺失
+📖  SW EBO K v4 §6.4 · M easures and M etrics  |  §6.5 · Veriﬁcation, Validation, and Certiﬁcation  |  §6.1 · Design Reviews and Audits
+62
+
+
+--- PAGE 63 ---
+课堂练习 · M onopoly Game
+已知类图 题⽬
+1. 掷骰⼦的⾏为应由哪个类执⾏？ —— Die（信息专家）
+2. 根据 name 寻找相应的 Square？ —— Board（聚合
+Square）
+3. 回合调度应由谁？ —— M onopolyGame（Controller）
+4. 整个执⾏过程的调度者？ —— M onopolyGame
+5. 持久化 / 存档？ —— 新建 IO /Persistence 类（Pure
+Fabrication）
+63
+
+
+--- PAGE 64 ---
+课堂练习 · switch-case 反模式
+class Square {
+    void landOn(Player p) {
+        switch (this.Type) {
+            case Tax:    收税 ;    break;
+            case Income: 增加收⼊ ; break;
+            case Pay:    罚款 ;    break;
+            ...
+            default: 没有⾏为 ;
+        }
+    }
+}
+问题：所有 Square 类型的⾏为都耦合在⼀个 switch 语句⾥ —— 新增⼀种 Square 要修改 landOn ，违反 P11 开闭原
+则（OCP）。
+正解：建⽴⾏为继承树，⽤多态代替 switch-case —— Tax extends Square 、Income extends Square ……，各⾃
+实现 landOn(Player) 。
+64
+
+
+--- PAGE 65 ---
+本讲总结
+关键概念
+详细设计 = 中层 + 低层
+职责 + 协作 = O O  详设两⼤⽀柱
+GRASP：Information Expert / Creator / Controller /
+Low Coupling / High Cohesion
+控制⻛格：集中 / 委托 / 分散
+P1–P4（信息隐藏基础）：全局变量有害 / 优先显示表达
+/ DRY / ⾯向接⼝编程
+Parnas 信息隐藏：每个模块封装⼀个"会变的设计决
+策"（→ P9 为变更⽽封装）
+集成测试 + M ock 验证协作
+思维框架
+1. 从需求和体系结构开始 —— 把职责落到类
+2. 静态设计 —— 类、关系、接⼝
+3. 动态设计 —— 顺序图、状态图
+4. 重构 —— 模块化、信息隐藏、设计模式
+5. 验证 —— 评审、度量、集成测试
+65
+
+
+--- PAGE 66 ---
+课后作业
+必做
+1. 为⼤作业的核⼼模块（如订单模块）画出类图 + 顺序图，标注 GRASP 模式选择理由。
+2. 对该模块中的⼀个复杂⽅法（如 pay(orderId, couponId) ）画出完整顺序图，识别其使⽤的控制⻛格。
+3. ⽤ M ockO bject 为该⽅法编写⾄少 3 个集成测试⽤例（包含正常路径、异常路径、边界情况）。
+选做（加分）
+4. 对你的设计应⽤16 项评审清单⾃评，写⼀份评审报告（每条给出"通过 / 不通过 / 改进建议"）。
+5. ⽤ LLM  ⽣成同⼀模块的另⼀份设计⽅案，对⽐两份⽅案的耦合 / 内聚 / 演化稳定性，写出批判性分析（300 字以内）。
+66
+
+
+--- PAGE 67 ---
+Q & A
+详细设计 · 把架构落到代码的最后⼀公⾥
+南京⼤学 · 刘钦 · 软件⼯程与计算 II
+67

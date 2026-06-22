@@ -1,0 +1,33 @@
+课后作业
+编程练习
+给定如下代码，识别所有封装问题并重构：
+class Library {
+    public List<Book> books = new ArrayList<>();
+    public String name;
+    public Book findBook(String isbn) {
+        for (Book b : books) {
+            if (b.isbn.equals(isbn))
+                return b;
+        }
+        return null;
+    }
+}
+class Book {
+    public String isbn;
+    public String title;
+    public double price;
+}
+分析要求
+1. 列出所有违反封装的地⽅（对应 A–E 哪种
+类型？）
+2. 该设计违反了哪些原则（LSP/ISP/权限最⼩
+化/迪⽶特法则）？
+3. 重构后的代码需满⾜：
+books 集合不可从外部直接修改
+isbn 、title 、price 通过访问器
+访问
+findBook 在⽆结果时返回
+Optional<Book>
+提交 GitHub 链接，含重构前后对⽐与原则对
+照说明。
+47

@@ -1,0 +1,4 @@
+Part 2
+访问耦合
+五个级别 · Cascading Message · P5 迪⽶特法则 · P4 ⾯向接⼝ · P6 ISP
+8

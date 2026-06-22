@@ -1,0 +1,22 @@
+Cascading Message（消息链）问题
+// 问题代码：消息链（ Train Wreck ）
+String city = customer
+    .getAddress()
+    .getCity()
+    .toUpperCase();
+问题：Customer 的调⽤⽅知道了：
+Customer 有 Address
+Address 有 City
+City 是 String
+三层实现细节全部暴露！
+两种修复⽅案
+⽅案 A：引⼊局部变量
+Address addr = customer.getAddress();
+City city = addr.getCity();
+String name = city.toUpperCase();
+可读性提升，但耦合依然存在。
+⽅案 B：委托（推荐）
+// 在  Customer 中封装
+String city = customer.getCityName();
+调⽤⽅只需知道 Customer 。
+10

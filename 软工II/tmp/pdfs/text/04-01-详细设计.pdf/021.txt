@@ -1,0 +1,11 @@
+动态模型 · 顺序图（Sequence Diagram）
+⽤途
+表示对象之间的协作
+顺序图是交互图的⼀种
+表达对象之间如何通过消息的传递来完成⽐较⼤的职责
+示例消息编号
+1: addCommodity(id, qty)
+　1.1: addCommodity(id, qty)
+　　1.1.1: <<create>> CreateMessage()
+　　1.1.1.1: CommodityPO find(id)
+21

@@ -1,0 +1,4 @@
+8. Test-First Development
+• Shortens time to defect detection
+• Increases personal discipline
+• Complements daily build & smoke test

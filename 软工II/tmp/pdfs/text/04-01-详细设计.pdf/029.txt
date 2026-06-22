@@ -1,0 +1,12 @@
+④ Creator（创建者）
+Q: W ho has responsibility to create an object?
+A: By Creator, assign class B responsibility of creating instance of class A if（满⾜越多，优先级越⾼）：
+B aggregates A objects
+B contains A objects
+B records instances of A objects
+B closely uses A objects
+B has the initializing data for creating A objects
+where there is a choice, prefer B aggregates or contains A objects.
+案例：Who is responsible for creating SalesLineItem objects? → Sale （because Sale contains
+SalesLineItem，组合关系）。
+29

@@ -1,0 +1,4 @@
+10. Faster Computers
+• Implications for optimization
+• Implications for programming languages
+• Implications for development

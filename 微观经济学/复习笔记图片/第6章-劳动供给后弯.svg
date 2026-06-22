@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="95" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="95" y1="380" x2="95" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20">劳动供给 L</text>
+  <text x="72" y="45" font-size="20">工资 W</text>
+  <path d="M180 340 C270 295, 390 230, 500 140 C555 95, 530 70, 465 88 C410 105, 382 150, 365 210" fill="none" stroke="#16a34a" stroke-width="5"/>
+  <text x="515" y="132" font-size="20" fill="#16a34a">收入效应可能占优</text>
+  <text x="205" y="315" font-size="20" fill="#16a34a">替代效应占优</text>
+  <text x="178" y="36" font-size="24" font-weight="700">个人劳动供给曲线可能向后弯曲</text>
+  <text x="110" y="424" font-size="18" fill="#444">工资上升既让闲暇更贵，也让人更“买得起”闲暇；高工资段可能少工作</text>
+</svg>

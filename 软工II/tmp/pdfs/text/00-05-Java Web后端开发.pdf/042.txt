@@ -1,0 +1,14 @@
+作业（⼆选⼀，选做加分）
+选题 A：⽹站收藏夹后端 API
+基于 Spring Boot + M yBatis 实现完整 C RU D：
+GET /api/sites  查询全部；POST /api/sites  新增（校验 url 格式）
+PUT /api/sites/{id}  修改；DELETE /api/sites/{id}  删除
+⽤ Postman 测试所有接⼝，截图 + 代码提交
+选题 B：⽤户认证系统
+基于 Spring Security + JW T 实现：
+⽤户注册（BC rypt 加密存储密码）
+⽤户登录（返回 JWT Token）
+受保护接⼝（需携带有效 Token 才能访问）
+Postman 演示完整认证流程，截图提交
+加分项：两题结合——在 A 的 CRUD 接⼝上加 B 的登录鉴权保护（DELETE  需要 ADM IN ⻆⾊）
+42

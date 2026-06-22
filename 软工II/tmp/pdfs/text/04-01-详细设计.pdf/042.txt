@@ -1,0 +1,13 @@
+Parnas 1972 · 信息隐藏的提出
+"O n the Criteria To Be Used in Decomposing Systems into M odules" —— 软件⼯程史上影响最深的论⽂之⼀
+W hat is M odularization?
+M odule: to be a responsibility assignment rather than a subprogram
+M odularizations：include the design decisions which must be made before the work on independent modules
+can begin（"System level" decisions）
+The Criterion of Decomposition：Information Hiding
+Every module in the decomposition is characterized by its knowledge of a design decision which it hides from
+all others.
+模块化⽬标：① 允许⼀个模块在对其他模块代码知之甚少的情况下编写；② 允许模块被重新组装和替换⽽⽆需重新组装
+整个系统。
+📖  SW EBO K v4 §1.4 · M odularization  |  §1.4 · Encapsulation (information hiding)  |  §5.4 · O bject-O riented Design
+42

@@ -1,0 +1,13 @@
+顺序图示例：销售处理 创建与录⼊ [SW EBO K 4.4]
+参与者与对象
+收银员（Actor）  :System  :SaleO rder  :Product
+关键消息
+1.1 create() — 创建新销售
+2.1 getInfo(barcode) — 查询商品信息
+2.2 addItem(product, qty) — 添加商品
+3.1 calculateTotal() — 计算总价
+4.1 makePayment(amount) — ⽀付
+交互⽚段
+⻩⾊注释框 = loop ⽚段：步骤 2 重复直到所有商品录⼊完成
+顺序图从⽤例描述的正常流程映射⽽来，每⼀步交互对应⼀条消息箭头
+29

@@ -1,0 +1,14 @@
+设计思维（Design Thinking）
+Design is a form of problem-solving. Software design particularly faces W icked Problems — problems with no
+deﬁnitive solution, only better or worse trade-oﬀs.
+五步设计过程 （Ross, Goodenough & Irvine）
+步骤 核⼼动作 软件设计产物
+1 · Crystallize 明确⽬的与⽬标 功能需求 + 质量属性（NFR）
+2 · Formulate 构想实现概念 体系结构⻛格 / 设计模式选择
+3 · Devise 设计实现机制 类图 + 顺序图 + 算法选择
+4 · Introduce 引⼊表达符号 UM L / 伪代码 / 接⼝定义语⾔（IDL ）
+5 · Describe 描述具体使⽤场景设计⽂档 + 设计理由（Rationale）
+这五步在体系结构设计和详细设计两个阶段都会反复出现 —— 详细设计就是把体系结构决策递归精化到可直接编码的粒
+度。
+📖  SW EBO K v4 §1.1 · Design Thinking  |  §1.3 · Key Issues in Software Design
+7

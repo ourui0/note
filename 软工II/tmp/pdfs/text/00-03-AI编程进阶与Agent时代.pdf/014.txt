@@ -1,0 +1,19 @@
+AI ⽣成测试⽤例
+场景：为 MyBatis Mapper 接⼝⽣成测试⽤例
+// 提示词： " 为以下  Mapper ⽅法⽣成  JUnit 5 测试，
+//  使⽤  @MockitoBean 模拟数据库，
+//  每个⽅法⾄少包含：正常路径、空结果、异常路径三个测试⽤例 "
+@Mapper
+public interface UserMapper {
+    User findByUsername(String username);
+    int insert(User user);
+}
+AI ⽣成的测试框架：
+@ExtendWith(MockitoExtension.class)
+class UserMapperTest {
+    @Mock private UserMapper userMapper;
+    @Test void findByUsername_normalPath_returnsUser() { ... }
+    @Test void findByUsername_userNotExist_returnsNull() { ... }
+    @Test void insert_validUser_returnsOne() { ... }
+}
+14

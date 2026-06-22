@@ -1,0 +1,25 @@
+⾥⽒替换原则例题
+数据结构栈有四个功能：压栈、弹栈、得到栈的⼤⼩、得到栈是否为空。Akagi同学使⽤继承如下设计了栈。 
+public class MyStack extends Vector { 
+    public  void push(Object element){ 
+        insertElementAt(element,0); 
+    } 
+    public Object pop(){ 
+        Object result = firstElement(); 
+        removeElementAt(0); 
+        return result; 
+    } 
+} 
+  
+Kogure同学在设计雇员类的时候，如下设计： 
+public Person{ 
+private string name; 
+public string getName(){ 
+   return name; 
+} 
+} 
+public class Employee extends Person { 
+} 
+  
+1） 指出两个关于继承的设计是否合理？是否违反设计原则？ 
+2） 对两段代码，如果合理，请解释其合理性。如果违反，请解释该原则，并修改

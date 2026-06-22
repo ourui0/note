@@ -1,0 +1,29 @@
+M ock O bject（模拟对象）
+M ockO bject 示例
+public class MockCommodity
+        extends Commodity {
+    double price;
+    public MockCommodity(double p) {
+        price = p;
+    }
+    public double getPrice() {
+        return price;
+    }
+}
+类似于 Stub，但更简单 —— 只需返回固定值⽤于测试。
+集成测试代码
+public class TotalIntegrationTester {
+    @Test
+    public void testTotal() {
+        MockCommodity c1 = new MockCommodity(50);
+        MockCommodity c2 = new MockCommodity(40);
+        SalesLineItem li1 = new SalesLineItem(c1, 2);
+        SalesLineItem li2 = new SalesLineItem(c2, 3);
+        Sales sale = new Sales();
+        sale.addSalesLineItem(li1);
+        sale.addSalesLineItem(li2);
+        assertEquals(220, sale.total());
+    }
+}
+M ock 让我们只关⼼被测协作的逻辑，把外部依赖替换为可控的"假对象"。
+50

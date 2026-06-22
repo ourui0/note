@@ -1,0 +1,19 @@
+想深⼊了解？推荐阅读
+级别 材料 核⼼洞察
+ 必
+读 SEC: In the M atter of Knight Capital Americas L L C（2013） 原始监管调查报告，SCM 失效的第⼀⼿
+分析
+ 必
+读 How to L ose $172,222 a Second for 45 M inutes（Doug Seven, 2013） ⼯程师视⻆还原 Knight Capital 事故全过
+程
+ 推
+荐 Pro Git（Scott Chacon, 免费在线）第 3 章：Git 分⽀ Git 分⽀模型的权威⼊⻔
+ 推
+荐 A Successful Git Branching M odel（Vincent Driessen, nvie.com） Git Flow 原始提案，仍是⼯业界参考
+ 扩
+展 DeMarco & Lister: Peopleware（1987，第 3 版 2013） 团队建设与组织环境的经典著作
+ AI L arge L anguage M odels for Software Engineering: A Systematic L iterature Review
+（2024） LLM 在 SE 各环节的应⽤全景综述
+ AI Google: DO RA State of DevO ps Report（2024） AI 对 DevO ps 效能的最新实证数据
+ AI M easuring Developer Productivity with AI（GitHub, 2024） AI Coding ⼯具的⽣产⼒度量⽅法论
+54

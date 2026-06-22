@@ -1,0 +1,11 @@
+模块化思想的历史发展
+阶段 年代 代表 核⼼思想
+萌芽 1971-72 W irth、Parnas 逐步求精；按"职责"分解
+形成 1974-85 Stevens、Parnas 耦合 / 内聚定义；信息隐藏的精细化
+发展 1992-95 Eder、Hitz O O  模块化、⾯向对象耦合度量
+反思 1996+ M cConnell、DeM arco ⼯程实践 / 软件度量
+Good Software 关⼼什么？
+Parnas 1972：Managerial / Product ﬂexibility / Comprehensibility
+Stevens 1974：简洁性（易调试 / 易分解）、可观察性（易修改）
+Boehm 1976：Maintainability / Extendibility / Understandability / Reusability
+40

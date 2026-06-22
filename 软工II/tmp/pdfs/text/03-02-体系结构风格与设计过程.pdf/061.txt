@@ -1,0 +1,13 @@
+课后作业
+任务：学⽣选课系统 — 业务逻辑层设计
+画出选课业务逻辑 chooseCoursebl 的关键类图，要求包含：
+1. 核⼼类：CourseService, StudentService, EnrollmentService
+2. 实体类：Course, Student, Enrollment
+3. 类之间的关联关系（依赖、关联、组合）
+4. 关键⽅法签名（⾄少 3 个核⼼⽅法）
+提交要求
+使⽤ UM L 类图标准符号
+标注类的属性和⽅法
+⽤⽂字简述设计理由（200 字以内）
+提示：先识别功能需求（选课、退课、查课表），再按职责分配到各个类中。
+61

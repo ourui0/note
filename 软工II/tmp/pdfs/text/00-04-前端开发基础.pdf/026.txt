@@ -1,0 +1,18 @@
+O ptions API vs Com position API
+两种⽅式实现同⼀个计数器：
+<!-- Options API （ Vue 2 ⻛格，按 " 选项类型 " 组织）  -->
+<script>
+export default {
+  data() { return { count: 0 } },
+  methods: { increment() { this.count++ } },
+  mounted() { console.log(' 挂载完成 ') }
+}
+</script>
+<!-- Composition API （ Vue 3 推荐，按 " 功能逻辑 " 组织）  -->
+<script setup>
+import { ref, onMounted } from 'vue'
+const count = ref(0)
+const increment = () => { count.value++ }
+onMounted(() => { console.log(' 挂载完成 ') })
+</script>
+26

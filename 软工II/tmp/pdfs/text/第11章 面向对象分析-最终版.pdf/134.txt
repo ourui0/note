@@ -1,0 +1,10 @@
+133
+2025/5/29
+对象约束
+语言OCLOCL的应用
+Customer::getGift() : Integer定义了一个
+前置条件CustStartTransact和一个后置条
+件TenDollarsGift。
+pre和post是OCL定义前置条件和后置条
+件的关键字。
+对象约束语言OCL

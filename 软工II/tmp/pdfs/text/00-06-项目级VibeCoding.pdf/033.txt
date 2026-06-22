@@ -1,0 +1,20 @@
+配置 MCP chrome-devtools
+Step 1：在 Claude Code 配置⽂件中声明
+// ~/.claude/settings.json （全局）或  .claude/settings.json （项⽬）
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": false}"
+      }
+    }
+  }
+}
+Step 2：以远程调试模式启动 Chrome
+# macOS — 让  Chrome 开放调试端⼝  9222
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --remote-debugging-port=9222 --no-first-run --no-default-browser-check
+# Windows
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 33

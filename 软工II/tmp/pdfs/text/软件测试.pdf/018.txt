@@ -1,0 +1,10 @@
+Dynamic Techniques
+• Dynamic Techniques –
+•Testing – Based on the execution of the code 
+on valued inputs (definition of the parameters 
+and environmental conditions that 
+characterize a system state must be included 
+when necessary )
+•Profiling – A program profile records the 
+number of times some entities of interest 
+occur during a set of controlled executions

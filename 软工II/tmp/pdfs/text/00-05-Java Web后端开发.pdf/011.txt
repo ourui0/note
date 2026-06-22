@@ -1,0 +1,13 @@
+URL ：统⼀资源定位符
+URL （Uniform Resource Locator） 是互联⽹上资源的标准地址，如同⽹络上的⻔牌号：
+  http://  blog.example.com  :8080  /users  ?gender=male&page=1
+  ↑ 协议名    ↑ 主机名（域名）    ↑ 端⼝   ↑ 路径    ↑ 查询参数（键值对）
+协议：http  / https （加密）
+主机名：通过 DNS 解析为服务器 IP 地址
+端⼝：HTTP 默认 80 ，HTTPS 默认 443 ，Spring Boot 开发常⽤ 8080
+路径：服务器上的资源位置
+查询参数：以 ?  开始，name=value  格式，多个参数⽤ &  分隔
+示例：
+GET /api/products/123/reviews?page=2&size=10&sort=time HTTP/1.1
+    └── 路径：层次化资源  ──────┘   └── 过滤 / 分⻚参数  ──────────┘
+11

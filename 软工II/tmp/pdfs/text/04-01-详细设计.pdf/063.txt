@@ -1,0 +1,10 @@
+课堂练习 · M onopoly Game
+已知类图 题⽬
+1. 掷骰⼦的⾏为应由哪个类执⾏？ —— Die（信息专家）
+2. 根据 name 寻找相应的 Square？ —— Board（聚合
+Square）
+3. 回合调度应由谁？ —— M onopolyGame（Controller）
+4. 整个执⾏过程的调度者？ —— M onopolyGame
+5. 持久化 / 存档？ —— 新建 IO /Persistence 类（Pure
+Fabrication）
+63

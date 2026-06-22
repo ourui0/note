@@ -1,0 +1,346 @@
+
+
+--- PAGE 1 ---
+开发⼯具链与 G it ⼯作流
+DevOps · 版本控制 · 从代码到线上
+⼀次推送，8 ⼩时，850 万台电脑蓝屏，全球航班停⻜——只因为缺少⼀个测试环节……
+1
+
+
+--- PAGE 2 ---
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+模块 关键技术
+DevO ps 开发⽂化 理念 · ⼯具链 · Inﬁnity L oop
+Git 版本控制 4 个区域 · 6 ⼤命令 · GitHub ⼯作流
+从代码到线上 Cursor 项⽬级 · Vercel ⼀键部署
+2
+
+
+--- PAGE 3 ---
+开场案例：CrowdStrike 全球宕机事件（2024）
+"史上规模最⼤的 IT 中断事件之⼀。" ——科技媒体普遍评价，2024-07-19
+CrowdStrike Falcon：全球市占率最⾼的终端安全软件，部署于数亿台企业设备
+时间线 事件
+2024-07-19 04:09 U TC 向全球 Falcon 传感器推送内容配置更新（Channel File 291）
+04:09 起 全球运⾏ W indows 的 Falcon 设备触发蓝屏（BSO D），⽆法启动
+数⼩时内 约 850 万台 W indows 设备同时崩溃
+航空 Delta、美联航等航班⼤规模停⻜，累计取消 / 延误超 1 万次
+医疗 多国医院⼿术被迫推迟，急救调度系统受影响
+经济损失 标普 500 企业估计损失约 54 亿美元
+修复⽅式 ⽆法远程修复，需逐台⼈⼯进⼊安全模式删除⽂件
+3
+
+
+--- PAGE 4 ---
+根因分析：DevOps 流程的系统性缺失
+直接原因：Channel File 291 包含逻辑错误，触发 W indows 内核崩溃——⽽这个⽂件被同时推送给了全球所有设备
+深层原因：
+⽆分阶段发布（Staged Rollout）：更新同时推向所有设备，没有⾦丝雀发布、灰度验证
+测试覆盖不⾜：内容配置更新的测试标准低于内核驱动，未覆盖触发场景
+⽆⾃动回滚：更新⼀旦推送，发现问题后⽆法远程撤回
+修复成本极⾼：蓝屏后系统⽆法远程操作，只能⼈⼯逐台处理
+今天学什么：
+Git（版本追踪 + 可回滚）+ CI/CD 流⽔线（分阶段测试部署）+ Vercel（⾃动化 + 回滚）← 正是防⽌上述灾难的现代⼯具
+链
+4
+
+
+--- PAGE 5 ---
+本讲路线图
+模块 核⼼问题 ⼯具 时⻓
+PART 1 什么是 DevO ps？为什么要⽤？理念 + ⼯具链 ~10 min
+PART 2 如何⽤ Git 追踪和管理代码？Git + GitHub ~25 min
+PART 3 如何把代码快速部署到线上？Cursor + Vercel ~15 min
+三个部分串联成⼀条完整的 "写代码 → 追踪版本 → 部署上线" 链路
+5
+
+
+--- PAGE 6 ---
+PART 1
+DevO ps 与现代开发⽂化
+Dev + O ps + ⽂化 · ⼯具 · 实践
+6
+
+
+--- PAGE 7 ---
+DevO ps 是什么？
+DevO ps = 开发（Dev）+ 运维（Ops）+ ⽂化/⼯具/实践
+打破开发团队与运维团队之间的壁垒，让软件交付更快、更稳定
+传统模式（Knight Capital 时代）：
+开发写完代码  → 扔给运维  → 运维⼿动部署  → 出问题互相推责
+DevO ps 模式（现代）：
+代码提交  → ⾃动测试  → ⾃动构建  → ⾃动部署  → 监控反馈  → 持续改进
+   ↑_______________________ 持续循环（ Infinity Loop ） _________________↑
+核⼼价值：Knight Capital 如果有⾃动化部署流⽔线，旧代码绝不可能悄悄留在⼀台服务器上
+7
+
+
+--- PAGE 8 ---
+我们的实验⼯具链
+代码编写           版本管理           在线托管           部署上线
+┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+│          │     │          │     │          │     │          │
+│  Cursor  │──── │   Git    │──── │  GitHub  │──── │  Vercel  │
+│ 通义灵码   │     │ （本地追踪） │     │ （远程仓库） │     │ （⾃动部署） │
+│          │     │          │     │          │     │          │
+└──────────┘     └──────────┘     └──────────┘     └──────────┘
+     AI 辅助写代码   ←── 每次提交都有记录  ──→  推送即部署，⾃动获得  HTTPS 域名
+这条链路也是当前最主流的前端/全栈⼩团队开发⼯作流
+8
+
+
+--- PAGE 9 ---
+PART 2
+Git 版本控制
+4 个区域 · 6 ⼤命令 · GitHub ⼯作流
+9
+
+
+--- PAGE 10 ---
+Git 的四个区域
+⼯作区（ Working Directory ）
+    ↓  git add
+暂存区（ Index / Staging Area ）        ← " 准备提交 " 的快照
+    ↓  git commit
+本地仓库（ Local Repository ）           ← 完整的版本历史，存在  .git ⽬录
+    ↓  git push
+远程仓库（ Remote Repository ）          ← GitHub / GitLab 上的副本，团队共享
+    ↑  git pull / git fetch
+类⽐：
+⼯作区 = 你的桌⾯草稿纸
+暂存区 = 你决定要装进信封的内容
+本地仓库 = 你⾃⼰的档案柜（有完整历史）
+远程仓库 = 办公室公⽤的云端⽂件柜
+10
+
+
+--- PAGE 11 ---
+6 个最常⽤的 Git 命令
+# 1. 克隆远程仓库到本地
+git clone https://github.com/username/repo.git
+# 2. 将⽂件添加到暂存区（准备提交）
+git add filename.py        # 指定⽂件
+git add .                  # 当前⽬录全部⽂件
+# 3. 提交到本地仓库（附上有意义的提交信息！）
+git commit -m "feat: 添加⽤户登录功能 "
+# 4. 推送到远程仓库
+git push origin main
+# 5. 从远程仓库拉取最新代码（ = fetch + merge ）
+git pull origin main
+# 6. 切换分⽀  / 查看分⽀
+git checkout -b feature/login   # 创建并切换到新分⽀
+git checkout main               # 切换回主分⽀
+11
+
+
+--- PAGE 12 ---
+查看与撤销：⽇常必备命令
+# ── 查看状态  ──────────────────────────────────
+git status          # 查看⼯作区和暂存区的变动
+git log --oneline   # 查看简洁的提交历史
+git diff            # 查看未暂存的修改内容
+# ── 撤销操作  ──────────────────────────────────
+git checkout -- filename.py   # 撤销⼯作区的修改（危险！不可恢复）
+git reset HEAD filename.py    # 将⽂件从暂存区移出（不删除修改）
+git reset --soft HEAD~1       # 撤销上⼀次  commit （保留修改在暂存区）
+# ── 远程操作  ──────────────────────────────────
+git remote -v                 # 查看远程仓库地址
+git fetch origin              # 下载远程更新（但不合并）
+git merge origin/main         # 合并远程分⽀到当前分⽀
+⚠  git reset --hard 会永久丢弃修改，操作前请确认！有 Git 记录才能找回历史
+12
+
+
+--- PAGE 13 ---
+GitHub 团队协作⼯作流
+你的本地                           GitHub 远程
+    │                                  │
+    ├── git clone ◄────────────────────┤ fork / clone 仓库
+    │                                  │
+    ├── git checkout -b feature/xxx    │ 在本地创建功能分⽀
+    │                                  │
+    ├── 写代码  → git add → git commit  │ 本地开发并提交
+    │                                  │
+    ├── git push origin feature/xxx ──►│ 推送到远程
+    │                                  │
+    │                              创建  Pull Request （ PR ）
+    │                              团队成员  Code Review
+    │                              合并到  main 分⽀
+    │                                  │
+    ├── git pull origin main ◄─────────┤ 同步最新代码
+关键习惯：每次 commit 只做⼀件事，写清楚 commit message——这是 Knight Capital 事故的反⾯教训
+13
+
+
+--- PAGE 14 ---
+ 动⼿实践（5 分钟）
+任务：创建你的第⼀个 Git 仓库并推送到 GitHub
+# 1. 创建本地项⽬⽬录
+mkdir my-first-repo && cd my-first-repo
+git init
+# 2. 创建⽂件并提交
+echo "# 我的第⼀个仓库 " > README.md
+git add README.md
+git commit -m "init: 初始化项⽬ "
+# 3. 在  GitHub 创建同名仓库（不要勾选初始化选项）
+# 4. 关联远程仓库并推送
+git remote add origin https://github.com/ 你的⽤户名 /my-first-repo.git
+git push -u origin main
+✅  成功标志：在 GitHub ⻚⾯看到你的 READM E.md 内容
+14
+
+
+--- PAGE 15 ---
+ 停下来想⼀想
+"如果你是 Knight Capital 的技术总监，你会要求团队做哪些改变来防⽌这次事故？"
+从 Git 和 DevO ps ⻆度思考：
+改进⽅向 具体措施 对应 Git/DevO ps 实践
+版本追踪 每个版本都有唯⼀标识git tag v1.0.0  打标签
+⾃动化部署不能靠⼈⼯ SSH 逐台操作 CI/CD 流⽔线
+快速回滚 出问题 5 分钟内恢复 git revert  / 部署回滚
+分⽀保护 main 分⽀不能直接推送Branch Protection Rules
+ Knight Capital 的教训，正是今天 DevO ps ⽂化兴起的原因之⼀
+15
+
+
+--- PAGE 16 ---
+PART 3
+从代码到线上
+Cursor 项⽬级 · Vercel ⼀键部署
+16
+
+
+--- PAGE 17 ---
+Cursor：项⽬级 AI 编程
+上⼀讲我们学了 Cursor 的基础快捷键，这⾥重点看项⽬级功能：
+Ctrl+Enter ：扫描整个项⽬
+普通  AI 问答（ Ctrl+L ）：
+  " 这个函数怎么优化？ "  → AI 只看当前⽂件的上下⽂
+项⽬级  AI （ Ctrl+Enter ）：
+  " 这个项⽬的数据库连接逻辑在哪⾥？ "
+  → AI 扫描所有⽂件，找到  application.yml + DataSource 配置
+  → 给出跨⽂件的分析答案
+实践场景：拿到⼀个陌⽣开源项⽬
+1. ⽤ git clone 下载到本地，⽤ Cursor 打开
+2. Ctrl+Enter ：问"这个项⽬的整体架构是什么？⼊⼝在哪⾥？"
+3. AI 帮你⽣成项⽬导览，⽐⾃⼰读代码快 10 倍
+17
+
+
+--- PAGE 18 ---
+Vercel：从 GitHub 到线上的 3 步
+Vercel 是专为前端和全栈项⽬设计的零配置部署平台
+步骤  1 ：连接  GitHub
+  登录  vercel.com → 点击  "New Project" → 授权  GitHub
+步骤  2 ：导⼊仓库
+  选择你的仓库  → 选择框架（ Next.js / Vue / React / 静态⽹站）
+  → Vercel ⾃动检测构建命令
+步骤  3 ：部署完成
+  点击  Deploy → 约  1-2 分钟  → ⾃动获得  https://your-project.vercel.app
+特性 说明
+⾃动触发 每次 git push  到 main，⾃动重新部署
+预览部署 每个 Pull Request ⾃动⽣成独⽴预览链接
+⾃定义域名免费⽀持绑定⾃⼰的域名（加 CNAME 记录）
+免费额度 个⼈项⽬完全免费
+18
+
+
+--- PAGE 19 ---
+完整⼯作流回顾：从本地到线上
+1. 本地⽤  Cursor 开发功能
+        │
+        ▼
+2. git add . && git commit -m "feat: xxx"
+        │
+        ▼
+3. git push origin main
+        │
+        ▼
+4. Vercel ⾃动检测到新提交  → 触发  CI/CD
+        │
+        ▼
+5. 构建完成  → 新版本⾃动上线（约  1-2 分钟）
+        │
+        ▼
+6. 访问  https://your-project.vercel.app 验证
+对⽐ Knight Capital：⼿动 SSH 部署 8 台服务器 → 漏 1 台 → $440M  损失
+现代⼯作流：⼀次 git push ，Vercel ⾃动更新所有实例
+19
+
+
+--- PAGE 20 ---
+ 动⼿实践：部署你的第⼀个⽹站（8 分钟）
+任务：将⼀个简单的⽹⻚部署到 Vercel
+<!-- 创建  index.html -->
+<!DOCTYPE html>
+<html>
+<head><title>我的第⼀个⽹站</title></head>
+<body>
+  <h1>Hello, Vercel!</h1>
+  <p>部署时间： 2026 年春季学期</p>
+</body>
+</html>
+1. 在本地创建 index.html ，git init && git add . && git commit && git push
+2. 登录 vercel.com ，New Project → 导⼊上⼀步的仓库
+3. 点击 Deploy，等待约 1 分钟
+4. 挑战：修改 index.html 内容，git push 后观察 Vercel ⾃动重新部署
+✅  成功标志：通过 Vercel 提供的 HTTPS 链接访问到你的⽹⻚
+20
+
+
+--- PAGE 21 ---
+课堂总结：⼯具链如何防⽌ Knight Capital 式灾难
+Knight Capital 的问题 现代⼯具链的解决⽅案
+旧代码⽆⼈知晓存在哪⾥git log  完整追踪每个⽂件的每次变更
+⼿动逐台部署，容易漏掉Vercel ⾃动化部署，⼀次 push 全部更新
+找不到上⼀个稳定版本 git tag v1.0  标记稳定版，随时 git checkout
+⽆监控，异常持续 45 分钟Vercel 部署⽇志 + 错误告警（实时）
+Git 的核⼼价值：让软件历史成为可查询、可回溯、可协作的数据库
+⽽不是 Knight Capital 那种"不知道哪台服务器跑着什么代码"的⿊箱
+21
+
+
+--- PAGE 22 ---
+作业（⼆选⼀）
+选题 A：Git 协作⼯作流实践
+1. 在 GitHub 上创建⼀个仓库，邀请同学作为 Collaborator
+2. 各⾃创建 feature/xxx 分⽀，开发不同功能，通过 Pull Request 合并
+3. 故意制造⼀次合并冲突，记录解决过程
+4. 提交：仓库链接 + 冲突解决过程截图 + 300 字总结
+选题 B：⾃动化部署流⽔线
+1. 创建⼀个简单的⽹站项⽬（静态 HTM L 或 Vue/React 均可）
+2. 连接 GitHub + Vercel，实现 git push 触发⾃动部署
+3. 完整演示：修改代码 → push → Vercel ⾃动上线的过程
+4. 提交：Vercel 部署链接 + 操作过程截图 + 反思（哪个步骤最容易出错）
+22
+
+
+--- PAGE 23 ---
+三分钟回顾
+问题 答案
+Knight Capital 亏损的直接原因？1 台服务器未更新，运⾏旧代码，⽆版本控制
+Git 的四个区域？ ⼯作区 → 暂存区 → 本地仓库 → 远程仓库
+提交时最重要的习惯是？ 每次只做⼀件事，写清楚 commit message
+git reset --hard  的⻛险？ 永久丢弃未提交修改，不可恢复
+Vercel ⾃动部署的触发条件？ git push  到关联的 GitHub 仓库
+DevO ps 的核⼼价值？ 打破开发/运维壁垒，持续交付，快速回滚
+23
+
+
+--- PAGE 24 ---
+下节预告
+第 8-03 讲：AI 编程进阶与 Agent 时代
+2024 年，有⼈宣称 AI 能独⽴完成⼯程师的⼯作——这是真的吗？
+⼈与 AI 的关系，究竟会⾛向哪⾥？
+24
+
+
+--- PAGE 25 ---
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+第 8-02 讲   开发⼯具链与 Git ⼯作流
+本讲核⼼收获
+├── DevOps ：⾃动化  + 持续交付，彻底告别⼿动部署的⿊箱
+├── Git ： 4 个区域  + 6 ⼤命令，让代码历史可查可回溯
+└── Vercel ： git push 即部署，现代⼯作流的终点
+版本控制是⼯程师最重要的职业习惯之⼀
+25

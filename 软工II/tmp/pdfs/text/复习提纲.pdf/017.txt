@@ -1,0 +1,12 @@
+第⼗四章
+•Principles from Modularization
+•1: 《Global Variables Consider Harmful》
+•2: 《To be Explicit》
+•3: 《Do not Repeat》
+•4: Programming to Interface (Design by Contract)
+•5: The Law of Demeter
+•6: Interface Segregation Principle(ISP)
+•7: Liskov Substitution Principle (LSP)
+•8: Favor Composition Over Inheritance
+•9: Single Responsibility Principle
+•对给定的示例，发现其所违反的原则，并进⾏修正

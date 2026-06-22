@@ -1,0 +1,20 @@
+SO LID 检测实证 ②：复杂度陷阱与设计模式识别
+复杂度退化曲线
+代码规模 检测表现
+≤ 10 ⾏简单⽅法  O CP/DIP 可⽤（F1 ≥ 65%）
+每 +5 LO C  F1 下降约 15%
+复杂类体系  LSP/SRP 准确率接近随机
+实践推论：LLM  的 SO LID 检测能⼒随代码复杂度指数级
+退化。只在⼩粒度代码审查中使⽤，不可⽤于全库扫描。
+设计模式检测（2026）
+LLM -Based Pattern Detection（arXiv:2502.18458）：
+⾃动跨代码库识别设计模式实例，专注于类⻆⾊识别
+Do LLM s Understand Design Patterns?
+（arXiv:2501.04835）：Code LLM  在某些模式类型存在
+系统性偏⻅，识别 / 理解 / ⽣成三阶段均有弱点
+实践指导
+ 扫描⼩型⽅法（≤30 ⾏）的 OCP / DIP 违反
+ 复杂类体系需配合静态分析⼯具（如 iSM ELL ）
+ 不可依赖 LLM  做全库 SRP / LSP 合规扫描
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (SO L ID)  |  §4.4 · Design Patterns  |  §6.3 · Quality Analysis
+44

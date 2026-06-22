@@ -1,0 +1,1 @@
+What is a design pattern•A design pattern•abstracts a recurring design structure•comprises class and/or object•dependencies, •structures, •interactions, or•conventions •distills design experience

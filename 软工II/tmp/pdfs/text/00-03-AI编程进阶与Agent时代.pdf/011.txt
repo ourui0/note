@@ -1,0 +1,18 @@
+ 动⼿实践（5 分钟）
+任务：⽤ AI 的 Debug 能⼒修复⼀段有 Bug 的代码
+# 这段代码有  3 个  Bug ，让  AI 帮你找出来
+def calculate_average(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total / len(numbers)    # Bug 1 ：空列表时会报错
+def find_max(lst):
+    max_val = lst[0]               # Bug 2 ：空列表时会报错
+    for item in lst:
+        if item > max_val:
+            max_val = item
+    return max_vel                 # Bug 3 ：拼写错误
+result = calculate_average([1, 2, 3, 4, 5])
+print(" 平均值 :", result)
+要求：⽤提示词 4（"仔细阅读全⽂，检查是否还有其他同类问题"）让 AI 找出全部 Bug，不要直接告诉 AI Bug 在哪⾥
+11

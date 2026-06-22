@@ -1,0 +1,5 @@
+2. Daily Build and Smoke Test
+• Institutionalizes incremental integration
+• Minimizes serious integration problems that 
+used to be common
+• Lots of other benefits, too

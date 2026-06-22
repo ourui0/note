@@ -1,0 +1,10 @@
+案例：在线书店 — 场景视图（⽤例驱动）
+场景视图 = ⽤例 × 架构各层的穿透
+⽤例 展示层 业务层 数据层 并发/部署关注点
+购买图书 O rderController O rderService → PaymentService O rderDao, InventoryDao 库存乐观锁，⽀付幂等
+搜索图书 BookController BookService BookDao (+ Redis 缓存)缓存命中率，全⽂索引
+管理购物⻋CartController CartService CartDao Session/Token ⼀致性
+查看报表 ReportControllerReportService O rderDao (聚合查询) 慢查询优化，异步导出
+ 
+场景视图是验证视图——通过⾛查关键⽤例，检验逻辑/开发/进程/物理四个视图是否协调⼀致
+34

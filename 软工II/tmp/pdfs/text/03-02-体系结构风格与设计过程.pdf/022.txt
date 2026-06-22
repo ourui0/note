@@ -1,0 +1,25 @@
+在线书店 — 分层代码示例
+// === 展示层  Controller ===
+@RestController
+public class BookController {
+    @Autowired private BookService bookService;
+    @GetMapping("/books/{id}")
+    public Book getBook(@PathVariable Long id) {
+        return bookService.findById(id);  // 调⽤业务层
+    }
+}
+// === 业务逻辑层  Service ===
+@Service
+public class BookService {
+    @Autowired private BookDao bookDao;
+    public Book findById(Long id) {
+        return bookDao.selectById(id);    // 调⽤数据层
+    }
+}
+// === 数据访问层  Dao ===
+@Mapper
+public interface BookDao {
+    @Select("SELECT * FROM book WHERE id = #{id}")
+    Book selectById(Long id);             // 访问数据库
+}
+22

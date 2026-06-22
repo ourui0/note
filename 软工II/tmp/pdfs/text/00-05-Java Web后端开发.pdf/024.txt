@@ -1,0 +1,9 @@
+Spring Boot 是什么？
+传统 Spring 项⽬需要⼿动编写数百⾏ XM L  配置，Spring Boot 把这个⼯作消灭掉了。
+特性 说明
+约定优于配置默认值覆盖 90% 场景，只需配置例外情况
+⾃动配置 检测 classpath，⾃动装配 DataSource、MVC 等组件
+Starter 依赖 spring-boot-starter-web  ⼀⾏引⼊ W eb 全套依赖
+内嵌服务器 打包为 fat JAR，直接 java -jar  运⾏，⾃带 Tomcat
+类⽐：传统 Spring 像散装零件⾃⼰组装，Spring Boot 像开箱即⽤的 M acBook——通电就能⽤
+24

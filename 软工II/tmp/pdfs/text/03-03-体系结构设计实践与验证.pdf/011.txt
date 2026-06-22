@@ -1,0 +1,12 @@
+REP 重⽤-发布等价原则 [Robert C. M artin]
+The granule of reuse is the granule of release.
+重⽤的单元 = 发布的单元。
+ 
+含义
+如果你要复⽤⼀个包中的某个类，你就得依赖整个包
+因此，包中的类必须有理由被⼀起重⽤
+案例：在线书店
+包 是否满⾜ REP 理由
+entity （Book, O rder, Customer...） 满⾜ 所有层都引⽤ entity，整体发布
+假如把 Book 和 PaymentGateway 放同⼀包 违反 ⽤图书搜索功能不需要⽀付⽹关
+11

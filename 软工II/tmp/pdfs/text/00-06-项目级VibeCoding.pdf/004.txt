@@ -1,0 +1,10 @@
+本讲⼯具链总览
+三步⾛，完成⼀个完整的 Web 应⽤：
+Step 1  ──   Google Stitch
+             ⽤  AI 快速设计界⾯原型（视觉稿  + 可交互）
+Step 2  ──   Google AI Studio
+             将原型描述转化为真实前端代码（ React / Vue ）
+Step 3  ──   Claude Code
+             ⽣成后端  API ，对接前端，完成全栈集成
+三个⼯具各司其职——设计、前端、后端——串联成⼀条完整的 AI 辅助开发流⽔线
+4

@@ -1,0 +1,13 @@
+课堂实操（20 分钟）：AI 辅助架构设计
+步骤 任务 时间
+Step 1 让 LLM  ⽣成在线书店的 PlantUM L 包图 5 min
+Step 2 让 LLM  ⽣成 Spring Boot ⽬录结构 5 min
+Step 3 审查 AI 输出 — 检查分层约束和依赖⽅向 5 min
+Step 4 修正发现的问题，记录改进点 5 min
+审查 Checklist
+[ ] 依赖⽅向是否单向向下？
+[ ] 是否存在循环依赖？
+[ ] 接⼝和实现是否分离？
+[ ] entity 包是否只包含数据实体？
+[ ] 是否遵循 CCP / CRP 原则？
+65

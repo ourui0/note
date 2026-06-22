@@ -1,0 +1,8 @@
+更加清晰的非空循环体
+• RecordType record = 
+recordArray.Read(index);
+• Index++;
+• While(record!= recordArray.EmptyRecord()){
+• record = recordArray.Read(index);
+• index++;
+• }

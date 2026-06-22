@@ -1,0 +1,14 @@
+GitHub Copilot：核⼼功能详解
+功能⼀：内联代码补全
+输⼊函数注释或签名，按 Tab 接受 AI 建议
+按 Esc 拒绝，Alt+] 查看下⼀个建议
+功能⼆：Inline Chat（Ctrl+I ）
+选中代码 → Ctrl+I → 直接⽤⾃然语⾔修改
+功能三：Copilot Chat 侧边栏
+解释代码：/explain
+修复 Bug：/fix
+⽣成测试：/tests
+# 实现⼀个函数，对字符串列表按⻓度排序，相同⻓度的按字⺟顺序排列
+def sort_strings(strings: list[str]) -> list[str]:
+    # ↓ Copilot 在此处⾃动补全  ↓
+11

@@ -1,0 +1,11 @@
+⑤ Controller（控制器）
+Problem：How to assign responsibility for handling a system event?
+Solution：If a program receives events from external sources other than its graphical interface, add an event
+class to decouple the event source(s) from the objects that actually handle the events.
+4 种可选的控制器
+1. The business or overall organization（façade controller）— e.g. Store
+2. The overall "system"（façade controller）— e.g. POST
+3. An animate thing in the domain that would perform the work（role controller）— e.g. Cashier
+4. An artiﬁcial class (Pure Fabrication) representing the use case（use case controller）— e.g. BuyItemsHandler
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §3.2 · Control and Event Handling
+31

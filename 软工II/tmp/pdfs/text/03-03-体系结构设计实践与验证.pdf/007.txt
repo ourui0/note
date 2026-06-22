@@ -1,0 +1,22 @@
+案例：在线书店完整包结构
+com.bookstore
+├── controller
+│   ├── BookController
+│   ├── CartController
+│   ├── OrderController
+│   └── CustomerController
+├── service
+│   ├── BookService          ( 接⼝ )
+│   ├── CartService          ( 接⼝ )
+│   ├── OrderService         ( 接⼝ )
+│   ├── InventoryService     ( 接⼝ )
+│   └── impl/
+│       ├── BookServiceImpl
+│       ├── CartServiceImpl
+│       └── OrderServiceImpl
+├── dao
+│   ├── BookDao, CartDao, OrderDao, CustomerDao  ( 接⼝ )
+│   └── impl/  ...
+└── entity
+    ├── Book, Order, OrderItem, CartItem, Customer, Review
+7

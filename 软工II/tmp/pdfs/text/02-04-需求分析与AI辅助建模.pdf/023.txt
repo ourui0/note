@@ -1,0 +1,15 @@
+案例对照 —— 在线书店概念类图 [SW EBO K 4.4]
+ 
+概念类 关键属性 Coad 分类
+Customer ⽤户名、邮箱、⼿机号 ⻆⾊
+Book 书名、作者、ISBN、价格 有形物体 / 规格说明
+ShoppingCart 总⾦额 容器
+CartItem 数量、⼩计 明细⾏
+O rder 订单编号、下单⽇期、总⾦额、状态交易
+O rderL ineItem 数量、单价、⼩计 明细⾏
+Address 收件⼈、⼿机号、省市区 场所
+Payment ⽀付⾦额、⽅式、状态、流⽔号交易
+Category 类别名称、描述 抽象概念
+Review 评分、内容、⽇期 事件
+Inventory 库存数量、预警阈值 描述
+23

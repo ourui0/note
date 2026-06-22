@@ -1,0 +1,18 @@
+SW EBO K V3 → V4 对照表
+SW EBO K V3 SW EBO K V4 状态
+Introduction Introduction O pen
+1. Software Requirements 1. Software Requirements closed
+2. Software Architecture V4 新增
+2. Software Design 3. Software Design closed
+3. Software Construction 4. Software Construction closed
+4. Software Testing 5. Software Testing closed
+6. Software Engineering O perations V4 新增
+5. Software M aintenance 7. Software M aintenance O pen
+6. Software Conﬁguration M anagement 8. Software Conﬁguration M anagement O pen
+7. Software Engineering M anagement 9. Software Engineering M anagement closed
+8. Software Engineering Process 10. Software Engineering Process O pen
+9. Software Engineering M odels and M ethods 11. Software Engineering M odels and M ethods O pen
+10. Software Quality 12. Software Quality closed
+13. Software Security V4 新增
+11. SE Professional Practice 14. SE Professional Practice closed
+38

@@ -1,0 +1,16 @@
+Claude Code：终端⾥的⾃主编程 Agent
+安装：npm install -g @anthropic-ai/claude-code ，在项⽬⽬录下执⾏ claude
+与 Copilot / Cursor 的本质区别：
+Copilot / Cursor Claude Code
+⼯作⽅式 编辑器内嵌，逐⾏补全终端 Agent，⾃主完成多步任务
+操作粒度 函数 / ⽂件级 整个项⽬级（读写⽂件、执⾏命令、管理 Git）
+交互模式 你写、AI 补 委托任务，AI 规划并执⾏全流程
+最强场景 边写边补全 重构、添加功能、Debug、⽣成测试、代码审查
+典型⽤法：
+# 进⼊项⽬，直接⽤⾃然语⾔描述任务
+$ claude
+> 把所有  API 接⼝加上统⼀的错误处理，遵循现有的代码⻛格
+> 找出项⽬中所有潜在的  SQL 注⼊⻛险并修复
+> 为  UserService ⽣成完整的单元测试，覆盖边界条件
+💡  核⼼优势：Claude Code 能读懂整个代码库的上下⽂，像⼀个懂你项⽬的⾼级⼯程师——不只是补全代码，⽽是真正
+理解架构后再动⼿ 14

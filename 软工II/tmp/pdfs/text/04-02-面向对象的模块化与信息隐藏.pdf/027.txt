@@ -1,0 +1,25 @@
+类型 B/C：隐藏内部结构与对象引⽤
+问题：暴露内部集合（违反 B+C）
+class Route {
+    public List<Stop> stops;  // 直接暴露！
+}
+// 调⽤⽅可以任意修改内部状态：
+route.stops.add(newStop);    // 绕过业务规则
+route.stops.clear();         // 危险！
+修复：使⽤ Iterator 或受控接⼝
+class Route {
+    private List<Stop> stops = new ArrayList<>();
+    // 只暴露迭代能⼒
+    public Iterator<Stop> getStops() {
+        return Collections
+            .unmodifiableList(stops)
+            .iterator();
+    }
+    // 受控的修改接⼝
+    public void addStop(Stop s) {
+        // 可以在这⾥加业务验证
+        stops.add(s);
+    }
+}
+Iterator 模式是封装集合内部结构的标准⼿段——调⽤⽅只知道可以遍历，不知道内部是 List 、Set 还是数组。
+📖  SW EBO K v4 §4.4 · Design Patterns and Styles (Behavioral: Iterator)  |  §1.4 · Encapsulation 27

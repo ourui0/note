@@ -1,0 +1,17 @@
+ 动⼿实践：部署你的第⼀个⽹站（8 分钟）
+任务：将⼀个简单的⽹⻚部署到 Vercel
+<!-- 创建  index.html -->
+<!DOCTYPE html>
+<html>
+<head><title>我的第⼀个⽹站</title></head>
+<body>
+  <h1>Hello, Vercel!</h1>
+  <p>部署时间： 2026 年春季学期</p>
+</body>
+</html>
+1. 在本地创建 index.html ，git init && git add . && git commit && git push
+2. 登录 vercel.com ，New Project → 导⼊上⼀步的仓库
+3. 点击 Deploy，等待约 1 分钟
+4. 挑战：修改 index.html 内容，git push 后观察 Vercel ⾃动重新部署
+✅  成功标志：通过 Vercel 提供的 HTTPS 链接访问到你的⽹⻚
+20

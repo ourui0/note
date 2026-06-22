@@ -1,0 +1,12 @@
+-3- Personal Discipline Matters
+• Why Personal Discipline Matters
+• Being realistic about predicting the future
+• Areas where discipline matters
+• Refactoring
+• Prototyping
+• Optimization
+• Minimal-complexity designs specifically
+• Managing complexity generally
+• Endpoints—Discipline and Courage
+• Humphrey on PSP
+• Beck on Extreme Programming

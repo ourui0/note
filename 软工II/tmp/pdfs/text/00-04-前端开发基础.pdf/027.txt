@@ -1,0 +1,9 @@
+O ptions API vs Com position API：如何选择？
+维度 Options API Com position API
+逻辑组织 按选项类型分散 按功能聚合
+复⽤⽅式 Mixins（有冲突⻛险）Composables（清晰隔离）
+TypeScript ⽀持有限 完整⽀持
+推荐场景 简单组件 / 迁移项⽬ 新项⽬ / 复杂逻辑
+Vue 3 官⽅推荐 Composition API + <script setup>
+新项⽬直接⽤ Composition API；阅读⽼代码会遇到 O ptions API，两者都需要认识。
+27

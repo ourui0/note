@@ -1,0 +1,12 @@
+Pair Programming
+• Two programmers working side-by-side, collaborating on the same 
+design, algorithm, code or test
+• One programmer, the driver, has control of the keyboard/mouse 
+and actively implements the program
+• The other programmer, the observer, continuously observes the 
+work of the driver to identify tactical (syntactic, spelling, etc.) 
+defects and also thinks strategically about the direction of the work
+• On demand, the two programmers can brainstorm any challenging 
+problem
+• The two programmers periodically switch roles, they work together 
+as equals to develop software

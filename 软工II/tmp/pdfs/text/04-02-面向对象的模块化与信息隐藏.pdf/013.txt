@@ -1,0 +1,27 @@
+P6 · 接⼝隔离原则（ISP）
+Clients should not be forced to depend on interfaces they do not use.
+肥接⼝问题
+interface Worker {
+    void work();
+    void eat();    // Robot 不需要！
+    void sleep();  // Robot 不需要！
+}
+class Robot implements Worker {
+    public void work() { ... }
+    public void eat()  { throw new UnsupportedOperationException(); }
+    public void sleep(){ throw new UnsupportedOperationException(); }
+}
+ISP 重构
+interface Workable {
+    void work();
+}
+interface Feedable {
+    void eat();
+    void sleep();
+}
+class Robot implements Workable { ... }
+class Human implements Workable,
+                      Feedable  { ... }
+接⼝细化后，Robot 不再被迫实现⽆关⽅
+法，调⽤⽅只依赖⾃⼰真正需要的接⼝。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (SO L ID — Interface Segregation)  |  §1.4 · Separation of Interface and Im plem entation 13

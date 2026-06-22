@@ -1,0 +1,15 @@
+想深⼊了解？推荐阅读
+M CAS 需求⼯程深度分析
+级别 材料 核⼼洞察
+ 必
+读 IEEE Spectrum：《How the Boeing 737 M AX Disaster L ooks to a Software Developer》 代码符合规格——规格本身是错的
+ 必
+读 Seattle Times：《The Inside Story of M CAS》 约束如何⼀步步被组织压⼒删除
+ 推
+荐 ResearchGate：《Candidate Software Process Flaws for the Boeing 737 M ax M CAS Algorithm》 ⽤ Promise 理论分析需求规格缺
+陷
+ 推
+荐 PM C：《The Boeing 737 M AX: L essons for Engineering Ethics》 ⾮技术约束如何覆盖安全需求
+ 扩
+展 Schneier on Security：Boeing 737 M AX 系统安全分析 STPA/STAM P ⽅法论⼊⻔
+40

@@ -1,0 +1,12 @@
+什么是 Google Stitch？
+Google 推出的 AI 驱动界⾯原型⼯具：
+输⼊⾃然语⾔描述，⾃动⽣成 App / W eb 界⾯原型
+⽀持移动端与桌⾯端双端预览
+可导出为组件代码（HTML  / React）
+与 Google 设计规范（Material Design）深度整合
+访问地址：stitch.withgoogle.com
+适合场景：
+快速验证产品想法（PoC）
+与团队对⻬视觉⽅案，再交给 AI ⽣成代码
+⾮设计师也能产出专业原型
+6

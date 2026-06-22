@@ -1,0 +1,12 @@
+数据包：层层封装
+当应⽤层发送数据时，TCP/IP 逐层封装，接收⽅逐层解包：
+应⽤层    消息      │ Hello World │
+                  ↓
+传输层    段        │ TCP/UDP 头  │ Hello World │
+                  ↓
+⽹络层    包        │ IP 包头  │ TCP/UDP 头  │ Hello World │
+                  ↓
+⽹络接⼝  帧   │ MAC │ LLC │ IP 包头  │ TCP/UDP 头  │ Hello World │ FCS │
+数据可能被拆分为多个包依次发送
+接收⽅需要对收到的数据进⾏拆分或重组
+8

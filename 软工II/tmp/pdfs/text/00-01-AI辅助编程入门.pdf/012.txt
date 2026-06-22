@@ -1,0 +1,10 @@
+通义灵码（L ingm a）：安装与使⽤
+安装：VS Code 扩展市场搜索 Lingma （Alibaba Cloud）或 IDEA 插件市场
+核⼼特⾊：
+功能 说明
+智能续写 输⼊代码时实时弹出补全建议
+⾃然语⾔⽣成类输⼊注释描述，⾃动⽣成完整 Java 类
+跨⽂件感知 理解整个项⽬的上下⽂（如 Mapper.xml 与接⼝对应）
+中⽂提示词 ⽀持纯中⽂描述，对国内框架（Spring Boot 等）理解更好
+✅  推荐场景：Java 后端开发（Spring Boot + MyBatis）使⽤通义灵码，前端开发使⽤ Cursor
+12

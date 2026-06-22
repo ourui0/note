@@ -1,0 +1,27 @@
+GU I Grounding — AI 如何"看懂"界⾯
+什么是 GU I Grounding？
+给定⾃然语⾔指令（如 "点击搜索按钮"），模型需要精确定位
+屏幕中对应元素的坐标。
+主要挑战：
+坐标在语⾔空间中缺乏语义（下⼀个 token 预测对数值
+不敏感）
+⾼分辨率屏幕下元素更⼩、更密集
+跨平台 UI ⻛格差异⼤（Web / Mobile / Desktop）
+2025 年 SO TA 进展
+基准 2024 最优 2025 最优
+ScreenSpot-v2 ~70% 93.9%（GU I-Cursor）
+ScreenSpot-Pro — 56.5%（GU I-Cursor）
+代表性研究
+M P-GU I（CVPR 2025）
+多模态感知架构：视觉⻣⼲ + 任务导向的 GUI 感知融合
+模块 + LLM
+三类感知器分别提取视觉/⽂本/布局信号，动态融合
+ScreenSpot-Pro（ICLR 2025）
+⾸个专业软件⾼分辨率 GUI Grounding 基准
+跨越 AutoCAD、Premiere Pro、Excel 等专业应⽤
+GU I-W orld（ICLR 2025）
+12,379 段视频，覆盖桌⾯/移动/XR 三类环境
+⾸个 GUI 视频指令微调数据集，⽀持动态顺序任务理解
+GUI Grounding 是 GUI Agent 的感知基础，类⽐⼈眼识
+别界⾯元素的能⼒。
+63

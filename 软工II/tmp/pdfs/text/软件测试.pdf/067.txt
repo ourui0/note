@@ -1,0 +1,16 @@
+主流测试智能体工具与框架
+SWE-agent（Princeton/MIT 开源）
+• 以 Agent-Computer Interface 调用 shell/编辑器，自主解决GitHub Issues
+• 在 SWE-bench 上实现对真实开源项目Bug 的自动修复，测试生成是其关键步骤
+OpenDevin / All-Hands AI（开源）
+• 支持「写代码→生成测试→执行→修复」完整循环
+• 在浏览器沙盒中运行，可读文档、查API、验证测试，适合复杂项目
+Diffblue Cover（商业，专注 Java）
+• 深度集成 IntelliJ / Maven / CI，分析字节码生成高覆盖率、可维护的JUnit 测试
+• 支持增量更新：代码变更时自动重生对应测试，降低测试腐败成本
+GitHub Copilot Workspace
+• 以自然语言描述任务，Copilot 自动规划、生成代码与测试、提交PR
+• 将「Issue → 测试 → 实现 → Review」整合为一个智能体工作流
+AutoGen / LangChain 测试流水线（开源框架）
+• 多智能体协同：规划 Agent + 生成 Agent + 执行 Agent + 报告 Agent
+• 可定制流水线，连接各种测试工具和CI 系统，适合企业自研测试智能体

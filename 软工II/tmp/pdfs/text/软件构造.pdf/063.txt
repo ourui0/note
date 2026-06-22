@@ -1,0 +1,11 @@
+-2- Individual Variation Is Significant
+• Where do Variations Exist?
+• Researchers have found variations ranging from 10x to 28x in:
+• Coding speed
+• Debugging speed
+• Defect-finding speed
+• Percentage of defects found
+• Bad-fix injection rate
+• Design quality
+• Amount of code generated from a design
+• Etc.

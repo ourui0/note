@@ -1,0 +1,11 @@
+架构⽓味⾃动检测⼯具链
+ 
+⼯具 类型 能⼒
+Arcan 静态分析 检测循环依赖、God Component、层违规调⽤
+Sen4Smells 演化分析 基于版本历史计算架构技术债务指数
+RABERT [2025] Transformer 基于关系感知 BERT 增强代码/架构⽓味检测准确率
+CodeAnt.ai ML 平台 ⽤机器学习排序⽓味优先级，聚焦⾼影响问题
+DeepSource CI/CD 集成 实时反馈 + ⾃动修复 PR 中的反模式
+ 
+趋势：从规则驱动（正则匹配依赖违规）→ AI 驱动（Transformer 理解代码语义）
+36

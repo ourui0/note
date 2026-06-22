@@ -1,0 +1,26 @@
+案例 —— 在线书店系统的三要素映射 [SW EBO K 2.3]
+部件（Com ponent）
+com.bookstore.service.book
+com.bookstore.service.order
+com.bookstore.service.customer
+com.bookstore.dao
+连接件（Connector）
+public interface BookService {
+    Book findById(String bookId);
+    List<Book> search(String kw);
+    boolean checkStock(
+        String bookId, int qty);
+}
+配置（Conﬁguration）
+// 依赖注⼊：配置部件间的拓扑
+BookService bookService =
+    new BookServiceImpl(bookDao);
+OrderService orderService =
+    new OrderServiceImpl(
+        orderDao, bookService);
+映射总结
+架构概念 Java 映射
+部件 包 / 类集合
+连接件 接⼝
+配置 DI / ⼯⼚
+27

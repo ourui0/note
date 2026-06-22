@@ -1,0 +1,9 @@
+三分钟回顾
+问题 答案
+Spring Boot 的核⼼优势？ ⾃动配置 + Starter 依赖 + 内嵌 Tomcat，开箱即⽤
+@RestController  vs @Controller  的区别？ 前者默认带 @ResponseBody ，直接返回 JSO N
+MyBatis 中 #{id}  vs ${id}  的区别？ 前者预编译参数（安全），后者字符串拼接（危险！）
+JW T 的三个组成部分？ Header（算法）+ Payload（数据）+ Signature（签名）
+密码如何存储？ BCrypt 加密哈希，绝不存明⽂
+Spring Security 核⼼机制？ 过滤器链（Filter Chain）——安全逻辑与业务逻辑解耦
+43

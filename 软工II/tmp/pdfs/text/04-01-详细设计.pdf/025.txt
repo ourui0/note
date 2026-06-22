@@ -1,0 +1,14 @@
+GRASP Patterns
+GRASP = General Responsibility Assignment Software Patterns
+Not 'design patterns', rather fundamental principles of object design
+Focus on one of the most important aspects of object design: assigning responsibilities to classes
+5 个核⼼模式（本讲覆盖）
+# 模式 解决的问题
+1 L ow Coupling 降低模块之间的耦合
+2 High Cohesion 保持模块职责的聚焦
+3 Information Expert 把职责分配给"拥有信息"的类
+4 Creator 由谁负责创建对象
+5 Controller 由谁负责处理系统事件
+Larman 著《UM L 和模式应⽤》是 O O  详设的经典参考。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Software Design Principles (Coupling, Cohesion)
+25

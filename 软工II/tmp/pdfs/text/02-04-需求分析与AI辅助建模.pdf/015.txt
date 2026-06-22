@@ -1,0 +1,13 @@
+Peter Coad 概念类分类框架 —— 查漏检查表
+ 
+分类 说明 在线书店示例
+有形物体 可触摸的物理对象 Book（图书）
+⻆⾊ ⼈在系统中的⻆⾊ Customer、Administrator
+事件/交易 特定时间发⽣的事，需记录O rder、Payment
+场所 物理或逻辑位置 Address
+容器 包含其他对象的对象ShoppingCart
+抽象概念 ⽆形但有业务意义的概念Category
+描述/规格说明描述其他对象的信息 Book（作为规格说明）
+明细⾏ 交易中的逐项记录 O rderL ineItem、CartItem
+ 每类⾄少检查⼀遍——如果某类空缺，考虑是否有遗漏
+15

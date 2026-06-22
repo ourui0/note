@@ -1,0 +1,20 @@
+完整 VibeCoding ⼯作流回顾
+【需求】
+  ↓ ⽤⾃然语⾔描述产品功能
+【 Stitch 原型】
+  ↓ ⽣成可视化界⾯原型，与团队对⻬⻚⾯结构
+【 AI Studio → Web 前端】           【通义灵码  → 移动端  App 】
+  ↓ 原型截图  + 技术栈描述             ↓ VS Code 内对话⽣成  Expo 代码
+  ↓ ⽣成  React 组件  / 路由  / 样式     ↓ RTK Query 前后端通信
+【 Claude Code / 灵码  → 后端】
+  ↓ 描述  API 需求与数据模型
+  ↓ ⾃动⽣成  Express 路由、数据库
+  ↓ 接⼊  AI API （ Gemini / 通义）
+【调试】
+  ↓ Web 端： MCP chrome-devtools ⾃动读取控制台 / ⽹络 /DOM
+  ↓ 移动端： Expo Go 扫码热重载，红屏报错直接给灵码修复
+【集成联调】
+  ↓ 前后端通信、 CORS 、数据格式对⻬
+【上线】
+  → 前端部署  Vercel ，后端部署  Railway / Render
+41

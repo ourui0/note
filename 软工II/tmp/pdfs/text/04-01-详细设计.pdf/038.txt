@@ -1,0 +1,12 @@
+控制⻛格的选择
+场景 推荐⻛格 理由
+⽤例步骤清晰、状态机驱动Centralized ⼀个 Controller / FSM  容易调试
+业务复杂、多个⼦领域协作Delegated 主控保留决策，⼦领域专精
+简单 CRUD、消息频繁 Delegated 避免集中式臃肿
+完全 P2P 的对象交互  Dispersed 控制流难追踪，慎⽤
+Heuristics for Centralized Controller
+Avoid interaction designs where most messages originate from a single component.
+Keep components small.
+M ake sure operational responsibilities are not all assigned to just a few components.
+M ake sure operational responsibilities are consistent with data responsibilities.
+38

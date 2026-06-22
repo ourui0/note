@@ -1,0 +1,9 @@
+软件⼯程的定义
+IEEE 标准定义（610.12-1990）
+(1) The application of a systematic, disciplined, quantiﬁable approach to the development, operation, and
+maintenance of software; that is, the application of engineering to software.
+(2) The study of approaches as in (1).
+软件⼯程是将系统化的、规范化的、可量化的⽅法
+应⽤于软件的开发、运⾏和维护的过程；
+即将⼯程化的⽅法应⽤于软件。
+30

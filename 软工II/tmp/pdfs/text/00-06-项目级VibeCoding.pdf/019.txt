@@ -1,0 +1,23 @@
+后端代码示例
+Claude Code ⽣成的核⼼路由结构：
+// src/routes/tasks.js
+const express = require('express');
+const router  = express.Router();
+const db      = require('../db');
+// 获取所有任务（⽀持按  status 过滤）
+router.get('/', (req, res) => {
+  const { status } = req.query;
+  const tasks = status
+    ? db.prepare('SELECT * FROM tasks WHERE status = ?').all(status)
+    : db.prepare('SELECT * FROM tasks ORDER BY created_at DESC').all();
+  res.json(tasks);
+});
+// 新建任务
+router.post('/', (req, res) => {
+  const { title, priority, assignee, dueDate } = req.body;
+  const result = db.prepare(
+    'INSERT INTO tasks (title, status, priority, assignee, due_date) VALUES (?,?,?,?,?)'
+  ).run(title, 'todo', priority, assignee, dueDate);
+  res.status(201).json({ id: result.lastInsertRowid });
+});
+module.exports = router; 19

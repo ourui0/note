@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="95" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="95" y1="380" x2="95" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20">Q</text>
+  <text x="56" y="45" font-size="20">成本</text>
+  <path d="M130 335 C230 250, 345 250, 455 335 C505 375, 585 385, 650 350" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <path d="M135 310 C235 210, 360 205, 475 315 C525 365, 600 370, 660 330" fill="none" stroke="#16a34a" stroke-width="4"/>
+  <path d="M145 350 C240 330, 335 255, 430 170 C510 100, 600 105, 665 165" fill="none" stroke="#dc2626" stroke-width="4"/>
+  <circle cx="323" cy="258" r="6" fill="#111"/>
+  <circle cx="382" cy="220" r="6" fill="#111"/>
+  <text x="655" y="352" font-size="20" fill="#2563eb">AVC</text>
+  <text x="665" y="327" font-size="20" fill="#16a34a">AC</text>
+  <text x="668" y="168" font-size="20" fill="#dc2626">MC</text>
+  <text x="215" y="36" font-size="24" font-weight="700">MC 穿过 AVC 和 AC 的最低点</text>
+  <text x="110" y="424" font-size="18" fill="#444">MC &lt; AC 时 AC 下降；MC &gt; AC 时 AC 上升。AVC 同理。</text>
+</svg>

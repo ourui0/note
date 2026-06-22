@@ -1,0 +1,10 @@
+为变量制定单一用途
+• //compute roots of a quadratic equation
+• //this code assumes that (b*b-4*a*c) is positive
+• Temp=Sqrt(b*b-4*a*c);
+• Root[0]=(-b+temp)/(2*a);
+• Root[0]=(-b-temp)/(2*a);
+• //swap the roots
+• Temp = root[0];
+• Root[0] = root[1];
+• Root[1]=temp;

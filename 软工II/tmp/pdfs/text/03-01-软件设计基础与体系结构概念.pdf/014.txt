@@ -1,0 +1,8 @@
+什么是设计？ [SW EBO K 2.1]
+ 
+[W iki] Design is the planning that lays the basis for the making of every object or system.
+[Brooks 2010] 定义的精髓在于计划、思维和后续执⾏
+[Ralph 2009] 将设计定义为：
+设计（名词）：⼀个对象的规格说明。由⼈创造，有明确⽬标，适⽤于特定环境
+设计（动词）：在⼀个环境中创建对象的规格说明
+14

@@ -1,0 +1,11 @@
+灵码⽣成后端服务
+继续在灵码对话框中输⼊：
+现在，为我⽣成这个 app 的后端代码。后端的代码⽂件名称为 demo-app-backend，与 demo-app-frontend 同级。后
+端采⽤ nodejs，使⽤ express 框架
+灵码将⾃动执⾏以下命令：
+mkdir demo-app-backend
+cd demo-app-backend && npm init -y
+cd demo-app-backend && npm install express cors dotenv
+cd demo-app-backend && npm install --save-dev nodemon
+灵码⽣成了完整的 nodejs 后端代码库 demo-app-backend ，与 demo-app-frontend  ⼀个是 app 的后端，另⼀个是前端。
+25

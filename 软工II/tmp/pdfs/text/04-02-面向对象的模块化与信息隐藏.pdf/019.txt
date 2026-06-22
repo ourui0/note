@@ -1,0 +1,21 @@
+P8 · 组合优于继承
+Favor object composition over class inheritance.
+— GoF, Design Patterns, 1994
+继承的问题
+⽩盒复⽤：⼦类依赖⽗类实现细节
+⽗类修改可能破坏所有⼦类
+继承层次难以扩展（多个维度变化时）
+强迫遵守 IS-A 语义
+组合的优势
+⿊盒复⽤：只依赖接⼝
+运⾏时可动态切换组合对象
+职责分离更清晰
+⽆需⽗类 IS-A 约束
+// 继承： Stack extends Vector （历史错误）
+// 组合： Stack 内部持有  Vector
+class Stack<T> {
+    private Vector<T> storage = new Vector<>();
+    public void push(T item) { storage.add(item); }
+    public T pop() { return storage.remove(...); }
+}
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (GoF: Favor Com position)  |  §1.4 · M odularization 19

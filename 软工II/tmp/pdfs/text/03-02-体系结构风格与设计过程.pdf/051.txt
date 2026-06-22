@@ -1,0 +1,17 @@
+初步设计⽅案三 — 接⼝独⽴层与依赖倒置
+核⼼改进
+改进点 说明
+接⼝独⽴成层Service Interface 和 DAO  Interface 作为独⽴层
+实现继承接⼝Service Impl → implements → Service Interface
+上层依赖接⼝展示层依赖 Service Interface，不依赖实现
+VO /PO 分离 VO ⽤于展示层-逻辑层，PO ⽤于逻辑层-数据层
+依赖关系
+依赖⽅向 说明
+展示层 → Service Interface 上层依赖接⼝
+Service Impl → Service Interface 实现继承接⼝
+Service Impl → DAO  Interface 上层依赖接⼝
+DAO  Impl → DAO  Interface 实现继承接⼝
+展示层 + Service Interface → VO 共同依赖值对象
+Service Impl + DAO  Interface → PO 共同依赖持久化对象
+优势
+51

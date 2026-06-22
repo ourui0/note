@@ -1,0 +1,13 @@
+PO  与 VO  概念
+概念 全称 ⽤途 所在层
+PO Persistent O bject 与数据库表⼀⼀对应 entity / dao
+VO Value O bject ⾯向展示层的数据传输对象controller / service
+为什么需要区分？
+PO  包含数据库细节（主键、外键、时间戳）
+VO  只包含前端需要的字段
+隔离变化：数据库字段变更不影响前端接⼝
+// PO: 对应  book 表
+public class Book { Long id; String isbn; String title; BigDecimal price; ... }
+// VO: 前端展示⽤
+public class BookVO { String isbn; String title; String priceText; double rating; }
+39

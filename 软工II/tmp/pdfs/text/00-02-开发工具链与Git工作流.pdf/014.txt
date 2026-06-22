@@ -1,0 +1,15 @@
+ 动⼿实践（5 分钟）
+任务：创建你的第⼀个 Git 仓库并推送到 GitHub
+# 1. 创建本地项⽬⽬录
+mkdir my-first-repo && cd my-first-repo
+git init
+# 2. 创建⽂件并提交
+echo "# 我的第⼀个仓库 " > README.md
+git add README.md
+git commit -m "init: 初始化项⽬ "
+# 3. 在  GitHub 创建同名仓库（不要勾选初始化选项）
+# 4. 关联远程仓库并推送
+git remote add origin https://github.com/ 你的⽤户名 /my-first-repo.git
+git push -u origin main
+✅  成功标志：在 GitHub ⻚⾯看到你的 READM E.md 内容
+14

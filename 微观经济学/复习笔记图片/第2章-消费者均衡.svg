@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="95" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="95" y1="380" x2="95" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20">X</text>
+  <text x="75" y="45" font-size="20">Y</text>
+  <line x1="135" y1="95" x2="620" y2="350" stroke="#111" stroke-width="3"/>
+  <path d="M170 340 C260 285, 370 250, 610 230" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <path d="M145 365 C270 280, 390 215, 650 185" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <path d="M210 360 C340 255, 475 170, 680 135" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <circle cx="398" cy="233" r="7" fill="#111"/>
+  <text x="412" y="228" font-size="20">E</text>
+  <text x="595" y="226" font-size="19" fill="#94a3b8">U1</text>
+  <text x="640" y="184" font-size="20" fill="#2563eb">U2</text>
+  <text x="675" y="137" font-size="19" fill="#94a3b8">U3</text>
+  <text x="196" y="96" font-size="19">预算线</text>
+  <text x="236" y="36" font-size="24" font-weight="700">消费者均衡：MRS = Px / Py</text>
+  <text x="125" y="424" font-size="18" fill="#444">最高可达无差异曲线与预算线相切；切点就是效用最大化组合</text>
+</svg>

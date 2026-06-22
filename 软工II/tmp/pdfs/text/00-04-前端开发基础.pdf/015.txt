@@ -1,0 +1,4 @@
+浏览器渲染流⽔线
+HTM L → DO M  树，CSS → CSS 规则树，⼆者合并 → 渲染树 → 布局（位置/⼤⼩）→ 绘制 → 显示
+JavaScript 可在任意阶段修改 DO M  或样式，触发重新布局（Reﬂow）或重绘（Repaint）。
+15

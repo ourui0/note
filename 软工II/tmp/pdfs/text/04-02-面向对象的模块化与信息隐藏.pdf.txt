@@ -1,0 +1,1008 @@
+
+
+--- PAGE 1 ---
+⾯向对象的模块化与信息隐藏
+详细设计模块 · 第 2 讲
+1
+
+
+--- PAGE 2 ---
+南京⼤学 · 软件⼯程课程组
+模块 本讲主题
+访问耦合 消息链问题 · 迪⽶特法则 · ISP
+继承耦合 继承类型 · LSP · 组合优先
+信息隐藏 类的职责 · 封装五类型
+变更设计 为变更封装 · 权限最⼩化
+2
+
+
+--- PAGE 3 ---
+今⽇学习路径
+模块化（第 11 章）
+1. 模块与耦合基础
+2. 访问耦合的五个级别
+3. Cascading M essage 问题
+4. P4 ⾯向接⼝ · P5 迪⽶特法则 · P6 ISP
+5. 继承耦合的四种类型
+6. P7 ⾥⽒替换原则（LSP）
+7. P8 组合优于继承
+信息隐藏（第 12 章）
+1. 信息隐藏的本质
+2. 类的职责 = 状态 + ⾏为能⼒
+3. 封装 A–E 五类型
+4. ADT 抽象数据类型
+5. Iterator 模式
+6. P9 为变更⽽封装
+7. P10 权限最⼩化 · P11 O CP · P12 DIP
+本讲⽬标 — 理解⾯向对象设计中耦合与信息隐藏如何共同⽀撑⾼内聚、低耦合的模块化结构。
+3
+
+
+--- PAGE 4 ---
+预习测试
+以下哪种做法增加了类之间的耦合度？请选出所有正确项。
+A. 通过接⼝⽽⾮具体类引⽤对象
+B. 直接访问另⼀个对象的公开字段
+C. ⼦类覆盖⽗类⽅法并改变返回语义
+D. 使⽤ a.getB().getC().doSomething()
+E. 将集合字段声明为 public
+F. 在接⼝中只放⼊调⽤⽅需要的⽅法
+G. ⼦类在⽗类⽅法中增加新的前置条件
+答案：B、C、D、E、G — 这些做法分别对应访问耦合过⾼、LSP 违反、Cascading M essage、封装缺失以及契约强
+化。
+4
+
+
+--- PAGE 5 ---
+Part 1
+模块化基础与耦合概念
+Module · Coupling · Cohesion
+5
+
+
+--- PAGE 6 ---
+什么是模块（Module）
+A module is a self-contained unit of software that can be
+independently designed, implemented, and tested.
+在⾯向对象中，模块有三种粒度：
+粒度 对应构件 职责边界
+⽅法级 Method / Function 单⼀操作
+类级 Class 状态 + ⾏为
+包级 Package / Namespace 相关类集合
+模块化的两个核⼼指标
+耦合（Coupling）
+模块之间的依赖强度
+→ 越低越好
+内聚（Cohesion）
+模块内部元素的关联程度
+→ 越⾼越好
+设计⽬标：⾼内聚、低耦合
+📖  SW EBO K v4 §1.4 · M odularization  |  §1.4 · Coupling  |  §1.4 · Cohesion
+6
+
+
+--- PAGE 7 ---
+⾯向对象的耦合类型
+在 O O  系统中，耦合来⾃两个⽅向：
+访问耦合
+Component Coupling
+类 A 使⽤类 B 的服务时产⽣
+调⽤⽅法
+访问字段
+作为参数传递
+通过消息链跨越多跳
+继承耦合
+Inheritance Coupling
+类 A 继承类 B 时产⽣
+⼦类依赖⽗类的实现细节
+⽗类修改可能破坏⼦类
+⽐访问耦合更深、更隐蔽
+继承是"⽩盒复⽤"——⼦类可以看到⽗类的内部实现；访问耦合是"⿊盒复⽤"——只依赖接⼝。
+7
+
+
+--- PAGE 8 ---
+Part 2
+访问耦合
+五个级别 · Cascading Message · P5 迪⽶特法则 · P4 ⾯向接⼝ · P6 ISP
+8
+
+
+--- PAGE 9 ---
+访问耦合的五个级别
+耦合强度从⾼到低：
+级别 名称 说明 示例
+5（最⾼） 隐式访问耦合 依赖全局变量或 Singleton GlobalConfig.instance.value
+4 实现中访问耦合 访问另⼀类的私有实现细节 反射访问 private 字段
+3 成员变量访问耦合直接读写另⼀类的 public 字段 order.price = 100
+2 参数变量访问耦合通过⽅法参数传递，依赖具体类型void process(ConcreteOrder o)
+1（最低） ⽆访问耦合 ⽆直接依赖 —
+级别 3–5 打破封装，应重构为通过⽅法（消息）访问。级别 1–2 是可接受范围。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Encapsulation (inform ation hiding)
+9
+
+
+--- PAGE 10 ---
+Cascading Message（消息链）问题
+// 问题代码：消息链（ Train Wreck ）
+String city = customer
+    .getAddress()
+    .getCity()
+    .toUpperCase();
+问题：Customer 的调⽤⽅知道了：
+Customer 有 Address
+Address 有 City
+City 是 String
+三层实现细节全部暴露！
+两种修复⽅案
+⽅案 A：引⼊局部变量
+Address addr = customer.getAddress();
+City city = addr.getCity();
+String name = city.toUpperCase();
+可读性提升，但耦合依然存在。
+⽅案 B：委托（推荐）
+// 在  Customer 中封装
+String city = customer.getCityName();
+调⽤⽅只需知道 Customer 。
+10
+
+
+--- PAGE 11 ---
+P5 · 迪⽶特法则（Law of Demeter）
+只与你的直接朋友交谈。
+A method should only call methods on: itself, its parameters, objects it creates, and its direct ﬁelds.
+合法的调⽤对象
+1. this （⾃身）
+2. ⽅法的参数对象
+3. ⽅法内新创建的对象
+4. 类的成员变量（直接持有）
+违反示例
+// 违反：通过  getB() 拿到中间对象再调⽤
+a.getB().doSomething();
+// 合规：委托给  B 的操作封装在  A 中
+a.delegateToB();
+迪⽶特法则是对访问耦合级别的直接约束：避免消息链，
+减少对间接对象的依赖。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Coupling
+11
+
+
+--- PAGE 12 ---
+P4 · ⾯向接⼝编程
+Program to an interface, not an implementation.
+// 不好：依赖具体类
+ArrayList<String> list = new ArrayList<>();
+// 好：依赖接⼝
+List<String> list = new ArrayList<>();
+好处：
+调⽤⽅只依赖接⼝契约，不依赖实现
+切换实现类⽆需修改调⽤⽅
+⽀持多态、Mock 测试
+⾯向接⼝编程将访问耦合从参数变量级降低到仅依赖接⼝，是降低耦合的核⼼⼿段。
+📖  SW EBO K v4 §1.4 · Separation of Interface and Im plem entation  |  §5.4 · O bject-O riented Design (SO L ID)
+12
+
+
+--- PAGE 13 ---
+P6 · 接⼝隔离原则（ISP）
+Clients should not be forced to depend on interfaces they do not use.
+肥接⼝问题
+interface Worker {
+    void work();
+    void eat();    // Robot 不需要！
+    void sleep();  // Robot 不需要！
+}
+class Robot implements Worker {
+    public void work() { ... }
+    public void eat()  { throw new UnsupportedOperationException(); }
+    public void sleep(){ throw new UnsupportedOperationException(); }
+}
+ISP 重构
+interface Workable {
+    void work();
+}
+interface Feedable {
+    void eat();
+    void sleep();
+}
+class Robot implements Workable { ... }
+class Human implements Workable,
+                      Feedable  { ... }
+接⼝细化后，Robot 不再被迫实现⽆关⽅
+法，调⽤⽅只依赖⾃⼰真正需要的接⼝。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (SO L ID — Interface Segregation)  |  §1.4 · Separation of Interface and Im plem entation 13
+
+
+--- PAGE 14 ---
+Part 3
+继承耦合
+继承类型 · P7 L SP · P8 组合优先
+14
+
+
+--- PAGE 15 ---
+继承耦合的四种类型
+类型 说明 耦合强度 推荐度
+M odiﬁcation（修改） ⼦类覆盖⽗类⽅法并改变⾏为语义 最⾼ ✗  避免
+Reﬁnement（精化） ⼦类调⽤ super 并在前后添加⾏为，不改变语义中 △ 谨慎
+Extension（扩展） ⼦类只新增⽅法，不覆盖⽗类任何⽅法 低 ✓  安全
+Nil（⽆实现） ⽗类是纯抽象接⼝，⼦类提供实现 最低 ✓✓  最佳
+从设计视⻆：Nil → Extension → Reﬁnement → M odiﬁcation 是耦合由低到⾼的排列。推荐优先使⽤抽象⽗类（Nil）
+和扩展继承（Extension）。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Coupling
+15
+
+
+--- PAGE 16 ---
+P7 · ⾥⽒替换原则（LSP）
+⼦类型必须能够替换其⽗类型⽽不改变程序的正确性。
+— Barbara Liskov, 1987
+经典反例：正⽅形 ≠ ⻓⽅形
+class Rectangle {
+    void setWidth(int w)  { ... }
+    void setHeight(int h) { ... }
+    // 不变式： w 与  h 独⽴
+}
+class Square extends Rectangle {
+    void setWidth(int w) {
+        super.setWidth(w);
+        super.setHeight(w); // 破坏不变式！
+    }
+}
+为什么违反 L SP？
+void resize(Rectangle r) {
+    r.setWidth(5);
+    r.setHeight(3);
+    // 期望⾯积  = 15
+    assert r.area() == 15; // Square 中失败！
+}
+Square 在⼏何上是 Rectangle 的⼦集，但在⾏为契约
+上不能替换。"IS-A" 关系应由⾏为定义，⽽⾮数学定义。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (SO L ID — L iskov Substitution)
+16
+
+
+--- PAGE 17 ---
+LSP 反例：企鹅与⻦
+class Bird {
+    void fly() { ... }  // 所有⻦都会⻜？
+}
+class Penguin extends Bird {
+    @Override
+    void fly() {
+        throw new UnsupportedOperationException(" 企鹅不会⻜！ ");
+    }
+}
+// 调⽤⽅：
+void makeBirdFly(Bird b) {
+    b.fly(); // Penguin 会抛异常！
+}
+修复⽅案
+interface Flyable {
+    void fly();
+}
+class Sparrow extends Bird
+    implements Flyable {
+    public void fly() { ... }
+}
+class Penguin extends Bird {
+    // 不实现  Flyable
+    void swim() { ... }
+}
+⽤接⼝分离代替强制继承层次，Penguin 不
+再承诺 fly() ，LSP ⾃然满⾜。
+17
+
+
+--- PAGE 18 ---
+LSP 的契约含义
+LSP 要求⼦类遵守⽗类的⾏为契约：
+契约要素 L SP 要求
+前置条件 ⼦类前置条件 ≤ ⽗类（⼦类不能更严格）
+后置条件 ⼦类后置条件 ≥ ⽗类（⼦类保证更多）
+不变式 ⼦类必须维护⽗类的所有不变式
+违反示例（前置条件更严格）
+// ⽗类：接受任意正整数
+void setAge(int age) { assert age > 0; }
+// ⼦类：要求年龄  < 150 （更严格）
+void setAge(int age) {
+    assert age > 0 && age < 150; // 违反！
+}
+记忆⼝诀
+⼦类前置放宽，后置加强，
+不变式维持——这才叫替换。
+18
+
+
+--- PAGE 19 ---
+P8 · 组合优于继承
+Favor object composition over class inheritance.
+— GoF, Design Patterns, 1994
+继承的问题
+⽩盒复⽤：⼦类依赖⽗类实现细节
+⽗类修改可能破坏所有⼦类
+继承层次难以扩展（多个维度变化时）
+强迫遵守 IS-A 语义
+组合的优势
+⿊盒复⽤：只依赖接⼝
+运⾏时可动态切换组合对象
+职责分离更清晰
+⽆需⽗类 IS-A 约束
+// 继承： Stack extends Vector （历史错误）
+// 组合： Stack 内部持有  Vector
+class Stack<T> {
+    private Vector<T> storage = new Vector<>();
+    public void push(T item) { storage.add(item); }
+    public T pop() { return storage.remove(...); }
+}
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (GoF: Favor Com position)  |  §1.4 · M odularization 19
+
+
+--- PAGE 20 ---
+Part 4
+⾯向对象的信息隐藏
+类的职责 · 封装 A–E · ADT
+20
+
+
+--- PAGE 21 ---
+信息隐藏的本质
+每个模块应该对其他模块隐藏⼀个重要的设计决策。
+— David Parnas, 1972
+两类秘密（Secrets）
+主要秘密（Primary Secret）
+= 职责变更的可能性
+→ 这个类应该做什么会变化吗？
+次要秘密（Secondary Secret）
+= 实现变更的可能性
+→ 这个类如何做会变化吗？
+为什么要隐藏？
+变化是软件的常态。
+将变化的可能性封装在模块内部，使得修改
+只影响该模块，⽽不波及其他模块。
+信息隐藏 = 隔离变化 = 降低耦合
+📖  SW EBO K v4 §1.4 · Encapsulation (inform ation hiding)  |  §1.4 · M odularization
+21
+
+
+--- PAGE 22 ---
+类的职责
+类的职责 = 状态（State）+ ⾏为能⼒（Behavioral Capability）
+状态（State）
+类所持有的数据
+描述对象在某⼀时刻的情况
+通过字段（ﬁeld）表示
+class BankAccount {
+    private double balance;  // 状态
+    private String owner;    // 状态
+}
+⾏为能⼒（Behavioral Capability）
+类能对外提供的操作
+改变状态或查询状态
+通过⽅法（method）表示
+class BankAccount {
+    void deposit(double amount) { ... }
+    void withdraw(double amount) { ... }
+    double getBalance() { ... }
+}
+类的接⼝（interface）= 对外承诺的⾏为能⼒；类的实现（implementation）= 内部状态与算法细节。
+22
+
+
+--- PAGE 23 ---
+封装 = 接⼝ + 实现
+O O  接⼝的五个要素：
+要素 说明 示例
+⽅法名 操作的标识符 deposit
+参数 输⼊类型与顺序(double amount)
+返回类型 输出类型 void
+不变式 类的恒定约束 balance >= 0
+异常 错误情况契约 throws InsufficientFundsException
+实现的五类细节（应被隐藏）：
+类型 说明
+Data ⽤什么数据结构存储状态
+Structure 数据的内部组织⽅式
+O ther objects 内部持有哪些对象引⽤
+Type 字段/变量的具体类型
+Change/Vary 可能变化的算法或策略
+23
+
+
+--- PAGE 24 ---
+封装的五种类型（A–E）
+类型 隐藏内容 核⼼⼿段
+A — 数据类型（ADT） 内部数据表示 访问器/修改器替代 public 字段
+B — 内部结构 数据的组织结构 不暴露内部容器/数组
+C — 其他对象引⽤ 内部持有哪些对象不直接返回内部对象引⽤
+D — 类型信息（LSP） 对象的具体运⾏时类型⾯向接⼝，多态调度
+E — 潜在变更 可能变化的实现策略策略模式、依赖注⼊
+类型 A–C 处理当前实现细节的封装；类型 D–E 处理未来变化的封装。这五种类型覆盖了⾯向对象封装的完整语义。
+📖  SW EBO K v4 §1.4 · Encapsulation  |  §1.4 · Separation of Interface and Im plem entation  |  §1.4 · Abstraction
+24
+
+
+--- PAGE 25 ---
+类型 A：ADT — 抽象数据类型
+ADT 定义的是概念，不是实现。
+公开字段（违反封装 A）
+class Point {
+    public double x;  // 暴露实现：直⻆坐标
+    public double y;
+}
+// 调⽤⽅直接依赖坐标系！
+point.x = 3.0;
+若改为极坐标实现，所有调⽤⽅都要修改。
+ADT 封装（推荐）
+class Point {
+    private double x, y;
+    // 直⻆坐标接⼝
+    double getX() { return x; }
+    double getY() { return y; }
+    // 极坐标接⼝（同⼀  ADT ）
+    double getR() {
+        return Math.sqrt(x*x + y*y);
+    }
+    double getTheta() {
+        return Math.atan2(y, x);
+    }
+}
+25
+
+
+--- PAGE 26 ---
+访问器与修改器（Accessor / Mutator）
+⽤⽅法替代直接的 public 字段访问：
+反模式：直接字段访问
+class Person {
+    public String name;
+    public int age;
+}
+// 调⽤⽅：
+person.age = -5;  // ⽆法验证！
+问题：
+⽆法添加验证逻辑
+字段类型变更破坏调⽤⽅
+⽆法懒加载或计算
+正确做法：访问器 + 修改器
+class Person {
+    private String name;
+    private int age;
+    public int getAge() { return age; }
+    public void setAge(int age) {
+        if (age < 0 || age > 150)
+            throw new IllegalArgumentException();
+        this.age = age;
+    }
+}
+26
+
+
+--- PAGE 27 ---
+类型 B/C：隐藏内部结构与对象引⽤
+问题：暴露内部集合（违反 B+C）
+class Route {
+    public List<Stop> stops;  // 直接暴露！
+}
+// 调⽤⽅可以任意修改内部状态：
+route.stops.add(newStop);    // 绕过业务规则
+route.stops.clear();         // 危险！
+修复：使⽤ Iterator 或受控接⼝
+class Route {
+    private List<Stop> stops = new ArrayList<>();
+    // 只暴露迭代能⼒
+    public Iterator<Stop> getStops() {
+        return Collections
+            .unmodifiableList(stops)
+            .iterator();
+    }
+    // 受控的修改接⼝
+    public void addStop(Stop s) {
+        // 可以在这⾥加业务验证
+        stops.add(s);
+    }
+}
+Iterator 模式是封装集合内部结构的标准⼿段——调⽤⽅只知道可以遍历，不知道内部是 List 、Set 还是数组。
+📖  SW EBO K v4 §4.4 · Design Patterns and Styles (Behavioral: Iterator)  |  §1.4 · Encapsulation 27
+
+
+--- PAGE 28 ---
+类型 D：隐藏类型信息（LSP）
+调⽤⽅应该依赖接⼝，⽽不需要知道对象的具体类型。
+违反封装 D：instanceof 判断
+void process(Shape shape) {
+    if (shape instanceof Circle) {
+        ((Circle) shape).drawCircle();
+    } else if (shape instanceof Square) {
+        ((Square) shape).drawSquare();
+    }
+}
+问题：每增加⼀种 Shape ，就要修改这段代码。
+正确：多态调度
+interface Shape {
+    void draw();  // 统⼀接⼝
+}
+class Circle implements Shape {
+    public void draw() { /* 画圆  */ }
+}
+class Square implements Shape {
+    public void draw() { /* 画⽅  */ }
+}
+void process(Shape shape) {
+    shape.draw();  // 不知道也不需要知道类型
+}
+28
+
+
+--- PAGE 29 ---
+类型 E：封装潜在变更
+将可能变化的部分隔离为独⽴模块，其余部分依赖稳定的接⼝。
+问题：变化硬编码在类内部
+class Sorter {
+    void sort(int[] arr) {
+        // 直接写死冒泡排序
+        // 若要换快速排序，必须修改本类
+        bubbleSort(arr);
+    }
+}
+策略模式封装变更
+interface SortStrategy {
+    void sort(int[] arr);
+}
+class Sorter {
+    private SortStrategy strategy;
+    Sorter(SortStrategy s) {
+        this.strategy = s;
+    }
+    void sort(int[] arr) {
+        strategy.sort(arr);  // 委托给策略
+    }
+}
+封装类型 E 与**开闭原则（O CP）**直接对应：对扩展开放，对修改关闭。 29
+
+
+--- PAGE 30 ---
+Part 5
+为变更⽽设计
+P9 变更封装 · P10 权限最⼩化 · P11 O CP · P12 DIP · P13 SRP · P14 SO FA
+30
+
+
+--- PAGE 31 ---
+P9 · 为变更⽽封装（Encapsulate W hat Varies）
+找到系统中变化的部分，将其封装起来，使变化不影响不变的部分。
+识别变化点的三个问题
+1. 哪些需求最可能改变？
+（算法？数据格式？业务规则？）
+2. 哪些部分跨越边界共享？
+（多个类都依赖的实现细节）
+3. 哪些部分已经变过多次？
+（历史修改记录是最好的指示）
+封装变化的⼿段
+变化类型 封装⼿段
+算法/策略 策略模式
+对象创建⼯⼚⽅法/抽象⼯⼚
+对象结构组合模式
+跨对象⾏为命令/访问者模式
+数据格式 Adapter 模式
+31
+
+
+--- PAGE 32 ---
+P10 · 权限最⼩化
+M inimize the accessibility of classes and members.
+— Eﬀective Java, Joshua Bloch
+Java 的四个访问级别
+修饰符 可访问范围
+private 仅本类内部
+（package-private，⽆修饰符）同⼀包内
+protected 同⼀包 + ⼦类
+public 任何地⽅
+原则：从最严格的 private 开始，只在确实需要时才放宽。
+为什么要最⼩化权限？
+每增加⼀个 public 成员，就等于增加了⼀
+个对外的承诺。 这个承诺未来很难撤回，因
+为可能有调⽤⽅依赖它。
+权限最⼩化的好处：
+接⼝更⼩ → 耦合更低
+内部实现可以⾃由修改
+降低 API 的维护成本
+提⾼安全性
+32
+
+
+--- PAGE 33 ---
+P11 · 开闭原则（O CP）
+Software entities should be open for extension, but closed for modiﬁcation.
+— Bertrand M eyer
+违反 O CP 的典型模式
+// 每次增加新类型都要修改
+class DiscountCalculator {
+    double calculate(Order order) {
+        if (order.type == VIPORDER)
+            return order.total * 0.8;
+        else if (order.type == NEWUSER)
+            return order.total * 0.9;
+        // 增加新类型需修改本类 ...
+    }
+}
+符合 O CP 的重构
+interface DiscountPolicy {
+    double apply(double total);
+}
+class VipDiscount implements DiscountPolicy {
+    public double apply(double t) {
+        return t * 0.8;
+    }
+}
+class DiscountCalculator {
+    private DiscountPolicy policy;
+    // 新增类型只需新增实现类
+    double calculate(Order o) {
+        return policy.apply(o.getTotal());
+    }
+}
+33
+
+
+--- PAGE 34 ---
+P12 · 依赖倒置原则（DIP）
+⾼层模块不应依赖低层模块；两者都应依赖抽象。
+抽象不应依赖细节；细节应依赖抽象。
+违反 DIP
+class BusinessLogic {
+    private MySQLDatabase db;  // 依赖具体类！
+    void process() {
+        db.query(...);
+    }
+}
+符合 DIP
+class BusinessLogic {
+    private Database db;  // 依赖接⼝
+    BusinessLogic(Database db) {
+        this.db = db;  // 依赖注⼊
+34
+
+
+--- PAGE 35 ---
+P13 · 单⼀职责原则（SRP）
+A class should have only one reason to change.
+— Robert C. M artin
+违反 SRP
+class Employee {
+    String name;
+    double salary;
+    // 职责 1 ：薪资计算（ HR 规则）
+    double calculatePay() { ... }
+    // 职责 2 ：数据库持久化（ IT 基础设施）
+    void saveToDatabase() { ... }
+    // 职责 3 ：报表⽣成（财务需求）
+    String generateReport() { ... }
+}
+三个不同的"变化原因"混在⼀个类中。
+SRP 重构
+class Employee {        // 只管员⼯数据
+    String name;
+    double salary;
+}
+class PayCalculator {   // 只管薪资计算
+    double calculate(Employee e) { ... }
+}
+class EmployeeRepository { // 只管持久化
+    void save(Employee e) { ... }
+}
+class EmployeeReport {  // 只管报表
+    String generate(Employee e) { ... }
+}
+SRP 与信息隐藏直接关联：每个类只隐藏⼀个"变化原因"（= Parnas 的"设计决策"）。SRP 违反的症状是"God
+Class"——⼀个类知道太多、做太多。
+35
+
+
+--- PAGE 36 ---
+P14 · SO FA：⽅法级设计原则
+SO FA = Short · O ne thing · Few arguments · Abstraction level consistency
+— ⾯向⽅法粒度的设计原则（与 SO LID 的类粒度原则互补）
+S — Short（⽅法要短）
+⽅法体通常 ≤ 20–30 ⾏
+过⻓ → 分解为命名清晰的辅助⽅法
+O  — O ne thing（只做⼀件事）
+⽅法名能⽤⼀个短句完整描述其⾏为
+若需要"and"才能描述 → 考虑拆分
+F — Few arguments（参数要少）
+参数越多，调⽤⽅知道的细节越多 → 耦合越⾼
+超过 3 个参数时考虑引⼊参数对象
+A — Abstraction level consistency（抽象层次⼀致）
+// 违反  A ：⾼层业务逻辑混⼊低层实现
+void processOrder(Order o) {
+    validateOrder(o);           // ⾼层
+    db.execute("INSERT ...");  // 低层！
+}
+// 修复：把低层细节封装为⽅法
+void processOrder(Order o) {
+    validateOrder(o);
+    persistOrder(o);  // 统⼀在⾼层
+}
+36
+
+
+--- PAGE 37 ---
+原则汇总（P1–P7）：信息隐藏基础 · 访问耦合 · 继承耦合
+完整编号体系：P1–P4 ⻅ 04-01（信息隐藏基础），P5–P14 ⻅本讲（⾯向对象设计）
+编号 缩写 原则 核⼼思想 SW EBO K
+P1 — 全局变量有害全局变量穿透所有模块，是隐藏的反义词§1.4 Encapsulation
+P2 — 优先显示表达⽤接⼝/⽂档显式表达约束，不靠隐式约定§1.4
+P3 DRY 不要重复 同⼀决策不在多处编码；重复=多处修改 §1.4
+P4 — ⾯向接⼝编程依赖接⼝⽽⾮实现，降低访问耦合§1.4 Sep. of I&I; §5.4
+P5 LoD 迪⽶特法则 只与直接朋友交谈，避免消息链§5.4 O O D
+P6 ISP 接⼝隔离 接⼝细化，客户端只依赖需要的⽅法§5.4 SO LID-I
+P7 LSP ⾥⽒替换 ⼦类前置放宽、后置加强、不变式维持§5.4 SO LID-L
+37
+
+
+--- PAGE 38 ---
+原则汇总（P8–P14）：封装变更 · SO LID · SO FA
+编号 缩写 原则 核⼼思想 SW EBO K
+P8 — 组合优于继承⿊盒复⽤，避免继承耦合 §5.4 GoF
+P9 — 为变更⽽封装隔离可变部分，稳定不变部分 §1.4 Encapsulation
+P10 — 权限最⼩化 从 private 开始，按需放宽 §1.4
+P11 O CP 开闭原则 对扩展开放，对修改关闭 §5.4 SO LID-O
+P12 DIP 依赖倒置 ⾼层依赖抽象，不依赖具体实现§5.4 SO LID-D
+P13 SRP 单⼀职责 ⼀个类只有⼀个变化原因 §5.4 SO LID-S
+P14 SO FA ⽅法设计 Short · O ne thing · Few args · Abstraction §5.4 SO FA
+记忆结构：P1–P4 防⽌"隐式依赖"；P5–P8 控制"耦合来源"；P9–P13 管理"变化封装"；P14 约束"⽅法粒度"。
+📖  SW EBO K v4 §1.4 · Software Design Principles  |  §5.4 · O bject-O riented Design (SO L ID)
+38
+
+
+--- PAGE 39 ---
+Part 6
+LLM 与⾯向对象设计
+实证研究 · 能⼒边界 · ⼯具推荐
+39
+
+
+--- PAGE 40 ---
+LLM 对耦合/内聚的理解：实证发现
+"当前 LLM  是有效的辅助设计⼯具，但不是⾃主设计主体。"
+— arXiv:2511.20933, Hierarchical Evaluation of Software Design Capabilities of LLM s (2024)
+实验设置（DeepSeek-R1 系列）
+三种引导级别逐步增加噪声：
+1. Veriﬁcation — 验证给定答案
+2. Guided Generation — 有提示的⽣成
+3. O pen-ended Generation — 完全开放
+关键发现：耦合
+有引导时：基准正确率尚可
+开放场景 + 噪声：F1 降幅 >50%
+模型对耦合问题存在"认知捷径"（Cognitive
+Shortcutting）
+关键发现：内聚 vs 耦合
+维度 L L M  表现 原因
+内聚分析 较稳定 局部信息⾜够
+耦合推理 噪声下崩溃需要跨类全局推理
+教学含义：让 LLM  帮你评估"这段代码的内聚性"通常有
+效；让它评估"跨多个类的耦合关系"需要额外的上下⽂和
+结构化提示，结果不可盲信。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Cohesion  |  §6.3 · Quality Analysis
+40
+
+
+--- PAGE 41 ---
+LLM 违反模块化的规律 ①：两⼤结构性缺陷
+量质反⽐定律（Volume-Quality Inverse L aw）
+"代码体积⼏乎是结构退化的完美预测因⼦。"
+— arXiv:2605.02741, AI-Generated Smells, 2025
+LLM  ⽣成代码⽐⼈类基线多 42%–85% 代码异味
+（arXiv:2510.03029）
+模型能⼒越强 → 代码体积越⼤ → 结构越臃肿、耦合越
+⾼
+推论：让 LLM  写更⻓、更完整的代码，往往意味着更多
+结构性问题，⽽⾮更⾼质量。
+模块化悖论（The Modular Imperative）
+"即使明确提供模块化指导，LLM  仍倾向于把新功能加⼊
+已有类⽽⾮新建职责单⼀的类。"
+— Harvard ICFP/SPLASH 2025
+直接违反：
+SRP（单⼀职责）：⼀个类承担多个变化原因
+信息隐藏：把不同变化原因混⼊同⼀模块
+P9 封装变更：变化点未被隔离
+根本原因：LLM  的训练⽬标是预测下⼀个 token，⽽⾮最
+⼩化模块间耦合——它"看到"的是局部代码，感知不到跨
+⽂件的全局模块化约束。
+📖  SW EBO K v4 §1.4 · M odularization  |  §5.4 · O bject-O riented Design (SO L ID-S)  |  §6.3 · Quality Analysis
+41
+
+
+--- PAGE 42 ---
+LLM 违反模块化的规律 ②：代码异味修复能⼒
+异味类型 L L M  能⼒ 研究来源
+简单异味（Magic Number、Empty Catch）  GPT-4o 解决 ~62% IEEE TSE 2025
+Broken M odularization  显著劣于⼈类 ACM TO SEM 2024
+Deﬁcient Encapsulation  显著劣于⼈类 ACM TO SEM 2024
+M ultifaceted Abstraction  显著劣于⼈类 ACM TO SEM 2024
+架构级异味（God Class 等）  iSMELL ⼯具辅助可达 F1=75% ASE 2024
+架构级异味（SmellBench 2026）  最佳解决率 47.7%；63.1% 检测为误报arXiv:2605.07001
+少样本重构（Few-shot）  异味减少率 42.97%（优化提示词） arXiv:2511.21788
+可⽤：表层语法级异味（Magic Number、空 catch）修
+复成功率可接受，适合作为 CI 流⽔线的⾃动修复步骤。
+⼯具推荐：iSM ELL = LLM  + 7 专家静态分析⼯具组合，
+God Class / Feature Envy 检测 F1 ⽐纯 LLM  提升
++35%（ASE 2024）。
+📖  SW EBO K v4 §6.3 · Quality Analysis  |  §1.4 · Encapsulation  |  §1.4 · M odularization
+42
+
+
+--- PAGE 43 ---
+SO LID 检测实证 ①：实验设计与关键数据
+"Are W e SO LID Yet?" — arXiv:2509.03093, September 2025
+实验设置
+任务：⾃动检测 Java 代码中的 SO LID 原则违反
+模型：GPT-4o M ini、GPT-4o、Claude 3.5、Llama 3、Gemini
+1.5 等
+Prompt 策略：零样本 / 少样本 / 集成投票 / 基于示例
+各原则最优 F1
+SO L ID 原则 最佳 Prom pt 策略 最优 F1
+O CP（开闭） 集成投票（Ensemble） 71.2%
+DIP（依赖倒置）示例提示（Example-hints） 64.8%
+SRP（单⼀职责）少样本 58.3%
+ISP（接⼝隔离）零样本 51.7%
+L SP（⾥⽒替换）零样本 44.1%
+核⼼结论
+GPT-4o M ini 总体优于更⼤模型
+结构化推理步骤⽐参数规模更关键——⼩模
+型 + 好 Prompt > ⼤模型 + 零样本
+复杂度是核⼼瓶颈
+每增加 5 ⾏代码，F1 下降约 15%
+LSP 和 SRP 在复杂类体系中准确率接近随机
+O CP / DIP 是最适合 LLM  辅助检测的原
+则，因为其违反模式局部、规律性强；SRP /
+LSP 需要跨上下⽂语义理解，LLM 明显⼒不
+从⼼。
+📖 SW EBO K 4§5 4 O bject O riented Design (SO L ID) | §63 Q alit Analsisand E alation
+43
+
+
+--- PAGE 44 ---
+SO LID 检测实证 ②：复杂度陷阱与设计模式识别
+复杂度退化曲线
+代码规模 检测表现
+≤ 10 ⾏简单⽅法  O CP/DIP 可⽤（F1 ≥ 65%）
+每 +5 LO C  F1 下降约 15%
+复杂类体系  LSP/SRP 准确率接近随机
+实践推论：LLM  的 SO LID 检测能⼒随代码复杂度指数级
+退化。只在⼩粒度代码审查中使⽤，不可⽤于全库扫描。
+设计模式检测（2026）
+LLM -Based Pattern Detection（arXiv:2502.18458）：
+⾃动跨代码库识别设计模式实例，专注于类⻆⾊识别
+Do LLM s Understand Design Patterns?
+（arXiv:2501.04835）：Code LLM  在某些模式类型存在
+系统性偏⻅，识别 / 理解 / ⽣成三阶段均有弱点
+实践指导
+ 扫描⼩型⽅法（≤30 ⾏）的 OCP / DIP 违反
+ 复杂类体系需配合静态分析⼯具（如 iSM ELL ）
+ 不可依赖 LLM  做全库 SRP / LSP 合规扫描
+📖  SW EBO K v4 §5.4 · O bject-O riented Design (SO L ID)  |  §4.4 · Design Patterns  |  §6.3 · Quality Analysis
+44
+
+
+--- PAGE 45 ---
+LLM 辅助 O O  设计 ①：有效⽤法
+ ⽣成单类⻣架（信息隐藏约束）
+设计⼀个  BankAccount 类：
+- 主要秘密（信息隐藏）：余额的存储⽅式
+- 约束：字段全部  private ，只暴露
+  访问器和业务⽅法，余额不能为负
+请⽤  Java 写出类⻣架和  Javadoc 。
+ 识别简单代码异味并重构
+以下代码有哪些违反  SRP 或封装的地⽅？
+请按  A/B/C/D/E 封装类型分类，
+并给出重构⽅案。 [ 粘贴代码 ]
+ 检测⼩型⽅法的 SO LID 违反（OCP/DIP 优先）
+以下⽅法是否违反开闭原则（ OCP ）？
+请说明违反的具体位置并给出重构⽅案。
+[ 粘贴代码， ≤30 ⾏ ]
+ ⽣成 PlantUM L / SVG 类图初稿
+适⽤于单类或少量相关类；多类关系需⼈⼯校
+验。
+ 多智能体 UM L ⽣成（NO M AD ⽅式）
+将类图⽣成拆解为⽬标导向⼦任务，交给不同⻆
+⾊智能体协作，优于单次对话⽣成。
+ 封装五类型快速诊断
+请检查以下类，按封装类型  A （ ADT ）、
+B （结构）、 C （对象引⽤）、 D （类型）、
+E （变更）分类列出所有违反封装的地⽅。
+[ 粘贴代码 ]
+共同要点：有效 Prompt 必须包含设计约束
+（SO LID 原则编号、封装类型、变化点），⽽
+不只是描述需求。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Design Principles
+45
+
+
+--- PAGE 46 ---
+LLM 辅助 O O  设计 ②：危险⽤法与边界
+需⼈⼯验证（ ）
+多类关系设计
+LLM  ⽣成的多类图经常出现：多重度错误、关联⽅向反转、
+组合/聚合混淆——每张图都需逐条审查。
+耦合评估
+复杂场景下跨类耦合推理不可靠（F1 降幅 >50%），需⼈⼯核
+查访问耦合级别（Level 1–5）。
+架构级代码异味检测
+SmellBench（2026）：63.1% 的检测结果是误报，必须结合
+静态分析⼯具（iSM ELL 等）交叉验证。
+不可依赖（ ）
+职责边界划分（⽆上下⽂）
+LLM  不知道"什么会变"，⽆法⾃主做出信息隐藏决策——必
+须由⼈类先识别变化点，再让 LLM  落地。
+库级全系统模块化设计
+ProgramBench（2026）：全任务完成率仅 3%；LLM  ⽆法
+感知跨⽂件的全局模块化约束。
+最佳实践：把 LLM  当"知识渊博但不了解你业务的初级设计师"——它熟悉 SO LID / GoF / 封装，但需要你提供领域约束
+和变化点，才能⽣成有价值的初稿。⼈类保留职责边界划分、架构级重构、设计理由的最终决策权。
+📖  SW EBO K v4 §5.4 · O bject-O riented Design  |  §1.4 · Design Principles  |  §6 · Design Quality Analysis
+46
+
+
+--- PAGE 47 ---
+课后作业
+编程练习
+给定如下代码，识别所有封装问题并重构：
+class Library {
+    public List<Book> books = new ArrayList<>();
+    public String name;
+    public Book findBook(String isbn) {
+        for (Book b : books) {
+            if (b.isbn.equals(isbn))
+                return b;
+        }
+        return null;
+    }
+}
+class Book {
+    public String isbn;
+    public String title;
+    public double price;
+}
+分析要求
+1. 列出所有违反封装的地⽅（对应 A–E 哪种
+类型？）
+2. 该设计违反了哪些原则（LSP/ISP/权限最⼩
+化/迪⽶特法则）？
+3. 重构后的代码需满⾜：
+books 集合不可从外部直接修改
+isbn 、title 、price 通过访问器
+访问
+findBook 在⽆结果时返回
+Optional<Book>
+提交 GitHub 链接，含重构前后对⽐与原则对
+照说明。
+47
+
+
+--- PAGE 48 ---
+⼩结
+⾯向对象的模块化与信息隐藏
+48
+
+
+--- PAGE 49 ---
+模块化
+耦合 = 模块间依赖强度（越低越好）
+访问耦合 5 级别：隐式 > 实现 > 成员 > 参数 > ⽆
+消息链破坏 P5 迪⽶特法则 → 委托
+P6 ISP：接⼝不强迫客户端依赖不需要的⽅法
+继承耦合：Modiﬁcation > Reﬁnement > Extension >
+Nil
+P7 LSP：⼦类前置放宽、后置加强、不变式维持
+P8 组合 = ⿊盒复⽤，更灵活
+信息隐藏
+每个模块隐藏⼀个设计决策（P13 SRP：只有⼀个变化原
+因）
+类职责 = 状态 + ⾏为能⼒
+封装 A（ADT）B（结构）C（对象）D（类型）E（P9
+变更）
+Iterator 隐藏集合结构
+P10 权限最⼩化：从 private 开始
+P11 O CP / P12 DIP 是封装变更的架构级表达
+⾼内聚、低耦合 — 软件模块化设计的永恒⽬标
+49

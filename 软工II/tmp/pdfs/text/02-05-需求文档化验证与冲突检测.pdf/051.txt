@@ -1,0 +1,12 @@
+Claude Code 中的 Spec 驱动开发（⼆）
+ 
+关键最佳实践
+PRD（产品需求⽂档）是 Claude Code 最重要的输⼊。
+模糊的需求产⽣模糊的实现。
+——Claude Code 官⽅⽂档
+ 
+避免⻓段落包含多个需求——AI 可能遗漏或混合细节
+需求越详细，AI 输出越准确
+Spec 不仅是⼈与⼈的沟通⼯具，更是⼈与 AI 的沟通协议
+来源：code.claude.com/docs · chatprd.ai
+51

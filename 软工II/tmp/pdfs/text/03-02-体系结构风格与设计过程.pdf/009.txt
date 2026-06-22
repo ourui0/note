@@ -1,0 +1,11 @@
+SW EBO K 体系结构⻛格六⼤类 [SW EBO K 2.2]
+ 
+# 类别 包含的⻛格
+1 General Structures 分层、管道-过滤器、⿊板
+2 Distributed Systems 客户端-服务器、n-tier、发布-订阅、REST、微服务
+3 Method-Driven ⾯向对象、事件驱动、数据流
+4 User-Computer Interaction MVC、PAC（Presentation-Abstraction-Control）
+5 Adaptive Systems 微内核、反射、元级架构
+6 Virtual Machines 解释器、规则引擎、进程控制
+在线书店适⽤：分层（#1）+ REST（#2）+ ⾯向对象（#3）+ M VC（#4）
+9

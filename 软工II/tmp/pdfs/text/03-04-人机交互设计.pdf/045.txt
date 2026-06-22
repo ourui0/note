@@ -1,0 +1,14 @@
+Principles in GU I Design（⼀）
+Compact and natural dialogue
+简洁⾃然的对话
+Design graph and color
+合理设计图形和颜⾊
+Few is much
+少即是多
+U sing user language
+使⽤⽤户语⾔（⾮技术术语）
+L east memory needed for user
+最少的记忆负担
+Consistent
+保持⼀致性
+45

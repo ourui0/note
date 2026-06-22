@@ -1,0 +1,13 @@
+案例 —— "购买图书"系统顺序图 [SW EBO K 4.4]
+三⽅参与者
+顾客  系统  ⽀付系统
+系统操作
+checkout() — 请求结算
+confirmCart() — 确认购物⻋
+submitAddress(...) — 提交地址
+selectPaymentMethod() — 选⽀付⽅式
+submitOrder() — 提交订单
+外部系统交互
+requestPayment() → ⽀付系统
+paymentResult() ← ⽀付系统
+30

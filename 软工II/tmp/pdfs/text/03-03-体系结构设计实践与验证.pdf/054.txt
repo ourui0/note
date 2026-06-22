@@ -1,0 +1,15 @@
+体系结构评审⽅法
+ATAM
+Architecture Tradeoﬀ Analysis Method
+分析质量属性之间的权衡
+输⼊：架构⽂档 + 质量属性场景
+输出：⻛险点、权衡点、敏感点
+适⽤于⼤型系统早期评审
+SAAM
+Software Architecture Analysis Method
+基于场景的分析⽅法
+将场景分为直接场景和间接场景
+评估架构对场景的⽀持程度
+较 ATAM 更简单，适合中⼩型项⽬
+两种⽅法都强调：在编码之前发现架构问题，修复成本远低于编码之后。
+54

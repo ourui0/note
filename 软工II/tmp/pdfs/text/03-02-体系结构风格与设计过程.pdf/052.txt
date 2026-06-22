@@ -1,0 +1,3 @@
+PART 6 · AI 增强：架构⻛格选择
+AI-Augmented Architectural Decision
+52

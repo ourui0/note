@@ -1,0 +1,17 @@
+什么是 MCP？
+M CP（Model Context Protocol）：AI 与⼯具之间的标准通信协议
+由 Anthropic 提出，已成为 AI ⼯具集成的事实标准
+允许 AI（Claude Code / 灵码 等）直接调⽤外部⼯具
+每个 M CP Server 赋予 AI ⼀种新能⼒，按需开启
+AI Agent (Claude Code)
+      MCP 协议
+┌─────────────────────────────────────┐
+│  chrome-devtools  →  读取浏览器状态   │
+│  github           →  操作  GitHub     │
+│  vercel           →  ⼀键部署         │
+│  mcp-server-sqlite →  查询数据库      │
+│  mcp-server-chart  →  ⽣成图表        │
+└─────────────────────────────────────┘
+过去：AI 看不到浏览器⾥发⽣了什么，只能根据你的⽂字描述来猜测问题。现在：AI 可以直接读取控制台报错、⽹络请
+求、DO M  结构。
+31

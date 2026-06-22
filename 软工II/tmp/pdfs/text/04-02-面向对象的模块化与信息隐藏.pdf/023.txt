@@ -1,0 +1,16 @@
+封装 = 接⼝ + 实现
+O O  接⼝的五个要素：
+要素 说明 示例
+⽅法名 操作的标识符 deposit
+参数 输⼊类型与顺序(double amount)
+返回类型 输出类型 void
+不变式 类的恒定约束 balance >= 0
+异常 错误情况契约 throws InsufficientFundsException
+实现的五类细节（应被隐藏）：
+类型 说明
+Data ⽤什么数据结构存储状态
+Structure 数据的内部组织⽅式
+O ther objects 内部持有哪些对象引⽤
+Type 字段/变量的具体类型
+Change/Vary 可能变化的算法或策略
+23

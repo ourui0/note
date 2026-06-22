@@ -1,0 +1,14 @@
+L L M  集成系统的参考架构 [arxiv 2501.12904, 2025]
+功能参考架构（Functional Reference Architecture）
+层 职责 典型组件
+Interaction Layer ⽤户交互、Prompt 管理 Chat UI、Prompt Template
+O rchestration Layer 任务编排、Agent 协调 LangChain、CrewAI
+Model Layer LLM  推理、模型管理 GPT-4、Claude、本地模型
+Data Layer 向量存储、知识检索Pinecone、Chroma、RAG
+Infrastructure Layer 部署、监控、安全 Docker、K8s、Guardrails
+验证案例
+MaxKB：知识库问答系统
+Continue：IDE 代码助⼿
+InternVL ：多模态视觉语⾔系统
+这个参考架构帮助团队在构建 AI 应⽤时做出⼀致的架构决策
+61

@@ -1,0 +1,1 @@
+参与者•上下文（Contex）: 1)被配置了具体策略ConcreteStrategy；2)拥有Strategy对象的一个引用；3)实现了一些方法以供Strategy访问其数据。•策略（Strategy）: 声明了所支持策略的接口。Context利用这些被ConcreteStrategy定义的接口。•具体策略（ConcreteStrategy）: 实现了Strategy声明的接口，给出了具体的实现。

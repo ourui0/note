@@ -1,0 +1,7 @@
+Tomcat 的核⼼职责
+职责 说明
+管理 Servlet ⽣命周期 负责 Servlet 的加载、初始化、销毁
+U RL  路由映射 将请求 U RL  映射到对应的 Servlet 处理
+请求/响应封装 将 HTTP 请求封装为 HttpServletRequest  对象，将 HttpServletResponse  转为 HTTP 响应返回浏览器
+Spring Boot 已内嵌 Tomcat——java -jar  启动时，Tomcat 随之启动，⽆需⼿动部署
+16

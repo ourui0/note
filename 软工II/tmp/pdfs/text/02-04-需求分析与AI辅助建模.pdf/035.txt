@@ -1,0 +1,16 @@
+O CL  集合操作速查 [O M G U M L  2.5]
+操作 含义 示例
+->size() 集合⼤⼩ self.items->size() >= 1
+->forAll(e | expr) 所有元素满⾜items->forAll(i | i.qty > 0)
+->exists(e | expr) 存在元素满⾜items->exists(i | i.price > 100)
+->select(e | expr) 过滤 orders->select(o | o.status = #PAID)
+->collect(e | expr) 映射 items->collect(i | i.subtotal)
+->sum() 求和 ->collect(i | i.subtotal)->sum()
+->isUnique(e | expr) 唯⼀性 books->isUnique(b | b.isbn)
+OCL  与本课程已有内容的对应
+课程内容 O CL  对应
+概念类图多重性 1..* inv: self.lineItems->size() >= 1
+状态图守卫条件 pre: self.status = #PENDING_PAYMENT
+操作契约（前/后置条件）pre:  / post:  + @pre
+业务规则 BR1（最⼤99件） inv: self.quantity <= 99
+35

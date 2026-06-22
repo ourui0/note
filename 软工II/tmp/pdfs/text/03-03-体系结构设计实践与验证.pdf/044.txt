@@ -1,0 +1,30 @@
+⽆状态 Service 设计
+正确做法（⽆状态）
+@Service
+public class BookServiceImpl 
+    implements BookService {
+    private final BookDao bookDao;
+    @Autowired
+    public BookServiceImpl(BookDao dao) {
+        this.bookDao = dao;
+    }
+    public BookVO findById(Long id) {
+        Book b = bookDao.findById(id);
+        return convertToVO(b);
+    }
+}
+错误做法（有状态）
+@Service
+public class BookServiceImpl 
+    implements BookService {
+    private Book currentBook; // 危险 !
+    public void loadBook(Long id) {
+        this.currentBook = 
+            bookDao.findById(id);
+    }
+    public BookVO getCurrent() {
+        return convertToVO(currentBook);
+    }
+}
+有状态的 Service 在多线程环境下会导致数据混乱！ Spring 默认单例模式，多个请求共享同⼀个实例。
+44

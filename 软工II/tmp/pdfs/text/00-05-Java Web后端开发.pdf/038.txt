@@ -1,0 +1,19 @@
+JW T 认证流程
+客户端                                    服务端
+  │                                        │
+  │── POST /api/auth/login ───────────────►│
+  │   { "username": "alice",               │ 1. 验证⽤户名  + 密码
+  │     "password": "123456" }             │ 2. 查数据库， BCrypt ⽐对
+  │                                        │ 3. ⽣成  JWT Token （有效期  24h ）
+  │◄── { "token": "eyJhbG..." } ───────────│
+  │                                        │
+  │── GET /api/sites ─────────────────────►│
+  │   Authorization: Bearer eyJhbG...      │ 4. 解析  Token Header
+  │                                        │ 5. 验证签名  + 过期时间
+  │◄── [{ "id":1, "name":"NJU" }, ...]  ───│ 6. 通过  → 执⾏业务逻辑
+JW T 结构：Header.Payload.Signature （三段 Base64 ⽤ .  分隔）
+eyJhbGciOiJIUzI1NiJ9              ← Header ：签名算法（ HS256 ）
+.eyJ1c2VyIjoiYWxpY2UiLCJleHAiOjF9 ← Payload ：⽤户信息（ Base64 编码，⾮加密！）
+.SflKxwRJSMeKKF2QT4fwpMeJf36POk6   ← Signature ：密钥  HMAC 签名，防篡改
+⚠  JW T Payload 只是 Base64 编码，任何⼈都能解码——绝不要把密码存⼊ Payload！
+38

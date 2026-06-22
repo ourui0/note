@@ -1,0 +1,8 @@
+Sale类
+getChange(doubl
+e payment)方法
+所示的规格说明，可以将其
+输入数据划分为三类：
+○1有效数据；
+○2无效数 据， payment<=0 
+○3无效数据， payment<total 

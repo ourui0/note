@@ -1,0 +1,11 @@
+软件的本质复杂性 [Brooks 1987]
+ 
+"The complexity of software is an essential property, not an accidental one."
+—— F. Brooks, No Silver Bullet
+ 
+W hy software is inherently complex?
+问题域的复杂性 — 现实世界的规则、约束和例外
+开发过程的管理难度 — 多⼈协作、需求变更
+软件的灵活性 — 修改容易导致"什么都能改"的幻觉
+离散系统的⾏为刻画 — ⽆法像连续系统那样⽤微分⽅程建模
+6

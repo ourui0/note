@@ -1,0 +1,29 @@
+LSP 反例：企鹅与⻦
+class Bird {
+    void fly() { ... }  // 所有⻦都会⻜？
+}
+class Penguin extends Bird {
+    @Override
+    void fly() {
+        throw new UnsupportedOperationException(" 企鹅不会⻜！ ");
+    }
+}
+// 调⽤⽅：
+void makeBirdFly(Bird b) {
+    b.fly(); // Penguin 会抛异常！
+}
+修复⽅案
+interface Flyable {
+    void fly();
+}
+class Sparrow extends Bird
+    implements Flyable {
+    public void fly() { ... }
+}
+class Penguin extends Bird {
+    // 不实现  Flyable
+    void swim() { ... }
+}
+⽤接⼝分离代替强制继承层次，Penguin 不
+再承诺 fly() ，LSP ⾃然满⾜。
+17

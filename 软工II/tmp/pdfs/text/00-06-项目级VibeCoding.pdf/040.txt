@@ -1,0 +1,16 @@
+启动与联调
+# 终端  1 ：启动后端
+cd my-app-backend
+npm run dev
+# → 监听  http://localhost:3000
+# 终端  2 ：启动前端
+cd my-app-frontend
+npm run dev
+# → 访问  http://localhost:5173
+常⻅问题与 Claude Code 修复：
+问题 对 Claude Code 说
+跨域报错（CO RS） "后端开启 CO RS，允许 localhost:5173 访问"
+接⼝ 404 "检查路由注册是否正确，打印所有已注册路由"
+数据格式不匹配 "前端收到的字段是 due_date ，改为 dueDate  驼峰命名"
+SQL ite 并发写⼊ "开启 W AL  模式解决并发写⼊问题"
+40

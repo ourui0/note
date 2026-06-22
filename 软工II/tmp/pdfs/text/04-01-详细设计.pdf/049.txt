@@ -1,0 +1,12 @@
+详细设计的集成测试
+类间协作的集成测试
+重点针对复杂逻辑（交互⽐较多）的协作
+⾃顶向下 或 ⾃底向上 的集成
+M ock O bject
+不是 Stub —— M ock 是更轻量的"占位类"
+测试⽤例
+输⼊：协作中需要的对象 + 触发消息
+输出：验证最终状态或返回值（assertEquals ）
+协作图示意（被测⽬标）
+salesController → Sales.total() → SalesList.total() → SalesLineItem.subtotal() → Commodity.getPrice()
+49

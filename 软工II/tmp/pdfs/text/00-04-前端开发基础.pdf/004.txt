@@ -1,0 +1,11 @@
+AJAX 引发的前端⼯程化⾰命
+AJAX 的历史影响链：
+Gmail/Google Maps (2004–05)  ← AJAX 证明  Web 可以像桌⾯应⽤⼀样
+    → jQuery (2006)           ← 简化  DOM 操作和  AJAX 调⽤
+    → Backbone / Angular      ← 前端  MVC/MV* 框架兴起
+    → React (2013)            ← 组件化  + 虚拟  DOM
+    → Vue.js (2014)           ← 渐进式框架， MVVM
+    → 现代前端⼯程化体系        ← Vite / TypeScript / SSR…
+Gmail 证明了：Web ⻚⾯可以像桌⾯应⽤⼀样流畅响应。
+这⼀刻，"前端开发"作为⼀⻔独⽴⼯程学科正式诞⽣。
+4

@@ -1,0 +1,8 @@
+Interaction Style（交互⻛格）
+⻛格 英⽂ 典型控件
+直接操纵 Direct manipulation 窗⼝、图标（Window-Icon）
+菜单选择 Menu selection 下拉菜单、弹出菜单
+表单填写 Form ﬁll-in 输⼊框、复选框、下拉框
+命令语⾔ Command language 终端、Shell
+⾃然语⾔ Natural language 语⾳助⼿、聊天机器⼈
+27

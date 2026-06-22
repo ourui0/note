@@ -1,0 +1,10 @@
+Patriot missile defense 1991
+• The Patriot missile defense system failed to defend 
+against several missiles
+• A small timing error in the system’s clock 
+accumulated so that after 14 hours, the tracking 
+system was no longer accurate
+• In the attack on Dhahran, KSA, the system had 
+been in operation for over 100 hours
+• The system was mobile, so the developers did not 
+expect it to remain in one place for 14 hours

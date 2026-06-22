@@ -1,0 +1,39 @@
+状态图 → Java 代码的映射 [SW EBO K 4.4]
+映射规则
+状态图元素 Java 对应
+状态 枚举值
+转换 ⽅法
+守卫条件 if 检查
+⾮法转换 抛出异常
+动作 ⽅法内逻辑
+状态图中的每个转换 → ⼀个⽅法；每个守卫条件 →
+⽅法开头的 if 检查
+代码示例
+public enum OrderStatus {
+  PENDING_PAYMENT, PAID, SHIPPED,
+  COMPLETED, CANCELLED, REFUNDING
+}
+// 待⽀付  → 已⽀付
+public void pay() {
+  if (status != PENDING_PAYMENT)
+    throw new IllegalStateException();
+  status = PAID;
+  deductInventory();       // 动作：扣减库存
+}
+// 已⽀付  → 已发货
+public void ship(String trackingNo) {
+  if (status != PAID)
+    throw new IllegalStateException();
+  status = SHIPPED;
+}
+// 多条  → 已取消（守卫条件不同）
+public void cancel() {
+  if (status == PENDING_PAYMENT) {
+    status = CANCELLED;
+    releaseInventory();    // 释放库存
+  } else if (status == PAID) {
+    status = CANCELLED;
+    releaseInventory();
+    initiateRefund();      // 发起退款
+  } else throw new IllegalStateException();
+} 43

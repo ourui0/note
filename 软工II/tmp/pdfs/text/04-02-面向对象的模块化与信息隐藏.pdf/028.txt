@@ -1,0 +1,25 @@
+类型 D：隐藏类型信息（LSP）
+调⽤⽅应该依赖接⼝，⽽不需要知道对象的具体类型。
+违反封装 D：instanceof 判断
+void process(Shape shape) {
+    if (shape instanceof Circle) {
+        ((Circle) shape).drawCircle();
+    } else if (shape instanceof Square) {
+        ((Square) shape).drawSquare();
+    }
+}
+问题：每增加⼀种 Shape ，就要修改这段代码。
+正确：多态调度
+interface Shape {
+    void draw();  // 统⼀接⼝
+}
+class Circle implements Shape {
+    public void draw() { /* 画圆  */ }
+}
+class Square implements Shape {
+    public void draw() { /* 画⽅  */ }
+}
+void process(Shape shape) {
+    shape.draw();  // 不知道也不需要知道类型
+}
+28

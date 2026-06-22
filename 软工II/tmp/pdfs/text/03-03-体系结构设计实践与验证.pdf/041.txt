@@ -1,0 +1,19 @@
+案例：BookDao 接⼝设计
+public interface BookDao {
+    
+    Book findById(Long id);
+    
+    Book findByIsbn(String isbn);
+    
+    List<Book> search(String keyword, int page, int size);
+    
+    void save(Book book);
+    
+    void update(Book book);
+    
+    void deleteById(Long id);
+    
+    List<Book> findByCategory(String category);
+}
+接⼝只定义做什么（What），不涉及怎么做（How）。实现可以是 MyBatis、JPA 或内存 Map。
+41

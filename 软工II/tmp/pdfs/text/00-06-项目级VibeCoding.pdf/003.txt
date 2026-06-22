@@ -1,0 +1,10 @@
+什么是 VibeCoding？
+"You fully give in to the vibes, embrace exponentials, and forget that the code even exists."
+——Andrej Karpathy，2025
+核⼼思想：不再逐⾏⼿写代码，⽽是⽤⾃然语⾔描述意图，让 AI 完成实现。
+传统开发 VibeCoding
+需要精通语⾔语法只需清晰描述需求
+⼿动搭建项⽬结构AI ⾃动⽣成脚⼿架
+前后端分别学习 统⼀⽤对话驱动
+耗时数天搭原型 数⼩时跑通全栈
+3

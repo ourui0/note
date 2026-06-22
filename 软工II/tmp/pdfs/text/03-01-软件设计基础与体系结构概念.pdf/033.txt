@@ -1,0 +1,3 @@
+PART 7 · AI 增强：架构决策与架构⽓味
+L L M  辅助 ADR ⽣成 + Architecture Smell 识别
+33

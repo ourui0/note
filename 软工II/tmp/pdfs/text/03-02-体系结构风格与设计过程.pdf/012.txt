@@ -1,0 +1,11 @@
+案例对⽐：KW IC 实验
+问题描述 [Parnas 1972]
+KW IC（Key W ord in Context，上下⽂关键词索引）系统：
+输⼊：⼀组有序的⾏，每⾏是有序的词序列
+处理：对每⾏进⾏循环位移（将⾸词移到末尾），⽣成所有位移变体
+输出：按字⺟顺序排列的所有循环位移结果
+示例：输⼊ "Software Architecture"
+→ 输出 "Architecture Software", "Software Architecture"
+实验⽬的
+⽤ 5 种体系结构⻛格实现同⼀问题，对⽐各⻛格在可修改性、可复⽤性、性能上的差异。
+12

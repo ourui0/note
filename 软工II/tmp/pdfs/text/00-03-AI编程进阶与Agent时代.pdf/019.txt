@@ -1,0 +1,15 @@
+让 Agent 理解需求：Spec（规格说明）
+最⼤挑战：Agent 执⾏的是你描述的需求，不是你脑⼦⾥真实的需求
+  模糊的任务描述（导致  Agent 跑偏）：
+    " 帮我实现⽤户注册功能 "
+  清晰的  Spec （让  Agent 准确执⾏）：
+    " 实现⽤户注册功能，具体要求：
+     1. POST /api/auth/register 接⼝
+     2. 请求体： { username, password, email }
+     3. 密码⽤  BCrypt 加密后存⼊  users 表
+     4. username 和  email 不允许重复，重复时返回  409 状态码
+     5. 成功返回  { userId, username, message: ' 注册成功 ' }
+     6. 只修改  AuthController.java 和  UserMapper.java
+     7. 复⽤已有的  UserService ，不要创建新类 "
+核⼼：Spec 越精确，Agent 越可靠——这与需求⼯程的原则完全⼀致
+19

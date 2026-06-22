@@ -1,0 +1,12 @@
+Delegated Control（委托式控制）
+思想
+控制器保留主要决策，把次要的⼦任务委托给更专⻔的对
+象
+形成"控制器→中间协调者→执⾏者"的链条
+平衡了"集中"的清晰性和"分散"的灵活性
+是⼤多数实际系统采⽤的折中⽅案
+案例：业务逻辑层
+LoginController → User
+SalesController → Sales 、Commodity 、Member
+委托式形态（顺序图）
+36

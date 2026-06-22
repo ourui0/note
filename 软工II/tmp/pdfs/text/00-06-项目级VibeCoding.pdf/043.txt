@@ -1,0 +1,12 @@
+本次项⽬作业
+⽬标：⽤ VibeCoding ⼯具链完成⼀个⼩型全栈应⽤
+阶段 要求
+原型 ⽤ Stitch 设计⾄少 3 个⻚⾯，截图存档
+前端 ⽤ AI Studio ⽣成 React 项⽬，或⽤灵码⽣成 Expo App
+后端 ⽤ Claude Code / 灵码 ⽣成 REST API，⾄少 4 个端点
+调试 W eb 端配置 M CP chrome-devtools，移动端⽤ Expo Go 联调
+集成 前后端联通，数据能正常读写
+报告 记录每步使⽤的提示词，分析 AI 的局限性
+提交⽅式：GitHub 仓库 + 提示词⽇志⽂档
+评分重点不在于功能多少，⽽在于你如何引导 AI、如何处理 AI 的错误输出
+43

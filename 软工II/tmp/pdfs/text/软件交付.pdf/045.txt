@@ -1,0 +1,16 @@
+大模型辅助项目评价与度量分
+析
+AI 驱动的项目度量分析
+传统做法：人工收集数据 → Excel 图表 → 会议评审，周期长、洞察浅
+AI 做法：自动聚合 Jira/Git/CI 数据，实时生成项目健康度报告
+大模型可分析的核心指标
+交付效率：Lead Time、Deployment Frequency 、Change Failure Rate（DORA 四大指标）
+代码质量：缺陷密度、技术债务趋势、覆盖率变化、 Code Churn
+团队健康：PR 合并时长、Code Review 等待时间、Burndown 偏差
+Claude Code 项目评价示例
+$ claude "分析 git log --since=2024-01-01 的提交记录和 Jira 导出的 issues.csv，
+计算 DORA 指标，识别交付瓶颈，生成项目评价报告"
+AI 输出：瓶颈定位（Code Review 等待均值 3.2 天）+ 改进建议 + 趋势预测
+交付后的回顾与经验沉淀
+AI 自动整理 Sprint 回顾会议记录，提取 Action Items 并跟踪完成状态
+跨项目对比：识别组织级共性问题，推动流程标准化改进

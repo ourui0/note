@@ -1,0 +1,4 @@
+PART 5
+MCP：chrome-devtools ⾃动调试 W eb 端
+让 AI 直接操控浏览器，⾃动定位并修复前端问题
+30

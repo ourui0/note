@@ -1,0 +1,16 @@
+从 Hello W orld 到 HTTP 服务器
+Node.js Hello W orld：
+// hello.js
+console.log('Hello, World!');
+// 运⾏： node hello.js
+构建⼀个原⽣ HTTP 服务器：
+// server.js
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+  res.end('Hello, Node.js!');
+});
+server.listen(8080, () => {
+  console.log(' 服务器运⾏在  http://localhost:8080');
+});
+31

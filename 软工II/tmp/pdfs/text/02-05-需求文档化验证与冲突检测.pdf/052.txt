@@ -1,0 +1,6 @@
+SDD 与传统需求⼯程：换了名字的⽼朋友
+传统需求⼯程概念 SDD 对应概念 变化
+需求规格说明书（SRS） Feature Spec / PRD 格式更轻量，⾯向 AI 可读
+需求层次（业务→⽤户→系统）Problem → Solution → Tasks 结构相同，命名不同
+需求验证（评审） Spec Review + Conformance Suite ⾃动化程度提⾼
+52

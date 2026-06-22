@@ -1,0 +1,9 @@
+O bjectives of HCI — U sability
+可⽤性不是单⼀属性，⽽是多维度的综合：
+属性 英⽂ 含义
+易学性 L earnability ⽤户能在短时间内掌握操作
+效率 Eﬃciency 熟练⽤户能⾼效完成任务
+易记性 Memorability 中断后⽆需从头学习
+容错性 Errors 错误少，能快速从错误中恢复
+满意度 Satisfaction ⽤户使⽤时感到愉悦
+7

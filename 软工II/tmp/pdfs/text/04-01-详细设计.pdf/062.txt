@@ -1,0 +1,22 @@
+详细设计的验证
+评审（Review）
+团队⾛查（Walkthrough）
+检查清单（Checklist）
+形式化评审（Inspection）
+度量（M etrics）
+模块化度量
+耦合度 Ca / Ce
+不稳定性 I = Ce / (Ca+Ce)
+抽象度 A
+主序列距离 D = |A + I − 1|
+测试
+协作测试（Class Collaboration Test）
+M ock-Driven 测试
+变化测试（Mutation Testing）
+评审的常⻅缺陷
+多视⻆不⼀致（类图 vs 顺序图）
+接⼝规格不完整
+缺失实现注解
+设计理由（Rationale）缺失
+📖  SW EBO K v4 §6.4 · M easures and M etrics  |  §6.5 · Veriﬁcation, Validation, and Certiﬁcation  |  §6.1 · Design Reviews and Audits
+62

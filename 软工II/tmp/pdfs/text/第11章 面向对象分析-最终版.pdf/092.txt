@@ -1,0 +1,16 @@
+91
+2025/5/29
+状态图的发展历程
+➢状态图是以状态机理论为基础建立的对系统行
+为的描述手段。
+➢最简单的状态机是有限状态机FSM（Finite 
+State Machine），它从理论上阐释了如何使用
+状态机模型来表示系统的行为。
+• 在各种方法的FSM应用当中，产生了状态转移图STD
+（State Transition Diagram）、Yourdon状态图示、
+SDL（Specification and Description Language）状态图
+示和状态转移矩阵STM（State Transition Matrix）等
+多种表示法。
+行为模型——状态图
+状态机是以“状态”概念为基础解释系统行为的一种技术，它在对
+系统行为的描述上得到了大量的应用

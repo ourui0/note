@@ -1,0 +1,18 @@
+AI 辅助 · 职责分配 Prompt 模板
+你是⼀位资深⾯向对象设计教练，请帮我⽤  GRASP 模式分配职责。
+【需求】
+我在做⼀个  Monopoly （⼤富翁）游戏。每个回合玩家执⾏：
+(1) 掷骰⼦计算随机数；
+(2) 找到玩家当前位置；
+(3) 根据随机数和当前位置确定新  Square ；
+(4) 将玩家移动到新  Square 。
+【已有概念类】
+- MonopolyGame 、 Die 、 Player 、 Piece 、 Board 、 Square
+请按以下顺序回答：
+1. ⽤  Information Expert / Creator / Controller 三种  GRASP
+   分别评估每⼀步应分配给哪个类，给出理由。
+2. 画出顺序图（ PlantUML ⽂本格式）。
+3. 评估两种候选⽅案的耦合  / 内聚  / 演化稳定性。
+4. 推荐最终⽅案并说明权衡。
+课堂实操：把这个 Prompt 喂给 Claude / GPT，对⽐ AI 答案与你的设计 —— 培养"批判性使⽤ AI"的能⼒。
+52

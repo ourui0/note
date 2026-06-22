@@ -1,0 +1,22 @@
+案例：BookServiceImpl — 构造器注⼊
+@Service
+public class BookServiceImpl implements BookService {
+    private final BookDao bookDao;
+    // 构造器注⼊  — Spring 推荐⽅式
+    @Autowired
+    public BookServiceImpl(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+    @Override
+    public BookVO findById(Long id) {
+        Book book = bookDao.findById(id);
+        return convertToVO(book);
+    }
+    @Override
+    public boolean checkStock(Long bookId, int quantity) {
+        Book book = bookDao.findById(bookId);
+        return book != null && book.getStock() >= quantity;
+    }
+}
+BookServiceImpl 依赖 BookDao 接⼝，不依赖具体实现类。
+43

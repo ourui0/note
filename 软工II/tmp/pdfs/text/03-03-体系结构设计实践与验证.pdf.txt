@@ -1,0 +1,1009 @@
+
+
+--- PAGE 1 ---
+体系结构设计实践与验证
+软件⼯程与计算 II · 体系结构模块 · 第 3 讲
+南京⼤学 · 刘钦
+1
+
+
+--- PAGE 2 ---
+今⽇学习路径
+①  逻辑视⻆  → ②  4+1 视图  → ③  接⼝设计  → ④  构建落地  → ⑤  集成验证  → ⑥  AI 辅助
+  ──────────────────────────────────────────────────────────────────────────
+  包设计原则     多视⻆建模    DIP 与 DI     代码映射     集成策略      LLM 辅助架构
+今⽇核⼼问题
+1. 如何将⽤例分析结果系统地映射为包结构？
+2. 如何通过接⼝设计与依赖倒置实现层间解耦？
+3. 如何选择集成策略并验证体系结构的正确性？
+2
+
+
+--- PAGE 3 ---
+预习测试（5 分钟）
+请在纸上完成以下两题：
+1. 简述体系结构设计的过程步骤（⾄少写出 4 步）
+2. 画出学⽣选课业务逻辑 chooseCoursebl 的关键类图，标注类之间的依赖关系
+提示：回顾第 2 讲中分层体系结构的设计⽅法
+3
+
+
+--- PAGE 4 ---
+PART 1 · 逻辑视⻆设计
+从⽤例到包结构的系统映射
+4
+
+
+--- PAGE 5 ---
+逻辑视⻆与包的概念
+逻辑视⻆
+关注系统的功能组织
+描述系统的静态结构
+核⼼单位：包（Package）
+⽬标：⾼内聚、低耦合
+包（Package）
+UML 中的分组机制
+将相关的类/接⼝组织在⼀起
+对应 Java 中的 package
+包之间存在依赖关系
+包是体系结构逻辑视⻆的基本构造单元，好的包划分直接决定系统的可维护性。
+5
+
+
+--- PAGE 6 ---
+从⽤例到包的 4 步映射⽅法
+步骤 活动 产出
+Step 1 确定顶层包结构 controller / service / dao / entity 四层
+Step 2 分析⽤例，确定业务模块 book / cart / order / customer / payment / inventory / review
+Step 3 将概念类分配到 entity 包 Book, O rder, Customer, CartItem 等
+Step 4 为每层建⽴与业务模块对应的类BookController, BookService, BookDao 等
+原则：先纵向分层，再横向分模块，确保每个包职责单⼀。
+6
+
+
+--- PAGE 7 ---
+案例：在线书店完整包结构
+com.bookstore
+├── controller
+│   ├── BookController
+│   ├── CartController
+│   ├── OrderController
+│   └── CustomerController
+├── service
+│   ├── BookService          ( 接⼝ )
+│   ├── CartService          ( 接⼝ )
+│   ├── OrderService         ( 接⼝ )
+│   ├── InventoryService     ( 接⼝ )
+│   └── impl/
+│       ├── BookServiceImpl
+│       ├── CartServiceImpl
+│       └── OrderServiceImpl
+├── dao
+│   ├── BookDao, CartDao, OrderDao, CustomerDao  ( 接⼝ )
+│   └── impl/  ...
+└── entity
+    ├── Book, Order, OrderItem, CartItem, Customer, Review
+7
+
+
+--- PAGE 8 ---
+包的依赖关系
+关键约束：依赖⽅向单向向下，禁⽌反向依赖或跨层调⽤。
+8
+
+
+--- PAGE 9 ---
+包设计原则 — 内聚性三原则
+原则 全称 含义
+REP 重⽤-发布等价原则重⽤的粒度 = 发布的粒度
+CRP 共同重⽤原则 ⼀起被重⽤的类放同⼀个包
+CCP 共同封闭原则 因同⼀原因变更的类放同⼀个包
+书店案例
+REP：entity 包整体发布，Book 和 Order ⼀起被所有层引⽤
+CRP：BookDao 和 BookService 总是⼀起使⽤ → 放在同⼀业务模块下
+CCP：⽀付需求变更只影响 payment 模块，不波及 book 模块
+9
+
+
+--- PAGE 10 ---
+包设计原则 — 耦合性三原则
+原则 全称 含义
+ADP ⽆环依赖原则包之间的依赖关系不能形成环
+SDP 稳定依赖原则依赖⽅向朝着更稳定的包
+SAP 稳定抽象原则越稳定的包应越抽象
+书店案例
+ADP：controller → service → dao，⽆环
+SDP：entity 最稳定（很少变化），所有层都依赖它
+SAP：dao 包对外暴露的是接⼝（抽象），实现类放在 dao.impl 中
+10
+
+
+--- PAGE 11 ---
+REP 重⽤-发布等价原则 [Robert C. M artin]
+The granule of reuse is the granule of release.
+重⽤的单元 = 发布的单元。
+ 
+含义
+如果你要复⽤⼀个包中的某个类，你就得依赖整个包
+因此，包中的类必须有理由被⼀起重⽤
+案例：在线书店
+包 是否满⾜ REP 理由
+entity （Book, O rder, Customer...） 满⾜ 所有层都引⽤ entity，整体发布
+假如把 Book 和 PaymentGateway 放同⼀包 违反 ⽤图书搜索功能不需要⽀付⽹关
+11
+
+
+--- PAGE 12 ---
+CRP 共同重⽤原则 [Robert C. M artin]
+Classes that are used together belong together.
+⼀起被使⽤的类应放在⼀起。
+ 
+含义
+CRP 告诉我们哪些类不该放在⼀起：如果⽤了包中 A 类但不需要 B 类，说明 A 和 B 不该在同⼀个包
+案例：连锁超市
+功能 对应逻辑包 CRP 分析
+销售 SalesUI, Sales, SalesData 三个总是⼀起使⽤ ✓
+库存 CommodityUI, Commodity, CommodityData 三个总是⼀起使⽤ ✓
+销售+库存放⼀个包？违反 CRP 修改库存时被迫重新测试销售
+12
+
+
+--- PAGE 13 ---
+CCP 共同封闭原则 [Robert C. M artin]
+Classes that change together belong together.
+因同⼀原因变化的类应放在⼀起（包级别的 SRP）。
+ 
+含义
+当需求变更时，变更应该集中在尽可能少的包中
+违反 CCP = ⼀次需求变更要改多个包 = ⾼维护成本
+案例：在线书店
+需求变更："⽀付⽅式新增微信⽀付"
+如果按 CCP 划分 变更范围
+service.payment + dao.payment 只改 2 个包 ✓
+如果⽀付和订单混在⼀起 改动波及订单逻辑 ✗
+13
+
+
+--- PAGE 14 ---
+CCP 与 CRP 的权衡 [Robert C. M artin]
+ 
+CCP 和 CRP 是互斥的 —— 不可能同时完美满⾜两者。
+ 
+维度 CCP（共同封闭） CRP（共同重⽤）
+服务对象 维护者（Maintainers） 重⽤者（Reusers）
+包的⼤⼩ 倾向让包更⼤（变更集中）倾向让包更⼩（减少不必要依赖）
+优先场景 项⽬早期：需求频繁变更 项⽬成熟期：对外发布/复⽤
+ 
+项⽬⽣命周期中的演进策略
+早期：以 CCP 为主导 → ⼤包、便于开发和维护
+后期：架构稳定后，重构包结构 → 以 CRP 为主导，⽅便外部复⽤
+没有"正确答案"，只有当前阶段最合适的权衡
+14
+
+
+--- PAGE 15 ---
+SDP 稳定依赖原则 [Robert C. M artin]
+Depend in the direction of stability.
+依赖⽅向应朝着更稳定的⽅向。
+ 
+怎么判断稳定性？
+稳定 = 很多包依赖它（被需要）→ 改动代价⼤ → 不容易变
+不稳定 = 它依赖很多包 → 容易变
+案例：不稳定度计算
+包 Ca(传⼊)Ce(传出)I = Ce/(Ca+Ce) 稳定性
+entity 4 0 0.00 最稳定 — 正确！
+controller 0 3 1.00 最不稳定 — 正确！
+service 1 2 0.67 中等
+controller（不稳定）→ service（中等）→ dao → entity（稳定） ✓  符合 SDP
+15
+
+
+--- PAGE 16 ---
+SAP 稳定抽象原则 [Robert C. M artin]
+A package should be as abstract as it is stable.
+越稳定的包应越抽象；越不稳定的包应越具体。
+ 
+SDP + SAP = 依赖倒置原则（DIP）在包级别的体现
+包 稳定度 应有的抽象度 实际做法
+entity 最稳定 (I=0) ⾼抽象 PO JO ，⽆实现细节 ✓
+dao （接⼝包） 较稳定 ⾼抽象 只有 interface ✓
+controller 最不稳定 (I=1) 低抽象 全是具体实现 ✓
+service （接⼝包）中等 中等 interface + 部分实现 ✓
+痛苦区：稳定但具体（改不动但想改） → 要重构为接⼝
+⽆⽤区：不稳定但抽象（没⼈⽤的接⼝） → 可以删除
+16
+
+
+--- PAGE 17 ---
+案例：连锁超市 — 从⽤例到包的完整过程
+步骤 1：识别基本功能（从⽤例图）
+功能模块 包含的⽤例
+销售 销售处理、退货
+库存 商品⼊库、出库、产品调整、库存分析
+会员 发展会员、礼品赠送
+销售策略 特价策略制定、赠送策略制定
+⽤户 ⽤户管理
+步骤 2：建⽴初始包结构（粗粒度三层）
+选择分层⻛格 → 每个功能在 3 层各建⼀个包 → 共 5×3 = 15 个包
+17
+
+
+--- PAGE 18 ---
+初始概要功能设计
+功能 展示层包 业务逻辑层包 数据层包
+销售 SalesUI Sales SalesData
+库存 CommodityUI Commodity CommodityData
+会员 M emberUI M ember M emberData
+销售策略PromotionUI Promotion PromotionData
+⽤户 UserUI User UserData
+ 
+关键问题
+销售是否只⽤到 Sales 的数据？
+18
+
+
+--- PAGE 19 ---
+改进：发现横向依赖
+分析销售处理⽤例的数据需求
+销售处理不仅需要 Sales 数据，还需要：
+Commodity + CommodityData（查询商品信息、价格）
+Member + MemberData（查询会员折扣）
+Promotion + PromotionData（应⽤促销策略）
+User + UserData（验证收银员身份）
+改进后的概要功能设计
+功能 逻辑包（⿊⾊=本模块，红⾊=跨模块依赖）
+销售 Sales, SalesData; + Commodity, M ember, Promotion, User
+库存 Commodity, CommodityData; + Sales, SalesData
+会员 M ember, M emberData; + Sales, Commodity
+横向调⽤是不可避免的，但需要通过接⼝来管理
+19
+
+
+--- PAGE 20 ---
+设计⽅案对⽐
+⽅案⼀：粗粒度（每层⼀个包）
+问题：
+展示层⼀个⼤包 → 类太多
+数据层只有 Database 包 → ⽆法独⽴替换
+presentation 直接跨层调⽤ data
+⽅案⼆：细粒度（按功能模块拆包）
+优点：
+每个包职责明确（CCP）
+业务逻辑层内部横向调⽤清晰
+数据层按模块拆分，可独⽴替换
+presentation → businesslogic → data 单向
+20
+
+
+--- PAGE 21 ---
+案例：ADP 违规 — 循环依赖
+问题场景
+OrderService 调⽤  InventoryService.checkStock()
+InventoryService 调⽤  OrderService.getOrderQty()
+危害
+两个模块⽆法独⽴编译/测试
+修改⼀⽅会连锁影响另⼀⽅
+违反 ADP 原则
+21
+
+
+--- PAGE 22 ---
+ADP 修复⽅案 A：提取共同依赖包
+新建独⽴的接⼝包（如 stock-api ），包含 StockQuery 接⼝
+OrderService 和 InventoryService 都依赖这个第三⽅包
+原来的 AB 循环变成 A→C ← B，循环打破
+22
+
+
+--- PAGE 23 ---
+ADP 修复⽅案 B：接⼝定义在调⽤⽅包内（反转依赖⽅向）
+在 order 包内定义 InventoryPort 接⼝
+InventoryServiceImpl （inventory 包）反过来依赖 order 包的接⼝
+依赖⽅向从 order→inventory 反转为 inventory→order，循环打破
+⽅案 A = 提取第三⽅；⽅案 B = 反转⽅向。核⼼都是⾯向接⼝编程。
+23
+
+
+--- PAGE 24 ---
+逻辑视⻆设计⼩结
+要点 说明
+映射⽅法 4 步法：分层 → 分模块 → 分配实体 → 建⽴各层类
+依赖⽅向 单向向下：controller → service → dao → entity
+内聚性原则REP / CRP / CCP — 决定哪些类放在⼀起
+耦合性原则ADP / SDP / SAP — 决定包之间如何依赖
+核⼼武器 接⼝（抽象）是打破耦合与循环依赖的关键
+24
+
+
+--- PAGE 25 ---
+PART 2 · 4+1 视图
+多视⻆理解体系结构
+25
+
+
+--- PAGE 26 ---
+View vs Viewpoint [SW EBO K 2.1]
+ 
+概念 定义 类⽐
+Viewpoint（视点） ⼀套约定和规范，指导如何创建和使⽤某类视图建筑制图标准（平⾯图怎么画）
+View（视图） 从某个视点出发，对系统架构的⼀次具体表达 ⼀张具体的建筑平⾯图
+ 
+常⻅视点 [Rozanski & W oods]
+视点 关注点 受众
+M odule 模块组织、依赖开发者
+Component & Connector 运⾏时交互 架构师
+Allocation 部署、资源分配运维
+⼀个视点可以产出多个视图；ADL（如 UML）是表达视图的⼯具
+26
+
+
+--- PAGE 27 ---
+Kruchten 4+1 视图模型
+每个视图⾯向不同的利益相关者，解决不同的关注点。
+27
+
+
+--- PAGE 28 ---
+五个视图对照表
+视图 关注点 对应 UML 图 ⾯向⻆⾊
+逻辑视图 功能需求、类与包的组织包图、类图 架构师、开发者
+开发视图 代码组织、模块划分 组件图 开发者
+进程视图 并发、同步、性能 活动图、序列图系统集成者
+物理视图 部署拓扑、硬件映射 部署图 运维⼯程师
+场景视图 ⽤例驱动、验证其他视图⽤例图 所有利益相关者
+28
+
+
+--- PAGE 29 ---
+案例：在线书店 — 逻辑视图（包图）
+每个顶层包内部按业务模块再次划分（book / order / cart / customer）。
+29
+
+
+--- PAGE 30 ---
+案例：在线书店 — 物理视图（部署图）
+四层代码全部部署在同⼀个 Tomcat 进程中（单体架构）。
+30
+
+
+--- PAGE 31 ---
+案例：在线书店 — 开发视图（组件图）
+代码组织 → 构建单元 → 交付物
+模块 Maven 模块 / 包 构建产出 负责团队
+bookstore-web controller + 静态资源 W AR ⼊⼝ 前端 + A
+bookstore-service service 接⼝ + 实现 JAR 后端 B/C
+bookstore-dao dao 接⼝ + M yBatis mapperJAR DBA E
+bookstore-entity 实体类 + 枚举 JAR（公共依赖）全员共享
+UML 组件图
+31
+
+
+--- PAGE 32 ---
+案例：在线书店 — 进程视图
+关注并发、线程、同步
+单体部署时的线程模型
+线程/进程 职责
+Tomcat W orker Thread Pool 处理 HTTP 请求（200 线程）
+HikariCP Connection Pool 数据库连接池（max=20）
+Scheduler Thread 定时任务（订单超时取消）
+Async Thread Pool 异步邮件/短信通知
+并发关注点
+库存扣减：乐观锁 UPDATE inventory SET qty=qty-1 WHERE 
+qty>0
+订单超时：Scheduler 每分钟扫描超时订单
+⽀付回调：幂等处理，防⽌重复扣款
+缓存⼀致：Redis 缓存与 DB 的最终⼀致性
+进程视图回答："系统在运⾏时如何分配线程和资源？"
+32
+
+
+--- PAGE 33 ---
+案例：在线书店 — 进程视图（活动图）
+"购买图书"⽤例的线程/进程活动图
+活动图展示了请求在多线程/多进程间的流转：Worker Thread → Async Pool → 外部⽀付⽹关
+33
+
+
+--- PAGE 34 ---
+案例：在线书店 — 场景视图（⽤例驱动）
+场景视图 = ⽤例 × 架构各层的穿透
+⽤例 展示层 业务层 数据层 并发/部署关注点
+购买图书 O rderController O rderService → PaymentService O rderDao, InventoryDao 库存乐观锁，⽀付幂等
+搜索图书 BookController BookService BookDao (+ Redis 缓存)缓存命中率，全⽂索引
+管理购物⻋CartController CartService CartDao Session/Token ⼀致性
+查看报表 ReportControllerReportService O rderDao (聚合查询) 慢查询优化，异步导出
+ 
+场景视图是验证视图——通过⾛查关键⽤例，检验逻辑/开发/进程/物理四个视图是否协调⼀致
+34
+
+
+--- PAGE 35 ---
+4+1 视图总结
+ 
+视图 核⼼问题 在线书店案例要点
+逻辑 功能怎么划分？ controller / service / dao / entity 四层包
+开发 代码怎么组织和构建？4 个 M aven 模块，entity 是公共依赖
+进程 运⾏时线程/并发如何？200 worker + 20 DB连接 + 定时器 + 异步池
+物理 部署在哪⾥？ Browser → Tomcat → M ySQL （单体）
+场景 ⽤例能否穿透所有层？购买图书穿透 4 层 + 库存锁 + ⽀付幂等
+场景视图是粘合剂——如果⼀个⽤例⽆法顺畅穿透四个视图，说明架构有问题
+35
+
+
+--- PAGE 36 ---
+从逻辑层到物理节点的映射
+逻辑层 职责 部署位置 技术选型
+controller 接收请求、参数校验Tomcat Spring M VC
+service 业务逻辑、事务管理Tomcat Spring Service
+dao 数据持久化 Tomcat M yBatis / JPA
+entity 数据实体定义 Tomcat PO JO
+前端 ⻚⾯渲染、⽤户交互浏览器 HTM L/CSS/JS
+数据库 数据存储 M ySQL 服务器 M ySQL 5.7+
+逻辑分层 ≠ 物理分离。单体架构中逻辑层共享同⼀进程。
+36
+
+
+--- PAGE 37 ---
+PART 3 · 接⼝设计与依赖倒置
+⽤抽象构建体系结构的"楼板"
+37
+
+
+--- PAGE 38 ---
+接⼝在体系结构中的作⽤
+"楼板"⽐喻
+  ┌─────────────┐  ← 上层（使⽤者）
+  │  controller  │
+  ├═════════════╡  ← 接⼝  = " 楼板 "
+  │  service     │
+  ├═════════════╡  ← 接⼝  = " 楼板 "
+  │    dao       │
+  └─────────────┘
+接⼝是层与层之间的契约，如同楼板将楼层隔离。
+接⼝的三⼤好处
+1. 解耦：上层不依赖下层实现
+2. 可替换：实现类可以随时替换
+3. 可测试：⽤ Mock 替代真实实现
+先定义接⼝，再编写实现 — 这就是⾯向接⼝编程。
+38
+
+
+--- PAGE 39 ---
+PO  与 VO  概念
+概念 全称 ⽤途 所在层
+PO Persistent O bject 与数据库表⼀⼀对应 entity / dao
+VO Value O bject ⾯向展示层的数据传输对象controller / service
+为什么需要区分？
+PO  包含数据库细节（主键、外键、时间戳）
+VO  只包含前端需要的字段
+隔离变化：数据库字段变更不影响前端接⼝
+// PO: 对应  book 表
+public class Book { Long id; String isbn; String title; BigDecimal price; ... }
+// VO: 前端展示⽤
+public class BookVO { String isbn; String title; String priceText; double rating; }
+39
+
+
+--- PAGE 40 ---
+依赖倒置原则（DIP）详解
+传统依赖
+⾼层模块  ── 依赖 ──  低层模块
+  (service)          (dao 实现 )
+⾼层直接依赖低层具体实现，耦合度⾼。
+依赖倒置后
+⾼层模块  ── 依赖 ──  抽象接⼝
+                      ▲
+低层模块  ── 实现 ──┘
+⾼层和低层都依赖抽象，依赖⽅向"倒置"。
+DIP 两条规则：
+1. ⾼层模块不应依赖低层模块，两者都应依赖抽象
+2. 抽象不应依赖细节，细节应依赖抽象
+40
+
+
+--- PAGE 41 ---
+案例：BookDao 接⼝设计
+public interface BookDao {
+    
+    Book findById(Long id);
+    
+    Book findByIsbn(String isbn);
+    
+    List<Book> search(String keyword, int page, int size);
+    
+    void save(Book book);
+    
+    void update(Book book);
+    
+    void deleteById(Long id);
+    
+    List<Book> findByCategory(String category);
+}
+接⼝只定义做什么（What），不涉及怎么做（How）。实现可以是 MyBatis、JPA 或内存 Map。
+41
+
+
+--- PAGE 42 ---
+案例：BookService 接⼝设计
+public interface BookService {
+    
+    BookVO findById(Long id);
+    
+    List<BookVO> search(String keyword, int page, int size);
+    
+    boolean checkStock(Long bookId, int quantity);
+    
+    void addBook(BookVO bookVO);
+    
+    void updateBook(BookVO bookVO);
+}
+设计要点
+⼊参和返回值使⽤ VO （⾯向上层），内部再转换为 PO
+checkStock ⽅法体现业务逻辑：不只是查数据，还要判断库存是否充⾜
+⽅法粒度对应⽤例步骤，⽽⾮数据库 CRUD
+42
+
+
+--- PAGE 43 ---
+案例：BookServiceImpl — 构造器注⼊
+@Service
+public class BookServiceImpl implements BookService {
+    private final BookDao bookDao;
+    // 构造器注⼊  — Spring 推荐⽅式
+    @Autowired
+    public BookServiceImpl(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+    @Override
+    public BookVO findById(Long id) {
+        Book book = bookDao.findById(id);
+        return convertToVO(book);
+    }
+    @Override
+    public boolean checkStock(Long bookId, int quantity) {
+        Book book = bookDao.findById(bookId);
+        return book != null && book.getStock() >= quantity;
+    }
+}
+BookServiceImpl 依赖 BookDao 接⼝，不依赖具体实现类。
+43
+
+
+--- PAGE 44 ---
+⽆状态 Service 设计
+正确做法（⽆状态）
+@Service
+public class BookServiceImpl 
+    implements BookService {
+    private final BookDao bookDao;
+    @Autowired
+    public BookServiceImpl(BookDao dao) {
+        this.bookDao = dao;
+    }
+    public BookVO findById(Long id) {
+        Book b = bookDao.findById(id);
+        return convertToVO(b);
+    }
+}
+错误做法（有状态）
+@Service
+public class BookServiceImpl 
+    implements BookService {
+    private Book currentBook; // 危险 !
+    public void loadBook(Long id) {
+        this.currentBook = 
+            bookDao.findById(id);
+    }
+    public BookVO getCurrent() {
+        return convertToVO(currentBook);
+    }
+}
+有状态的 Service 在多线程环境下会导致数据混乱！ Spring 默认单例模式，多个请求共享同⼀个实例。
+44
+
+
+--- PAGE 45 ---
+接⼝设计⼩结
+设计要点 说明
+接⼝ = 契约 定义层间交互的 W hat，隐藏 How
+PO  vs VO 隔离持久化细节与展示需求
+DIP ⾼层和低层都依赖抽象，不直接耦合
+构造器注⼊Spring 推荐的 DI ⽅式，保证不可变性
+⽆状态设计Service 不持有请求级别的状态，确保线程安全
+接⼝设计质量直接决定体系结构的可演化性和可测试性。
+45
+
+
+--- PAGE 46 ---
+PART 4 · 体系结构构建
+从设计到代码的落地
+46
+
+
+--- PAGE 47 ---
+从设计到代码的落地
+核⼼映射关系
+设计概念 代码实现
+包（Package） Java package / ⽬录
+接⼝ Java interface
+依赖关系 import 语句 / 构造器参数
+层（Layer） 顶层 package 划分
+业务模块 ⼦ package 划分
+落地原则
+1. ⽬录结构 = 包结构：代码组织严格反映架构设计
+2. 依赖检查：import 只能指向允许的层
+3. 接⼝先⾏：先建接⼝⽂件，再写实现类
+47
+
+
+--- PAGE 48 ---
+案例：Spring Boot 项⽬结构
+bookstore/
+├── src/main/java/com/bookstore/
+│   ├── BookstoreApplication.java        ← 启动类
+│   ├── controller/
+│   │   ├── BookController.java
+│   │   └── OrderController.java
+│   ├── service/
+│   │   ├── BookService.java             ← 接⼝
+│   │   ├── OrderService.java            ← 接⼝
+│   │   └── impl/
+│   │       ├── BookServiceImpl.java
+│   │       └── OrderServiceImpl.java
+│   ├── dao/
+│   │   ├── BookDao.java                 ← 接⼝
+│   │   └── OrderDao.java               ← 接⼝
+│   └── entity/
+│       ├── Book.java
+│       └── Order.java
+├── src/main/resources/
+│   └── application.properties
+└── pom.xml
+48
+
+
+--- PAGE 49 ---
+案例：Spring Boot 配置
+# application.properties
+# 服务端⼝
+server.port=8080
+# 数据库连接
+spring.datasource.url=jdbc:mysql://localhost:3306/bookstore
+spring.datasource.username=root
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+# MyBatis 配置
+mybatis.mapper-locations=classpath:mapper/*.xml
+mybatis.type-aliases-package=com.bookstore.entity
+# ⽇志级别
+logging.level.com.bookstore=DEBUG
+配置⽂件体现了物理视图的关键信息：端⼝、数据库地址、技术选型。
+49
+
+
+--- PAGE 50 ---
+PART 5 · 集成策略与验证
+确保体系结构设计的正确落地
+50
+
+
+--- PAGE 51 ---
+集成策略对⽐
+策略 ⽅式 优点 缺点
+⼤爆炸 所有模块⼀次集成 简单直接 难以定位缺陷
+⾃顶向下 从 controller 层开始 早期验证主流程需要⼤量 Stub
+⾃底向上 从 dao 层开始 底层测试充分 需要⼤量 Driver
+三明治 顶层+底层同时，中间最后平衡两者优点 中间层测试较晚
+持续集成 每次提交触发集成 快速反馈 需要⾃动化基础设施
+51
+
+
+--- PAGE 52 ---
+Stub 和 Driver 的概念
+Stub（桩）
+替代被调⽤的下层模块
+模拟下层返回固定数据
+⽤于⾃顶向下集成
+// BookDao 的  Stub
+public class BookDaoStub 
+    implements BookDao {
+    public Book findById(Long id) {
+        return new Book(1L, "978-7-XXX",
+            " 设计模式 ", new BigDecimal("59"));
+    }
+}
+Driver（驱动）
+替代调⽤者的上层模块
+模拟上层发起请求
+⽤于⾃底向上集成
+// 测试  BookDao 的  Driver
+public class BookDaoDriver {
+    public static void main(String[] args) {
+        BookDao dao = new BookDaoImpl();
+        Book book = dao.findById(1L);
+        assert book != null;
+        System.out.println(" 测试通过 ");
+    }
+}
+52
+
+
+--- PAGE 53 ---
+持续集成（CI）流程
+开发者提交代码
+       │
+       ▼
+┌─────────────┐    ┌──────────────┐    ┌──────────────┐
+│  编译构建      │─── │  单元测试      │─── │  集成测试      │
+│  (Compile)   │    │ (Unit Test)  │    │ (Integration)│
+└─────────────┘    └──────────────┘    └──────────────┘
+                                              │
+       ┌──────────────────────────────────────┘
+       ▼
+┌─────────────┐    ┌──────────────┐
+│  代码质量检查  │─── │  部署到测试环境 │
+│ (SonarQube) │    │  (Deploy)    │
+└─────────────┘    └──────────────┘
+CI 的核⼼价值
+快速反馈：提交后⼏分钟内知道是否破坏了集成
+降低⻛险：频繁⼩集成 vs ⼀次⼤集成
+⼯具链：Git + Jenkins/GitHub Actions + Maven/Gradle
+53
+
+
+--- PAGE 54 ---
+体系结构评审⽅法
+ATAM
+Architecture Tradeoﬀ Analysis Method
+分析质量属性之间的权衡
+输⼊：架构⽂档 + 质量属性场景
+输出：⻛险点、权衡点、敏感点
+适⽤于⼤型系统早期评审
+SAAM
+Software Architecture Analysis Method
+基于场景的分析⽅法
+将场景分为直接场景和间接场景
+评估架构对场景的⽀持程度
+较 ATAM 更简单，适合中⼩型项⽬
+两种⽅法都强调：在编码之前发现架构问题，修复成本远低于编码之后。
+54
+
+
+--- PAGE 55 ---
+集成测试验证体系结构正确性
+@SpringBootTest
+@AutoConfigureMockMvc
+public class BookIntegrationTest {
+    @Autowired
+    private MockMvc mockMvc;
+    @Test
+    public void testSearchBooks() throws Exception {
+        // 验证  controller → service → dao 完整链路
+        mockMvc.perform(get("/api/books/search")
+                .param("keyword", " 设计模式 "))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.length()").value(greaterThan(0)));
+    }
+}
+集成测试验证的架构属性
+层间连通性：请求能否正确穿透所有层
+依赖注⼊：Spring 容器是否正确装配所有 Bean
+事务管理：跨层操作的事务是否正确传播 55
+
+
+--- PAGE 56 ---
+集成验证⼩结
+阶段 ⽅法 ⽬的
+设计阶段ATAM  / SAAM  评审 发现架构⻛险与权衡
+编码阶段 持续集成 CI 快速反馈集成问题
+测试阶段Stub / Driver 隔离测试各层
+测试阶段 集成测试 验证端到端链路
+验证贯穿全⽣命周期，越早发现问题，修复成本越低。
+56
+
+
+--- PAGE 57 ---
+"好架构"的判断标准 [SW EBO K 4.1]
+古罗⻢建筑师 Vitruvius 认为好建筑应具备：ﬁrmitas（坚固）、utilitas（实⽤）、venustas（美观）
+评估好架构的四个问题
+# 问题 在线书店评估
+1 是否在其⽣命周期内⾜够健壮，能应对演化？ 分层 + 接⼝隔离 → 可替换数据层
+2 是否适⽤于其预期⽤途？ 三层架构满⾜ W eb 电商场景
+3 ⽤此架构构建系统是否经济可⾏？ 5 ⼈团队⽤ Spring Boot，成本可控
+4 对必须构建/维护它的⼈来说，是否清晰可理解？ 标准分层 + 标准命名，新⼈可快速上⼿
+57
+
+
+--- PAGE 58 ---
+架构度量指标 [SW EBO K 4.4]
+包级度量
+指标 公式 含义
+Ca (传⼊依赖)依赖本包的外部包数越⾼越稳定
+Ce (传出依赖)本包依赖的外部包数越⾼越不稳定
+I (不稳定度)Ce / (Ca + Ce) 0=完全稳定, 1=完全不稳定
+A (抽象度) 抽象类数 / 总类数 接⼝包→⾼, 实现包→低
+案例：在线书店包度量
+包 Ca Ce I A 评估
+entity 4 0 0.00 0.0 最稳定，符合 SDP
+dao (接⼝) 2 1 0.33 1.0 稳定+抽象，符合 SAP
+service (接⼝)1 2 0.67 1.0 接⼝抽象，依赖适中
+controller 0 3 1.00 0.0 最不稳定，只有实现
+DevO ps 度量：变更前置时间、部署频率、MTTR、变更失败率——也是架构健康度的指标
+58
+
+
+--- PAGE 59 ---
+ADL  —— 架构描述语⾔ [SW EBO K 2.3]
+ 
+**ADL （Architecture Description Language）**是专⻔⽤于表达软件体系结构的领域特定语⾔
+起源于模块互连语⾔（MIL ），如 C2、Rapide、ACME、W right
+⼯业界实际：UML 已成为事实标准 ADL ，因其⼴泛使⽤
+ 
+本课程使⽤的 ADL ⼯具
+⼯具 ⽤途 示例
+PlantUML 包图、组件图、部署图@startuml ... package ... @enduml
+Mermaid 流程图、时序图 graph TD; A-->B
+Spring Boot ⽬录结构 架构的代码级表达 com.bookstore.controller/service/dao
+Architecture Framework（如 AUTO SAR、UAF）是更系统化的架构描述框架
+59
+
+
+--- PAGE 60 ---
+PART 6 · AI 辅助体系结构
+L L M  赋能架构设计
+60
+
+
+--- PAGE 61 ---
+L L M  集成系统的参考架构 [arxiv 2501.12904, 2025]
+功能参考架构（Functional Reference Architecture）
+层 职责 典型组件
+Interaction Layer ⽤户交互、Prompt 管理 Chat UI、Prompt Template
+O rchestration Layer 任务编排、Agent 协调 LangChain、CrewAI
+Model Layer LLM  推理、模型管理 GPT-4、Claude、本地模型
+Data Layer 向量存储、知识检索Pinecone、Chroma、RAG
+Infrastructure Layer 部署、监控、安全 Docker、K8s、Guardrails
+验证案例
+MaxKB：知识库问答系统
+Continue：IDE 代码助⼿
+InternVL ：多模态视觉语⾔系统
+这个参考架构帮助团队在构建 AI 应⽤时做出⼀致的架构决策
+61
+
+
+--- PAGE 62 ---
+课堂讨论：AI 能否取代架构师？
+ 
+正⽅：AI 可以做架构
+秒级⽣成完整项⽬⻣架
+⼀致性⾼，不会忘记规范
+能分析⼤规模依赖图
+知识⾯⼴，熟悉多种⻛格
+反⽅：AI ⽆法取代架构师
+缺乏业务上下⽂理解
+⽆法权衡组织/政治/成本因素
+架构决策需要⻓期视⻆
+不理解利益相关⼈的真实关注点
+结论：AI 是架构师的放⼤器，不是替代者。
+"Humans own architecture, AI validates it."
+62
+
+
+--- PAGE 63 ---
+L L M  ⽣成 Spring Boot 项⽬⻣架
+Prompt 示例
+请为 " 在线书店系统 " ⽣成  Spring Boot 项⽬⻣架：
+- 分层架构： controller / service / dao / entity
+- 业务模块： book, order, cart, customer
+- 每层为每个模块⽣成接⼝和实现类
+- 使⽤构造器注⼊
+- 包名： com.bookstore
+请输出完整的⽬录结构和关键接⼝代码。
+LLM 的价值与局限
+价值 局限
+快速⽣成模板代码可能不符合项⽬特定约定
+减少重复劳动 缺乏业务深度理解
+提供参考架构 需要⼈⼯审查和调整
+63
+
+
+--- PAGE 64 ---
+AI 辅助包依赖分析
+Prompt 示例
+分析以下  Java 包结构的依赖关系，检查是否存在：
+1. 循环依赖
+2. 违反分层约束的依赖（如  dao 层依赖  controller ）
+3. 不合理的跨模块依赖
+包结构：
+com.bookstore.controller.book → com.bookstore.service.book
+com.bookstore.service.book → com.bookstore.dao.book
+com.bookstore.service.order → com.bookstore.service.book
+com.bookstore.dao.order → com.bookstore.service.inventory  ← 可疑 !
+AI 检测结果
+违规：dao.order 依赖 service.inventory — dao 层不应依赖 service 层，违反分层约束。应将库存查询逻辑提升
+到 service 层完成。
+64
+
+
+--- PAGE 65 ---
+课堂实操（20 分钟）：AI 辅助架构设计
+步骤 任务 时间
+Step 1 让 LLM  ⽣成在线书店的 PlantUM L 包图 5 min
+Step 2 让 LLM  ⽣成 Spring Boot ⽬录结构 5 min
+Step 3 审查 AI 输出 — 检查分层约束和依赖⽅向 5 min
+Step 4 修正发现的问题，记录改进点 5 min
+审查 Checklist
+[ ] 依赖⽅向是否单向向下？
+[ ] 是否存在循环依赖？
+[ ] 接⼝和实现是否分离？
+[ ] entity 包是否只包含数据实体？
+[ ] 是否遵循 CCP / CRP 原则？
+65
+
+
+--- PAGE 66 ---
+思政融⼊：可持续架构设计
+技术债务的社会成本
+技术债务产⽣原因
+赶⼯期跳过架构设计
+忽视包设计原则
+不做集成测试
+不做架构评审
+社会层⾯影响
+系统崩溃影响⽤户利益
+维护成本转嫁给后续团队
+安全漏洞危及数据安全
+低质量软件浪费社会资源
+架构设计不仅是技术决策，更是⼀种社会责任。良好的架构设计是对未来维护者、⽤户和社会的负责。
+66
+
+
+--- PAGE 67 ---
+PART 7 · 模块总结
+体系结构模块三讲回顾
+67
+
+
+--- PAGE 68 ---
+体系结构模块三讲回顾
+讲次 主题 核⼼内容
+03-01 软件设计基础与体系结构概念设计本质、分解与抽象、体系结构三要素、⻛格分类
+03-02 体系结构⻛格与设计决策分层/MVC/管道-过滤器/微服务、质量属性、ADR
+03-03 体系结构设计实践与验证逻辑视⻆、4+1视图、接⼝设计、集成策略、AI辅助
+概念理解  ──────  ⻛格选型  ──────  设计落地与验证
+ (What)          (Which)          (How)
+68
+
+
+--- PAGE 69 ---
+核⼼能⼒总结
+能⼒ 知识点 实践要求
+逻辑视⻆设计4 步映射法、包设计六原则 能从⽤例导出包结构
+多视图建模 4+1 视图模型 能画包图和部署图
+接⼝设计 DIP、PO /VO 、⽆状态设计 能设计 Service/Dao 接⼝
+构建落地 ⽬录映射、Spring Boot 配置 能搭建项⽬⻣架
+集成验证 Stub/Driver、CI、ATAM /SAAM 能选择集成策略并验证
+AI 辅助 LLM  Prompt 设计、输出审查 能利⽤ AI 加速架构设计
+69
+
+
+--- PAGE 70 ---
+课后作业
+作业要求
+1. 包结构设计：为"学⽣选课系统"设计完整的包结构（参考 4 步映射法），画出包图
+2. 接⼝设计：为选课系统编写 CourseDao 和 CourseService 接⼝（Java 代码）
+3. 集成策略选择：说明你会选择哪种集成策略，并给出理由
+4. AI 辅助（附加题）：使⽤ LLM ⽣成选课系统的 Spring Boot 项⽬⻣架，对⽐你的⼿⼯设计，记录差异和改进
+提交要求
+格式：PDF ⽂档
+截⽌时间：下周上课前
+提交⽅式：教学平台
+70
+
+
+--- PAGE 71 ---
+体系结构设计实践与验证
+软件⼯程与计算 II · 体系结构模块 · 第 3 讲
+好的架构不是⼀次设计出来的，⽽是在实践中不断验证和演化的。
+南京⼤学 · 刘钦
+71

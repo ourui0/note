@@ -1,0 +1,8 @@
+主流⼯具⽣态对⽐
+⼯具 定位 集成⽅式 核⼼优势
+GitHub Copilot 微软 / O penAI 官⽅ VS Code / IDEA 插件 代码补全、Inline Chat
+Cursor AI-First IDE 独⽴ IDE（基于 VS Code） 对话驱动、多⽂件理解
+通义灵码 阿⾥巴巴 VS Code / IDEA 插件 国内⽹络友好、企业级场景
+ChatGPT / Claude 通⽤ AI W eb / API 架构设计、解释、代码审查
+本课程主要使⽤ Cursor 和 通义灵码——环境友好，能⼒全⾯
+8

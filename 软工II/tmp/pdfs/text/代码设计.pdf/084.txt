@@ -1,0 +1,14 @@
+布尔表达式
+• 用true和false做布尔判断
+• 不要用0和1
+• 隐式地比较布尔值与true和false
+• 简化复杂的表达式
+• 拆分复杂的判断并引入新的布尔变量
+• 把复杂的表达式做成布尔函数
+• 用决策表代替复杂的条件
+• 编写肯定形式的布尔表达式
+• If(!statusOK)  or if(statusOk)
+• 用DeMorgan定律简化否定的布尔判断
+• If(!displayOK||!printerOK) -》if(!(displayOK&&printerOK))
+• 用括号使布尔表达式更清晰
+• 短路求值

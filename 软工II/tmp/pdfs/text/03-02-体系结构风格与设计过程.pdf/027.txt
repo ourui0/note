@@ -1,0 +1,25 @@
+案例：在线书店 M VC 代码
+// === Controller 层  ===
+@Controller
+public class BookController {
+    @Autowired private BookService bookService;
+    @GetMapping("/books")
+    public String listBooks(Model model) {
+        List<Book> books = bookService.findAll();
+        model.addAttribute("books", books);   // 传递数据给  View
+        return "bookList";                     // 选择  View 模板
+    }
+    @PostMapping("/books")
+    public String addBook(@RequestBody Book book) {
+        bookService.save(book);                // 更新  Model
+        return "redirect:/books";              // 重定向刷新
+    }
+}
+// === Service 层（ Model 的⼀部分） ===
+@Service
+public class BookService {
+    @Autowired private BookDao bookDao;
+    public List<Book> findAll() { return bookDao.selectAll(); }
+    public void save(Book book) { bookDao.insert(book); }
+}
+27

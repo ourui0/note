@@ -1,0 +1,8 @@
+Verification and Validation
+• Verification: is the system correct with respect to 
+some specification?
+• Validation: did we build the right system?
+• V&V differences don’t matter
+• V&V generally refers to any activity that attempts 
+to ensure that the software will function as 
+required

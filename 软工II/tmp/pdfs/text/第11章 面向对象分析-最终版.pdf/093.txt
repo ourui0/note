@@ -1,0 +1,13 @@
+92
+2025/5/29
+状态图的发展历程
+➢在大量的应用当中，人们发
+现了FSM的很多不足。
+➢为此，David Harel对FSM进
+行了发展，补充的很多模型
+元素，建立了状态图SC
+（State Chart）。
+行为模型——状态图
+➢Harel的方法被OMT（Object Modeling Technique）
+采纳，并最终融入了UML，成为UML中的状态
+图SD（State Diagram）。

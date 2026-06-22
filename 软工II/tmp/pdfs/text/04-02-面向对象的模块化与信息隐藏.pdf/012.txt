@@ -1,0 +1,13 @@
+P4 · ⾯向接⼝编程
+Program to an interface, not an implementation.
+// 不好：依赖具体类
+ArrayList<String> list = new ArrayList<>();
+// 好：依赖接⼝
+List<String> list = new ArrayList<>();
+好处：
+调⽤⽅只依赖接⼝契约，不依赖实现
+切换实现类⽆需修改调⽤⽅
+⽀持多态、Mock 测试
+⾯向接⼝编程将访问耦合从参数变量级降低到仅依赖接⼝，是降低耦合的核⼼⼿段。
+📖  SW EBO K v4 §1.4 · Separation of Interface and Im plem entation  |  §5.4 · O bject-O riented Design (SO L ID)
+12

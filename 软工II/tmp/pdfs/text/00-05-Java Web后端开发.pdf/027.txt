@@ -1,0 +1,11 @@
+常⽤注解速查
+注解 作⽤ 使⽤位置
+@SpringBootApplication 启动⼊⼝，开启⾃动配置 启动类
+@RestController 控制器，⽅法返回值⾃动序列化为 JSO N 类
+@GetMapping("/path") 处理 HTTP GET 请求 ⽅法
+@PostMapping("/path") 处理 HTTP PO ST 请求 ⽅法
+@RequestBody 从请求体读取 JSO N 并反序列化为对象⽅法参数
+@PathVariable 从 U RL  路径提取变量 /{id}  → 参数
+@RequestParam 从 U RL  查询字符串读取值 ?page=1  → 参数
+@RestController = @Controller + @ResponseBody ，两者等价
+27

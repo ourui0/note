@@ -1,0 +1,5 @@
+ADP 修复⽅案 A：提取共同依赖包
+新建独⽴的接⼝包（如 stock-api ），包含 StockQuery 接⼝
+OrderService 和 InventoryService 都依赖这个第三⽅包
+原来的 AB 循环变成 A→C ← B，循环打破
+22

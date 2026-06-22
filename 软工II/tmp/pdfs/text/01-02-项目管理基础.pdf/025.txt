@@ -1,0 +1,14 @@
+质量因素 · 准则 · 度量模型
+Use （使⽤）           Factor （因素）          Criteria （准则）          METRICS
+┌────────────┐
+│Product      │──  Usability         ──  Communicativeness
+│operation    │──  Reliability       ──  Accuracy · Consistency
+│ （产品运⾏）   │──  Efficiency        ──  Device Efficiency · Accessibility
+└────────────┘
+┌────────────┐                       ──  Completeness · Structuredness  ──  度量指标
+│Product      │──  Reusability       ──  Conciseness · Device Independence
+│revision     │──  Maintainability   ──  Legibility · Self-descriptiveness
+│ （产品修改）   │──  Portability       ──  Traceability
+              │──  Testability
+└────────────┘
+25

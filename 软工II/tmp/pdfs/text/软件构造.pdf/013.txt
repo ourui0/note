@@ -1,0 +1,5 @@
+调试
+• Debugging is concerned with locating and 
+repairing these errors
+• 调试过程可以分为三个部分：重现问题、
+诊断缺陷和修复缺陷。

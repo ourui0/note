@@ -1,0 +1,2 @@
+类图与依赖关系
+•Client、Interface_A、Class_A1之间是什么关系？•Client和Class_A1是否存在依赖关系？

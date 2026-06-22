@@ -1,0 +1,7 @@
+Are you building it “right”?
+• Software Correctness
+• A program P is considered with respect 
+to a specification S, if and only if:
+• For each valid input, the output of P is 
+in accordance with the specification S
+• Verification

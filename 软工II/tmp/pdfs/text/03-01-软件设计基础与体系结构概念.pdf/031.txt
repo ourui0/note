@@ -1,0 +1,14 @@
+Conway 定律 [Conway 1968] [SW EBO K 1.3]
+ 
+"O rganizations which design systems are constrained to produce designs which are copies of the communication
+structures of these organizations."
+ 
+案例：在线书店团队 → 模块划分
+团队成员 负责模块 对应包
+前端⼯程师 A 展示层 controller
+后端⼯程师 B 图书 + 搜索 service.book
+后端⼯程师 C 订单 + ⽀付 service.order, service.payment
+后端⼯程师 D ⽤户 + 购物⻋ service.customer, service.cart
+DBA E 数据层 dao
+5 ⼈团队 → 5 个模块边界。组织结构决定了架构边界。
+31

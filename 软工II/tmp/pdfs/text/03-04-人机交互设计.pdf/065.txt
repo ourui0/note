@@ -1,0 +1,13 @@
+模块总结
+主题 核⼼内容
+W hat is HCI 可⽤性五属性、学习曲线权衡
+Human 记忆7±2、Fitts' L aw、三类⽤户、Persona与⽤户旅程图、精神模型、⼈因学三域
+Computer 输⼊/输出设备、移动端HCI（拇指区/触屏约束）、可视化构件、五种界⾯类型
+Interaction 五种交互⻛格、导航全局/局部结构、反馈时间准则
+协作式设计 低出错率、易记性、视觉⻛格
+HCI Design Process 对话结构图、界⾯原型化
+Golden Rules Pressman 3条 + Nielsen 10条启发式原则
+GU I Practice 常⻅元素、规划原则、可⽤性评估、可访问性
+AI×HCI 基础（8a） 范式转变、提示词⼯程、LL M挑战、Copilot/Chat/Agent协作模式、AI设计原则
+前沿研究（8b） GenU I⽣成式界⾯、A2U I协议、DiSCo流式优化、GUI Agent（OSW orld）、GU I Grounding（ScreenSpot-Pro）、AI辅助设计
+65

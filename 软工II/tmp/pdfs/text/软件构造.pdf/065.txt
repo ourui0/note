@@ -1,0 +1,4 @@
+-4- A Focus on Simplicity Works Better than a Focus 
+on Complexity
+• Focus on read-time convenience, not write-
+time convenience

@@ -1,0 +1,8 @@
+1. Design has Been Raised a Level
+• Programming has advanced through ability to 
+create larger code aggregations
+• Statements
+• Routines
+• Classes
+• Packages
+• Real legacy of OO might well be larger aggregations

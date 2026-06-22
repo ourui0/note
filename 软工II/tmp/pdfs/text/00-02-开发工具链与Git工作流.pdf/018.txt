@@ -1,0 +1,15 @@
+Vercel：从 GitHub 到线上的 3 步
+Vercel 是专为前端和全栈项⽬设计的零配置部署平台
+步骤  1 ：连接  GitHub
+  登录  vercel.com → 点击  "New Project" → 授权  GitHub
+步骤  2 ：导⼊仓库
+  选择你的仓库  → 选择框架（ Next.js / Vue / React / 静态⽹站）
+  → Vercel ⾃动检测构建命令
+步骤  3 ：部署完成
+  点击  Deploy → 约  1-2 分钟  → ⾃动获得  https://your-project.vercel.app
+特性 说明
+⾃动触发 每次 git push  到 main，⾃动重新部署
+预览部署 每个 Pull Request ⾃动⽣成独⽴预览链接
+⾃定义域名免费⽀持绑定⾃⼰的域名（加 CNAME 记录）
+免费额度 个⼈项⽬完全免费
+18

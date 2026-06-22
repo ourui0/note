@@ -1,0 +1,8 @@
+103
+2025/5/29
+David Harel 的发展
+➢为了解决FSM的很多局限性，David Harel对
+FSM进行了扩展，建立了状态图SC（State Chart）
+表示法。
+➢SC的FSM基本元素表示如图所示
+行为模型——状态图

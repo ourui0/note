@@ -1,0 +1,23 @@
+LLM 违反模块化的规律 ①：两⼤结构性缺陷
+量质反⽐定律（Volume-Quality Inverse L aw）
+"代码体积⼏乎是结构退化的完美预测因⼦。"
+— arXiv:2605.02741, AI-Generated Smells, 2025
+LLM  ⽣成代码⽐⼈类基线多 42%–85% 代码异味
+（arXiv:2510.03029）
+模型能⼒越强 → 代码体积越⼤ → 结构越臃肿、耦合越
+⾼
+推论：让 LLM  写更⻓、更完整的代码，往往意味着更多
+结构性问题，⽽⾮更⾼质量。
+模块化悖论（The Modular Imperative）
+"即使明确提供模块化指导，LLM  仍倾向于把新功能加⼊
+已有类⽽⾮新建职责单⼀的类。"
+— Harvard ICFP/SPLASH 2025
+直接违反：
+SRP（单⼀职责）：⼀个类承担多个变化原因
+信息隐藏：把不同变化原因混⼊同⼀模块
+P9 封装变更：变化点未被隔离
+根本原因：LLM  的训练⽬标是预测下⼀个 token，⽽⾮最
+⼩化模块间耦合——它"看到"的是局部代码，感知不到跨
+⽂件的全局模块化约束。
+📖  SW EBO K v4 §1.4 · M odularization  |  §5.4 · O bject-O riented Design (SO L ID-S)  |  §6.3 · Quality Analysis
+41

@@ -1,0 +1,16 @@
+设置前后端通信（灵码版）
+继续对话：
+使⽤ RTK query 作为前端与后端通信的⽅式
+灵码将⾃动安装 redux 等依赖，并实现⽤ RTK query 做前后端的通信⽅案。
+# 灵码⾃动执⾏
+cd demo-app-frontend
+npm install @reduxjs/toolkit react-redux
+然后⾃动⽣成：
+src/
+  store/
+    index.ts          ← Redux store 配置
+    api/
+      tasksApi.ts     ← RTK Query API 定义（ GET / POST / PATCH / DELETE ）
+  components/
+    ChatScreen.tsx    ← AI 对话界⾯组件
+26

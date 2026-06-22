@@ -1,0 +1,14 @@
+第⼆⼗⼆、⼆⼗三章
+•软件⽣命周期模型
+•Build-and-ﬁx model
+•Waterfall model
+•Iterative Models
+•Incremental model
+•Incremental Delivery
+•Evolutionary
+•Evolutionary development
+•Prototyping
+•Spiral Model
+•解释与⽐较不同过程模型（要求、特征描述、优点、缺点）
+•对给定的场景，判定适⽤的开发过程模型
+•软件⼯程知识体系的知识域

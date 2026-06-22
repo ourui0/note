@@ -1,0 +1,9 @@
+ 动⼿实践（5 分钟）
+任务：创建并运⾏你的第⼀个 Spring Boot 项⽬
+1. 打开 start.spring.io ，勾选 Spring Web ，⽣成并⽤ IDEA 导⼊项⽬
+2. 创建 HelloController ，添加 @GetMapping("/hello")  返回你的名字
+3. 点击启动，在浏览器访问 http://localhost:8080/hello
+4. 进阶：添加 @GetMapping("/info")  返回包含 name 、studentId 、time  字段的 JSO N 对象
+✅  成功标志：浏览器看到 JSON 响应，控制台⽆红⾊报错
+💡  ⼩贴⼠：`Map.of("key", value)` 可快速构造 JSO N 对象；`L ist.of(...)` 可构造 JSO N 数组
+28

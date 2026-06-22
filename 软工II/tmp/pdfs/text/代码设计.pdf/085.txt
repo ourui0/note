@@ -1,0 +1,11 @@
+布尔表达式
+• 按照数轴的顺序编写数值表达式
+• 与0比较
+• 隐式地比较逻辑变量
+• While(!done)
+• 把数与0相比较
+• While(balance!=0)
+• 在C中显示地比较字符和零终止符（’\0’）
+• While(*charPtr !=‘\0’)…
+• 把指针与NULL相比较
+• While（bufferPtr != NULL)

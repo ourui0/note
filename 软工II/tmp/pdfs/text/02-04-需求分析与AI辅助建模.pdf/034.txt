@@ -1,0 +1,16 @@
+O CL  核⼼语法 [O M G U M L  2.5]
+1. 不变量（Invariant）—— 对象始终满⾜的条件
+context Order
+inv: self.lineItems->size() >= 1        -- 订单⾄少含⼀个明细⾏
+inv: self.totalAmount > 0               -- 总⾦额为正
+2. 前置/后置条件 —— 操作契约的形式化
+context Order::pay()
+pre:  self.status = OrderStatus::PENDING_PAYMENT
+post: self.status = OrderStatus::PAID
+      and self.inventory.quantity = self.inventory.quantity@pre - self.quantity
+@pre 引⽤操作执⾏前的值——这是 OCL 独特且强⼤的机制
+3. 导航 —— 沿关联路径访问对象
+context OrderLineItem
+inv: self.order.customer.isActive = true
+-- 导航路径： OrderLineItem → Order → Customer
+34

@@ -1,0 +1,15 @@
+六讲总结：AI4Coding + VibeCoding 的完整图景
+08-01  AI 辅助编程⼊⻔
+  └── ⼯具⽣态  · 六⼤能⼒  · 提示词四要素
+08-02  开发⼯具链与  Git ⼯作流
+  └── DevOps · Git 四区域  · Vercel ⾃动部署
+08-03  AI 编程进阶与  Agent 时代
+  └── 项⽬级技巧  · 代码质量  · 软件⼯程的未来演进
+06     前端开发基础
+  └── Web 演进  · Vue.js · Node.js
+07     Java Web 开发
+  └── Spring Boot · MyBatis · Spring Security
+08     项⽬级  VibeCoding
+  └── Stitch · AI Studio · 灵码  · Claude Code · Expo Go · MCP
+核⼼洞察：AI ⼯具改变的是速度和交互⽅式，不变的是需求分析、架构设计与⼯程纪律
+44

@@ -1,0 +1,32 @@
+客户端-服务器 + REST ⻛格 [SW EBO K 2.2]
+REST 核⼼约束 [Fielding 2000]
+⽆状态：每次请求包含所有信息
+统⼀接⼝：HTTP 动词 + URI 资源
+分层系统：客户端不知道是否直连服务器
+在线书店 RESTful API
+⽅法 端点 功能
+GET /api/books 搜索图书
+GET /api/books/{id} 图书详情
+PO ST /api/orders 创建订单
+PUT /api/cart/items 更新购物⻋
+DELETE /api/cart/items/{id} 删除商品
+Spring Boot 实现
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+    @Autowired
+    private BookService bookService;
+    @GetMapping("/{id}")
+    public Book getBook(
+            @PathVariable String id) {
+        return bookService.findById(id);
+    }
+    @GetMapping
+    public Page<Book> search(
+            @RequestParam String keyword,
+            @RequestParam int page) {
+        return bookService.search(
+            keyword, page);
+    }
+}
+29

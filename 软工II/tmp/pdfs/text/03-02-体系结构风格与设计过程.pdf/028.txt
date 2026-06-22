@@ -1,0 +1,11 @@
+管道-过滤器⻛格（Pipe-and-Filter）[SW EBO K 2.2]
+案例：Java Stream  API
+List<String> titles = books.stream()
+    .filter(b -> b.getPrice() > 50)
+    .sorted(comparing(Book::getPrice))
+    .map(Book::getTitle)
+    .collect(toList());
+案例：U nix 管道
+cat access.log | grep "POST /api/orders"
+  | awk '{print $1}' | sort | uniq -c
+28

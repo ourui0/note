@@ -1,0 +1,10 @@
+附录 C：需求⼯程⼯具链参考 [SW EBOK 8.1, 8.2]
+⼯具类型 ⼯具名称 适⽤场景
+AI 需求⽣成 SEECO DER-SE（本课）· GitHub Copilot · ChatGPT 初稿⽣成
+需求管理 Jira · Azure DevO ps · Conﬂuence 版本管理、追踪
+形式化验证 Alloy · Z Notation · TL A+ 安全关键系统规格验证
+系统安全分析STAM P/STPA（MIT L eveson） 系统级事故因果分析
+标准规范 IEEE 830 · ISO /IEC 29148 · DO -178C 航空/嵌⼊式⾏业规范
+ Nancy L eveson 的 STPA ⽅法是⽬前最能捕获"系统性隐式约束"的⼯具，
+直接针对 MCAS 这类"组件正常但系统失效"的模式设计。
+47

@@ -1,0 +1,16 @@
+案例 —— 图书上架状态图 [SW EBO K 4.4]
+三状态⽣命周期
+状态 说明
+Draft 管理员创建后的初始状态
+O nShelf 对顾客可⻅，可被购买
+O ﬀShelf 对顾客不可⻅，可重新上架或删除
+守卫条件
+上架：[info complete & price > 0]
+删除：[stock = 0 & no orders]
+Java 枚举
+public enum BookStatus {
+  DRAFT, ON_SHELF, OFF_SHELF
+}
+与订单状态图对⽐：图书状态更简单，但同样需要守卫条件防⽌⾮法
+转换
+42

@@ -1,0 +1,561 @@
+
+
+--- PAGE 1 ---
+软件设计基础与体系结构概念
+软件⼯程与计算 II · 体系结构模块 · 第 1 讲
+南京⼤学 · 刘钦
+1
+
+
+--- PAGE 2 ---
+今⽇学习路径
+①  为什么设计    ②  核⼼思想     ③  理解设计     ④  设计分层     ⑤  体系结构定义    ⑥  AI 增强
+  ────────────────────────────────────────────────────────────────────────────
+  复杂性管理     分解与抽象     概念与演化     低 / 中 / ⾼层     三要素 + ⻛格初步     架构⽓味 +ADR
+今⽇核⼼问题
+1. 软件设计的本质是什么？与编程、需求分析有什么关系？
+2. 什么是软件体系结构？它由哪些核⼼要素组成？
+3. AI 能辅助做出哪些架构决策？
+2
+
+
+--- PAGE 3 ---
+预习测试
+ 
+1. 软件设计与编程是什么关系？
+2. 需求分析与软件设计是什么关系？
+3. 什么是软件体系结构？
+3
+
+
+--- PAGE 4 ---
+PART 1 · 为什么需要设计
+事物的复杂性 vs 思维的有限性
+4
+
+
+--- PAGE 5 ---
+讨论
+ 
+什么是软件设计?
+为什么要做设计?
+软件设计与编程是什么关系?
+需求分析与软件设计是什么关系?
+怎么做设计?
+5
+
+
+--- PAGE 6 ---
+软件的本质复杂性 [Brooks 1987]
+ 
+"The complexity of software is an essential property, not an accidental one."
+—— F. Brooks, No Silver Bullet
+ 
+W hy software is inherently complex?
+问题域的复杂性 — 现实世界的规则、约束和例外
+开发过程的管理难度 — 多⼈协作、需求变更
+软件的灵活性 — 修改容易导致"什么都能改"的幻觉
+离散系统的⾏为刻画 — ⽆法像连续系统那样⽤微分⽅程建模
+6
+
+
+--- PAGE 7 ---
+如何应对复杂性？ [SW EBO K 2.1]
+ 
+⼈类认知的局限
+7 ± 2 规则（Miller, 1956）：⼈类短期记忆⼀次只能处理 5~9 个信息块
+软件系统动辄成百上千个类——远超⼈脑容量
+ 
+应对策略
+策略 含义 设计中的体现
+关注点分离每次只关注⼀个维度分层、模块化
+分解 ⼤问题拆成⼩问题⼦系统、包
+抽象 隐藏细节，暴露接⼝接⼝、抽象类
+7
+
+
+--- PAGE 8 ---
+设计的复杂度 [SW EBO K 2.1]
+两种复杂度
+事物复杂度 — 问题域本身的复杂性
+载体复杂度 — 软件实现带来的额外复杂性
+公式
+设计复杂度 = 事物复杂度 + 载体与事物的适配复杂度
+好的设计 = 最⼩化适配复杂度
+8
+
+
+--- PAGE 9 ---
+PART 2 · 软件设计的核⼼思想
+分解与抽象
+9
+
+
+--- PAGE 10 ---
+分解与抽象 —— 控制复杂性的两⼤武器 [SW EBO K 2.1]
+分解（Decomposition）
+将⼤问题分⽽治之
+每个⼦系统独⽴可理解
+抽象（Abstraction）
+隐藏内部细节
+暴露必要接⼝
+10
+
+
+--- PAGE 11 ---
+分解与抽象的并⽤和层次性 [SW EBO K 2.1]
+每⼀层都同时使⽤分解（拆成⼦系统）和抽象（每个⼦系统有接⼝和实现）
+11
+
+
+--- PAGE 12 ---
+软件设计思想的发展
+ 
+时代 关键词 核⼼思想
+程序设计 程序、函数、过程 ⾃顶向下、逐步求精
+软件设计 抽象数据类型、信息隐藏、⾯向对象独⽴于实现、封装变化
+⼤规模软件设计体系结构、设计模式、框架、构件、产品线为复⽤⽽设计、重构
+ 
+2010 年代以后
+云原⽣时代：Docker、K8s、Istio — 微服务架构
+⼤数据和 AI 时代：LLM  的引⼊可能是划时代的改变（AI for SE, SE for AI）
+12
+
+
+--- PAGE 13 ---
+PART 3 · 理解软件设计
+什么是设计？设计与编程、需求分析的关系
+13
+
+
+--- PAGE 14 ---
+什么是设计？ [SW EBO K 2.1]
+ 
+[W iki] Design is the planning that lays the basis for the making of every object or system.
+[Brooks 2010] 定义的精髓在于计划、思维和后续执⾏
+[Ralph 2009] 将设计定义为：
+设计（名词）：⼀个对象的规格说明。由⼈创造，有明确⽬标，适⽤于特定环境
+设计（动词）：在⼀个环境中创建对象的规格说明
+14
+
+
+--- PAGE 15 ---
+软件设计 [SW EBO K 2.1]
+15
+
+
+--- PAGE 16 ---
+软件设计的演化性 [SW EBO K 2.2]
+ 
+设计不是⼀次完成的
+设计决策会随着对问题域理解的加深⽽不断修正
+需求变更会导致设计变更 — 这是常态⽽⾮例外
+ 
+设计决策的概念完整性
+概念完整性是系统设计中最重要的考虑因素。
+—— F. Brooks, The Mythical Man-Month
+⼀个系统的所有设计决策应该反映⼀致的理念
+避免"设计委员会"导致的⻛格混杂
+16
+
+
+--- PAGE 17 ---
+设计、编程与需求分析的关系
+ 
+维度 需求分析 软件设计 编程
+回答的问题做什么？ 怎么组织？ 怎么实现？
+关注层⾯ 问题域（现实世界）解决⽅案的结构 代码细节
+产出物 ⽤例图、概念类图包图、组件图、接⼝Java/Python 代码
+类的粒度 概念类（⽆⽅法）设计类（有接⼝）实现类（有全部代码）
+可修改性 ⾼ 中（架构决策难改）⾼（但受架构约束）
+ 
+从需求到代码：概念类 → 设计类 → 实现类，逐步精化
+17
+
+
+--- PAGE 18 ---
+PART 4 · 软件设计的分层
+低层、中层、⾼层
+18
+
+
+--- PAGE 19 ---
+软件设计的分层 [SW EBO K 2.3]
+ 
+层次 关注点 产出物 案例
+低层设计 单个类的属性、⽅法、算法设计类图 Order.calculateTotal()
+中层设计 包/模块的划分、类的协作包图、交互图 com.bookstore.service.order
+⾼层设计（体系结构）系统整体结构、层次、部署组件图、部署图三层架构：展示层/业务层/数据层
+ 
+本讲聚焦⾼层设计（体系结构），中层和低层设计将在后续讲次展开
+19
+
+
+--- PAGE 20 ---
+设计的活动、⽅法与模型 [SW EBO K 2.4]
+设计活动
+1. 体系结构设计 — 确定系统的宏观结构
+2. 接⼝设计 — 定义模块之间的契约
+3. 组件设计 — 设计每个模块的内部结构
+4. 数据设计 — 设计数据存储⽅案
+设计⽅法
+⾯向对象设计（OO D）
+结构化设计（SD）
+领域驱动设计（DDD）
+设计模型
+静态模型：类图、包图、组件图
+动态模型：顺序图、状态图、活动图
+20
+
+
+--- PAGE 21 ---
+设计视⻆ —— 4+1 视图预告 [Kruchten 1995]
+ 
+视图 关注点 U M L  图
+逻辑视图 功能划分、类和包的组织类图、包图
+开发视图 代码模块组织、构建管理组件图
+进程视图 并发、同步、性能 活动图
+物理视图 部署、⽹络拓扑 部署图
+场景视图 ⽤例驱动，贯穿以上四个视图⽤例图
+ 
+4+1 视图模型将在 03-03 中结合案例详细展开
+21
+
+
+--- PAGE 22 ---
+PART 5 · 软件体系结构的定义
+部件 + 连接件 + 配置
+22
+
+
+--- PAGE 23 ---
+软件体系结构的发展历程
+ 
+年代 ⾥程碑 关键⼈物/组织
+1969 NATO  会议⾸次提出 "software architecture" Ian P. Sharp
+1972 "O n the Criteria to Be Used in Decomposing Systems into Modules"David Parnas
+1992 "Foundations for the Study of Software Architecture" Perry & W olf
+1995 4+1 视图模型 Philippe Kruchten
+1996 Software Architecture: Perspectives on an Emerging Discipline Shaw & Garlan
+1998 Software Architecture in Practice（SEI 三部曲之⼀） Bass, Clements, Kazman
+2000 IEEE 1471 标准 IEEE/OMG
+23
+
+
+--- PAGE 24 ---
+Perry & W olf (1992)：经典公式
+ 
+Software Architecture = { Elements, Forms, Rationale }
+ 
+要素 含义
+Elements 组成系统的处理元素、数据元素和连接元素
+Forms 元素的组织形式和拓扑结构
+Rationale 为什么选择这种元素和组织⽅式的理由
+ 
+Barry Boehm 随后补充了 Constraints（约束条件）
+24
+
+
+--- PAGE 25 ---
+Shaw (1995)：部件-连接件-配置模型
+ 
+软件体系结构 = { 部件(Component), 连接件(Connector), 配置(Conﬁguration) }
+ 
+要素 定义 在 Java 中的映射
+部件 承载系统主要功能的基本组成单位，包括处理与数据包（Package）、类集合
+连接件 定义部件间交互的抽象表示 接⼝（Interface）、事件
+配置 定义部件和连接件之间的关联⽅式，组成系统总体结构依赖注⼊、⼯⼚模式
+25
+
+
+--- PAGE 26 ---
+Bass, Clem ents & Kazm an [SEI]
+ 
+The software architecture of a system is the set of structures needed to reason about the system, which
+comprise software elements, relations among them, and properties of both.
+ 
+Kruchten 的补充
+Software Architecture encompasses the signiﬁcant decisions about:
+the organization of a software system
+the selection of structural elements and their interfaces
+the composition of these elements into progressively larger subsystems
+the architectural style that guides this organization
+26
+
+
+--- PAGE 27 ---
+案例 —— 在线书店系统的三要素映射 [SW EBO K 2.3]
+部件（Com ponent）
+com.bookstore.service.book
+com.bookstore.service.order
+com.bookstore.service.customer
+com.bookstore.dao
+连接件（Connector）
+public interface BookService {
+    Book findById(String bookId);
+    List<Book> search(String kw);
+    boolean checkStock(
+        String bookId, int qty);
+}
+配置（Conﬁguration）
+// 依赖注⼊：配置部件间的拓扑
+BookService bookService =
+    new BookServiceImpl(bookDao);
+OrderService orderService =
+    new OrderServiceImpl(
+        orderDao, bookService);
+映射总结
+架构概念 Java 映射
+部件 包 / 类集合
+连接件 接⼝
+配置 DI / ⼯⼚
+27
+
+
+--- PAGE 28 ---
+PART 6 · 体系结构的重要性
+最难修改的设计决策
+28
+
+
+--- PAGE 29 ---
+体系结构为什么重要？ [Clem ents 1996]
+ 
+三个根本理由
+# 理由 说明
+1 相互沟通 架构图是利益相关⼈之间的"共同语⾔"
+2 早期设计决策架构决定了系统的质量属性（性能、安全、可维护性）
+3 可转移的抽象好的架构可以在类似项⽬中复⽤
+ 
+修改⼀个类的⽅法签名影响范围有限，
+但把单体系统改为分层系统——⼏乎等于重写。
+29
+
+
+--- PAGE 30 ---
+体系结构⻛格初步预告
+ 
+⻛格 核⼼思想 典型应⽤
+分层（Layered） 每层只依赖下层 W eb 三层架构
+M VC 模型-视图-控制器分离Spring MVC
+主程序-⼦程序 ⾃顶向下调⽤ 简单脚本程序
+⾯向对象 封装、继承、多态 Java 系统
+微服务 独⽴部署的⼩服务 Netﬂix、Uber
+事件驱动 发布-订阅解耦 消息队列系统
+ 
+下⼀讲（03-02）将深⼊讲解分层⻛格和 M VC ⻛格，并结合案例演示
+30
+
+
+--- PAGE 31 ---
+Conway 定律 [Conway 1968] [SW EBO K 1.3]
+ 
+"O rganizations which design systems are constrained to produce designs which are copies of the communication
+structures of these organizations."
+ 
+案例：在线书店团队 → 模块划分
+团队成员 负责模块 对应包
+前端⼯程师 A 展示层 controller
+后端⼯程师 B 图书 + 搜索 service.book
+后端⼯程师 C 订单 + ⽀付 service.order, service.payment
+后端⼯程师 D ⽤户 + 购物⻋ service.customer, service.cart
+DBA E 数据层 dao
+5 ⼈团队 → 5 个模块边界。组织结构决定了架构边界。
+31
+
+
+--- PAGE 32 ---
+利益相关⼈与关注点 [SW EBO K 1.2]
+案例：在线书店 Stakeholder-Concern 矩阵
+利益相关⼈ 主要关注点 对架构的影响
+顾客 可⽤性、响应速度、易⽤性需要缓存层、CDN
+开发团队 可维护性、可测试性 分层 + 接⼝隔离
+运维 可部署性、可监控性 ⽇志框架、健康检查端点
+产品经理 功能完整性、上线速度 模块化便于并⾏开发
+安全团队 数据安全、合规性 HTTPS、加密存储、权限控制
+管理层 成本、进度 技术选型约束（Java + Spring Boot）
+不同的利益相关⼈对同⼀个系统有不同的"什么是重要的"——这就是 Concern
+32
+
+
+--- PAGE 33 ---
+PART 7 · AI 增强：架构决策与架构⽓味
+L L M  辅助 ADR ⽣成 + Architecture Smell 识别
+33
+
+
+--- PAGE 34 ---
+什么是架构⽓味（Architecture Sm ell）？
+ 
+架构⽓味是系统体系结构中可能导致维护困难、性能下降或演化受阻的结构性问题。
+ 
+⽓味类型 描述 后果
+循环依赖 A → B → C → A 形成环 ⽆法独⽴编译/部署/测试
+God Component ⼀个包/模块承担过多职责 修改波及⾯⼤，测试困难
+层违规调⽤ 展示层直接访问数据层 绕过业务规则，安全⻛险
+Feature Envy 模块频繁访问另⼀模块的内部数据⾼耦合，应考虑职责迁移
+Scattered Functionality 同⼀功能分散在多个模块 修改需同时改多处
+34
+
+
+--- PAGE 35 ---
+AI Agent 时代的架构决策 [arxiv 2604.04990, 2025]
+"Architecture W ithout Architects" — AI Coding Agent 正在隐式地做出架构决策
+发现 影响
+Agent 在秒级做出架构决策 决策速度远超⼈类，但缺乏深思熟虑
+不同 LLM ⽣成结构性不同的代码 模型选择本身就是⼀个架构决策
+决策⽆记录，缺乏透明性 ⽆法追溯架构 Rationale
+Agent 的决策⾯覆盖全架构维度 分层/模块划分/依赖关系/API 设计全被 Agent 决定
+ 
+推荐实践
+Humans own architecture, AI validates it.
+⼈负责架构决策，AI 负责验证和⽣成。
+35
+
+
+--- PAGE 36 ---
+架构⽓味⾃动检测⼯具链
+ 
+⼯具 类型 能⼒
+Arcan 静态分析 检测循环依赖、God Component、层违规调⽤
+Sen4Smells 演化分析 基于版本历史计算架构技术债务指数
+RABERT [2025] Transformer 基于关系感知 BERT 增强代码/架构⽓味检测准确率
+CodeAnt.ai ML 平台 ⽤机器学习排序⽓味优先级，聚焦⾼影响问题
+DeepSource CI/CD 集成 实时反馈 + ⾃动修复 PR 中的反模式
+ 
+趋势：从规则驱动（正则匹配依赖违规）→ AI 驱动（Transformer 理解代码语义）
+36
+
+
+--- PAGE 37 ---
+ADR —— 架构决策记录 [SW EBO K 2.4]
+Architecture Rationale：不仅记录决策，还要记录为什么拒绝其他⽅案
+字段 内容
+标题 ADR-001: 采⽤三层分层架构
+状态 已采纳
+背景 在线书店需⽀持 W eb 和移动端，业务逻辑需独⽴于展示
+决策 采⽤ Presentation → BusinessLogic → Data 三层架构
+理由 分层降低耦合，便于团队并⾏开发，满⾜可维护性需求
+被拒绝⽅案 1 微服务架构 — 拒绝理由：团队仅 5 ⼈，⽆ K8s 运维经验
+被拒绝⽅案 2 单⽂件脚本 — 拒绝理由：⽆法扩展，⽆法测试
+后果 层间通过接⼝通信；跨层调⽤需严格禁⽌
+Architecture Rationale 捕获"为什么这样决策"：被考虑的替代⽅案、权衡和拒绝理由
+37
+
+
+--- PAGE 38 ---
+L L M  辅助 ADR ⽣成
+Prompt 示例
+你是⼀名软件架构师。请根据以下需求和约束，
+⽣成⼀份  ADR （架构决策记录）。
+系统：在线书店系统
+功能需求： 13 个⽤例（浏览、搜索、购买、管理等）
+⾮功能需求：
+- 响应时间  < 2 秒
+- ⽀持  1000 并发⽤户
+- ⽀付信息加密传输
+项⽬约束：开发团队  5 ⼈，使⽤  Java + Spring Boot
+请输出标准  ADR 格式，包含：标题、背景、决策、理由、后果。
+⼈⼯审查重点：理由是否充分？后果是否被低估？
+38
+
+
+--- PAGE 39 ---
+案例 —— 让 L L M  识别架构⽓味
+Prompt 示例
+以下是在线书店系统的包依赖关系：
+- presentation → businesslogic, data
+- businesslogic → data
+- data → businesslogic （反向依赖）
+请识别其中的架构⽓味，并给出修复建议。
+L L M  可能的输出
+发现 类型 修复建议
+data → businesslogic 反向依赖 循环依赖 提取接⼝到独⽴包，⽤依赖倒置
+presentation → data 跨层调⽤ 层违规 删除直接引⽤，通过 businesslogic 中转
+AI 能快速发现依赖问题，但修复⽅案需⼈⼯判断权衡
+39
+
+
+--- PAGE 40 ---
+架构技术债务（Architectural Technical Debt）[SW EBO K 2.4]
+ 
+今天的架构决策可能在软件系统的整个⽣命周期中产⽣显著的后续成本。
+被推迟的决策可能损害可维护性或未来的可演化性——这些债务终将需要偿还。
+ 
+维度 示例 后果
+模块化缺失 初期为赶进度不做分层后续版本开发时间成倍增加
+接⼝设计不⾜层间直接引⽤实现类替换数据库需要修改全部代码
+⽂档缺失 不写 ADR 新成员⽆法理解架构决策理由
+测试缺失 不做集成测试 架构退化⽆法被及时发现
+架构技术债务可以⽤视图和视点来分析和管理 [Kruchten 2019]
+40
+
+
+--- PAGE 41 ---
+技术决策的⻓远影响
+ 
+案例：⾼并发平台架构崩溃
+某电商平台双⼗⼀期间单体架构承压崩溃，损失数亿
+根因：早期架构决策未考虑可伸缩性，修复需要重写整个系统
+教训：架构是最难修改的设计决策，初期投⼊不⾜后期代价巨⼤
+ 
+思考
+技术决策不仅是技术问题，更是商业决策和社会责任
+架构师需要在短期成本和⻓期可持续性之间权衡
+AI 可以辅助分析，但决策的责任始终在⼈
+41
+
+
+--- PAGE 42 ---
+PART 8 · 课堂总结
+42
+
+
+--- PAGE 43 ---
+课堂总结
+ 
+主题 核⼼要点
+为什么设计 软件本质复杂，需要分解与抽象来管理
+核⼼思想 分解（分⽽治之）+ 抽象（隐藏细节）
+理解设计 设计 = 创建规格说明；设计具有演化性
+设计分层 低层（类）→ 中层（包）→ ⾼层（体系结构）
+体系结构定义部件 + 连接件 + 配置；是最难修改的设计决策
+AI 增强 LLM 辅助 ADR ⽣成 + 架构⽓味识别
+43
+
+
+--- PAGE 44 ---
+课后作业
+ 
+任务⼀：概念理解
+1. ⽤⾃⼰的语⾔解释软件体系结构的三要素（部件、连接件、配置），并各举⼀个 Java 中的例⼦
+2. 解释设计与编程的区别，为什么说"架构是最难修改的设计决策"？
+任务⼆：AI 实操
+3. ⽤ LLM  为你的课程项⽬⽣成⼀份 ADR（架构决策记录）
+4. 将项⽬的包依赖关系输⼊ LLM ，让它识别架构⽓味并给出修复建议
+ 
+提交格式：ADR ⽂档 + 架构⽓味分析报告
+44
+
+
+--- PAGE 45 ---
+下节课预告
+03-02 · 体系结构⻛格与设计过程
+ 
+内容 要点
+分层⻛格深⼊严格分层 vs 松散分层；三层架构案例
+M VC ⻛格 Model-View-Controller + 观察者模式
+设计过程 7 步过程：需求分析 → 选择⻛格 → 逻辑/物理设计 → 迭代
+案例演示 在线书店系统 + 连锁超市系统的分层设计全过程
+ 
+预习要求
+阅读教材 第⼋章 8.2 节（分层体系结构⻛格）
+思考：为什么分层是最常⽤的体系结构⻛格？
+45
+
+
+--- PAGE 46 ---
+谢谢！
+软件⼯程与计算 II · 03-01 · 软件设计基础与体系结构概念
+南京⼤学 · 刘钦
+46

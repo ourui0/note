@@ -1,0 +1,19 @@
+Servlet 代码示例
+// 扩展  HttpServlet 类
+public class HelloWorld extends HttpServlet {
+    public void init() throws ServletException {
+        // 初始化（只执⾏⼀次）
+        message = "Hello World";
+    }
+    // 处理  GET 请求
+    public void doGet(HttpServletRequest request,
+                      HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>" + message + "</h1>");
+    }
+    public void destroy() { /* 清理资源  */ }
+}
+Spring Boot 的 @RestController  本质上就是对 Servlet 的⾼度封装——让我们⽆需⼿写 Servlet 样板代码
+18

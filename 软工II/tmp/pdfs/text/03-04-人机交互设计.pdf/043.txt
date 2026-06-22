@@ -1,0 +1,8 @@
+Golden Rules（⻩⾦原则）
+ 
+三条核⼼原则
+# 原则 英⽂ 含义
+1 让⽤户掌控系统 Place the user in control ⽤户能随时撤销、控制交互节奏
+2 减少⽤户记忆负担Reduce the user's memory load 系统应替⽤户记忆信息
+3 保持⼀致性 Be consistent 相似操作有相似结果，减少学习成本
+43

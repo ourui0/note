@@ -1,0 +1,9 @@
+AI 时代的项⽬管理变⾰
+ AI 正在改变项⽬管理的每个环节
+传统做法 AI 时代做法 代表⼯具/⽅法
+⼈⼯估算⼯作量 AI 辅助估算（基于历史数据）Linear AI、Jira AI
+⼈⼯编写项⽬⽂档AI ⾃动⽣成 PRD/技术⽅案初稿Claude、GPT-4
+周会/站会⼝头同步AI ⾃动汇总进度、识别⻛险Notion AI、Copilot
+经验驱动的⻛险判断数据驱动的⻛险预测模型 ML-based risk scoring
+代码评审完全靠⼈AI 辅助代码评审 + ⼈⼯把关 GitHub Copilot Review
+19

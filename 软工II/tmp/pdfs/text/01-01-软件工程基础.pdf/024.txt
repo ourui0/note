@@ -1,0 +1,8 @@
+软件的现代应⽤领域
+领域 代表技术与产品
+云 Docker · Kubernetes · Istio
+众 众筹 · 众包
+⼤数据 Spark · Hadoop · Flink · Kafka · Elasticsearch · ClickHouse
+AI AlphaGo · AlphaCode · ChatGPT · Sora
+短视频 · W eb3.0 新⼀代内容平台与去中⼼化应⽤
+24

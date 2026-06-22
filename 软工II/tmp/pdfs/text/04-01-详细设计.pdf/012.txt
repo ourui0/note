@@ -1,0 +1,3 @@
+PART 2 · ⾯向对象详细设计
+职责（Responsibility）与 协作（Collaboration）
+12

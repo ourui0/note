@@ -1,0 +1,14 @@
+大模型强化敏捷开发实践
+敏捷宣言的价值观与 AI 的契合
+个体与互动 > 流程与工具：AI 减少流程摩擦，让开发者更专注于创造性协作
+可工作的软件 > 详尽文档：AI 使「代码即文档」成为现实，注释与文档自动生成
+响应变化 > 遵循计划：AI 快速评估变更影响，降低「拥抱变化」的代价
+AI 在 Scrum 中的具体应用
+Sprint Planning：AI 基于历史 Velocity 和任务复杂度，辅助 Story Point 估算
+Daily Standup：AI 自动摘要昨日 Git 提交 + PR 状态，生成每日进展简报
+Sprint Review：AI 生成演示脚本，自动对比计划目标与实际完成情况
+Retrospective：AI 分析 Sprint 数据，识别 Well/Improve/Action 三类条目
+AI 作为虚拟团队成员
+随时可用的 Code Reviewer：PR 提交后 AI 即刻给出反馈，不等待同事
+随时可用的 Pair Programmer：Claude Code 实时辅助，降低 WIP（在制品）数量
+随时可用的 Tech Lead 顾问：架构决策时 AI 提供方案对比和风险评估

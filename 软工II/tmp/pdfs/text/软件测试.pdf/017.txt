@@ -1,0 +1,15 @@
+Static Techniques
+• Can be applied at the requirements phase; at the design phase; and during the 
+implementation phase
+• Traditional Static Techniques – heavily manual, error-prone, time consuming
+•Software inspection – The step-by-step analysis of the documents (deliverables) 
+produced, against a compiled checklist of common and historical defects
+•Software reviews – The process by which different aspects of the work product 
+are presented to project personnel (managers, users, customer etc) and other 
+interested stakeholders for comment or approval
+•Code reading – The desktop analysis of the produced code for discovering typing 
+errors that do not violate style or syntax
+•Algorithm analysis and tracing – The process in which the complexity of algorithms 
+employed and the worst case, average-case and probabilistic analysis evaluations 
+can be derived
+• Static Analysis Techniques relying on use of Formal Methods

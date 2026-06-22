@@ -1,0 +1,16 @@
+Express 框架：让路由和中间件更简洁
+原⽣ http 模块需要⼿动解析 URL ，Express 封装了常⽤模式：
+const express = require('express');
+const app = express();
+// GET 路由
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from Express!' });
+});
+// 动态路由参数
+app.get('/api/user/:id', (req, res) => {
+  res.json({ userId: req.params.id });
+});
+app.listen(3000, () => console.log('Express 服务器已启动 '));
+Express 核⼼ = 路由 + 中间件
+路由决定"谁来处理"，中间件决定"怎么处理"（⽇志、鉴权、解析 body…）
+32

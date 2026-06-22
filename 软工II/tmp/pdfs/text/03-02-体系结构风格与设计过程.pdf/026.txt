@@ -1,0 +1,11 @@
+观察者模式在 M VC 中的⻆⾊
+观察者模式 (O bserver Pattern)
+M odel 是被观察者 (Subject)
+View 是观察者 (O bserver)
+M odel 数据变化时通知所有注册的 View
+View 收到通知后⾃动刷新
+好处
+M odel 与 View 松耦合
+⽀持多视图同步更新
+新增 View ⽆需修改 Model
+26

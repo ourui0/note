@@ -1,0 +1,18 @@
+什么是模块（Module）
+A module is a self-contained unit of software that can be
+independently designed, implemented, and tested.
+在⾯向对象中，模块有三种粒度：
+粒度 对应构件 职责边界
+⽅法级 Method / Function 单⼀操作
+类级 Class 状态 + ⾏为
+包级 Package / Namespace 相关类集合
+模块化的两个核⼼指标
+耦合（Coupling）
+模块之间的依赖强度
+→ 越低越好
+内聚（Cohesion）
+模块内部元素的关联程度
+→ 越⾼越好
+设计⽬标：⾼内聚、低耦合
+📖  SW EBO K v4 §1.4 · M odularization  |  §1.4 · Coupling  |  §1.4 · Cohesion
+6

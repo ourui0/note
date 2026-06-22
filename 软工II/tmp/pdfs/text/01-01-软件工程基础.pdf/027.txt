@@ -1,0 +1,7 @@
+W hat is software? — Summary
+Software is independent of hardware
+Software is a tool
+Software = programs + documents + data + knowledge
+Software development is much more complicated than programming
+Application software originate from the reality, and reversely improve the reality
+27

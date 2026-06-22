@@ -1,0 +1,31 @@
+P11 · 开闭原则（O CP）
+Software entities should be open for extension, but closed for modiﬁcation.
+— Bertrand M eyer
+违反 O CP 的典型模式
+// 每次增加新类型都要修改
+class DiscountCalculator {
+    double calculate(Order order) {
+        if (order.type == VIPORDER)
+            return order.total * 0.8;
+        else if (order.type == NEWUSER)
+            return order.total * 0.9;
+        // 增加新类型需修改本类 ...
+    }
+}
+符合 O CP 的重构
+interface DiscountPolicy {
+    double apply(double total);
+}
+class VipDiscount implements DiscountPolicy {
+    public double apply(double t) {
+        return t * 0.8;
+    }
+}
+class DiscountCalculator {
+    private DiscountPolicy policy;
+    // 新增类型只需新增实现类
+    double calculate(Order o) {
+        return policy.apply(o.getTotal());
+    }
+}
+33

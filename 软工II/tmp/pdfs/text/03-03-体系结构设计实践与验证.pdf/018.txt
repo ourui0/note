@@ -1,0 +1,11 @@
+初始概要功能设计
+功能 展示层包 业务逻辑层包 数据层包
+销售 SalesUI Sales SalesData
+库存 CommodityUI Commodity CommodityData
+会员 M emberUI M ember M emberData
+销售策略PromotionUI Promotion PromotionData
+⽤户 UserUI User UserData
+ 
+关键问题
+销售是否只⽤到 Sales 的数据？
+18

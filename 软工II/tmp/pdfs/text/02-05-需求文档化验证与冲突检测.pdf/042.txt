@@ -1,0 +1,9 @@
+SDD 核⼼⼯作流：Spec → Design → Tasks → Code
+四阶段流⽔线
+1. Spec — 写规格说明
+2. Design — 系统设计
+3. Tasks — 任务拆解
+4. Code — AI ⽣成代码
+每⼀阶段的输出是下⼀阶段的输⼊，Spec 质量决定最
+终代码质量
+42

@@ -1,0 +1,21 @@
+① L ow Coupling & ② High Cohesion
+L ow Coupling（低耦合）
+Problem：如何减少变更的影响？如何⽀持低依赖、提⾼
+复⽤？
+Solution：分配职责时保持低耦合
+若 B 已耦合于 A，则把新职责也给 A，不引⼊额外
+依赖
+优先依赖接⼝⽽⾮具体类（→ P4）
+Eﬀect：某类的变更对其他类影响极⼩；类更易独⽴理解
+与复⽤。
+High Cohesion（⾼内聚）
+Problem：如何让对象保持聚焦、易理解、易管理？
+Solution：分配职责时保持⾼内聚
+⼀个类只承担紧密相关的⼀组职责
+不要为了复⽤⽽拼凑不相关的操作
+Eﬀect：类的职责清晰，维护时改动范围⼩，⾃然导向低
+耦合。
+Low Coupling 与 High Cohesion 是 GRASP 的两个元原则 —— Information Expert、Creator、Controller 的取舍，最
+终都以"是否提升内聚 / 降低耦合"为评判标准。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Cohesion  |  §5.4 · O bject-O riented Design
+27

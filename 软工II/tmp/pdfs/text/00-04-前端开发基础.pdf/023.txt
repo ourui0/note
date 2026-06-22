@@ -1,0 +1,20 @@
+单⽂件组件（SFC）
+Vue 的核⼼⽂件格式：.vue — 模板 · 逻辑 · 样式三合⼀
+<!-- MyComponent.vue -->
+<template>               <!-- ①  视图层： HTML 模板  + Vue 指令  -->
+  <div class="card">
+    <h2>{{ title }}</h2>
+    <p> 计数： {{ count }}</p>
+    <button @click="increment">+1</button>
+  </div>
+</template>
+<script setup>           <!-- ②  逻辑层： Composition API -->
+import { ref } from 'vue'
+const title = ' 我的计数器 '
+const count = ref(0)
+const increment = () => { count.value++ }
+</script>
+<style scoped>           /* ③  样式层： scoped 防⽌样式泄漏  */
+.card { border: 1px solid #ccc; padding: 16px; }
+</style>
+23

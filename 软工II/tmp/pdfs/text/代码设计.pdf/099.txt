@@ -1,0 +1,22 @@
+• tax = 0.
+• if (taxable_income == 0) goto EXIT;
+• if (taxable_income > 10000) tax = tax + 1000;
+• else{        tax = tax + .10*taxable_income;
+• goto EXIT;
+• }
+• if (taxable_income > 20000) tax = tax + 1200;
+• else{ tax = tax + .12*(taxable_income-10000):
+• goto EXIT;
+• }
+• if (taxable_income > 30000) tax = tax + 1500;
+• else{ tax = tax + .15*(taxable_income-20000);
+• goto EXIT;
+• }
+• if (taxable_income < 40000){
+• tax = tax + .18*(taxable_income-30000);
+• goto EXIT;
+• }
+• else
+• tax = tax + 1800. + .20*(taxable_income-
+40000);
+• EXIT;

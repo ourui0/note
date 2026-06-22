@@ -1,0 +1,10 @@
+M VC 三组件职责
+组件 职责 要点
+Model 管理数据与业务逻辑不依赖 View/Controller
+View 展示数据给⽤户 从 Model 获取数据
+Controller 处理⽤户输⼊ 更新 Model，选择 View
+核⼼原则
+M odel 独⽴于表现形式
+View 只负责展示，不含业务逻辑
+Controller 是 View 与 M odel 的协调者
+24

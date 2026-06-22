@@ -1,0 +1,27 @@
+Stub 和 Driver 的概念
+Stub（桩）
+替代被调⽤的下层模块
+模拟下层返回固定数据
+⽤于⾃顶向下集成
+// BookDao 的  Stub
+public class BookDaoStub 
+    implements BookDao {
+    public Book findById(Long id) {
+        return new Book(1L, "978-7-XXX",
+            " 设计模式 ", new BigDecimal("59"));
+    }
+}
+Driver（驱动）
+替代调⽤者的上层模块
+模拟上层发起请求
+⽤于⾃底向上集成
+// 测试  BookDao 的  Driver
+public class BookDaoDriver {
+    public static void main(String[] args) {
+        BookDao dao = new BookDaoImpl();
+        Book book = dao.findById(1L);
+        assert book != null;
+        System.out.println(" 测试通过 ");
+    }
+}
+52

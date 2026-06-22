@@ -1,0 +1,24 @@
+P14 · SO FA：⽅法级设计原则
+SO FA = Short · O ne thing · Few arguments · Abstraction level consistency
+— ⾯向⽅法粒度的设计原则（与 SO LID 的类粒度原则互补）
+S — Short（⽅法要短）
+⽅法体通常 ≤ 20–30 ⾏
+过⻓ → 分解为命名清晰的辅助⽅法
+O  — O ne thing（只做⼀件事）
+⽅法名能⽤⼀个短句完整描述其⾏为
+若需要"and"才能描述 → 考虑拆分
+F — Few arguments（参数要少）
+参数越多，调⽤⽅知道的细节越多 → 耦合越⾼
+超过 3 个参数时考虑引⼊参数对象
+A — Abstraction level consistency（抽象层次⼀致）
+// 违反  A ：⾼层业务逻辑混⼊低层实现
+void processOrder(Order o) {
+    validateOrder(o);           // ⾼层
+    db.execute("INSERT ...");  // 低层！
+}
+// 修复：把低层细节封装为⽅法
+void processOrder(Order o) {
+    validateOrder(o);
+    persistOrder(o);  // 统⼀在⾼层
+}
+36

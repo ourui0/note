@@ -1,0 +1,15 @@
+AI 辅助包依赖分析
+Prompt 示例
+分析以下  Java 包结构的依赖关系，检查是否存在：
+1. 循环依赖
+2. 违反分层约束的依赖（如  dao 层依赖  controller ）
+3. 不合理的跨模块依赖
+包结构：
+com.bookstore.controller.book → com.bookstore.service.book
+com.bookstore.service.book → com.bookstore.dao.book
+com.bookstore.service.order → com.bookstore.service.book
+com.bookstore.dao.order → com.bookstore.service.inventory  ← 可疑 !
+AI 检测结果
+违规：dao.order 依赖 service.inventory — dao 层不应依赖 service 层，违反分层约束。应将库存查询逻辑提升
+到 service 层完成。
+64

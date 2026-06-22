@@ -1,0 +1,11 @@
+⼈机协作的三种新模式
+模式 特点 典型产品 HCI 设计重点
+Copilot 副驾驶 AI 实时建议，⼈主导接受/拒绝GitHub Copilot、Cursor、输⼊法联想 低打扰内联建议，Tab ⼀键接受
+Chat 对话 多轮⾃然语⾔，逐步细化结果ChatGPT、Claude、Gemini 上下⽂可⻅性，历史管理
+Agent 代理 AI ⾃主规划并执⾏多步任务Claude Code、Devin、AutoGPT Human-in-the-loop，⾏动透明度
+Human-in-the-loop 设计原则
+关键决策节点暂停等待⽤户确认
+AI ⾏动前展示执⾏计划（Plan）
+⽀持逐步授权（先询问，再扩⼤权限）
+提供审计⽇志（⽤户可回顾 AI 做了什么）
+56

@@ -1,0 +1,13 @@
+If software not correct…
+• Definitions
+• Fault / Defect – The cause of a failure, e.g., a missing or incorrect piece of code
+• Error – An intermediate unstable state
+• Failure – The manifested inability of the program to perform the function 
+required, i.e., a system malfunction evidenced by incorrect output, abnormal 
+termination or unmet time and space constraints.
+• Relationship
+• A fault may remain undetected long time, until some event activates it. 
+• If an when the error propagates to the output, it eventually causes the failure.
+• Fault  Error  Failure 
+• This chain can recursively iterate: a fault in turn can be caused by the failure of 
+some other interacting system.

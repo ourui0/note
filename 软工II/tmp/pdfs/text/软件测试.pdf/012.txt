@@ -1,0 +1,4 @@
+Are you building the “right” thing?
+• 常我们会将软件与终端用户或者其他利益
+相关者的需求进行比较。
+• Validation

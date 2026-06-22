@@ -1,0 +1,9 @@
+Java中断言语句的实现
+• 为了方便实现契约式设计，Java 提供了断言语句：“assert 
+Expression1( : Expression2) ;”：
+• Expression1 是一个布尔表达式，在契约式设计中可以将其设
+置为前置条件或者后置条件；
+• Expression2 是一个值，各种常见类型都可以；
+• 如果Expression1 为true，断言不影响程序执行；
+• 如果Expression1 为false，断言抛出AssertionError 异常，如
+果存在Expression2 就使用它作为参数构造AssertionError。

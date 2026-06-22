@@ -1,0 +1,4 @@
+9. Refactoring as a Discipline
+• Provides a discipline for making changes
+• Not so good as a total design strategy
+• Good example of incrementalism

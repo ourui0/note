@@ -1,0 +1,21 @@
+Claude Code 作为测试智能体——实战
+示例
+场景 1：为现有模块一键生成单元测试
+• $ claude "为 src/payment/checkout.py 生成完整的 pytest 单元测试，覆盖正常路径、边界值和
+异常场景"
+• Claude Code 自动读取源文件，理解业务逻辑，生成带mock 的测试文件并写入
+tests/test_checkout.py
+场景 2：CI 失败后自主修复
+• $ claude "CI 中 test_checkout.py::test_refund_negative 失败，错误信息如下 ：[粘贴 Traceback]
+，请修复"
+• Claude Code 分析 Traceback，定位 checkout.py 第 87 行逻辑缺陷，生成修复patch
+，重新运行测试验证
+场景 3：覆盖率提升任务
+• $ claude "运行 pytest --cov=src/payment，当前覆盖率 61%，补充测试使分支覆盖率达到 80%"
+• Claude Code 读取 coverage.xml，识别 12 个未覆盖分支，逐一生成针对性测试并
+追加到测试文件
+场景 4：多轮自主迭代（--dangerously-skip-permissions）
+• $ claude --dangerously-skip-permissions "对整个 src/ 目录生成测试，执行，修复所有失败，直
+到全部通过"
+• 智能体自主循环：生成→执行→分析失败→修复→重测，无需人工介入，适合CI 
+夜间自动运行

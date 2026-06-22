@@ -1,0 +1,7 @@
+⼯业界趋势预告：Spec-Driven Development
+ 
+2025 年，⼯业界出现了⼀个重要趋势——Spec 驱动开发（SDD）：
+ 
+GitHub Spec Kit（2025）：开源 SDD ⼯具包，⽀持 22+ AI Agent 平台
+AW S Kiro（2025）：将 Spec 定义为 "超级 Prompt"
+Claude Code（Anthropic）：CLAUDE.md 作为项⽬"宪法" 45

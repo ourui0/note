@@ -1,0 +1,13 @@
+Collaboration（Control）Styles
+A control style is a way that all system behavior is distributed among objects (components) network.
+⻛格 特征 控制复杂度
+Centralized（集中
+式） A few controllers record logics of all system behaviors 控制器⾼复杂度，其他对象低
+复杂度
+Delegated（委托式）Decision making is distributed through the object networks with a few controllers
+making the main decisions
+中复杂度对象有⼏个，其他低
+复杂度
+Dispersed（分散式）All system behavior is spread widely through the objects network 所有对象都低复杂度，但交互
+密集
+34

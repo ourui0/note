@@ -1,0 +1,16 @@
+GitHub Spec Kit：Feature Spec 模板
+模板关键字段
+## Problem Statement
+[ ⽤户⾯临的问题是什么？ ]
+## Proposed Solution
+[ ⾼层次的解决⽅向，不涉及技术实现 ]
+## User Stories
+[As a... I want... So that...]
+## Acceptance Criteria
+[Given-When-Then 格式 ]
+## Out of Scope
+[ 明确不做什么 —— 减少  AI 的 " ⾃由发挥 "]
+## Open Questions
+[ 尚未决定的问题 —— 让  AI 知道不要猜测 ]
+来源：github.com/github/spec-kit
+49

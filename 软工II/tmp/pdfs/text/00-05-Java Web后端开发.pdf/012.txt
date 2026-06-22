@@ -1,0 +1,14 @@
+HTTP Request 格式
+请求⾏：   GET     /users    HTTP/1.1
+          ↑ ⽅法    ↑ 路径     ↑HTTP 版本
+Headers:  Host: api.github.com
+          Content-Type: text/plain
+          Content-Length: 243
+Body:     body body body body... （ GET 请求⽆  Body ）
+常⽤⽅法：
+⽅法 ⽤途 是否有 Body
+GET 获取资源，不修改服务器数据✗
+POST 新增或修改资源  JSO N/表单数据
+PUT 更新资源（替换整体）
+DELETE 删除资源 ✗
+12

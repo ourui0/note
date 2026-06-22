@@ -1,0 +1,11 @@
+HTM L  常⽤标签速查
+标签类别 常⽤标签 语义
+标题 h1 –h6 层级标题
+⽂本 p  strong  em 段落、强调
+媒体 img  video  audio 嵌⼊媒体
+交互 form  input  button ⽤户输⼊
+布局 div  section  nav 容器/语义块
+链接 a 超链接，href  指定⽬标
+语义化 HTM L ：⽤正确的标签表达正确的含义（如⽤ <nav>  ⽽⾮ <div class="nav"> ），有助于 SEO  和⽆障碍访
+问。
+10

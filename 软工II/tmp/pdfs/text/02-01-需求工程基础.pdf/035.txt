@@ -1,0 +1,10 @@
+⾮功能需求深化 [SW EBO K 1.6-1.7]
+ 
+技术约束（Technology Constraints）
+强制或禁⽌使⽤特定技术
+示例：必须使⽤ Java、必须运⾏在 Linux、禁⽌使⽤ GPL 库
+ 
+服务质量约束（Quality of Service Constraints）
+不约束技术选择，⽽是约束可接受的性能⽔平
+示例：响应时间、吞吐量、准确率、可靠性、可扩展性
+35

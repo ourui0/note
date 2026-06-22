@@ -1,0 +1,1 @@
+实现接口•interface 定义了规约•实现class 实现了规约

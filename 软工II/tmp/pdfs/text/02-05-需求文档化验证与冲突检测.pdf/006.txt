@@ -1,0 +1,13 @@
+Tips of Documents [SW EBO K 4.1]
+W hy Standard?
+统⼀格式降低沟通成本
+新成员可以快速上⼿阅读
+不同团队之间可以互相审查
+ 
+Can we solve communication problem with other methods?
+会议记录会遗忘，⼝头承诺会变化
+⽂档是持久化的沟通载体
+⽂档可追溯、可审计、可版本化
+ 
+⽂档不是⽬的，⽽是确保信息不丢失的⼿段
+6

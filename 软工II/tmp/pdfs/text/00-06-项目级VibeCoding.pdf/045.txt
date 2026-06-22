@@ -1,0 +1,9 @@
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+第 6 讲   项⽬级 VibeCoding
+本讲核⼼收获
+├── Stitch ：⾃然语⾔描述  → 可视化界⾯原型，快速对⻬产品需求
+├── AI Studio + Claude Code ： Web 前后端全链路  AI ⽣成与联调
+├── 通义灵码  + Expo Go ：移动端  App 开发与真机热重载调试
+└── MCP chrome-devtools ： AI 直读浏览器状态，⾃动定位前端问题
+VibeCoding 改变了开发的速度，不变的是⼯程思维的价值
+45

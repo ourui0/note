@@ -1,0 +1,16 @@
+什么是详细设计（Detail Design）
+体系结构 vs 详细设计
+软件体系结构定义了模块的规格（部件、连接件、配置）
+详细设计⽤详细设计机制实现模块
+中层：（⼦模块化）→ OO → 类的规格
+低层：DS + ALG → 类的实现
+详细设计的关注点
+美学、功能性及模块的多个⽅⾯
+质量属性：
+M odiﬁcation（可修改）
+M aintenance（可维护）
+Performance（性能）
+......
+详细设计 = 中层设计（过程、调⽤；类、协作） + 低层设计（数据结构、算法、类型、语句、控制结构）。
+📖  SW EBO K v4 §2 · Software Design Processes  |  §2.2 · Detailed Design  |  §1.3 · Key Issues in Software Design
+5

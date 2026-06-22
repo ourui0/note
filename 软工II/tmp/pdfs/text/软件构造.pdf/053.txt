@@ -1,0 +1,7 @@
+5. Open Source Software
+• Great aid to programmers during 
+development
+• Reduced barriers to making code available
+• Opportunity to learn from available code
+• Improved ability to read code
+• Nice “community” of programmers

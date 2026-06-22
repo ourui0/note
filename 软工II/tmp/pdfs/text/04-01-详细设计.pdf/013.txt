@@ -1,0 +1,17 @@
+⾯向对象详细设计的思想
+两⼤核⼼概念
+职责（Responsibility）
+类要做什么、维护什么
+协作（Collaboration）
+类之间如何通过消息⼀起完成⼤职责
+设计过程
+设计模型建⽴
+通过职责建⽴静态设计模型
+通过协作建⽴动态设计模型
+设计模型重构
+模块化（⾼内聚低耦合）
+信息隐藏（隐藏职责与变更）
+设计模式
+Rebecca Wirfs-Brock："The objects within a program must collaborate; otherwise, the program would consist
+of only one big object that does everything."
+13

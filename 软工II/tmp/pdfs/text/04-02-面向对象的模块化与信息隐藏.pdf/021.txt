@@ -1,0 +1,17 @@
+信息隐藏的本质
+每个模块应该对其他模块隐藏⼀个重要的设计决策。
+— David Parnas, 1972
+两类秘密（Secrets）
+主要秘密（Primary Secret）
+= 职责变更的可能性
+→ 这个类应该做什么会变化吗？
+次要秘密（Secondary Secret）
+= 实现变更的可能性
+→ 这个类如何做会变化吗？
+为什么要隐藏？
+变化是软件的常态。
+将变化的可能性封装在模块内部，使得修改
+只影响该模块，⽽不波及其他模块。
+信息隐藏 = 隔离变化 = 降低耦合
+📖  SW EBO K v4 §1.4 · Encapsulation (inform ation hiding)  |  §1.4 · M odularization
+21

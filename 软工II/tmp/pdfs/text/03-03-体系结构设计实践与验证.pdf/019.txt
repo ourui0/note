@@ -1,0 +1,14 @@
+改进：发现横向依赖
+分析销售处理⽤例的数据需求
+销售处理不仅需要 Sales 数据，还需要：
+Commodity + CommodityData（查询商品信息、价格）
+Member + MemberData（查询会员折扣）
+Promotion + PromotionData（应⽤促销策略）
+User + UserData（验证收银员身份）
+改进后的概要功能设计
+功能 逻辑包（⿊⾊=本模块，红⾊=跨模块依赖）
+销售 Sales, SalesData; + Commodity, M ember, Promotion, User
+库存 Commodity, CommodityData; + Sales, SalesData
+会员 M ember, M emberData; + Sales, Commodity
+横向调⽤是不可避免的，但需要通过接⼝来管理
+19

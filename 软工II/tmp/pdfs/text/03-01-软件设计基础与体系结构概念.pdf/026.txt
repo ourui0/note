@@ -1,0 +1,12 @@
+Bass, Clem ents & Kazm an [SEI]
+ 
+The software architecture of a system is the set of structures needed to reason about the system, which
+comprise software elements, relations among them, and properties of both.
+ 
+Kruchten 的补充
+Software Architecture encompasses the signiﬁcant decisions about:
+the organization of a software system
+the selection of structural elements and their interfaces
+the composition of these elements into progressively larger subsystems
+the architectural style that guides this organization
+26

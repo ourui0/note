@@ -1,0 +1,8 @@
+从⽤例到包的 4 步映射⽅法
+步骤 活动 产出
+Step 1 确定顶层包结构 controller / service / dao / entity 四层
+Step 2 分析⽤例，确定业务模块 book / cart / order / customer / payment / inventory / review
+Step 3 将概念类分配到 entity 包 Book, O rder, Customer, CartItem 等
+Step 4 为每层建⽴与业务模块对应的类BookController, BookService, BookDao 等
+原则：先纵向分层，再横向分模块，确保每个包职责单⼀。
+6

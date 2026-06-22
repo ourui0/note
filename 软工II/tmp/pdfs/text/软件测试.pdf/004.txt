@@ -1,0 +1,6 @@
+Millennium bug (Y2K)
+• In the 1970s and on, programmers saved 
+precious memory and disk space by storing 
+years in a two-digit format
+• They (we) never dreamed that their 
+programs would still be running in 2000

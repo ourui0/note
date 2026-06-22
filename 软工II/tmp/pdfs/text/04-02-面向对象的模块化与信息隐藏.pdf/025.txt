@@ -1,0 +1,25 @@
+类型 A：ADT — 抽象数据类型
+ADT 定义的是概念，不是实现。
+公开字段（违反封装 A）
+class Point {
+    public double x;  // 暴露实现：直⻆坐标
+    public double y;
+}
+// 调⽤⽅直接依赖坐标系！
+point.x = 3.0;
+若改为极坐标实现，所有调⽤⽅都要修改。
+ADT 封装（推荐）
+class Point {
+    private double x, y;
+    // 直⻆坐标接⼝
+    double getX() { return x; }
+    double getY() { return y; }
+    // 极坐标接⼝（同⼀  ADT ）
+    double getR() {
+        return Math.sqrt(x*x + y*y);
+    }
+    double getTheta() {
+        return Math.atan2(y, x);
+    }
+}
+25

@@ -1,0 +1,18 @@
+GitHub 团队协作⼯作流
+你的本地                           GitHub 远程
+    │                                  │
+    ├── git clone ◄────────────────────┤ fork / clone 仓库
+    │                                  │
+    ├── git checkout -b feature/xxx    │ 在本地创建功能分⽀
+    │                                  │
+    ├── 写代码  → git add → git commit  │ 本地开发并提交
+    │                                  │
+    ├── git push origin feature/xxx ──►│ 推送到远程
+    │                                  │
+    │                              创建  Pull Request （ PR ）
+    │                              团队成员  Code Review
+    │                              合并到  main 分⽀
+    │                                  │
+    ├── git pull origin main ◄─────────┤ 同步最新代码
+关键习惯：每次 commit 只做⼀件事，写清楚 commit message——这是 Knight Capital 事故的反⾯教训
+13

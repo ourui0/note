@@ -1,0 +1,16 @@
+案例：在线书店 — 进程视图
+关注并发、线程、同步
+单体部署时的线程模型
+线程/进程 职责
+Tomcat W orker Thread Pool 处理 HTTP 请求（200 线程）
+HikariCP Connection Pool 数据库连接池（max=20）
+Scheduler Thread 定时任务（订单超时取消）
+Async Thread Pool 异步邮件/短信通知
+并发关注点
+库存扣减：乐观锁 UPDATE inventory SET qty=qty-1 WHERE 
+qty>0
+订单超时：Scheduler 每分钟扫描超时订单
+⽀付回调：幂等处理，防⽌重复扣款
+缓存⼀致：Redis 缓存与 DB 的最终⼀致性
+进程视图回答："系统在运⾏时如何分配线程和资源？"
+32

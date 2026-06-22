@@ -1,0 +1,22 @@
+Apache Tomcat：Java W eb 服务器
+Apache Tomcat 是⽤ Java 编写、运⾏在 JVM  上的 W eb 服务器（Java Servlet 容器）：
+Web 浏览器
+    │
+    │  HTTP Request
+    ▼
+┌────────────────────────────────┐
+│        Apache Tomcat           │
+│                                │
+│  ┌────────────────────────┐   │
+│  │    Servlet Class A     │   │
+│  ├────────────────────────┤   │
+│  │    Servlet Class B     │   │
+│  ├────────────────────────┤   │
+│  │    Servlet Class C     │   │
+│  └────────────────────────┘   │
+└────────────────────────────────┘
+    │
+    │  HTTP Response
+    ▼
+Web 浏览器
+15

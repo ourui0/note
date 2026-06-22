@@ -1,0 +1,18 @@
+Spec 案例（续）：验收标准与边界
+ 
+## Acceptance Criteria (Given-When-Then)
+- Given 数据库中有  500 件商品
+  When  买家输⼊ "MacBook" 并点击搜索
+  Then  结果在  2 秒内返回，且包含所有标题含 "MacBook" 的商品
+- Given 买家设置筛选条件：价格  500-2000 ，成⾊ "9 成新 "
+  When  点击 " 应⽤筛选 "
+  Then  结果只展示满⾜所有条件的商品
+## Out of Scope （明确不做）
+- 不实现  AI 推荐算法（ v2 再考虑）
+- 不⽀持图⽚内容搜索
+- 不⽀持跨校区搜索
+## Open Questions （尚未决定）
+- 搜索结果是否需要分⻚？每⻚多少条？
+- 是否需要搜索历史记录功能？
+ 注意 O ut of Scope 和 O pen Questions 的价值：
+它们告诉 AI "不要猜测"，⼤幅减少 AI 的⾃由发挥空间。 45

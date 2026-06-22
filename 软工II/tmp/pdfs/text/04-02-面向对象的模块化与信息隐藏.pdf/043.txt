@@ -1,0 +1,27 @@
+SO LID 检测实证 ①：实验设计与关键数据
+"Are W e SO LID Yet?" — arXiv:2509.03093, September 2025
+实验设置
+任务：⾃动检测 Java 代码中的 SO LID 原则违反
+模型：GPT-4o M ini、GPT-4o、Claude 3.5、Llama 3、Gemini
+1.5 等
+Prompt 策略：零样本 / 少样本 / 集成投票 / 基于示例
+各原则最优 F1
+SO L ID 原则 最佳 Prom pt 策略 最优 F1
+O CP（开闭） 集成投票（Ensemble） 71.2%
+DIP（依赖倒置）示例提示（Example-hints） 64.8%
+SRP（单⼀职责）少样本 58.3%
+ISP（接⼝隔离）零样本 51.7%
+L SP（⾥⽒替换）零样本 44.1%
+核⼼结论
+GPT-4o M ini 总体优于更⼤模型
+结构化推理步骤⽐参数规模更关键——⼩模
+型 + 好 Prompt > ⼤模型 + 零样本
+复杂度是核⼼瓶颈
+每增加 5 ⾏代码，F1 下降约 15%
+LSP 和 SRP 在复杂类体系中准确率接近随机
+O CP / DIP 是最适合 LLM  辅助检测的原
+则，因为其违反模式局部、规律性强；SRP /
+LSP 需要跨上下⽂语义理解，LLM 明显⼒不
+从⼼。
+📖 SW EBO K 4§5 4 O bject O riented Design (SO L ID) | §63 Q alit Analsisand E alation
+43

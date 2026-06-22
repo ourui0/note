@@ -1,0 +1,14 @@
+标准演进：ISO /IEC 9126 → 25010:2023 [SW EBO K 1.7]
+ 
+标准 年代 质量特性数 关键变化
+ISO /IEC 9126 1991 6 功能性、可靠性、易⽤性、效率、可维护性、可移植性
+ISO /IEC 25010:2011 2011 8 新增安全性（Security）和兼容性（Com patibility）
+ISO /IEC 25010:2023 2023 8 细化⼦特性，增加**交互性（Interaction Capability）**替代易⽤性
+ 
+2025 前沿：L L M  + ISO  25010 ⾃动推断⾮功能需求
+通过细粒度提示框架，LLM 可从功能需求⾃动推断对应的⾮功能需求
+按 ISO /IEC 25010:2023 分类，80.4% 的分类结果与⼈⼯⼀致
+专家对推断质量的中位评分：5.0/5（median，>50% 专家给满分，但也有低分）
+来源：Advancing RE with LLMs, ScienceDirect 2025
+(sciencedirect.com/science/article/pii/S221282712500873X)
+33

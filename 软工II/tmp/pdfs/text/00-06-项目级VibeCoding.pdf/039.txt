@@ -1,0 +1,17 @@
+设置前后端通信
+前端使⽤ Axios 对接后端 API：
+告诉 AI Studio（或 Claude Code）：
+将前端所有 mock 数据替换为真实 API 调⽤。
+后端地址：http://localhost:3000 ，
+请统⼀封装 axios 实例，处理错误和 loading 状态。
+// src/api/index.js （ AI Studio ⽣成）
+import axios from 'axios';
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  timeout: 10000,
+});
+export const getTasks   = ()       => api.get('/api/tasks');
+export const createTask = (data)   => api.post('/api/tasks', data);
+export const updateTask = (id, data) => api.patch(`/api/tasks/${id}`, data);
+export const deleteTask = (id)     => api.delete(`/api/tasks/${id}`);
+39

@@ -1,0 +1,10 @@
+③ Information Expert（信息专家）
+Problem：What is the most basic principle by which responsibilities are assigned in object-oriented design?
+Solution：Assign a responsibility to the class that has the information necessary to fulﬁll the responsibility.
+案例
+要计算 Sales.total() ：
+谁知道每个 SalesLineItem 的数量？→ SalesLineItem
+谁知道每个 Commodity 的价格？→ Commodity
+→ Sales.total() 委托给 SalesLineItem.subtotal() ，后者再调 Commodity.getPrice()
+"谁有数据，谁负责" —— ⾃然形成职责链，避免数据外泄。
+28

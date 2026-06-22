@@ -1,0 +1,13 @@
+Spec 案例：校园⼆⼿交易平台
+ 
+# Feature Spec: 商品搜索与筛选
+## Problem Statement
+学⽣在⼆⼿平台上找不到想要的商品，因为没有有效的搜索和筛选功能，
+导致⽤户流失率⾼达  40% 。
+## Proposed Solution
+提供关键词搜索  + 多维度筛选（价格、分类、成⾊、校区），
+并按相关度和时间排序展示结果。
+## User Stories
+- As a 买家 , I want to 按关键词搜索商品 , So that 快速找到⽬标商品
+- As a 买家 , I want to 按价格区间筛选 , So that 只看预算内的商品
+44

@@ -1,0 +1,15 @@
+HTTP Response 格式与状态码
+状态⾏：   HTTP/1.1   200    OK
+          ↑ 版本      ↑ 状态码  ↑ 状态消息
+Headers:  Date: Sun, 10 Oct 2010 23:26:07 GMT
+          Content-Type: text/html
+          Content-Length: 12
+          （空⾏）
+Body:     Hello world!
+常⽤状态码：
+范围 含义 典型示例
+2xx 成功 200 O K · 201 Created
+3xx 重定向 301 永久移动 · 304 未修改
+4xx 客户端错误400 请求错误 · 401 未认证 · 404 未找到
+5xx 服务器错误500 服务器内部错误
+13

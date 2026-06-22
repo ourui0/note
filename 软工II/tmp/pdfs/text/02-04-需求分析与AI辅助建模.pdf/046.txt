@@ -1,0 +1,11 @@
+L L M  + U M L  ⼯具链
+⼯具 特点 L L M  配合⽅式
+PlantU ML 覆盖全部 U M L  图类型，语法严谨 L L M  ⽣成 PlantU M L  代码 → 渲染引擎出图
+Mermaid JavaScript 原⽣，GitHub / M arkdown 内嵌 L L M  ⽣成 M ermaid 代码 → 浏览器直接渲染
+Claude Artifacts 直接⽣成交互式可视化图表 对话式⽣成，即时预览
+ 
+典型⼯作流
+  需求描述（⾃然语⾔）   ──   LLM ⽣成代码   ──   PlantUML/Mermaid 渲染   ──   ⼈⼯审查修正
+ 
+来源：dev.to/mike-vincent, thenewstack.io
+46

@@ -1,0 +1,11 @@
+Claude Code 中的 Spec 驱动开发（⼀）
+ 
+Anthropic 团队内部实践
+机制 作⽤ 对应需求⼯程概念
+CL AU DE.md 项⽬"宪法"，定义全局约束⾮功能需求 + 项⽬约束
+Subagents 并⾏处理独⽴任务 任务分解
+Tasks 带依赖关系的任务编排W BS / Sprint Backlog
+Hooks 事件触发⾃动化动作 验证与质量⻔禁
+ 
+Claude Code 将需求⼯程的核⼼概念嵌⼊到了 AI 编程⼯具的⼯作流中。
+50

@@ -1,0 +1,877 @@
+
+
+--- PAGE 1 ---
+体系结构⻛格与设计过程
+软件⼯程与计算 II · 体系结构模块 · 第 2 讲
+南京⼤学 · 刘钦
+1
+
+
+--- PAGE 2 ---
+今⽇学习路径
+①  ⻛格概览  → ②  分层⻛格  → ③  MVC ⻛格  → ④  设计过程  → ⑤  案例演示  → ⑥  AI 增强
+  ──────────────────────────────────────────────────────────────────────────
+  ⻛格分类       严格 / 松散     Model-View    七步法        需求 → 架构       Prompt+ 审查
+今⽇核⼼问题
+1. 常⻅体系结构⻛格有哪些？各⾃适⽤场景是什么？
+2. 分层⻛格和 MVC ⻛格如何指导系统设计？
+3. 从需求到架构的设计过程包含哪些步骤？
+2
+
+
+--- PAGE 3 ---
+预习测试
+ 
+1. 体系结构设计的过程包含哪些步骤？请简要描述。
+2. 列举⼀个⾮功能性需求对体系结构设计的影响，并说明原因。
+3
+
+
+--- PAGE 4 ---
+预习测试 — 参考思路
+设计过程步骤
+1. 分析关键需求与约束
+2. 选择体系结构⻛格
+3. 进⾏逻辑设计（⼦系统划分）
+4. 设计接⼝与数据流
+5. 评审与迭代
+⾮功能需求影响示例
+⾼并发 → 采⽤事件驱动或微服务⻛格，⽽⾮单体分层
+安全性 → 增加认证/授权层，影响分层数量
+可移植性 → 严格分层隔离平台依赖
+4
+
+
+--- PAGE 5 ---
+PART 1 · 体系结构⻛格概览
+Architectural Styles O verview
+5
+
+
+--- PAGE 6 ---
+体系结构⻛格的概念
+体系结构⻛格（Architectural Style）是⼀组设计决策的集合，它规定了：
+⼀组组件类型（如过滤器、层、服务）
+组件之间的连接⽅式（如管道、调⽤、事件）
+组件交互的约束规则（如分层只能调⽤相邻层）
+⻛格 = 组件词汇 + 连接器词汇 + 拓扑约束
+为什么需要⻛格？
+提供经验复⽤ — 前⼈验证过的设计⽅案
+提供通⽤词汇 — 团队沟通的共同语⾔
+明确质量属性权衡 — 每种⻛格有特定的优劣
+6
+
+
+--- PAGE 7 ---
+体系结构⻛格分类总览
+⻛格 组件 连接器 典型应⽤
+分层 (Layered) 层 (Layer) 过程调⽤ 企业信息系统
+管道-过滤器 (Pipe-Filter) 过滤器 管道（数据流） 编译器、数据处理
+⾯向对象 (O O ) 对象/类 ⽅法调⽤、消息传递现代软件系统、框架
+客户端-服务器 (C/S) 客户端、服务器 请求/响应 W eb 应⽤、数据库
+事件驱动 (Event-Driven) 事件源、监听器 事件总线 GUI、消息系统
+MVC Model、View、Controller 事件、直接调⽤ W eb 应⽤、桌⾯ GUI
+微服务 (Microservices) 独⽴服务 REST/消息队列 ⼤规模互联⽹系统
+主程序-⼦程序 主程序、⼦程序 过程调⽤ 传统结构化系统
+7
+
+
+--- PAGE 8 ---
+⻛格 vs 模式 —— 区别 [SW EBO K 2.2]
+ 
+维度 体系结构⻛格 (Style) 设计模式 (Pattern)
+作⽤范围 系统全局组织⽅式 局部重复问题的解决⽅案
+粒度 定义系统⼤部分的组织 可应⽤于系统中的单个元素
+示例 分层、微服务、管道-过滤器 观察者、MVC、代理
+能否共存 ⼀个系统通常选择⼀种主⻛格 多个模式可以同时存在
+ 
+案例：在线书店中⻛格与模式共存
+⻛格：三层分层架构（全局组织）
+模式：MVC（展示层内部）、Observer（模型通知视图）、DAO （数据访问层）
+8
+
+
+--- PAGE 9 ---
+SW EBO K 体系结构⻛格六⼤类 [SW EBO K 2.2]
+ 
+# 类别 包含的⻛格
+1 General Structures 分层、管道-过滤器、⿊板
+2 Distributed Systems 客户端-服务器、n-tier、发布-订阅、REST、微服务
+3 Method-Driven ⾯向对象、事件驱动、数据流
+4 User-Computer Interaction MVC、PAC（Presentation-Abstraction-Control）
+5 Adaptive Systems 微内核、反射、元级架构
+6 Virtual Machines 解释器、规则引擎、进程控制
+在线书店适⽤：分层（#1）+ REST（#2）+ ⾯向对象（#3）+ M VC（#4）
+9
+
+
+--- PAGE 10 ---
+主程序-⼦程序⻛格
+结构特征
+⾃顶向下的调⽤层次
+数据通过参数传递
+优缺点
+优势 劣势
+结构清晰 耦合度⾼
+易于理解 难以复⽤
+控制流明确不⽀持并发
+调试⽅便 扩展性差
+适合⼩规模、逻辑简单的系统
+10
+
+
+--- PAGE 11 ---
+⾯向对象⻛格
+⾯向对象⻛格以对象为基本组件，通过⽅法调⽤进⾏交互。
+三⼤特性对架构的影响
+特性 架构影响
+封装 信息隐藏，降低耦合
+继承 代码复⽤，建⽴层次
+多态 灵活替换，开闭原则
+案例：在线书店对象协作
+O O  ⻛格是现代分层架构和 MVC 的基础——对象封装数据与⾏为，通过消息传递协作
+11
+
+
+--- PAGE 12 ---
+案例对⽐：KW IC 实验
+问题描述 [Parnas 1972]
+KW IC（Key W ord in Context，上下⽂关键词索引）系统：
+输⼊：⼀组有序的⾏，每⾏是有序的词序列
+处理：对每⾏进⾏循环位移（将⾸词移到末尾），⽣成所有位移变体
+输出：按字⺟顺序排列的所有循环位移结果
+示例：输⼊ "Software Architecture"
+→ 输出 "Architecture Software", "Software Architecture"
+实验⽬的
+⽤ 5 种体系结构⻛格实现同⼀问题，对⽐各⻛格在可修改性、可复⽤性、性能上的差异。
+12
+
+
+--- PAGE 13 ---
+KW IC：五种体系结构⻛格实现对⽐
+⻛格 控制⽅式 数据共享 耦合程度 核⼼特征
+MS1 主程序-⼦程序 主程序顺序调⽤共享存储 + 索引 紧耦合 空间⾼效，数据⽆隐藏
+MS2 主程序-⼦程序 主程序顺序调⽤共享存储 + 完整字符串紧耦合 直观易懂，空间开销⼤
+O O  ⾯向对象 对象协作 接⼝访问，内部隐藏松耦合 信息隐藏，易于变更数据表示
+PF 管道-过滤器 数据流驱动 管道传输，⽆共享 极松耦合 增量处理，但仅限批处理
+ES 事件系统 事件触发 抽象数据空间 松耦合 灵活扩展，但控制流难追踪
+同⼀需求，⻛格选择决定了系统的演化能⼒
+13
+
+
+--- PAGE 14 ---
+KW IC 实验：变更场景分析
+三种典型变更
+变更类型 要求 各⻛格适应性
+数据表示变更⽤完整字符串代替索引存储MS1 需改所有模块；OO  仅改内部实现
+算法变更 按需⽣成位移（⽽⾮全部⽣成）PF 需改过滤器链；ES 可调整事件响应策略
+功能扩展 过滤噪声词（如 "a", "the"） MS 直接修改共享数据；PF 新增过滤器即可
+实验结论
+M S：适合空间敏感、变更少的场景
+O O ：适合数据表示可能独⽴演化的场景
+PF：适合数据流式、增量处理场景，但难以交互
+ES：适合功能动态扩展场景，但控制流复杂
+核⼼启示：没有最好的⻛格，只有最适合需求的⻛格
+14
+
+
+--- PAGE 15 ---
+PART 2 · 分层⻛格
+L ayered Architecture Style
+15
+
+
+--- PAGE 16 ---
+分层体系结构原理
+严格分层 (Strict L ayering)
+每层只能调⽤直接下层
+层间依赖关系清晰
+修改影响范围可控
+例：OSI 七层⽹络模型
+松散分层 (Relaxed L ayering)
+允许跨层调⽤
+提⾼运⾏效率
+降低开发复杂度
+例：⼤多数企业应⽤
+16
+
+
+--- PAGE 17 ---
+三层架构详解
+核⼼原则：上层依赖下层，下层不依赖上层；每层通过接⼝暴露服务。
+17
+
+
+--- PAGE 18 ---
+三层架构 — 各层职责
+层次 英⽂名 核⼼职责 典型技术
+展示层 Presentation 接收请求、渲染视图、⽤户交互JSP, Thymeleaf, Vue, React
+业务逻辑层Business Logic 实现业务规则、协调⼯作流 Spring Service, EJB
+数据访问层Data Access CRUD 操作、数据映射、事务管理MyBatis, JPA, Hibernate
+关键设计约束
+展示层不直接访问数据库
+业务逻辑层不包含 UI 代码
+数据访问层不包含业务规则
+各层通过**接⼝（Interface）**解耦
+18
+
+
+--- PAGE 19 ---
+分层⻛格的四⼤优势
+优势 说明 示例
+封装性 每层内部实现对外隐藏 切换 MySQL 到 PostgreSQL 不影响业务层
+关注点分离开发者只需关注本层逻辑前端⼯程师⽆需了解 SQL
+可替换性 整层可被替换⽽不影响其他层将 W eb UI 替换为移动端 UI
+可测试性 各层可独⽴单元测试 Mock 数据层测试业务逻辑
+分层的代价
+性能开销 — 层间调⽤带来额外开销
+级联修改 — 新增字段可能需要逐层传递
+过度分层 — 简单系统分层反⽽增加复杂度
+19
+
+
+--- PAGE 20 ---
+案例：连锁超市系统
+基本功能模块
+1. 销售 — 收银、退货、结算
+2. 库存管理 — ⼊库、出库、盘点
+3. 商品管理 — 商品信息维护
+4. 会员管理 — 注册、积分、等级
+5. 促销策略 — 满减、折扣、赠品
+6. 财务管理 — 收⽀记录、报表
+7. ⼈员管理 — 员⼯信息、权限
+8. ⽇志审计 — 操作记录、异常
+三层包图
+20
+
+
+--- PAGE 21 ---
+案例：在线书店系统分层架构
+层次 包名 关键类
+展示层 presentation BookController, OrderController, UserController
+业务逻辑层 service BookService, OrderService, UserService
+数据访问层 dao BookDao, OrderDao, UserDao
+实体层 entity Book, Order, User, CartItem
+调⽤链路
+21
+
+
+--- PAGE 22 ---
+在线书店 — 分层代码示例
+// === 展示层  Controller ===
+@RestController
+public class BookController {
+    @Autowired private BookService bookService;
+    @GetMapping("/books/{id}")
+    public Book getBook(@PathVariable Long id) {
+        return bookService.findById(id);  // 调⽤业务层
+    }
+}
+// === 业务逻辑层  Service ===
+@Service
+public class BookService {
+    @Autowired private BookDao bookDao;
+    public Book findById(Long id) {
+        return bookDao.selectById(id);    // 调⽤数据层
+    }
+}
+// === 数据访问层  Dao ===
+@Mapper
+public interface BookDao {
+    @Select("SELECT * FROM book WHERE id = #{id}")
+    Book selectById(Long id);             // 访问数据库
+}
+22
+
+
+--- PAGE 23 ---
+PART 3 · M VC ⻛格
+Model-View-Controller Pattern
+23
+
+
+--- PAGE 24 ---
+M VC 三组件职责
+组件 职责 要点
+Model 管理数据与业务逻辑不依赖 View/Controller
+View 展示数据给⽤户 从 Model 获取数据
+Controller 处理⽤户输⼊ 更新 Model，选择 View
+核⼼原则
+M odel 独⽴于表现形式
+View 只负责展示，不含业务逻辑
+Controller 是 View 与 M odel 的协调者
+24
+
+
+--- PAGE 25 ---
+M VC 与分层⻛格的关系
+映射关系
+M VC 三层架构
+View 展示层
+Controller 展示层
+Model 业务逻辑层 + 数据访问层
+关键区别
+分层关注纵向职责划分
+MVC关注交互逻辑分离
+两者可以结合使⽤
+实践中常将 MVC 嵌⼊展示层
+25
+
+
+--- PAGE 26 ---
+观察者模式在 M VC 中的⻆⾊
+观察者模式 (O bserver Pattern)
+M odel 是被观察者 (Subject)
+View 是观察者 (O bserver)
+M odel 数据变化时通知所有注册的 View
+View 收到通知后⾃动刷新
+好处
+M odel 与 View 松耦合
+⽀持多视图同步更新
+新增 View ⽆需修改 Model
+26
+
+
+--- PAGE 27 ---
+案例：在线书店 M VC 代码
+// === Controller 层  ===
+@Controller
+public class BookController {
+    @Autowired private BookService bookService;
+    @GetMapping("/books")
+    public String listBooks(Model model) {
+        List<Book> books = bookService.findAll();
+        model.addAttribute("books", books);   // 传递数据给  View
+        return "bookList";                     // 选择  View 模板
+    }
+    @PostMapping("/books")
+    public String addBook(@RequestBody Book book) {
+        bookService.save(book);                // 更新  Model
+        return "redirect:/books";              // 重定向刷新
+    }
+}
+// === Service 层（ Model 的⼀部分） ===
+@Service
+public class BookService {
+    @Autowired private BookDao bookDao;
+    public List<Book> findAll() { return bookDao.selectAll(); }
+    public void save(Book book) { bookDao.insert(book); }
+}
+27
+
+
+--- PAGE 28 ---
+管道-过滤器⻛格（Pipe-and-Filter）[SW EBO K 2.2]
+案例：Java Stream  API
+List<String> titles = books.stream()
+    .filter(b -> b.getPrice() > 50)
+    .sorted(comparing(Book::getPrice))
+    .map(Book::getTitle)
+    .collect(toList());
+案例：U nix 管道
+cat access.log | grep "POST /api/orders"
+  | awk '{print $1}' | sort | uniq -c
+28
+
+
+--- PAGE 29 ---
+客户端-服务器 + REST ⻛格 [SW EBO K 2.2]
+REST 核⼼约束 [Fielding 2000]
+⽆状态：每次请求包含所有信息
+统⼀接⼝：HTTP 动词 + URI 资源
+分层系统：客户端不知道是否直连服务器
+在线书店 RESTful API
+⽅法 端点 功能
+GET /api/books 搜索图书
+GET /api/books/{id} 图书详情
+PO ST /api/orders 创建订单
+PUT /api/cart/items 更新购物⻋
+DELETE /api/cart/items/{id} 删除商品
+Spring Boot 实现
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+    @Autowired
+    private BookService bookService;
+    @GetMapping("/{id}")
+    public Book getBook(
+            @PathVariable String id) {
+        return bookService.findById(id);
+    }
+    @GetMapping
+    public Page<Book> search(
+            @RequestParam String keyword,
+            @RequestParam int page) {
+        return bookService.search(
+            keyword, page);
+    }
+}
+29
+
+
+--- PAGE 30 ---
+微服务⻛格 [SW EBO K 2.2]
+核⼼特征
+每个服务独⽴部署、独⽴数据库
+通过 REST/消息队列通信
+团队按服务边界划分（Conway 定律）
+单体 vs 微服务对⽐
+维度 单体 微服务
+部署 整体部署 独⽴部署
+扩展 整体扩展 按需扩展
+技术栈 统⼀ 可异构
+复杂度 代码内 运维层
+适合 ⼩团队/早期⼤团队/⾼流量
+在线书店微服务拆分示意
+5 ⼈团队 + ⽆ K8s 经验 → 选择单体分层更合适
+30
+
+
+--- PAGE 31 ---
+PART 4 · 体系结构设计过程
+Architectural Design Process
+31
+
+
+--- PAGE 32 ---
+体系结构设计过程 — 简化版
+设计过程是迭代的，在任何步骤都可以回退到前⾯的步骤进⾏调整。
+32
+
+
+--- PAGE 33 ---
+体系结构设计过程 — 完整版
+步骤 名称 核⼼任务
+1 分析关键需求 识别功能需求、质量属性、项⽬约束
+2 选择体系结构⻛格根据需求特征选择合适⻛格
+3 逻辑设计 将需求分配到⼦系统和模块
+4 接⼝设计 定义模块间的交互接⼝
+5 物理设计 决定部署⽅案（硬件/⽹络拓扑）
+6 验证设计⽅案 检查是否满⾜需求和约束
+7 评审与改进 团队评审，迭代优化
+关键提示：步骤 3 (逻辑设计) 是最核⼼的步骤，需要反复迭代直到模块划分合理。
+33
+
+
+--- PAGE 34 ---
+步骤 1：分析关键需求和项⽬约束
+体系结构需求的构成
+34
+
+
+--- PAGE 35 ---
+需求分类详述
+⾮功能需求
+类型 示例
+质量属性 可维护性、可扩展性、安全性
+性能约束 响应时间 < 2s，并发 > 1000
+接⼝需求 兼容第三⽅⽀付、对接ERP
+项⽬约束
+类型 示例
+团队 5 ⼈团队，2 名初级开发
+预算 总预算 50 万
+进度 3 个⽉交付
+技术 必须使⽤ Java + Spring
+⾮功能需求和项⽬约束往往对架构选择的影响⼤于功能需求。
+35
+
+
+--- PAGE 36 ---
+ASR —— 架构重要需求 [SW EBO K 3.2.1]
+Architecturally Signiﬁcant Requirement (ASR)：影响软件体系结构的需求。
+并⾮所有需求都是 ASR——只有那些驱动架构决策的需求才是。
+案例：在线书店 ASR 识别
+需求 是否 ASR 理由
+⽀持 1000 并发⽤户 ASR 驱动缓存/负载均衡决策
+⽀付信息加密传输 ASR 驱动安全层/HTTPS 决策
+按书名搜索图书 ⾮ ASR 功能需求，不影响整体架构
+按钮颜⾊为蓝⾊ ⾮ ASR UI 细节，与架构⽆关
+系统需⽤ Java 开发 ASR 技术约束，影响全部技术选型
+7x24 可⽤，年可⽤率 99.9% ASR 驱动冗余部署/故障转移决策
+36
+
+
+--- PAGE 37 ---
+架构设计三阶段循环 [SW EBO K 3.2] [Hofmeister 2007]
+ 
+Analysis → Synthesis → Evaluation（Figure 2.3）
+阶段 活动 产出
+Analysis 收集 ASR，理解利益相关⼈关注点ASR 列表、系统约束
+Synthesis 构建候选架构⽅案，做权衡 候选架构、设计决策
+Evaluation 验证⽅案是否满⾜ ASR 评审结果、改进建议
+ 
+三个阶段迭代进⾏：评估发现问题 → 回到分析重新理解 → 再次综合新⽅案
+这是所有架构设计⽅法（ADD/ATAM/QAW）的底层循环模型
+37
+
+
+--- PAGE 38 ---
+经典架构设计⽅法 [SEI]
+对⽐总览
+⽅法 全称 阶段定位 核⼼⽬标 关键产出
+QAW Quality Attribute W orkshop 需求分析阶段收集质量属性场景质量属性场景列表
+ADD Attribute-Driven Design 架构设计阶段基于质量属性构建架构候选架构⽅案
+ATAM Architecture Tradeoﬀ Analysis Method 架构评估阶段评估架构、发现⻛险评估报告、⻛险列表
+ 
+QAW  — 质量属性⼯作坊
+输⼊：业务⽬标、利益相关者关注点
+过程：引导利益相关者头脑⻛暴，产⽣质量属性场景（刺激-环境-响应）
+输出：可度量的质量属性需求（如"并发1000⽤户时响应时间<2s"）
+QAW  解决的是**"设计⽬标是什么"**的问题
+38
+
+
+--- PAGE 39 ---
+ADD & ATAM
+ADD — 属性驱动设计
+输⼊：QAW  产⽣的质量属性场景 + 功能需求
+过程：递归分解系统 → 选择满⾜质量属性的模式/⻛格 → 验证权衡
+核⼼思想：质量属性驱动设计决策，⽽⾮功能列表驱动
+ADD 解决的是**"如何根据⽬标做设计"**的问题
+ATAM  — 架构权衡分析
+输⼊：候选架构 + 质量属性场景
+过程：场景映射 → 架构展示 → 敏感点/权衡点识别 → ⻛险评级
+输出：⻛险列表、敏感点、权衡点、改进建议
+ATAM  解决的是**"设计⽅案是否可⾏"**的问题
+ 
+⽅法关系链
+QAW → 产⽣场景  → ADD → 设计⽅案  → ATAM → 评估验证  → 反馈迭代 39
+
+
+--- PAGE 40 ---
+步骤 2：选择体系结构⻛格
+需求特征 推荐⻛格 原因
+企业级业务系统、团队分⼯分层 职责分明、易于分⼯
+数据流式处理、转换链管道-过滤器 数据逐步变换
+⾼交互、多视图同步 MVC 界⾯与逻辑分离
+⼤规模、独⽴部署、多团队微服务 独⽴开发/部署/扩展
+松耦合、异步通信 事件驱动 发布/订阅解耦
+⼩型⼯具、脚本 主程序-⼦程序 简单直接
+实践建议：⼤多数企业系统⾸选分层架构，在此基础上根据需要引⼊其他⻛格。
+40
+
+
+--- PAGE 41 ---
+步骤 3：逻辑设计 — 需求到模块的映射
+核⼼任务：将功能需求分配到各⼦系统和模块中。
+设计原则
+1. ⾼内聚 — 相关功能放在同⼀模块
+2. 低耦合 — 模块间依赖最⼩化
+3. 单⼀职责 — 每个模块只做⼀件事
+4. 信息隐藏 — 隐藏实现细节，暴露接⼝
+步骤
+1. 识别功能域（Sales, Inventory, M ember ...）
+2. 为每个功能域创建三层模块（UI, BL, Data）
+3. 定义模块间的依赖关系
+4. 检查模块粒度是否合理
+41
+
+
+--- PAGE 42 ---
+案例：连锁超市 — 功能到逻辑包映射
+功能域 展示层 (U I) 业务逻辑层 (BL ) 数据层 (Data)
+销售 SalesUI Sales SalesData
+库存 InventoryUI Inventory InventoryData
+商品 CommodityUI Commodity CommodityData
+会员 MemberUI Member MemberData
+促销 PromotionUI Promotion PromotionData
+财务 FinanceUI Finance FinanceData
+⼈员 StaﬀUI Staﬀ StaﬀData
+每个功能域在三层中各有对应的包，形成纵向切⽚。
+42
+
+
+--- PAGE 43 ---
+改进后的概要功能设计
+问题：跨模块数据依赖
+销售功能不仅需要 Sales ⾃身的数据，还需要：
+Commodity — 商品信息查询
+M ember — 会员折扣计算
+Promotion — 促销策略应⽤
+Finance — 收款记账
+解决⽅案
+模块间通过接⼝调⽤⽽⾮直接数据访问。
+业务逻辑层内部的横向调⽤是正常的，关键是通过接⼝解
+耦。
+43
+
+
+--- PAGE 44 ---
+从逻辑设计到评审：迭代过程
+常⻅迭代场景
+场景 回退到 原因
+接⼝设计时发现模块职责不清步骤 3 重新划分模块
+物理部署时发现性能瓶颈步骤 2/3 调整⻛格或拆分模块
+验证时发现安全需求遗漏步骤 1 补充需求分析
+评审时团队对设计⽅案有分歧步骤 3 重新讨论模块划分
+44
+
+
+--- PAGE 45 ---
+步骤 4-7 概述
+步骤 4：接⼝设计
+定义模块对外暴露的 API
+确定参数、返回值、异常
+使⽤ Interface / DTO  解耦
+步骤 5：物理设计
+决定部署拓扑（单机/分布式）
+数据库选型与部署
+⽹络、中间件配置
+步骤 6：验证设计⽅案
+对照需求逐条检查
+场景⾛查 (Scenario W alkthrough)
+原型验证关键⻛险点
+步骤 7：评审与改进
+组织架构评审会
+检查⼀致性与完整性
+记录架构决策记录 (ADR)
+输出《架构设计⽂档》
+45
+
+
+--- PAGE 46 ---
+PART 5 · 案例：从需求到架构
+From Requirements to Architecture
+46
+
+
+--- PAGE 47 ---
+连锁超市实践案例 — 需求分析
+功能需求（10 个）
+1. 商品信息管理
+2. 销售收银处理
+3. 退货管理
+4. 库存盘点
+5. 会员注册与管理
+6. 促销策略管理
+7. 财务收⽀记录
+8. 员⼯信息管理
+9. ⽇志审计记录
+10. 经营报表⽣成
+⾮功能需求与约束
+编号 类型 描述
+Security1 安全 ⽤户身份认证
+Security2 安全 权限分级控制
+Security3 安全 操作⽇志审计
+IC2 约束 需兼容已有 ERP
+项⽬约束
+技术栈：Java + Spring Boot
+进度：开发周期紧张
+团队：5 ⼈开发团队
+47
+
+
+--- PAGE 48 ---
+选择分层⻛格的理由
+考虑因素 分析 结论
+系统类型 企业级业务信息系统 适合分层
+团队技术栈Java + Spring（天然分层） 适合分层
+⾮功能需求安全（认证/鉴权可作为独⽴层）适合分层
+可维护性 功能模块多，需要清晰职责划分适合分层
+项⽬约束 进度紧，分层架构成熟度⾼适合分层
+兼容约束 IC2 需在数据层封装 ERP 接⼝ 适合分层
+决策：采⽤三层分层架构 + 松散分层策略
+48
+
+
+--- PAGE 49 ---
+初步设计⽅案⼀ — 问题分析
+⽅案⼀结构（每层只有⼀个包）
+ 问题：数据层粒度太粗
+Database 只有⼀个包，所有数据访问逻辑混在⼀起：
+销售数据 + 库存数据 + 会员数据 ...
+违反单⼀职责原则
+⽆法独⽴修改某功能的数据访问
+不同功能的 SQL 耦合在⼀起
+团队成员并⾏开发困难
+数据层需要按功能域细分为多个⼦包。
+49
+
+
+--- PAGE 50 ---
+初步设计⽅案⼆ — 改进版
+改进：三层均按功能域拆分为独⽴⼦包，每层约 5 个包，粒度合理，⽀持团队并⾏开发。
+50
+
+
+--- PAGE 51 ---
+初步设计⽅案三 — 接⼝独⽴层与依赖倒置
+核⼼改进
+改进点 说明
+接⼝独⽴成层Service Interface 和 DAO  Interface 作为独⽴层
+实现继承接⼝Service Impl → implements → Service Interface
+上层依赖接⼝展示层依赖 Service Interface，不依赖实现
+VO /PO 分离 VO ⽤于展示层-逻辑层，PO ⽤于逻辑层-数据层
+依赖关系
+依赖⽅向 说明
+展示层 → Service Interface 上层依赖接⼝
+Service Impl → Service Interface 实现继承接⼝
+Service Impl → DAO  Interface 上层依赖接⼝
+DAO  Impl → DAO  Interface 实现继承接⼝
+展示层 + Service Interface → VO 共同依赖值对象
+Service Impl + DAO  Interface → PO 共同依赖持久化对象
+优势
+51
+
+
+--- PAGE 52 ---
+PART 6 · AI 增强：架构⻛格选择
+AI-Augmented Architectural Decision
+52
+
+
+--- PAGE 53 ---
+L L M  × 软件架构：研究前沿 [arxiv 2505.16697, 2025]
+系统综述：18 篇⽂献的关键发现
+发现 说明
+LLM 主要应⽤于初期阶段 Requirements-to-Architecture、Architecture-to-Code
+O penAI GPT 模型主导 少数使⽤ Claude、Gemini、开源模型
+Few-shot + RAG 是主要技术Prompt ⼯程是关键成功因素
+LLM 通常优于基线 但在复杂架构推理中仍有局限
+仍待探索的领域
+架构⼀致性检查（Conformance Checking）
+云原⽣架构⾃动⽣成
+架构演化与重构建议
+多视图⼀致性验证
+53
+
+
+--- PAGE 54 ---
+⼯业实践：Spec 驱动架构⽣成 [2025]
+ 
+⼯具 公司 架构相关能⼒
+AW S Kiro Amazon Spec → Design → Tasks → Code 全流⽔线；Spec 是"超级 Prompt"
+GitHub Spec Kit GitHub 开源 SDD ⼯具包，⽀持 22+ AI Agent 平台
+Claude Code Anthropic CLAUDE.md 作为项⽬"宪法"；Subagent 并⾏架构任务
+Devin / Codex Cognition / O penAI 全栈 Agent，隐式做出架构决策
+ 
+挑战
+Agent 的架构决策速度快但不透明。
+推荐做法：让 Agent ⽣成架构⽅案 → ⼈⼯ Review → 记录 ADR → 再让 Agent 实现。
+54
+
+
+--- PAGE 55 ---
+L L M  辅助架构⻛格选择
+Prom pt 示例
+你是⼀位资深软件架构师。请根据以下需求特征，推荐最合适的
+体系结构⻛格并给出理由：
+【系统类型】连锁超市管理系统
+【功能需求】销售收银、库存管理、会员管理等  10 个模块
+【⾮功能需求】安全性⾼、需兼容已有  ERP
+【团队规模】 5 ⼈， Java 技术栈
+【项⽬约束】 3 个⽉交付
+请从以下⻛格中选择：分层、微服务、事件驱动、管道 - 过滤器
+对每种⻛格给出适⽤性评分（ 1-5 ）和关键理由。
+使⽤ AI 的⽬的：快速获得多⻆度分析，⽽⾮直接采纳结论。
+55
+
+
+--- PAGE 56 ---
+AI 对⽐分析：分层 vs 微服务
+质量属性 分层架构 微服务架构 本项⽬倾向
+可维护性 中⾼（层内修改隔离）⾼（服务独⽴） 分层够⽤
+可扩展性 中（垂直扩展为主）⾼（⽔平扩展） 分层够⽤
+开发效率 ⾼（成熟框架⽀持）低（基础设施复杂）分层优
+部署复杂度低（单体部署） ⾼（容器编排） 分层优
+团队要求 低（通⽤技能） ⾼（DevO ps 技能） 分层优
+性能 中⾼（进程内调⽤）中（⽹络通信开销）分层优
+AI 结论：5 ⼈团队、3 个⽉周期、Java 技术栈 → 分层架构是最优选择，微服务引⼊的复杂度远超收益。
+56
+
+
+--- PAGE 57 ---
+⼈⼯审查 AI 架构建议的检查清单
+检查项 具体问题
+需求覆盖AI 建议是否覆盖了所有关键需求？
+约束⼀致 建议是否与项⽬约束（预算/进度/团队）⼀致？
+经验验证 团队是否有该⻛格的实际经验？
+⻛险评估AI 是否识别了该⽅案的主要⻛险？
+替代⽅案 是否考虑了⾜够的备选⽅案？
+演化能⼒ 该⽅案是否⽀持系统未来的演化？
+技术⽣态 推荐的技术栈是否有成熟的社区和⼯具⽀持？
+切记：AI ⽣成的架构建议必须经过⼈⼯审查。AI 可能缺乏项⽬上下⽂，给出看似合理但不适合具体场景的建议。
+57
+
+
+--- PAGE 58 ---
+思政：技术决策的⻓远影响与可持续性
+架构决策的社会责任
+可维护性 = 对后续开发者的尊重
+安全性 = 对⽤户数据的保护
+可扩展性 = 对业务发展的预⻅
+⽂档化 = 对知识传承的负责
+技术债务的代价
+今天的捷径 = 明天的负担
+短期利益驱动的架构决策可能导致系统在数年后变得难以维
+护，最终损害⽤户利益和团队⼠⽓。
+可持续软件⼯程
+原则 实践
+绿⾊设计 减少不必要的资源消耗
+⻓期视⻆ 架构决策考虑 3-5 年演化
+知识共享ADR 记录决策上下⽂
+技术伦理 数据隐私、算法公平
+优秀的架构师不仅关注技术指标，更关注技术决策对⼈和
+社会的影响。
+58
+
+
+--- PAGE 59 ---
+PART 7 · 总结与作业
+Summary and Assignment
+59
+
+
+--- PAGE 60 ---
+课堂总结
+主题 要点
+体系结构⻛格⻛格 = 组件词汇 + 连接器 + 拓扑约束
+分层⻛格 三层架构：展示层/业务逻辑层/数据访问层
+MVC ⻛格 Model-View-Controller 分离交互逻辑
+设计过程 7 步迭代：需求→⻛格→逻辑→接⼝→物理→验证→评审
+案例实践 连锁超市：需求分析→选择分层→逐步细化模块
+AI 增强 LLM 辅助⻛格选择，但必须⼈⼯审查
+核⼼收获
+1. 选择架构⻛格要基于需求特征和项⽬约束，⽽⾮技术偏好
+2. 逻辑设计的关键是合理的模块粒度和清晰的职责划分
+3. 架构设计是迭代过程，不是⼀次性完成
+60
+
+
+--- PAGE 61 ---
+课后作业
+任务：学⽣选课系统 — 业务逻辑层设计
+画出选课业务逻辑 chooseCoursebl 的关键类图，要求包含：
+1. 核⼼类：CourseService, StudentService, EnrollmentService
+2. 实体类：Course, Student, Enrollment
+3. 类之间的关联关系（依赖、关联、组合）
+4. 关键⽅法签名（⾄少 3 个核⼼⽅法）
+提交要求
+使⽤ UM L 类图标准符号
+标注类的属性和⽅法
+⽤⽂字简述设计理由（200 字以内）
+提示：先识别功能需求（选课、退课、查课表），再按职责分配到各个类中。
+61
+
+
+--- PAGE 62 ---
+下节课预告
+03-03 体系结构设计实践与验证
+内容提要
+1. 体系结构设计⽂档编写
+2. 架构评估⽅法（ATAM）
+3. 架构决策记录（ADR）
+4. 从架构到详细设计的过渡
+5. 实战：完成选课系统架构设计
+预习任务
+阅读教材第 9 章相关内容
+回顾 ATAM  评估⽅法的基本流程
+思考：如何评估⼀个架构⽅案的可维护性？
+62
+
+
+--- PAGE 63 ---
+体系结构⻛格与设计过程
+感谢聆听 · 欢迎提问
+南京⼤学 · 刘钦
+63

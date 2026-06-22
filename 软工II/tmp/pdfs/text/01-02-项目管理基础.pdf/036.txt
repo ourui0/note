@@ -1,0 +1,9 @@
+版本控制：两种策略
+①  lock-modify-unlock （锁定 - 修改 - 解锁）    ②  copy-modify-merge （复制 - 修改 - 合并）
+  Harry LOCK ──  编辑  ──  Write            Harry & Sally 各⾃  Copy
+  Sally LOCK ✗ （被拒绝）                       ──  各⾃修改  ──  Sally 先提交
+  Harry UNLOCK                                ──  Harry 得到  "out-of-date"
+  Sally LOCK ──  编辑最新版本                    ──  Harry merge ──  提交合并版
+   简单安全    串⾏低效                   并⾏效率⾼    需解决冲突
+ 现代 Git 采⽤ copy-modify-merge 策略，⽀持分布式并⾏开发
+36

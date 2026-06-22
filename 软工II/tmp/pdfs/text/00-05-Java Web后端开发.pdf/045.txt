@@ -1,0 +1,8 @@
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+第 5 讲   Java W eb 开发
+本讲核⼼收获
+├── Spring Boot ： 5 分钟搭建  RESTful API ，注解驱动、⾃动配置
+├── MyBatis ：参数化  SQL 映射，彻底告别⼿写  JDBC 连接泄漏
+└── Spring Security ：过滤器链  + JWT ，构建⽆状态安全认证体系
+Spring Boot · MyBatis · Spring Security
+45

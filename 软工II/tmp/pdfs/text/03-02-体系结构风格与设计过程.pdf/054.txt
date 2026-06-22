@@ -1,0 +1,12 @@
+⼯业实践：Spec 驱动架构⽣成 [2025]
+ 
+⼯具 公司 架构相关能⼒
+AW S Kiro Amazon Spec → Design → Tasks → Code 全流⽔线；Spec 是"超级 Prompt"
+GitHub Spec Kit GitHub 开源 SDD ⼯具包，⽀持 22+ AI Agent 平台
+Claude Code Anthropic CLAUDE.md 作为项⽬"宪法"；Subagent 并⾏架构任务
+Devin / Codex Cognition / O penAI 全栈 Agent，隐式做出架构决策
+ 
+挑战
+Agent 的架构决策速度快但不透明。
+推荐做法：让 Agent ⽣成架构⽅案 → ⼈⼯ Review → 记录 ADR → 再让 Agent 实现。
+54

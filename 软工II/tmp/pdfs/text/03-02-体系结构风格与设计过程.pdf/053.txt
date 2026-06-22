@@ -1,0 +1,13 @@
+L L M  × 软件架构：研究前沿 [arxiv 2505.16697, 2025]
+系统综述：18 篇⽂献的关键发现
+发现 说明
+LLM 主要应⽤于初期阶段 Requirements-to-Architecture、Architecture-to-Code
+O penAI GPT 模型主导 少数使⽤ Claude、Gemini、开源模型
+Few-shot + RAG 是主要技术Prompt ⼯程是关键成功因素
+LLM 通常优于基线 但在复杂架构推理中仍有局限
+仍待探索的领域
+架构⼀致性检查（Conformance Checking）
+云原⽣架构⾃动⽣成
+架构演化与重构建议
+多视图⼀致性验证
+53

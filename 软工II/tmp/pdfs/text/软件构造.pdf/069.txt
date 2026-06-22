@@ -1,0 +1,9 @@
+-8-Incremental Approaches Work Best
+• Perspective on Incrementalism
+• The pure waterfall model is not at all incremental or 
+iterative—which is why it hasn’t worked very well
+• Spiral development is highly incremental and 
+iterative, which is part of why it does work well
+• All projects will experience iteration at some point
+• Think about where and when in your project you will 
+get your incrementalism—cheaply, or expensively?

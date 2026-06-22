@@ -1,0 +1,108 @@
+
+===== PAGE 1 =====
+
+一.简答题：
+1.什么是软件工程
+2.配置管理中变更控制的过程
+3.迭代增量模型和演化模型的差异及优缺点
+场景：你南app
+https://chatgpt.com/share/6a2fc032-117c-83ec-a3c3
+-f32572d9f521
+
+===== PAGE 2 =====
+
+
+
+===== PAGE 3 =====
+
+
+
+===== PAGE 4 =====
+
+
+
+===== PAGE 5 =====
+
+
+
+===== PAGE 6 =====
+
+
+
+===== PAGE 7 =====
+
+二 . （需求获取）
+1. 写出校园卡自助系统的用例。
+2. 针对充值功能，写出业务需求、用户需求、系统级需求。
+3. 系统需要提供 API 供其他管理系统调用，属于什么需求？还有什么对外接口？
+三 . （需求分析）学校师生可以进行充值、查询余额、绑定银行卡、查询明细等操作。
+1. 分析名词，确定概念类。
+2. 辨识概念类之间的联系（包括依赖、关联、聚合、组合、继承）。
+3. 识别重要属性，画出概念类图。
+四 . （体系结构）
+1. 画出整个校园卡自助系统的物理包图。分为客户端和服务器端，体现分层概念，包含所有模块。 html
+三包和展示层在客户端，逻辑层和数据层在服务器端，使用 http 通信和 rest api 。
+2. 针对充值服务（充值、查询充值记录）写出展示层和逻辑层间接口（代码）以及逻辑层和数据层间接
+口。注意写出接口所在包名。
+五 . （详细设计）用户在充值时有不同的优惠券，同时可以用不同的充值方式（支付宝、微信等）。
+1. 画出 User,Card, 多种 Coupon,ThirdPayment,PaymentRecord 类图。
+2. 当添加新的优惠券（有数值折扣、比例折扣）时，系统如何实现变更。
+3. 画出充值时对象交互的顺序图。
+
+===== PAGE 8 =====
+
+六 . （模块化与信息隐藏）
+1. 用户包持有优惠券包中的优惠券，优惠券包又查询用户包信息以发放优惠券。违反了什么包原则？如
+何修改？画出修改后的包图和类图。
+2.
+(1). 以上代码中 issueCoupon 和 addCoupon 是哪种耦合？可以接受吗？如何修改？
+(2).addCoupon 中多次调用 user 的 addCoupon ，如何优化？
+七 . （设计模式）
+1. 以下类图违反了什么类的设计原则？如何优化？
+2. 用户有微信支付、支付宝支付，预计未来还会有更多的支付方式。使用哪种设计模式可以方便实现？
+这种设计模式有什么好处？使用了哪些类设计原则？画出这种设计模式的类图描述。
+八 . （软件构造）从软件构造的角度分析以下代码的优缺点。
+void issueCoupon(List<User> users){
+    for(user:users){
+        addCoupon(user,user.getType());
+    }
+}
+void addCoupon(User u,int type){
+    switch(type){
+        case STUDENT:u.addCoupon(new FiveYuanCoupon());break;
+        case TEACHER:u.addCoupon(new TenYuanCoupon());break;
+            ....
+    }
+}
+void doPost(HttpRequest rsq, HttpResponse resp) throws ServletException, 
+IOException{
+
+===== PAGE 9 =====
+
+九 . （人机交互）从人机交互的角度分析校园卡自助系统，说出好的地方；说出不好的地方并给出建议
+（至少三点）
+十 . （软件测试）条件覆盖是指保证程序中每个判断的每个结果都至少满足一次。
+对上文的 doPost 方法：
+1. 计算圈复杂度
+2. 设计最小的 100% 条件覆盖的测试用例集。只需要提供 old 、 new1 、 new2 的值， username 可不考
+虑。（注意短路判断特性）
+ 
+        String old=rsq.getParameter("old");
+        String new1=rsq.getParameter("new1");
+        String new2=rsq.getParameter("new2");
+        String username=rsq.getParameter("username");
+        boolean flag=false;
+        PrintWriter writer=resp.getWriter();                             
+ if(new1.indexOf(new2)!=-1&&old.indexOf(new1)==-1&&new2.indexOf(new1)!=-1&&new1.
+indexOf(old)==-1){
+            if(dao.loginUser(username,old)){
+                dao.rePassword(new1);
+                writer.print("yes");
+            }else {
+                writer.print("no");}
+        } else {
+            writer.print("no");
+        }
+        writer.flush();
+        writer.close();
+    }

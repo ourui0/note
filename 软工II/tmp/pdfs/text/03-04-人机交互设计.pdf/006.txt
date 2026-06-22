@@ -1,0 +1,11 @@
+W hat is HCI Design?
+ 
+Human-Computer Interaction Design seeks to discover the most eﬃcient way to design usable and eﬀective
+experiences between the human and the computer interface.
+ 
+好的 HCI 设计
+促进简单、⾃然、吸引⼈的⼈机交互
+Joel Spolsky："当程序的⾏为完全符合⽤户的预期时，⽤户界⾯就是好的设计。"
+允许⽤户完成所需任务
+好的界⾯应该是透明的 — ⽤户忘记⾃⼰在使⽤计算机
+6

@@ -1,0 +1,26 @@
+12
+2025/5/29
+场景类型及其使用程度分布
+• 从宽泛的意义上讲，示例、情景、上下文环境的
+叙述性描述、原型、序列图、脚本等都是场景常
+见的表现形式
+用例与场景
+0
+50
+100
+150
+200
+250
+300
+350
+400
+450
+用例 序列图 原型 模型 仿真
+战略业务情景战术业务情景
+任务模型
+系统测试用例验收测试用例
+其他
+数量
+Jarke M, Pohl K, Haumer P, et al. Scenario use in european software 
+organisations-Results from site visits and Questionnaires[J]. ESPRIT Reactive 
+Long Term Research Project, 1997, 21.

@@ -1,0 +1,19 @@
+为什么需要 MyBatis？
+原始 JDBC 写法（繁琐、危险）：
+Connection conn = DriverManager.getConnection(url, user, pass);
+PreparedStatement ps = conn.prepareStatement(
+    "SELECT * FROM website WHERE id = ?");
+ps.setInt(1, id);
+ResultSet rs = ps.executeQuery();
+while (rs.next()) {
+    site.setName(rs.getString("name"));   // ⼿动映射每个字段
+    site.setUrl(rs.getString("url"));
+}
+rs.close(); ps.close(); conn.close();    // 忘记关闭  → 连接泄漏！
+MyBatis 写法（简洁、安全）：
+@Mapper
+public interface WebSiteMapper {
+    @Select("SELECT * FROM website WHERE id = #{id}")
+    WebSite findById(Integer id);
+}
+M yBatis ⾃动处理：连接管理 · 参数预编译绑定 · 结果集映射 · 异常转换 30

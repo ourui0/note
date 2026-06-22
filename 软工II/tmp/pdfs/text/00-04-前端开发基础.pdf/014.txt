@@ -1,0 +1,2 @@
+CSS 规则如何附着到 DO M  节点
+CSS 引擎将每条规则与 DO M  节点匹配，计算最终样式（Computed Style），形成渲染树（Render Tree）。 14

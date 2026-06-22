@@ -1,0 +1,25 @@
+AI 辅助 GU I 设计 — 从草图到代码
+设计⽣成⼯具链
+⾃然语⾔ → UI 设计稿
+⽂本 prompt → Figma 组件（Magic Patterns,
+UXPilot）
+草图 / URL → 线框图（UXMagic）
+Figma 2025 报告：1/3 设计师已在⼯作中使⽤ AI ⼯
+具，较 2024 年增⻓ 50%
+设计稿 → 前端代码
+Design2Code（NAACL 2025）：截图 → HTML/CSS，
+评估前端⾃动化程度
+PSD2Code（2025）：PSD 设计⽂件 → 移动端代码
+Screenshot-to-Code：GPT-4o 仅凭截图复现 UI 代码
+研究前沿：多智能体协同设计
+PrototypeAgent（arxiv 2412.20071）
+多 Agent 协同分⼯：主题设计 Agent + 组件专项 Agent
+⽀持迭代：澄清意图 → ⽣成 → 对⻬修正
+解决传统"端到端输出"不⽀持迭代修改的问题
+AlignU I（arxiv 2601.17614, 2025）
+基于⽤户偏好⾃动对⻬ LLM ⽣成 UI
+⾃然语⾔ prompt → 符合⽤户⻛格的 UI ⽅案
+SpecO ps（arxiv 2603.10268, 2026）
+全⾃动 GUI Agent 测试框架
+4 个专项 Agent：⽤例⽣成 / 环境设置 / 执⾏ / 验证
+64

@@ -1,0 +1,27 @@
+29
+2025/5/29
+对象模型
+（4） 限定关联（Qualified Association）。在关联当中，一些类可以
+通过为关联端指定一些属性来将远端关联的类实例区 分开来，这种关
+联被称为限定关联。
+Person
+Address
+Transaction 
+Entry
+address
+－history
+角色
+方向
+可见性
+Product 
+Catalog
+Product
+SpecificationContains1 *
+Product 
+Catalog
+Product
+SpecificationContains1 1ItemID
+限定符属性 限定关联
+限定后的多重性
+限定前的多重性
+图11-5 关联的其他特性描述

@@ -1,0 +1,24 @@
+类型 E：封装潜在变更
+将可能变化的部分隔离为独⽴模块，其余部分依赖稳定的接⼝。
+问题：变化硬编码在类内部
+class Sorter {
+    void sort(int[] arr) {
+        // 直接写死冒泡排序
+        // 若要换快速排序，必须修改本类
+        bubbleSort(arr);
+    }
+}
+策略模式封装变更
+interface SortStrategy {
+    void sort(int[] arr);
+}
+class Sorter {
+    private SortStrategy strategy;
+    Sorter(SortStrategy s) {
+        this.strategy = s;
+    }
+    void sort(int[] arr) {
+        strategy.sort(arr);  // 委托给策略
+    }
+}
+封装类型 E 与**开闭原则（O CP）**直接对应：对扩展开放，对修改关闭。 29

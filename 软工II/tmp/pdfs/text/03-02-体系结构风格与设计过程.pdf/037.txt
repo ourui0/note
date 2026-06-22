@@ -1,0 +1,11 @@
+架构设计三阶段循环 [SW EBO K 3.2] [Hofmeister 2007]
+ 
+Analysis → Synthesis → Evaluation（Figure 2.3）
+阶段 活动 产出
+Analysis 收集 ASR，理解利益相关⼈关注点ASR 列表、系统约束
+Synthesis 构建候选架构⽅案，做权衡 候选架构、设计决策
+Evaluation 验证⽅案是否满⾜ ASR 评审结果、改进建议
+ 
+三个阶段迭代进⾏：评估发现问题 → 回到分析重新理解 → 再次综合新⽅案
+这是所有架构设计⽅法（ADD/ATAM/QAW）的底层循环模型
+37

@@ -1,0 +1,18 @@
+70
+2025/5/29
+顺序图
+➢强顺序（Strict Sequencing）
+• 操作符strict。强顺序内的交互行为必须顺序执行，
+例如图内的行为必须按照
+“search_google()→search_bing()→Search_yahoo()”
+的顺序执行。
+➢弱顺序（Weak Sequencing）：
+• 操作符seq。在弱顺序下：
+①每个操作组内的交互行为要维持顺序关系；
+②不同生命线上的不同操作组可以按照任何顺序执
+行；
+③同一个生命线上的不同操作组要按照顺序执行。
+例如，Search_bing()与Search_yahoo()必须先后执
+行，但是Search_goolge()是“Search_bing() → 
+Search_yahoo()”是并发关系。
+行为模型——交互图

@@ -1,0 +1,7 @@
+4. Visual Basic
+• Visual programming innovation
+• The first development environment to make 
+widespread use of COTS components
+• Only language to learn Ada’s syntax lessons 
+(case statements, control statements, etc.)
+• Highly integrated environment

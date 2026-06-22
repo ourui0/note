@@ -1,0 +1,12 @@
+框架的核⼼思想：数据驱动视图
+你只需要关⼼数据的变化，框架⾃动帮你同步更新 DO M 。
+ 原⽣  JS ：
+   改数据  → ⼿动找  DOM → ⼿动更新  → 漏更新  → Bug
+ Vue.js ：
+   改数据  → 框架⾃动更新  DOM → ⽤户看到新界⾯
+对⽐⼀下同⼀个计数器：
+原⽣ JS Vue.js
+数据更新 document.getElementById(...).textContent = count count.value++
+视图同步 ⼿动，容易遗漏 ⾃动，声明式
+代码量 随功能线性增⻓ 相对稳定
+21

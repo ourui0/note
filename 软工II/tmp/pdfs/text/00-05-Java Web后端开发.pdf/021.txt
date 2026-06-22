@@ -1,0 +1,12 @@
+REST API 规范：资源 + ⽅法
+REST 以资源为中⼼设计 URL ，⽤ HTTP ⽅法表达操作：
+操作 HTTP ⽅法 U RL  示例
+获取全部商品GET /api/products
+获取单个商品GET /api/products/123
+新建商品 POST /api/products
+更新商品 PUT /api/products/123
+删除商品 DELETE /api/products/123
+获取商品评论GET /api/products/123/reviews
+分⻚查询评论GET /api/products/123/reviews?page=2&size=10&sort=time
+REST 不是强制标准，但遵守规范让 API ⼀⽬了然——URL  即⽂档
+21

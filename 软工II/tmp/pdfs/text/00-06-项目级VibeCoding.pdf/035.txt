@@ -1,0 +1,13 @@
+MCP chrome-devtools ⾃动调试流程
+启动后，直接对 Claude Code 说：
+帮我调试当前⻚⾯，任务看板的卡⽚拖拽功能失效，
+拖拽时没有任何反应，也没有报错提示。
+Claude Code 通过 M CP ⾃动执⾏：
+①  连接  Chrome DevTools （ CDP 协议）
+②  读取  Console ⾯板  → 检查是否有隐藏的  JS 错误
+③  读取  Network ⾯板  → 检查拖拽时是否有  API 请求发出
+④  检查  DOM 结构  → 确认  react-beautiful-dnd 的  Droppable 容器是否正确渲染
+⑤  在浏览器中注⼊调试代码  → 监听  dragstart / dragend 事件
+⑥  分析结果  → 定位问题根因  → 修改源代码  → 通知刷新⻚⾯
+全程⽆需⼿动打开 DevTools！
+35

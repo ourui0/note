@@ -1,0 +1,15 @@
+Servlet：Java 动态 W eb 内容
+Java Servlet 是⽤ Java 编写的服务器端程序，作为浏览器请求与后端数据库/应⽤之间的中间层：
+Servlet ⽣命周期：
+HTTP 请求到达
+      ↓
+Servlet 容器加载  Servlet 类
+      ↓
+     init()      ← 初始化（只执⾏⼀次）
+      ↓
+  service()      ← 每次请求触发（多线程并发）
+  /       \
+doGet() doPost()  ← 根据  HTTP ⽅法分发
+      ↓
+  destroy()      ← 容器关闭时执⾏
+17

@@ -1,0 +1,6 @@
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+模块 关键技术
+构建 RESTful API Spring Boot
+安全操作数据库 MyBatis + MySQL
+⽤户认证与权限控制Spring Security + JW T
+2

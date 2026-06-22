@@ -1,0 +1,10 @@
+Spec 案例：CL AU DE.md —— 项⽬级 Spec
+Anthropic 团队使⽤ CLAUDE.md 作为 AI Agent 的项⽬"宪法"：
+CL AU DE.m d 章节 内容示例（在线考试系统） 对应需求概念
+项⽬约束 Python 3.12 + FastAPI；PostgreSQL  16 技术约束 [SW EBO K 1.6]
+编码规范 函数 ≤ 30⾏；公开API须有OpenAPI⽂档 过程需求
+绝对禁⽌ (Never Do) 禁⽌硬编码密码；禁⽌跳过测试 安全约束 + 质量⻔禁
+需要确认 (Ask First) 删表前确认；改API签名前确认 变更控制 [SW EBO K 6.2]
+测试要求 所有API须有 pytest 集成测试 验收标准 [SW EBO K 4.3]
+ CLAUDE.md 本质上是⾮功能需求 + 项⽬约束的结构化表达——你在 L1 学到的概念，这⾥直接应⽤。
+47

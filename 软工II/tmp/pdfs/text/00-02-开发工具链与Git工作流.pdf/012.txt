@@ -1,0 +1,15 @@
+查看与撤销：⽇常必备命令
+# ── 查看状态  ──────────────────────────────────
+git status          # 查看⼯作区和暂存区的变动
+git log --oneline   # 查看简洁的提交历史
+git diff            # 查看未暂存的修改内容
+# ── 撤销操作  ──────────────────────────────────
+git checkout -- filename.py   # 撤销⼯作区的修改（危险！不可恢复）
+git reset HEAD filename.py    # 将⽂件从暂存区移出（不删除修改）
+git reset --soft HEAD~1       # 撤销上⼀次  commit （保留修改在暂存区）
+# ── 远程操作  ──────────────────────────────────
+git remote -v                 # 查看远程仓库地址
+git fetch origin              # 下载远程更新（但不合并）
+git merge origin/main         # 合并远程分⽀到当前分⽀
+⚠  git reset --hard 会永久丢弃修改，操作前请确认！有 Git 记录才能找回历史
+12

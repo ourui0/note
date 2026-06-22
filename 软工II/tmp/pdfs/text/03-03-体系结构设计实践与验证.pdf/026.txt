@@ -1,0 +1,13 @@
+View vs Viewpoint [SW EBO K 2.1]
+ 
+概念 定义 类⽐
+Viewpoint（视点） ⼀套约定和规范，指导如何创建和使⽤某类视图建筑制图标准（平⾯图怎么画）
+View（视图） 从某个视点出发，对系统架构的⼀次具体表达 ⼀张具体的建筑平⾯图
+ 
+常⻅视点 [Rozanski & W oods]
+视点 关注点 受众
+M odule 模块组织、依赖开发者
+Component & Connector 运⾏时交互 架构师
+Allocation 部署、资源分配运维
+⼀个视点可以产出多个视图；ADL（如 UML）是表达视图的⼯具
+26

@@ -1,0 +1,18 @@
+JSO N：轻量级数据交换格式
+JSO N（JavaScript O bject Notation）是 REST API 的标准数据格式：
+{
+  "firstName": "John",
+  "lastName":  "Smith",
+  "age":       25,
+  "address": {
+    "city":  "Nanjing",
+    "state": "JS"
+  },
+  "phoneNumbers": [
+    { "type": "mobile", "number": "138-0000-0000" },
+    { "type": "work",   "number": "025-8365-0000" }
+  ]
+}
+JSO N 数据类型：string  · number  · object {}  · array []  · true/false  · null
+MIME 类型：application/json ；⽂件扩展名：.json ；与语⾔⽆关，所有主流语⾔均⽀持
+22

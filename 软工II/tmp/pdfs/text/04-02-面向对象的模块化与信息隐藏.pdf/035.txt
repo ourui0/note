@@ -1,0 +1,32 @@
+P13 · 单⼀职责原则（SRP）
+A class should have only one reason to change.
+— Robert C. M artin
+违反 SRP
+class Employee {
+    String name;
+    double salary;
+    // 职责 1 ：薪资计算（ HR 规则）
+    double calculatePay() { ... }
+    // 职责 2 ：数据库持久化（ IT 基础设施）
+    void saveToDatabase() { ... }
+    // 职责 3 ：报表⽣成（财务需求）
+    String generateReport() { ... }
+}
+三个不同的"变化原因"混在⼀个类中。
+SRP 重构
+class Employee {        // 只管员⼯数据
+    String name;
+    double salary;
+}
+class PayCalculator {   // 只管薪资计算
+    double calculate(Employee e) { ... }
+}
+class EmployeeRepository { // 只管持久化
+    void save(Employee e) { ... }
+}
+class EmployeeReport {  // 只管报表
+    String generate(Employee e) { ... }
+}
+SRP 与信息隐藏直接关联：每个类只隐藏⼀个"变化原因"（= Parnas 的"设计决策"）。SRP 违反的症状是"God
+Class"——⼀个类知道太多、做太多。
+35

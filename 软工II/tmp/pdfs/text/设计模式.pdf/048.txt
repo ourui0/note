@@ -1,0 +1,1 @@
+红绿灯The “dumb” policy: change the green route every 5 secondsMidnight policy: change to yellow alwaysRush hour policy: double the “green time” in the busy route 

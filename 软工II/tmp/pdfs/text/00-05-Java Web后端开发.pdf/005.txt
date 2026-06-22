@@ -1,0 +1,9 @@
+本讲路线图
+模块 核⼼问题 关键技术 时⻓
+基础 W eb 通信如何⼯作？ HTTP · Tomcat · Servlet ~15 min
+基础 如何设计现代 W eb API？ REST · JSO N ~10 min
+PART 1 如何快速构建 RESTful API？ Spring Boot ~20 min
+PART 2 如何安全、⾼效地操作数据库？MyBatis ~15 min
+PART 3 如何实现⽤户认证与权限控制？Spring Security + JW T ~20 min
+三层技术栈，对应三道防线：接⼝层 → 数据层 → 安全层
+5

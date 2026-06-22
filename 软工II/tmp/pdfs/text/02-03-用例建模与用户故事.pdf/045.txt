@@ -1,0 +1,14 @@
+BDD —— Given-W hen-Then 格式 [SW EBO K 4.3]
+⽤户故事 : As a 顾客 , I want to 退回商品 , So that 获得退款
+场景  1: 正常退货
+  Given  顾客在  30 天内购买了商品
+  And    商品未拆封
+  When   顾客提交退货申请
+  Then   系统⽣成退货单
+  And    退款⾦额等于购买⾦额
+场景  2: 超期退货
+  Given  顾客在  30 天前购买了商品
+  When   顾客提交退货申请
+  Then   系统拒绝退货
+  And    显示 " 已超过退货期限 "
+45

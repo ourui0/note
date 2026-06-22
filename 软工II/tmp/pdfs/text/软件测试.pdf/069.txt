@@ -1,0 +1,20 @@
+Claude Code 测试 Skills 配置实例
+CLAUDE.md：为项目定制测试智能体行为
+• 在项目根目录创建 CLAUDE.md，声明测试规范，Claude Code 每次启动自动加载
+• # 测试规范
+• - 测试框架：pytest + pytest-cov；Mock 使用 unittest.mock
+• - 覆盖率要求：语句覆盖 >= 80%，分支覆盖 >= 70%
+• - 禁止在测试中使用真实数据库，统一使用fixtures/conftest.py 中的内存 DB
+• - 生成测试后必须运行pytest -x 验证，失败则自动修复再提交
+自定义 Slash 命令：/test-gen
+• 在 .claude/commands/ 目录创建 test-gen.md，定义专属测试生成命令
+• # /test-gen
+• 读取 $ARGUMENTS 指定的 Python 文件，分析所有public 函数，
+• 为每个函数生成3 类测试：正常用例、边界值用例、异常用例，
+• 输出到 tests/ 目录，命名规则 test_[原文件名].py，最后运行 pytest 验证。
+• 使用方式：在项目内执行 /test-gen src/user_service.py
+Hooks：测试自动触发（settings.json）
+• "hooks": { "PostToolUse": [{ "matcher": "Write",
+• "hooks": [{ "type": "command",
+• "command": "pytest tests/ -x -q 2>&1 | tail -5" }] }] }
+• 每次 Claude Code 写入文件后自动运行测试，输出最后 5 行结果，失败则进入修复循环

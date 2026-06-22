@@ -1,0 +1,21 @@
+调⽤ API Key（接⼊通义⼤模型）
+下⾯，设置 nodejs 后端连接到 qwen 的 api 服务。此处以 qwen-plus 模型做示例，需要准备百炼的
+DASHSCOPE_API_KEY 。
+在灵码对话框中输⼊：
+下⾯，我们先完善后端服务，让后端与 qwen api 连接。这⾥是百炼提供的 nodejs 连接到 qwen api 的⽅式。
+DASHSCOPE_API_KEY  将配置在 nodejs 后端的 .env ⽂件中。
+import OpenAI from "openai";
+const openai = new OpenAI({
+  // 若没有配置环境变量，请⽤百炼 API Key 替换为： apiKey: "sk-xxx"
+  apiKey: process.env.DASHSCOPE_API_KEY,
+  baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+});
+async function main() {
+  const completion = await openai.chat.completions.create({
+    model: "qwen-plus",   // 可按需更换模型名称
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user",   content: " 你是谁？ " }
+    ],
+ })
+27

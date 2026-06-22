@@ -1,0 +1,11 @@
+访问耦合的五个级别
+耦合强度从⾼到低：
+级别 名称 说明 示例
+5（最⾼） 隐式访问耦合 依赖全局变量或 Singleton GlobalConfig.instance.value
+4 实现中访问耦合 访问另⼀类的私有实现细节 反射访问 private 字段
+3 成员变量访问耦合直接读写另⼀类的 public 字段 order.price = 100
+2 参数变量访问耦合通过⽅法参数传递，依赖具体类型void process(ConcreteOrder o)
+1（最低） ⽆访问耦合 ⽆直接依赖 —
+级别 3–5 打破封装，应重构为通过⽅法（消息）访问。级别 1–2 是可接受范围。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Encapsulation (inform ation hiding)
+9

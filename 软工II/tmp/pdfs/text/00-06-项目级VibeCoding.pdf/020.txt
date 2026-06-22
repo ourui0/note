@@ -1,0 +1,18 @@
+接⼊ AI 能⼒：调⽤ API Key
+让后端具备 AI 功能（以 Gemini API 为例）：
+在后端新增⼀个接⼝ POST /api/ai/suggest ，
+接收任务标题，调⽤ Google Gemini API，
+返回 AI 建议的任务分解步骤。
+API Key 从环境变量 GEMINI_API_KEY  读取。
+// Claude Code ⽣成的  AI 接⼝
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+router.post('/suggest', async (req, res) => {
+  const { title } = req.body;
+  const model  = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  const result = await model.generateContent(
+    ` 将以下任务分解为  3-5 个⼦步骤，⽤中⽂回答：${title}`
+  );
+  res.json({ steps: result.response.text() });
+});
+20

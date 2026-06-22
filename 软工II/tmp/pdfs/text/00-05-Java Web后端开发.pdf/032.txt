@@ -1,0 +1,17 @@
+MyBatis CRUD：注解写法
+@Mapper
+public interface WebSiteMapper {
+    @Select("SELECT * FROM website")
+    List<WebSite> findAll();
+    @Select("SELECT * FROM website WHERE id = #{id}")
+    WebSite findById(Integer id);
+    @Insert("INSERT INTO website(name, url) VALUES(#{name}, #{url})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insert(WebSite site);
+    @Update("UPDATE website SET name=#{name}, url=#{url} WHERE id=#{id}")
+    int update(WebSite site);
+    @Delete("DELETE FROM website WHERE id = #{id}")
+    int delete(Integer id);
+}
+⚠  安全提示：#{id}  是预编译参数（防 SQL  注⼊），${id}  是字符串拼接（危险！永远别⽤于⽤户输⼊）
+32

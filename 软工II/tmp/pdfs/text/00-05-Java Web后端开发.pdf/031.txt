@@ -1,0 +1,19 @@
+application.yml 数据源配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*.xml      # XML Mapper ⽂件路径
+  type-aliases-package: com.example.entity      # 实体类包（可省略全限定名）
+  configuration:
+    map-underscore-to-camel-case: true          # user_name → userName ⾃动映射
+数据库建表
+CREATE TABLE website (
+    id    INT PRIMARY KEY AUTO_INCREMENT,
+    name  VARCHAR(100) NOT NULL,
+    url   VARCHAR(255) NOT NULL
+);
+31

@@ -1,0 +1,17 @@
+HTM L  — 内容与结构层
+HyperText M arkup Language：⽤标签描述内容
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>我的⽹站</title>
+  </head>
+  <body>
+    <h1>⽹站标题</h1>
+    <p>这是⼀段⽂字。</p>
+    <a href="https://example.com">链接</a>
+    <img src="logo.png" alt="Logo">
+  </body>
+</html>
+HTM L  只负责内容和结构，不负责外观和⾏为。
+9

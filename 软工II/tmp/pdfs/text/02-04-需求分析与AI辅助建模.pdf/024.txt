@@ -1,0 +1,14 @@
+在线书店 —— 关键关联关系 [SW EBO K 4.4]
+ 
+关联 多重性 说明
+Customer — ShoppingCart 1 : 1 每⼈⼀个购物⻋
+ShoppingCart — CartItem 1 : * 购物⻋含多项
+Customer — O rder 1 : * ⼀⼈可下多单
+O rder — O rderL ineItem 1 : 1..* 订单⾄少含⼀项
+O rderL ineItem — Book * : 1 明细⾏引⽤图书
+O rder — Address * : 1 多单可发同⼀地址
+O rder — Payment 1 : 1 ⼀单⼀付
+Book — Category * : * 图书多分类
+Book — Review 1 : * 图书有多条评价
+Book — Inventory 1 : 1 ⼀书⼀库存记录
+24

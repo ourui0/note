@@ -1,0 +1,11 @@
+W irth 1971 · Stepwise Reﬁnement
+"Program Development by Stepwise Reﬁnement" —— 逐步求精
+The program is gradually developed in a sequence of reﬁnement steps
+To decompose decisions as much as possible
+To untangle aspects which are only seemingly interdependent
+To defer those decisions which concern details of representation as long as possible
+Reﬁnement of the description of program and data structure should proceed in parallel.
+The degree of modularity obtained in this way will determine the ease or diﬃculty with which a program can be
+adapted to changes or extensions of the purpose or changes in the environment.
+"Careful programming is not a trivial subject." —— W irth
+41

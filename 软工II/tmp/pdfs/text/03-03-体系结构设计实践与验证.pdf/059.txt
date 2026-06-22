@@ -1,0 +1,13 @@
+ADL  —— 架构描述语⾔ [SW EBO K 2.3]
+ 
+**ADL （Architecture Description Language）**是专⻔⽤于表达软件体系结构的领域特定语⾔
+起源于模块互连语⾔（MIL ），如 C2、Rapide、ACME、W right
+⼯业界实际：UML 已成为事实标准 ADL ，因其⼴泛使⽤
+ 
+本课程使⽤的 ADL ⼯具
+⼯具 ⽤途 示例
+PlantUML 包图、组件图、部署图@startuml ... package ... @enduml
+Mermaid 流程图、时序图 graph TD; A-->B
+Spring Boot ⽬录结构 架构的代码级表达 com.bookstore.controller/service/dao
+Architecture Framework（如 AUTO SAR、UAF）是更系统化的架构描述框架
+59

@@ -1,0 +1,667 @@
+
+
+--- PAGE 1 ---
+项⽬级 VibeCoding
+Stitch · AI Studio · 灵码 · Claude Code · Expo Go · M CP
+"Vibe Coding：⽤⾃然语⾔驱动，从原型到上线的全栈开发新范式"
+1
+
+
+--- PAGE 2 ---
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+模块 核⼼⼯具
+界⾯原型设计 Google Stitch
+W eb 前端⽣成 Google AI Studio
+W eb 后端⽣成 Claude Code
+移动端 App 开发 通义灵码 + Expo (React Native)
+移动端真机调试Expo Go
+W eb 端⾃动调试M CP chrome-devtools
+2
+
+
+--- PAGE 3 ---
+什么是 VibeCoding？
+"You fully give in to the vibes, embrace exponentials, and forget that the code even exists."
+——Andrej Karpathy，2025
+核⼼思想：不再逐⾏⼿写代码，⽽是⽤⾃然语⾔描述意图，让 AI 完成实现。
+传统开发 VibeCoding
+需要精通语⾔语法只需清晰描述需求
+⼿动搭建项⽬结构AI ⾃动⽣成脚⼿架
+前后端分别学习 统⼀⽤对话驱动
+耗时数天搭原型 数⼩时跑通全栈
+3
+
+
+--- PAGE 4 ---
+本讲⼯具链总览
+三步⾛，完成⼀个完整的 Web 应⽤：
+Step 1  ──   Google Stitch
+             ⽤  AI 快速设计界⾯原型（视觉稿  + 可交互）
+Step 2  ──   Google AI Studio
+             将原型描述转化为真实前端代码（ React / Vue ）
+Step 3  ──   Claude Code
+             ⽣成后端  API ，对接前端，完成全栈集成
+三个⼯具各司其职——设计、前端、后端——串联成⼀条完整的 AI 辅助开发流⽔线
+4
+
+
+--- PAGE 5 ---
+PART 1
+⽤ Stitch 设计界⾯原型
+从想法到可交互原型，只需⼀句话
+5
+
+
+--- PAGE 6 ---
+什么是 Google Stitch？
+Google 推出的 AI 驱动界⾯原型⼯具：
+输⼊⾃然语⾔描述，⾃动⽣成 App / W eb 界⾯原型
+⽀持移动端与桌⾯端双端预览
+可导出为组件代码（HTML  / React）
+与 Google 设计规范（Material Design）深度整合
+访问地址：stitch.withgoogle.com
+适合场景：
+快速验证产品想法（PoC）
+与团队对⻬视觉⽅案，再交给 AI ⽣成代码
+⾮设计师也能产出专业原型
+6
+
+
+--- PAGE 7 ---
+Stitch 核⼼操作流程
+①  打开  Stitch → 新建项⽬
+②  在提示框中描述你的应⽤：
+   " 设计⼀个校园⼆⼿书交易  App ，
+    包含⾸⻚列表、商品详情、发布⻚⾯三个⻚⾯ "
+③  Stitch ⾃动⽣成界⾯原型（约  10–30 秒）
+④  在画布上点击各组件，可继续对话修改：
+   " 把导航栏改成底部  Tab 栏，颜⾊使⽤蓝⾊系 "
+⑤  满意后  → 导出原型截图  / 组件代码
+关键技巧：提示词中明确说明⻚⾯数量、核⼼功能、⽤户场景，⽣成质量更⾼
+7
+
+
+--- PAGE 8 ---
+Stitch 提示词示例
+场景：为软件⼯程课程项⽬设计⼀个"任务协作平台"
+提示词（第⼀轮）：
+设计⼀个团队任务管理 Web 应⽤。包含：① 任务看板⻚（Kanban ⻛格，待办 / 进⾏中 / 已完成）；② 任务详情侧边栏
+（标题、描述、负责⼈、截⽌⽇期）；③ 顶部导航（Logo、搜索框、⽤户头像）。使⽤现代简洁⻛格。
+提示词（精修）：
+把任务卡⽚改为带颜⾊标签的卡⽚，优先级⽤红 / ⻩ / 绿⾊区分。
+侧边栏增加评论区。
+8
+
+
+--- PAGE 9 ---
+Stitch 与传统 U I ⼯具对⽐
+维度 Figm a Stitch
+学习成本 中等（需学习组件系统）低（⾃然语⾔驱动）
+⽣成速度 ⼿动拖拽，较慢 AI ⾃动⽣成，秒级
+代码导出 插件辅助，质量参差 原⽣⽀持，格式标准
+协作功能 强（多⼈实时编辑） 基础
+适⽤阶段 精细设计稿 快速原型验证
+VibeCoding 场景下，Stitch ⽤于快速对⻬需求，Figma ⽤于最终交付物——两者互补
+9
+
+
+--- PAGE 10 ---
+PART 2
+⽤ AI Studio ⽣成前端代码
+从原型描述到可运⾏的 React 项⽬
+10
+
+
+--- PAGE 11 ---
+什么是 Google AI Studio？
+aistudio.google.com —— 基于 Gemini 模型的 Web 端 AI 开发平台：
+⽀持⻓上下⽂（100万+ tokens），可上传整个原型截图 + 需求⽂档
+内置代码⽣成、调试、解释功能
+可直接在浏览器中预览 HTML/JS 代码
+通过 API Key 接⼊ Gemini 模型，也可⽤于项⽬中调⽤ AI 能⼒
+VibeCoding 中的定位：
+上传 Stitch 导出的原型截图
+描述前端技术栈（React + Tailwind / Vue + Element Plus）
+让 Gemini ⽣成完整的前端组件代码
+11
+
+
+--- PAGE 12 ---
+前端项⽬初始化
+Step 1：创建 React 项⽬
+# 使⽤  Vite 初始化前端项⽬（推荐）
+npm create vite@latest my-app-frontend -- --template react
+cd my-app-frontend
+npm install
+# 安装常⽤依赖
+npm install axios react-router-dom tailwindcss
+Step 2：在 AI Studio 中输⼊提示词
+我⽤ Stitch 设计了⼀个任务看板应⽤的原型（截图已上传）。
+请⽤ React + Tailwind CSS 实现⾸⻚看板组件。
+数据先⽤ mock 数据，API 接⼝后端地址为 http://localhost:3000/api 。
+12
+
+
+--- PAGE 13 ---
+AI Studio ⽣成前端代码
+在 AI Studio 对话框中输⼊上述提示词后，Gemini 会：
+1. 分析原型截图 → 理解布局结构与组件层次
+2. ⽣成 React 组件 → KanbanBoard.jsx 、TaskCard.jsx 、Sidebar.jsx
+3. ⾃动处理样式 → 使⽤ Tailwind utility class
+4. 预留 API 接⼝ → axios.get('/api/tasks')  占位
+将代码粘贴到项⽬后继续追问：
+⽣成的卡⽚组件缺少拖拽功能，请添加 react-beautiful-dnd 实现列间拖拽。
+AI Studio 的⻓上下⽂优势：可以⼀次性粘贴多个⽂件的代码，让 AI 理解整体结构后再修改
+13
+
+
+--- PAGE 14 ---
+前端⽣成：关键提示词技巧
+⽬标 提示词模板
+⽣成新⻚⾯ "基于已有的 Layout.jsx  结构，⽣成[ ⻚⾯名 ] ⻚⾯组件"
+修改样式 "把卡⽚的背景⾊改为紫⾊系，与南⼤配⾊ #4D0099  保持⼀致"
+接⼊真实 API "将 mock 数据替换为调⽤ GET /api/tasks  的真实请求，处理 loading 和 error 状态"
+添加交互 "点击卡⽚弹出侧边栏，使⽤ Framer M otion 添加滑⼊动画"
+代码审查 "检查此组件是否有内存泄漏或 React key 警告问题"
+14
+
+
+--- PAGE 15 ---
+PART 3
+⽤ Claude Code ⽣成后端
+从⾃然语⾔到可运⾏的 Node.js API
+15
+
+
+--- PAGE 16 ---
+什么是 Claude Code？
+Anthropic 推出的 终端 AI 编程 Agent：
+在本地终端运⾏，直接读写项⽬⽂件
+理解整个代码库上下⽂，不只是单个⽂件
+⾃主执⾏命令（npm install 、git 、运⾏测试）
+⽀持多轮对话，持续完善代码
+# 安装  Claude Code
+npm install -g @anthropic-ai/claude-code
+# 在项⽬⽬录中启动
+cd my-app-backend
+claude
+VibeCoding 中的定位：负责⽣成和维护后端 API，与前端对接
+16
+
+
+--- PAGE 17 ---
+后端项⽬初始化
+在项⽬根⽬录下，对 Claude Code 说：
+为我⽣成这个 App 的后端代码。
+后端⽬录名为 my-app-backend ，与 my-app-frontend  同级。
+采⽤ Node.js，使⽤ Express 框架，数据库⽤ SQL ite（开发简单）。
+Claude Code 将⾃动执⾏：
+mkdir my-app-backend
+cd my-app-backend && npm init -y
+npm install express cors dotenv better-sqlite3
+npm install --save-dev nodemon
+并⽣成 src/index.js 、src/routes/ 、src/db/  等完整项⽬结构
+17
+
+
+--- PAGE 18 ---
+Claude Code ⽣成后端 API
+继续对话：
+实现任务管理的 CRUD API：
+GET  /api/tasks  获取全部任务列表
+POST /api/tasks  新建任务
+PATCH /api/tasks/:id  更新任务状态
+DELETE /api/tasks/:id  删除任务
+每个任务包含：id、title、status（todo/doing/done）、priority、assignee、dueDate
+Claude Code 会⾃动：
+创建 SQL ite 数据库表
+编写路由处理函数
+添加基本的输⼊校验
+⽣成测试⽤的 seed 数据
+18
+
+
+--- PAGE 19 ---
+后端代码示例
+Claude Code ⽣成的核⼼路由结构：
+// src/routes/tasks.js
+const express = require('express');
+const router  = express.Router();
+const db      = require('../db');
+// 获取所有任务（⽀持按  status 过滤）
+router.get('/', (req, res) => {
+  const { status } = req.query;
+  const tasks = status
+    ? db.prepare('SELECT * FROM tasks WHERE status = ?').all(status)
+    : db.prepare('SELECT * FROM tasks ORDER BY created_at DESC').all();
+  res.json(tasks);
+});
+// 新建任务
+router.post('/', (req, res) => {
+  const { title, priority, assignee, dueDate } = req.body;
+  const result = db.prepare(
+    'INSERT INTO tasks (title, status, priority, assignee, due_date) VALUES (?,?,?,?,?)'
+  ).run(title, 'todo', priority, assignee, dueDate);
+  res.status(201).json({ id: result.lastInsertRowid });
+});
+module.exports = router; 19
+
+
+--- PAGE 20 ---
+接⼊ AI 能⼒：调⽤ API Key
+让后端具备 AI 功能（以 Gemini API 为例）：
+在后端新增⼀个接⼝ POST /api/ai/suggest ，
+接收任务标题，调⽤ Google Gemini API，
+返回 AI 建议的任务分解步骤。
+API Key 从环境变量 GEMINI_API_KEY  读取。
+// Claude Code ⽣成的  AI 接⼝
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+router.post('/suggest', async (req, res) => {
+  const { title } = req.body;
+  const model  = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  const result = await model.generateContent(
+    ` 将以下任务分解为  3-5 个⼦步骤，⽤中⽂回答：${title}`
+  );
+  res.json({ steps: result.response.text() });
+});
+20
+
+
+--- PAGE 21 ---
+PART 4
+通义灵码开发移动端 App
+⽤灵码从零⽣成 iOS / Android 原⽣应⽤
+21
+
+
+--- PAGE 22 ---
+通义灵码移动端开发概览
+通义灵码（VS Code 插件 / L ingma IDE）同样⽀持移动端开发流程：
+与前⾯的 AI Studio + Claude Code ⼯作流并⾏的另⼀条路线
+适合团队已在使⽤阿⾥云⽣态（DashScope API / 通义系列模型）
+全程在 VS Code 内完成：原型描述 → ⽣成代码 → 运⾏调试
+移动端技术栈选择：
+技术栈 特点 适合场景
+Expo (React Native) JS/TS，热重载，Expo Go 预览 快速原型，跨平台
+Flutter Dart，⾼性能，UI 统⼀ 对 U I 精度要求⾼
+原⽣ Swift / Kotlin 最佳性能，学习成本⾼ ⽣产级 App
+VibeCoding 推荐：Expo (React Native) + 通义灵码，上⼿最快，与 W eb 前端知识复⽤度最⾼
+22
+
+
+--- PAGE 23 ---
+初始化 Expo 移动端项⽬
+在 VS Code 终端运⾏以下命令，初始化 App 前端代码库：
+# 使⽤  expo 初始化⼀个  app 的前端代码库
+npx create-expo-app@latest
+命令运⾏过程中，系统会提示为前端项⽬命名，命名为：demo-app-frontend 。运⾏完成后，⽣成代码库。
+# 进⼊该项⽬的代码库
+cd demo-app-frontend
+# 运⾏
+npm start
+23
+
+
+--- PAGE 24 ---
+在灵码中⽣成移动端界⾯
+打开 VS Code，激活通义灵码插件，在对话框中输⼊：
+把 home ⻚⾯改成⼀个 AI 对话⻚⾯，在其中，可以像在使⽤通义 app ⼀样，与 AI 进⾏⽂字对话
+灵码将⾃动：
+①  查看项⽬⽬录结构（已查看⽬录）
+②  查看  app ⽬录，了解⻚⾯结构
+③  查看  tabs ⽬录，了解⻚⾯结构
+④  查看⾸⻚（ index.tsx ）当前代码，了解需要修改的内容
+⑤  ⽣成新的  home ⻚⾯代码（ AI 对话界⾯）
+关键技巧：灵码会先⾃动读取项⽬结构，再⽣成代码——⽆需⼿动粘贴⽂件内容，直接描述需求即可
+24
+
+
+--- PAGE 25 ---
+灵码⽣成后端服务
+继续在灵码对话框中输⼊：
+现在，为我⽣成这个 app 的后端代码。后端的代码⽂件名称为 demo-app-backend，与 demo-app-frontend 同级。后
+端采⽤ nodejs，使⽤ express 框架
+灵码将⾃动执⾏以下命令：
+mkdir demo-app-backend
+cd demo-app-backend && npm init -y
+cd demo-app-backend && npm install express cors dotenv
+cd demo-app-backend && npm install --save-dev nodemon
+灵码⽣成了完整的 nodejs 后端代码库 demo-app-backend ，与 demo-app-frontend  ⼀个是 app 的后端，另⼀个是前端。
+25
+
+
+--- PAGE 26 ---
+设置前后端通信（灵码版）
+继续对话：
+使⽤ RTK query 作为前端与后端通信的⽅式
+灵码将⾃动安装 redux 等依赖，并实现⽤ RTK query 做前后端的通信⽅案。
+# 灵码⾃动执⾏
+cd demo-app-frontend
+npm install @reduxjs/toolkit react-redux
+然后⾃动⽣成：
+src/
+  store/
+    index.ts          ← Redux store 配置
+    api/
+      tasksApi.ts     ← RTK Query API 定义（ GET / POST / PATCH / DELETE ）
+  components/
+    ChatScreen.tsx    ← AI 对话界⾯组件
+26
+
+
+--- PAGE 27 ---
+调⽤ API Key（接⼊通义⼤模型）
+下⾯，设置 nodejs 后端连接到 qwen 的 api 服务。此处以 qwen-plus 模型做示例，需要准备百炼的
+DASHSCOPE_API_KEY 。
+在灵码对话框中输⼊：
+下⾯，我们先完善后端服务，让后端与 qwen api 连接。这⾥是百炼提供的 nodejs 连接到 qwen api 的⽅式。
+DASHSCOPE_API_KEY  将配置在 nodejs 后端的 .env ⽂件中。
+import OpenAI from "openai";
+const openai = new OpenAI({
+  // 若没有配置环境变量，请⽤百炼 API Key 替换为： apiKey: "sk-xxx"
+  apiKey: process.env.DASHSCOPE_API_KEY,
+  baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+});
+async function main() {
+  const completion = await openai.chat.completions.create({
+    model: "qwen-plus",   // 可按需更换模型名称
+    messages: [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user",   content: " 你是谁？ " }
+    ],
+ })
+27
+
+
+--- PAGE 28 ---
+Expo Go App 模拟器调试
+Expo Go 是移动端开发的核⼼调试利器：
+安装 Expo Go：在 iPhone / Android ⼿机上，从 App Store / Google Play 安装 Expo Go。
+扫码预览：
+cd demo-app-frontend
+npm start
+# 终端输出⼆维码  → ⼿机  Expo Go 扫码  → 实时预览
+热重载机制：灵码修改代码 → ⽂件保存 → Expo Go ⾃动刷新，⽆需重新编译
+模拟器调试流程：
+调试场景 操作
+界⾯布局错误Shake ⼿机 → 开启 Inspector，点击元素查看样式
+⽹络请求失败Expo Dev Tools → Network ⾯板查看请求详情
+JS 报错 红屏报错 → 直接复制给灵码，让 AI 修复
+性能问题 Expo Dev Tools → Performance M onitor
+28
+
+
+--- PAGE 29 ---
+Expo Go 调试：与灵码协作
+最佳实践：红屏报错 → 直接截图粘贴给灵码
+【截图 Expo Go 红屏错误信息】
+上⾯是我的 Expo Go 报错，请分析原因并修复。
+灵码会⾃动：
+1. 读取相关源⽂件
+2. 定位错误原因
+3. 修改代码并说明改动
+常⻅错误对应提示：
+"Unable to resolve module '@/components/ChatScreen'"
+→ 告诉灵码： " 路径别名  @ 没有配置，请修复  tsconfig.json 中的  paths"
+"Network request failed"
+→ 告诉灵码： " 后端地址  localhost 在真机上不可⽤，
+              请替换为本机  IP 地址，并在灵码帮我找到正确的  IP"
+注意：⼿机调试时后端地址不能⽤ localhost，需改为电脑的局域⽹ IP（如 192.168.1.x:3000） 29
+
+
+--- PAGE 30 ---
+PART 5
+MCP：chrome-devtools ⾃动调试 W eb 端
+让 AI 直接操控浏览器，⾃动定位并修复前端问题
+30
+
+
+--- PAGE 31 ---
+什么是 MCP？
+M CP（Model Context Protocol）：AI 与⼯具之间的标准通信协议
+由 Anthropic 提出，已成为 AI ⼯具集成的事实标准
+允许 AI（Claude Code / 灵码 等）直接调⽤外部⼯具
+每个 M CP Server 赋予 AI ⼀种新能⼒，按需开启
+AI Agent (Claude Code)
+      MCP 协议
+┌─────────────────────────────────────┐
+│  chrome-devtools  →  读取浏览器状态   │
+│  github           →  操作  GitHub     │
+│  vercel           →  ⼀键部署         │
+│  mcp-server-sqlite →  查询数据库      │
+│  mcp-server-chart  →  ⽣成图表        │
+└─────────────────────────────────────┘
+过去：AI 看不到浏览器⾥发⽣了什么，只能根据你的⽂字描述来猜测问题。现在：AI 可以直接读取控制台报错、⽹络请
+求、DO M  结构。
+31
+
+
+--- PAGE 32 ---
+Claude Code 中的 MCP 服务器列表
+在 Claude Code 的设置⾯板中，可以看到已配置的 M CP Server 及其连接状态：
+图标 M CP Server 状态 ⽤途
+vercel 连接失败 ⾃动部署到 Vercel 平台
+github 已连接 读写 Issue、PR、仓库⽂件
+chrome-devtools 连接失败 读取浏览器 Console / Network / DO M
+mastergo-magic-mcp 已连接 读取 M asterGo 设计稿，⽣成代码
+mcp-server-chart 已连接 ⽣成 ECharts / Chart.js 图表
+mcp-server-sqlite 已连接 直接查询 SQL ite 数据库
+ 表示 M CP Server 进程未启动或配置有误； 表示已正常连接
+chrome-devtools  连接失败 通常原因：Chrome 未以调试端⼝启动，⻅下⻚解决⽅法。
+32
+
+
+--- PAGE 33 ---
+配置 MCP chrome-devtools
+Step 1：在 Claude Code 配置⽂件中声明
+// ~/.claude/settings.json （全局）或  .claude/settings.json （项⽬）
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": false}"
+      }
+    }
+  }
+}
+Step 2：以远程调试模式启动 Chrome
+# macOS — 让  Chrome 开放调试端⼝  9222
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --remote-debugging-port=9222 --no-first-run --no-default-browser-check
+# Windows
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 33
+
+
+--- PAGE 34 ---
+其他 MCP Server 在 VibeCoding 中的应⽤
+除 chrome-devtools 外，列表中其他 M CP Server 同样能加速开发：
+github
+直接对  Claude Code 说：
+" 帮我查看仓库最近  5 个  Issue ，找出与登录相关的  bug"
+" 把当前修改提交并创建  PR ，标题写明修复了什么 "
+mcp-server-sqlite
+" 查询  tasks 表中所有  status='todo' 的记录，统计各  priority 数量 "
+" 帮我检查数据库中是否存在重复的⽤户邮箱 "
+mcp-server-chart
+" 根据数据库中的任务完成数据，⽣成⼀个按周统计的折线图 "
+vercel（配置后）
+" 帮我把前端项⽬部署到  Vercel ，项⽬名叫  my-app"
+34
+
+
+--- PAGE 35 ---
+MCP chrome-devtools ⾃动调试流程
+启动后，直接对 Claude Code 说：
+帮我调试当前⻚⾯，任务看板的卡⽚拖拽功能失效，
+拖拽时没有任何反应，也没有报错提示。
+Claude Code 通过 M CP ⾃动执⾏：
+①  连接  Chrome DevTools （ CDP 协议）
+②  读取  Console ⾯板  → 检查是否有隐藏的  JS 错误
+③  读取  Network ⾯板  → 检查拖拽时是否有  API 请求发出
+④  检查  DOM 结构  → 确认  react-beautiful-dnd 的  Droppable 容器是否正确渲染
+⑤  在浏览器中注⼊调试代码  → 监听  dragstart / dragend 事件
+⑥  分析结果  → 定位问题根因  → 修改源代码  → 通知刷新⻚⾯
+全程⽆需⼿动打开 DevTools！
+35
+
+
+--- PAGE 36 ---
+MCP chrome-devtools：实战示例
+场景：登录后⻚⾯空⽩，不知道原因
+对 Claude Code 说：
+登录成功后跳转到⾸⻚，但⻚⾯空⽩。
+请⽤ chrome-devtools 帮我查明原因。
+Claude Code 通过 M CP ⾃动完成：
+// 1. 读取  Console 错误
+// → 发现： Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+// → 位置： TaskList.jsx:42
+// 2. 读取  Network 请求
+// → 发现： GET /api/tasks 返回  200 ，但  response body 为  { "data": null }
+//    ⽽前端代码直接  tasks.map(...) ，没有处理  null 情况
+// 3. ⾃动修复建议：
+const tasks = data?.tasks ?? [];  // 添加空值保护
+M CP 的价值：AI 从"盲⼈摸象"变为"亲眼观察"，调试效率提升 5–10x
+36
+
+
+--- PAGE 37 ---
+MCP chrome-devtools 常⽤调试场景
+场景 对 Claude Code 说
+控制台报错 "读取当前⻚⾯的所有 Console 错误，逐⼀分析并修复"
+⽹络请求失败"查看 Network ⾯板，找出所有 4xx/5xx 请求，分析原因"
+⻚⾯样式异常"检查 .task-card  的实际计算样式，找出为什么宽度变成 0"
+性能问题 "Proﬁle ⾸⻚加载过程，找出耗时超过 100ms 的操作"
+内存泄漏 "拍摄堆内存快照，⽐较前后差异，找出未释放的对象"
+接⼝联调 "拦截 PO ST /api/tasks 请求，打印 request body 和 response"
+37
+
+
+--- PAGE 38 ---
+PART 6
+前后端集成与运⾏
+打通全链路，看到最终效果
+38
+
+
+--- PAGE 39 ---
+设置前后端通信
+前端使⽤ Axios 对接后端 API：
+告诉 AI Studio（或 Claude Code）：
+将前端所有 mock 数据替换为真实 API 调⽤。
+后端地址：http://localhost:3000 ，
+请统⼀封装 axios 实例，处理错误和 loading 状态。
+// src/api/index.js （ AI Studio ⽣成）
+import axios from 'axios';
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  timeout: 10000,
+});
+export const getTasks   = ()       => api.get('/api/tasks');
+export const createTask = (data)   => api.post('/api/tasks', data);
+export const updateTask = (id, data) => api.patch(`/api/tasks/${id}`, data);
+export const deleteTask = (id)     => api.delete(`/api/tasks/${id}`);
+39
+
+
+--- PAGE 40 ---
+启动与联调
+# 终端  1 ：启动后端
+cd my-app-backend
+npm run dev
+# → 监听  http://localhost:3000
+# 终端  2 ：启动前端
+cd my-app-frontend
+npm run dev
+# → 访问  http://localhost:5173
+常⻅问题与 Claude Code 修复：
+问题 对 Claude Code 说
+跨域报错（CO RS） "后端开启 CO RS，允许 localhost:5173 访问"
+接⼝ 404 "检查路由注册是否正确，打印所有已注册路由"
+数据格式不匹配 "前端收到的字段是 due_date ，改为 dueDate  驼峰命名"
+SQL ite 并发写⼊ "开启 W AL  模式解决并发写⼊问题"
+40
+
+
+--- PAGE 41 ---
+完整 VibeCoding ⼯作流回顾
+【需求】
+  ↓ ⽤⾃然语⾔描述产品功能
+【 Stitch 原型】
+  ↓ ⽣成可视化界⾯原型，与团队对⻬⻚⾯结构
+【 AI Studio → Web 前端】           【通义灵码  → 移动端  App 】
+  ↓ 原型截图  + 技术栈描述             ↓ VS Code 内对话⽣成  Expo 代码
+  ↓ ⽣成  React 组件  / 路由  / 样式     ↓ RTK Query 前后端通信
+【 Claude Code / 灵码  → 后端】
+  ↓ 描述  API 需求与数据模型
+  ↓ ⾃动⽣成  Express 路由、数据库
+  ↓ 接⼊  AI API （ Gemini / 通义）
+【调试】
+  ↓ Web 端： MCP chrome-devtools ⾃动读取控制台 / ⽹络 /DOM
+  ↓ 移动端： Expo Go 扫码热重载，红屏报错直接给灵码修复
+【集成联调】
+  ↓ 前后端通信、 CORS 、数据格式对⻬
+【上线】
+  → 前端部署  Vercel ，后端部署  Railway / Render
+41
+
+
+--- PAGE 42 ---
+VibeCoding 的软件⼯程思考
+VibeCoding 改变了什么？
+编程的⻔槛从"语法精通"降低为"需求表达能⼒"
+软件⼯程师的价值从"写代码"转向"定义问题 + 审查 AI 输出"
+原型验证速度提升 10x，但最终质量仍取决于⼈的判断
+VibeCoding 没有改变什么？
+需求分析、系统设计、架构决策——仍是⼈的责任
+安全性、性能、可维护性——AI ⽣成的代码需要⼈⼯审查
+测试与部署——⾃动化⼯具可以辅助，但不能省略
+警惕：AI ⽣成的代码可能包含安全漏洞（SQL  注⼊、未校验输⼊）。上线前必须做安全审查！
+42
+
+
+--- PAGE 43 ---
+本次项⽬作业
+⽬标：⽤ VibeCoding ⼯具链完成⼀个⼩型全栈应⽤
+阶段 要求
+原型 ⽤ Stitch 设计⾄少 3 个⻚⾯，截图存档
+前端 ⽤ AI Studio ⽣成 React 项⽬，或⽤灵码⽣成 Expo App
+后端 ⽤ Claude Code / 灵码 ⽣成 REST API，⾄少 4 个端点
+调试 W eb 端配置 M CP chrome-devtools，移动端⽤ Expo Go 联调
+集成 前后端联通，数据能正常读写
+报告 记录每步使⽤的提示词，分析 AI 的局限性
+提交⽅式：GitHub 仓库 + 提示词⽇志⽂档
+评分重点不在于功能多少，⽽在于你如何引导 AI、如何处理 AI 的错误输出
+43
+
+
+--- PAGE 44 ---
+六讲总结：AI4Coding + VibeCoding 的完整图景
+08-01  AI 辅助编程⼊⻔
+  └── ⼯具⽣态  · 六⼤能⼒  · 提示词四要素
+08-02  开发⼯具链与  Git ⼯作流
+  └── DevOps · Git 四区域  · Vercel ⾃动部署
+08-03  AI 编程进阶与  Agent 时代
+  └── 项⽬级技巧  · 代码质量  · 软件⼯程的未来演进
+06     前端开发基础
+  └── Web 演进  · Vue.js · Node.js
+07     Java Web 开发
+  └── Spring Boot · MyBatis · Spring Security
+08     项⽬级  VibeCoding
+  └── Stitch · AI Studio · 灵码  · Claude Code · Expo Go · MCP
+核⼼洞察：AI ⼯具改变的是速度和交互⽅式，不变的是需求分析、架构设计与⼯程纪律
+44
+
+
+--- PAGE 45 ---
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+第 6 讲   项⽬级 VibeCoding
+本讲核⼼收获
+├── Stitch ：⾃然语⾔描述  → 可视化界⾯原型，快速对⻬产品需求
+├── AI Studio + Claude Code ： Web 前后端全链路  AI ⽣成与联调
+├── 通义灵码  + Expo Go ：移动端  App 开发与真机热重载调试
+└── MCP chrome-devtools ： AI 直读浏览器状态，⾃动定位前端问题
+VibeCoding 改变了开发的速度，不变的是⼯程思维的价值
+45

@@ -1,0 +1,19 @@
+前后端联动：关键代码
+Express 服务端（server.js）：
+const express = require('express');
+const cors    = require('cors');
+const sites   = require('./data.json');
+const app = express();
+app.use(cors());   // 允许跨域（前端与后端不同端⼝）
+app.get('/getWebSites', (req, res) => res.json(sites));
+app.listen(8081, () => console.log('API 服务已启动 '));
+Vue 前端（WebSites.vue）调⽤：
+import axios from 'axios'
+import { ref, onMounted } from 'vue'
+const sites = ref([])
+onMounted(async () => {
+  const { data } = await axios.get('http://localhost:8081/getWebSites')
+  sites.value = data
+})
+跨域（CO RS）：浏览器安全策略禁⽌不同端⼝的请求，
+34

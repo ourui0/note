@@ -1,0 +1,16 @@
+HTTP ⼯作流程
+⼀次 HTTP 操作（事务）的完整过程：
+1. 地址解析
+   URL: http://localhost.com:8080/index.htm
+        协议名     主机名         端⼝   路径
+   → DNS 解析域名  → 获得服务器  IP 地址
+2. 封装  HTTP 请求数据包
+   → 结合本机信息，构建请求报⽂
+3. 建⽴  TCP 连接（三次握⼿）
+   → HTTP 默认端⼝  80 ， Spring Boot 开发常⽤  8080
+4. 客户端发送请求
+   GET /sample/hello.jsp HTTP/1.1
+5. 服务器响应
+   HTTP/1.1 200 OK  + 响应头  + 空⾏  + 响应体
+6. 关闭  TCP 连接（或  Keep-Alive 保持）
+10

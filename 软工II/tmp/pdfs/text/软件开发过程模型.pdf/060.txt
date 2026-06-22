@@ -1,0 +1,9 @@
+践行敏捷思想与原则的过程方法
+◼ 极限编程XP（eXtreme Programming）
+◼ Scrum
+◼ 特性驱动开发（FDD/Feature Driven Development）
+◼ 自适应软件开发（ASD/Adaptive Software 
+Development）
+◼ 动态系统开发方法（DSDM/Dynamic Systems 
+Development Method）
+◼ ……

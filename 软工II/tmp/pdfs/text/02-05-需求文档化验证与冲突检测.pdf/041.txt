@@ -1,0 +1,14 @@
+Spec-Driven Development（SDD）：2025 最重要的⼯程实践转型
+ 
+核⼼理念
+Spec（规格说明）成为软件开发的⾸要产物，代码是从 Spec 派⽣的输出。
+ 
+发展时间线
+时间 事件
+2025-07 AW S 发布 Kiro，⾸次提出 "Spec 即超级 Prompt"
+2025-10 GitHub 开源 Spec Kit，⽀持 22+ AI Agent 平台
+2025-11 Anthropic Claude Code 原⽣吸收 SDD ⼯具链
+2025-11 ThoughtW orks 将 SDD 列为年度关键⼯程实践
+ 
+ SDD 不是全新概念——它是需求规格说明在 AI 时代的回归与进化
+来源：thoughtworks.com · github.blog · marmelab.com 41

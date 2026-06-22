@@ -1,0 +1,20 @@
+完整⼯作流回顾：从本地到线上
+1. 本地⽤  Cursor 开发功能
+        │
+        ▼
+2. git add . && git commit -m "feat: xxx"
+        │
+        ▼
+3. git push origin main
+        │
+        ▼
+4. Vercel ⾃动检测到新提交  → 触发  CI/CD
+        │
+        ▼
+5. 构建完成  → 新版本⾃动上线（约  1-2 分钟）
+        │
+        ▼
+6. 访问  https://your-project.vercel.app 验证
+对⽐ Knight Capital：⼿动 SSH 部署 8 台服务器 → 漏 1 台 → $440M  损失
+现代⼯作流：⼀次 git push ，Vercel ⾃动更新所有实例
+19

@@ -1,0 +1,11 @@
+Perry & W olf (1992)：经典公式
+ 
+Software Architecture = { Elements, Forms, Rationale }
+ 
+要素 含义
+Elements 组成系统的处理元素、数据元素和连接元素
+Forms 元素的组织形式和拓扑结构
+Rationale 为什么选择这种元素和组织⽅式的理由
+ 
+Barry Boehm 随后补充了 Constraints（约束条件）
+24

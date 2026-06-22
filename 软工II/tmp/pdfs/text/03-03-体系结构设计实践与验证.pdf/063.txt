@@ -1,0 +1,15 @@
+L L M  ⽣成 Spring Boot 项⽬⻣架
+Prompt 示例
+请为 " 在线书店系统 " ⽣成  Spring Boot 项⽬⻣架：
+- 分层架构： controller / service / dao / entity
+- 业务模块： book, order, cart, customer
+- 每层为每个模块⽣成接⼝和实现类
+- 使⽤构造器注⼊
+- 包名： com.bookstore
+请输出完整的⽬录结构和关键接⼝代码。
+LLM 的价值与局限
+价值 局限
+快速⽣成模板代码可能不符合项⽬特定约定
+减少重复劳动 缺乏业务深度理解
+提供参考架构 需要⼈⼯审查和调整
+63

@@ -1,0 +1,14 @@
+17
+2025/5/29
+实体关系图ERD——属性
+➢属性的类型
+• 单值属性和多值属性
+• 只有一个值——单值属性（Single-Valued Attribute）
+• 会取多个值——多值属性（Multi-Valued Attribute）
+• 简单属性和组合属性
+• 取一个简单的值——简单属性（Simple Attribute）
+• 多个数据组合起来——组合属性（Composite Attribute）
+• 存储属性和导出属性
+• 从现实当中获取——存储属性（Stored Attribute）
+• 由其他属性的值计算得出——导出属性（Derived Attribute）
+数据建模ERD

@@ -1,0 +1,10 @@
+ 停下来想⼀想
+"如果你是 Knight Capital 的技术总监，你会要求团队做哪些改变来防⽌这次事故？"
+从 Git 和 DevO ps ⻆度思考：
+改进⽅向 具体措施 对应 Git/DevO ps 实践
+版本追踪 每个版本都有唯⼀标识git tag v1.0.0  打标签
+⾃动化部署不能靠⼈⼯ SSH 逐台操作 CI/CD 流⽔线
+快速回滚 出问题 5 分钟内恢复 git revert  / 部署回滚
+分⽀保护 main 分⽀不能直接推送Branch Protection Rules
+ Knight Capital 的教训，正是今天 DevO ps ⽂化兴起的原因之⼀
+15

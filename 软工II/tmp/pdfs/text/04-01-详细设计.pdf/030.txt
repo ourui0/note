@@ -1,0 +1,21 @@
+Creator · 优先级表
+优先
+级 场景 创建地点 创建时机 备注
+⾼ 唯⼀属于某个整体的密不可分的⼀部分
+（组合关系）
+整体对象的属性定义和构造
+⽅法 整体对象的创建 销售业务逻辑对象由销售⻚⾯对
+象创建
+↑ 被某⼀对象记录和管理（单向被关联） 关联对象的⽅法 业务⽅法执⾏中对象的⽣命
+周期起始点
+连接池管理对象负责创建连接池
+对象
+↓ 创建所需的数据被某个对象所持有持有数据的对象的业务⽅法业务⽅法执⾏中 不知创建时机时可由别的对象创
+建并初始化
+低 被某个整体包含（聚合关系） 整体对象的业务⽅法（⾮构
+造⽅法） 业务⽅法执⾏中 多个聚合时考虑⾼内聚低耦合决
+定
+优势：Promotes low coupling by making instances of a class responsible for creating objects they need to
+reference. By creating the objects themselves, they avoid being dependent on another class to create the object
+for them.
+30

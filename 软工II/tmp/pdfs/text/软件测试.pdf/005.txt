@@ -1,0 +1,11 @@
+Radiation machine kills four: 1985 to 1987
+• Faulty software in a Therac-25 radiation-treatment 
+machine resulted in several cancer patients receiving 
+lethal overdoses of radiation. Four patients died
+• An investigation by independent scientists found that 
+accidents occurred even after Atomic Energy of Canada 
+Limited (AECL) thought it had fixed particular bugs
+• They wrote in their report, "The basic mistakes here 
+involved poor software-engineering practices and 
+building a machine that relies on the software for safe 
+operation."

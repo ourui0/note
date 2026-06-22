@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <line x1="95" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="95" y1="380" x2="95" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20">L</text>
+  <text x="72" y="45" font-size="20">W</text>
+  <path d="M145 95 C240 145, 345 215, 625 350" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <line x1="95" y1="235" x2="650" y2="235" stroke="#dc2626" stroke-width="4"/>
+  <circle cx="405" cy="235" r="7" fill="#111"/>
+  <line x1="405" y1="235" x2="405" y2="380" stroke="#666" stroke-dasharray="6 6"/>
+  <line x1="95" y1="235" x2="405" y2="235" stroke="#666" stroke-dasharray="6 6"/>
+  <text x="600" y="345" font-size="20" fill="#2563eb">VMP = P × MP</text>
+  <text x="655" y="240" font-size="20" fill="#dc2626">W</text>
+  <text x="377" y="410" font-size="18">L*</text>
+  <text x="50" y="240" font-size="18">W*</text>
+  <text x="210" y="36" font-size="24" font-weight="700">完全竞争要素使用：VMP = W</text>
+  <text x="150" y="424" font-size="18" fill="#444">要素价格下降时，最优要素使用量沿 VMP 曲线增加</text>
+</svg>

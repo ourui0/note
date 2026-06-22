@@ -1,0 +1,10 @@
+SDD 与传统需求⼯程（续）
+传统需求⼯程概念 SDD 对应概念 变化
+变更管理 Spec Drift Detection 新挑战：Spec 与代码不同步
+⽤例描述 U ser Stories + Acceptance Criteria 更轻量但本质⼀致
+IEEE 830 标准 Spec Template（Spec Kit） 从⾏业标准到社区模板
+ 
+核⼼洞察：SDD 证明了⼀个事实——
+AI 越强⼤，需求规格说明越重要。
+这正是你们学习需求⼯程的最⼤价值所在。
+53

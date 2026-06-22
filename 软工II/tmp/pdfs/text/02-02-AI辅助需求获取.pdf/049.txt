@@ -1,0 +1,14 @@
+附录 D（续）：AI 需求⽣成三⼤典型失效
+② 歧义保留
+Jia, H., M orris, R., Ye, H., Sarro, F., & M echtaev, S. (2025).
+Automated repair of ambiguous natural language requirements. arXiv preprint.
+系统评估 LL M  在检测与修复歧义需求时的⾏为：直接让 L L M  修复歧义常产⽣ irrelevant 或 inconsistent 结果，L L M  不能
+⾃⾏正确解析并规范化歧义。
+③ 冲突⽣成
+M alik, G., Cevik, M ., Parikh, D., & Basar, A. (2022).
+Supervised semantic similarity-based conﬂict detection algorithm: S3CDA. arXiv preprint.
+基于 5 个真实 SRS ⽂档，实证语义⽅法能识别需求⽭盾，证明冲突现象普遍存在于需求⽂档中。
+Automated requirement contradiction detection through formal logic and L L M s.
+Automated Software Engineering. Springer, 2024.
+对⽐ GPT-3/3.5/4/LL aM A，即使最新 LL M  也⽆法稳定完全识别或避免内部需求冲突。
+49

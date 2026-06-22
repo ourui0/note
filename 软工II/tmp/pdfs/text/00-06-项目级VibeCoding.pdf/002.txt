@@ -1,0 +1,9 @@
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+模块 核⼼⼯具
+界⾯原型设计 Google Stitch
+W eb 前端⽣成 Google AI Studio
+W eb 后端⽣成 Claude Code
+移动端 App 开发 通义灵码 + Expo (React Native)
+移动端真机调试Expo Go
+W eb 端⾃动调试M CP chrome-devtools
+2

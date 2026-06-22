@@ -1,0 +1,25 @@
+访问器与修改器（Accessor / Mutator）
+⽤⽅法替代直接的 public 字段访问：
+反模式：直接字段访问
+class Person {
+    public String name;
+    public int age;
+}
+// 调⽤⽅：
+person.age = -5;  // ⽆法验证！
+问题：
+⽆法添加验证逻辑
+字段类型变更破坏调⽤⽅
+⽆法懒加载或计算
+正确做法：访问器 + 修改器
+class Person {
+    private String name;
+    private int age;
+    public int getAge() { return age; }
+    public void setAge(int age) {
+        if (age < 0 || age > 150)
+            throw new IllegalArgumentException();
+        this.age = age;
+    }
+}
+26

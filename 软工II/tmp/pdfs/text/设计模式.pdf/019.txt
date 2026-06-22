@@ -1,0 +1,1 @@
+Why？•Designing OO software is hard•Designing reusable OO software –harder•Experienced OO designers make good design•New designers tend to fall back on non-OO techniques used before•Experienced designers know something –what is it?

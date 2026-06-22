@@ -1,0 +1,21 @@
+类的职责
+类的职责 = 状态（State）+ ⾏为能⼒（Behavioral Capability）
+状态（State）
+类所持有的数据
+描述对象在某⼀时刻的情况
+通过字段（ﬁeld）表示
+class BankAccount {
+    private double balance;  // 状态
+    private String owner;    // 状态
+}
+⾏为能⼒（Behavioral Capability）
+类能对外提供的操作
+改变状态或查询状态
+通过⽅法（method）表示
+class BankAccount {
+    void deposit(double amount) { ... }
+    void withdraw(double amount) { ... }
+    double getBalance() { ... }
+}
+类的接⼝（interface）= 对外承诺的⾏为能⼒；类的实现（implementation）= 内部状态与算法细节。
+22

@@ -1,0 +1,8 @@
+Javadoc
+• 在描述方法时，Javadoc常用的标签是：
+• @param 参数及其意义
+• @return 返回值
+• @throws 异常类及抛出条件
+• @see：引用
+• @since：最早使用该方法/类/接口的JDK版本
+• @deprecated 引起不推荐使用的警告

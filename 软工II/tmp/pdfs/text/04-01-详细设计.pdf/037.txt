@@ -1,0 +1,10 @@
+Dispersed Control（分散式控制）
+Characterized by having many components holding little data and having few responsibilities.
+It is hard to understand the ﬂow of control.
+Components are unable to do much on their own, increasing coupling.
+It is hard to hide information.
+Cohesion is usually poor.
+Few modularity principles can be satisﬁed.
+Heuristic（启发式经验）：Avoid interactions that require each component to send many messages —— 分散式控制
+⼏乎在所有情况下都应该避免。
+37

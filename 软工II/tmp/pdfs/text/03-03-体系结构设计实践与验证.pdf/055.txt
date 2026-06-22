@@ -1,0 +1,19 @@
+集成测试验证体系结构正确性
+@SpringBootTest
+@AutoConfigureMockMvc
+public class BookIntegrationTest {
+    @Autowired
+    private MockMvc mockMvc;
+    @Test
+    public void testSearchBooks() throws Exception {
+        // 验证  controller → service → dao 完整链路
+        mockMvc.perform(get("/api/books/search")
+                .param("keyword", " 设计模式 "))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.length()").value(greaterThan(0)));
+    }
+}
+集成测试验证的架构属性
+层间连通性：请求能否正确穿透所有层
+依赖注⼊：Spring 容器是否正确装配所有 Bean
+事务管理：跨层操作的事务是否正确传播 55

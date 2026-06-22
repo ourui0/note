@@ -1,0 +1,24 @@
+Hello W orld：第⼀个 RESTful API
+// 启动类
+@SpringBootApplication
+public class DemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+// 控制器 —— 处理  HTTP 请求，返回  JSON
+@RestController
+public class SiteController {
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello, Spring Boot!";
+    }
+    @GetMapping("/sites")
+    public List<Map<String, Object>> getSites() {
+        return List.of(
+            Map.of("id", 1, "name", " 南京⼤学 ", "url", "https://www.nju.edu.cn"),
+            Map.of("id", 2, "name", "GitHub",   "url", "https://github.com")
+        );
+    }
+}
+访问 http://localhost:8080/sites  → 直接返回 JSO N 数组 26

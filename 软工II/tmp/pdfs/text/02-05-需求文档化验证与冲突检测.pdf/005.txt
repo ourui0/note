@@ -1,0 +1,15 @@
+W hy Documents? [SW EBO K 4.1]
+Teamwork and Communication
+ 
+⽂档的读者远不⽌开发⼈员：
+⻆⾊ 关注点
+Project M anager 范围、进度、优先级
+Architect 系统约束、质量属性
+Software Designer 功能细节、接⼝定义
+Programmer 实现逻辑、边界条件
+Tester 验收标准、测试⽤例
+M aintainer 变更影响、追溯性
+ 
+需求规格说明： 在系统⽤户之间交流需求信息
+要求：简洁、精确、⼀致和易于理解
+5

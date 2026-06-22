@@ -1,0 +1,19 @@
+创建项⽬：Spring Initializr
+访问 start.spring.io  或使⽤ IntelliJ IDEA 内置向导
+Project:     Maven
+Language:    Java
+Spring Boot: 3.x
+Java:        17+
+Dependencies （今天全部需要）：
+   Spring Web          ← RESTful API
+   MyBatis Framework   ← 数据库操作
+   MySQL Driver        ← 数据库驱动
+   Spring Security     ← 安全认证
+⽣成的项⽬结构
+src/main/java/com/example/
+├── DemoApplication.java      ← 启动类（ @SpringBootApplication ）
+├── controller/               ← 控制器：接收  HTTP 请求
+├── service/                  ← 服务层：业务逻辑
+├── mapper/                   ← 数据层： MyBatis Mapper 接⼝
+└── entity/                   ← 实体类：与数据库表对应
+25

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#ffffff"/>
+  <line x1="90" y1="380" x2="680" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="90" y1="380" x2="90" y2="55" stroke="#333" stroke-width="2"/>
+  <text x="690" y="386" font-size="20" fill="#222">Q</text>
+  <text x="75" y="45" font-size="20" fill="#222">P</text>
+  <line x1="145" y1="95" x2="635" y2="340" stroke="#2563eb" stroke-width="4"/>
+  <line x1="145" y1="340" x2="635" y2="95" stroke="#dc2626" stroke-width="4"/>
+  <text x="620" y="332" font-size="22" fill="#2563eb">D</text>
+  <text x="620" y="91" font-size="22" fill="#dc2626">S</text>
+  <circle cx="390" cy="217.5" r="7" fill="#111"/>
+  <text x="404" y="211" font-size="20" fill="#111">E</text>
+  <line x1="390" y1="217.5" x2="390" y2="380" stroke="#666" stroke-dasharray="7 7" stroke-width="2"/>
+  <line x1="90" y1="217.5" x2="390" y2="217.5" stroke="#666" stroke-dasharray="7 7" stroke-width="2"/>
+  <text x="360" y="410" font-size="19" fill="#222">Q*</text>
+  <text x="43" y="224" font-size="19" fill="#222">P*</text>
+  <text x="260" y="36" font-size="24" font-weight="700" fill="#111">供求均衡：Qd = Qs</text>
+  <text x="128" y="420" font-size="18" fill="#444">需求增加：D 右移，P↑ Q↑；供给增加：S 右移，P↓ Q↑</text>
+</svg>

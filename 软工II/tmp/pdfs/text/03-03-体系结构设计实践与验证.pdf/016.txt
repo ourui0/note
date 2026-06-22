@@ -1,0 +1,13 @@
+SAP 稳定抽象原则 [Robert C. M artin]
+A package should be as abstract as it is stable.
+越稳定的包应越抽象；越不稳定的包应越具体。
+ 
+SDP + SAP = 依赖倒置原则（DIP）在包级别的体现
+包 稳定度 应有的抽象度 实际做法
+entity 最稳定 (I=0) ⾼抽象 PO JO ，⽆实现细节 ✓
+dao （接⼝包） 较稳定 ⾼抽象 只有 interface ✓
+controller 最不稳定 (I=1) 低抽象 全是具体实现 ✓
+service （接⼝包）中等 中等 interface + 部分实现 ✓
+痛苦区：稳定但具体（改不动但想改） → 要重构为接⼝
+⽆⽤区：不稳定但抽象（没⼈⽤的接⼝） → 可以删除
+16

@@ -1,0 +1,10 @@
+详细设计的上下⽂：从何处开始？
+Context（上下⽂）
+Speciﬁcation of modules：Export / Import interfaces（接⼝规格）
+Responsibility assignment（职责分配）
+Some responsibilities are from RE (SRS)
+Typically use cases, domain models, sequence diagrams, state diagrams
+Some others are from implementation decisions
+核⼼问题：详细设计的本质，就是把"系统的总体职责"逐步分配到具体的类与⽅法上 —— 既要忠于需求，⼜要做出合理
+的实现决策。
+10

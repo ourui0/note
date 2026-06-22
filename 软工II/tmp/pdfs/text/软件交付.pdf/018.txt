@@ -1,0 +1,17 @@
+大模型辅助自动化部署与
+CI/CD
+AI 驱动的现代部署流水线
+传统部署：手工执行脚本、逐步检查配置 ——易出错、难复现
+AI 增强部署：大模型生成 Dockerfile / Kubernetes YAML / Ansible Playbook，并自动校验
+Claude Code 示例：$ claude "为 Python Flask 服务生成 k8s Deployment + Service YAML，副本数 3，健
+康检查 /health"
+CI/CD 流水线中的 AI 检查点
+Pre-deploy：AI 扫描配置文件，识别安全风险（暴露密钥、宽松权限 ）
+Deploy：AI 监控滚动升级，检测异常指标自动触发回滚
+Post-deploy：AI 对比部署前后日志，生成变更影响报告
+GitHub Actions + Claude Code 集成示例
+- name: AI Deployment Review
+run: claude "审查 k8s/ 目录下所有 YAML，检查安全配置并输出改进建议"
+将 AI 检查作为 Required Check，不通过则阻塞合并，强制人工确认
+蓝绿部署与金丝雀发布中的 AI 决策辅助
+AI 分析流量指标、错误率，自动建议是否扩大金丝雀流量比例或回滚

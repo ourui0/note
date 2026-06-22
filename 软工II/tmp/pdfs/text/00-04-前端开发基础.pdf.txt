@@ -1,0 +1,602 @@
+
+
+--- PAGE 1 ---
+前端开发基础
+W eb · Vue.js · Node.js
+课程 《软件⼯程与计算 II》
+讲次 第 6 讲
+主题 前端开发基础：从静态⻚⾯到全栈应⽤
+预计时⻓ 约 50 分钟
+1
+
+
+--- PAGE 2 ---
+ 2004年4⽉1⽇ — 互联⽹的⼀个愚⼈节
+这⼀天，Google 推送了⼀封邮件邀请：
+"Google 正在内测⼀项新邮件服务，提供 1 GB 免费存储空间。"
+全球⽹友的第⼀反应："这肯定是愚⼈节玩笑"。
+那个年代，Hotmail 只给 2 M B，Yahoo M ail 给 4 M B
+但存储空间还不是最震撼的
+真正让⼈⽬瞪⼝呆的，是⽤ Gmail 读邮件的感觉：
+点击⼀封邮件 → 内容⽴刻出现 → ⻚⾯没有刷新
+这在当时的 Web 世界⾥，是闻所未闻的。
+2
+
+
+--- PAGE 3 ---
+Gm ail 背后的技术链
+秘密武器：XMLHttpRequest （XHR）
+⽤户点击邮件列表
+      │
+      ▼
+浏览器在后台发出  HTTP 请求（不刷新⻚⾯）
+      │
+      ▼
+服务器返回  JSON/XML 数据
+      │
+      ▼
+JavaScript 更新局部  DOM → ⽤户看到新内容
+这⼀模式被 Jesse James Garrett 在 2005 年命名为 AJAX
+（Asynchronous JavaScript And XM L ）
+3
+
+
+--- PAGE 4 ---
+AJAX 引发的前端⼯程化⾰命
+AJAX 的历史影响链：
+Gmail/Google Maps (2004–05)  ← AJAX 证明  Web 可以像桌⾯应⽤⼀样
+    → jQuery (2006)           ← 简化  DOM 操作和  AJAX 调⽤
+    → Backbone / Angular      ← 前端  MVC/MV* 框架兴起
+    → React (2013)            ← 组件化  + 虚拟  DOM
+    → Vue.js (2014)           ← 渐进式框架， MVVM
+    → 现代前端⼯程化体系        ← Vite / TypeScript / SSR…
+Gmail 证明了：Web ⻚⾯可以像桌⾯应⽤⼀样流畅响应。
+这⼀刻，"前端开发"作为⼀⻔独⽴⼯程学科正式诞⽣。
+4
+
+
+--- PAGE 5 ---
+ 停下来想⼀想
+在 AJAX 出现之前，每次⽤户操作都要整⻚刷新。
+假设你在设计⼀个 2003 年的⽹⻚邮箱（⽆ AJAX）：
+⽤户点击"下⼀⻚邮件"需要等待整个⻚⾯重新加载
+⽤户删除⼀封邮件，⻚⾯⽩屏 1-2 秒后重新显示
+问题 1： 整⻚刷新有哪些⽤户体验问题？前后端各有什么代价？
+问题 2： AJAX 解决了体验问题，但也引⼊了哪些新的复杂度？
+（提示：状态管理、SEO 、浏览器前进/后退……）
+问题 3： Gmail ⽤到了 HTM L 、CSS、JavaScript，你能猜测
+它们分别负责邮箱界⾯的哪些部分吗？
+5
+
+
+--- PAGE 6 ---
+本讲知识框架
+┌─────────────────────────────────────────────────────┐
+│              前端开发技术栈                           │
+│                                                     │
+│  PART 1          PART 2            PART 3           │
+│  Web 三层架构      Vue.js 框架         Node.js 后端     │
+│                                                     │
+│  ┌──────────┐   ┌────────────┐   ┌──────────────┐  │
+│  │ HTML     │   │ MVVM 模式   │   │ 事件驱动      │  │
+│  │ 结构层    │   │ 响应式数据  │   │ ⾮阻塞  I/O   │  │
+│  │ CSS      │   │ 单⽂件组件  │   │ Express 框架  │  │
+│  │ 表现层    │   │ 核⼼指令    │   │ 前后端联动    │  │
+│  │ JavaScript│  │ 路由 / 状态   │   │              │  │
+│  │ ⾏为层    │   │            │   │              │  │
+│  └──────────┘   └────────────┘   └──────────────┘  │
+│                                                     │
+│  学习⽬标：理解三层分⼯  → 掌握  Vue 核⼼⽤法  →        │
+│            搭建前后端联通的全栈⼩应⽤                 │
+└─────────────────────────────────────────────────────┘
+6
+
+
+--- PAGE 7 ---
+PART 1
+W eb 前端三层架构
+HTM L  · CSS · JavaScript
+7
+
+
+--- PAGE 8 ---
+浏览器架构：前端技术的运⾏容器
+渲染引擎解析 HTML /CSS 并绘制⻚⾯；JS 解释器负责执⾏ JavaScript。
+理解这⼀分⼯，是掌握前端三层架构（HTML / CSS / JS）的基础。
+8
+
+
+--- PAGE 9 ---
+HTM L  — 内容与结构层
+HyperText M arkup Language：⽤标签描述内容
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>我的⽹站</title>
+  </head>
+  <body>
+    <h1>⽹站标题</h1>
+    <p>这是⼀段⽂字。</p>
+    <a href="https://example.com">链接</a>
+    <img src="logo.png" alt="Logo">
+  </body>
+</html>
+HTM L  只负责内容和结构，不负责外观和⾏为。
+9
+
+
+--- PAGE 10 ---
+HTM L  常⽤标签速查
+标签类别 常⽤标签 语义
+标题 h1 –h6 层级标题
+⽂本 p  strong  em 段落、强调
+媒体 img  video  audio 嵌⼊媒体
+交互 form  input  button ⽤户输⼊
+布局 div  section  nav 容器/语义块
+链接 a 超链接，href  指定⽬标
+语义化 HTM L ：⽤正确的标签表达正确的含义（如⽤ <nav>  ⽽⾮ <div class="nav"> ），有助于 SEO  和⽆障碍访
+问。
+10
+
+
+--- PAGE 11 ---
+HTM L  解析①：标记 → DO M  树
+浏览器将 HTM L  ⽂本解析为内存中的树形结构（DO M ），JavaScript 通过 DO M  API 读写这棵树。
+11
+
+
+--- PAGE 12 ---
+HTM L  解析②：DO M  节点与布局盒
+每个 DO M  节点对应⼀个布局盒（Layout Box），决定其在⻚⾯上的位置与尺⼨。
+12
+
+
+--- PAGE 13 ---
+CSS — 样式与表现层
+Cascading Style Sheets：控制外观
+三种引⼊⽅式（优先级由低到⾼）：
+/* ①  外部样式表（推荐）  */
+/* 在  <head> 中： <link rel="stylesheet" href="style.css"> */
+/* ②  内部样式表  */
+/* 在  <head> 中： <style> ... </style> */
+/* ③  ⾏内样式（优先级最⾼，不推荐滥⽤）  */
+/* <p style="color: red;"> */
+三类选择器：
+p      { color: #333; }        /* 元素选择器  */
+.card  { border-radius: 8px; } /* 类选择器    */
+#logo  { width: 120px; }       /* ID 选择器   */
+CSS 只负责外观和布局，不负责内容和⾏为。
+13
+
+
+--- PAGE 14 ---
+CSS 规则如何附着到 DO M  节点
+CSS 引擎将每条规则与 DO M  节点匹配，计算最终样式（Computed Style），形成渲染树（Render Tree）。 14
+
+
+--- PAGE 15 ---
+浏览器渲染流⽔线
+HTM L → DO M  树，CSS → CSS 规则树，⼆者合并 → 渲染树 → 布局（位置/⼤⼩）→ 绘制 → 显示
+JavaScript 可在任意阶段修改 DO M  或样式，触发重新布局（Reﬂow）或重绘（Repaint）。
+15
+
+
+--- PAGE 16 ---
+JavaScript — 动态⾏为层
+让⻚⾯"活"起来：响应⽤户操作、异步更新数据
+// 1. 操作  DOM ：响应点击事件
+document.getElementById('btn').addEventListener('click', () => {
+  document.getElementById('msg').textContent = ' 你点击了按钮！ ';
+});
+// 2. 异步请求（ AJAX / Fetch API ）：不刷新⻚⾯获取数据
+fetch('/api/data')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    // ⽤数据更新⻚⾯  DOM
+  });
+JavaScript 只负责交互⾏为和数据通信，不负责内容结构和外观样式。
+16
+
+
+--- PAGE 17 ---
+JavaScript 四⼤核⼼能⼒
+能⼒ 说明 典型⽤法
+DO M 操作 动态增删改查 HTML  元素 getElementById  querySelector
+事件处理 响应点击、输⼊、滚动等addEventListener('click', fn)
+异步通信 fetch  / XHR 与服务器交互fetch('/api').then(...)
+逻辑计算 变量、函数、条件、循环ES6+ 语法：箭头函数、解构、模块
+为什么这很重要？
+AJAX 之后，JS 从"点击弹窗的玩具"变成了构建完整应⽤的语⾔，
+催⽣了 Node.js（服务端）和现代前端框架（Vue / React）。
+17
+
+
+--- PAGE 18 ---
+三层架构的分⼯协作
+┌──────────────────────────────────────────────┐
+│            ⼀个⽹⻚  = 三层叠加                │
+│                                              │
+│  HTML  ──  ⻣架（内容、结构、语义）            │
+│  CSS   ──  ⽪肤（颜⾊、字体、布局、动画）      │
+│  JS    ──  肌⾁（交互、数据、动态更新）        │
+└──────────────────────────────────────────────┘
+类⽐：
+HTM L  是⼀栋楼的钢筋混凝⼟结构
+CSS 是室内装修（颜⾊、灯光、家具）
+JavaScript 是电梯和⾃动⻔（响应⼈的操作）
+三层分离的好处：
+结构清晰，各司其职，便于团队协作
+CSS 换⽪不影响内容；JS 逻辑不污染 HTM L
+浏览器可独⽴缓存各层资源，提升性能
+18
+
+
+--- PAGE 19 ---
+PART 2
+Vue.js 与现代前端框架
+M VVM  · 响应式 · 组件化
+19
+
+
+--- PAGE 20 ---
+为什么需要前端框架？
+原⽣ JS 的痛苦：⼤量⼿动 DOM 操作
+// 数据变了，必须⼿动找到  DOM 元素并更新
+const count = 0;
+document.getElementById('counter').textContent = count;
+document.getElementById('btn').onclick = () => {
+  count++;
+  document.getElementById('counter').textContent = count; // ⼿动同步！
+};
+随着⻚⾯复杂度增加，这会演变为噩梦：
+数据与视图严重耦合，改⼀处要同步改多处 DO M
+状态分散在多个变量中，难以追踪
+代码重复，模块间通信混乱，维护成本爆炸
+20
+
+
+--- PAGE 21 ---
+框架的核⼼思想：数据驱动视图
+你只需要关⼼数据的变化，框架⾃动帮你同步更新 DO M 。
+ 原⽣  JS ：
+   改数据  → ⼿动找  DOM → ⼿动更新  → 漏更新  → Bug
+ Vue.js ：
+   改数据  → 框架⾃动更新  DOM → ⽤户看到新界⾯
+对⽐⼀下同⼀个计数器：
+原⽣ JS Vue.js
+数据更新 document.getElementById(...).textContent = count count.value++
+视图同步 ⼿动，容易遗漏 ⾃动，声明式
+代码量 随功能线性增⻓ 相对稳定
+21
+
+
+--- PAGE 22 ---
+M VVM  与 Vue.js 的响应式原理
+M VVM  = M odel · View · ViewM odel
+┌─────────────┐        ┌─────────────────┐        ┌──────────────┐
+│    Model    │◄──────►│   ViewModel     │◄──────►│    View      │
+│  ( 数据 /API) │  数据绑定 │  (Vue 实例 )     │  DOM 渲染 │  (HTML 模板 ) │
+│  JSON/JS 对象 │        │  响应式数据       │        │  ⽤户界⾯     │
+└─────────────┘        └─────────────────┘        └──────────────┘
+                              ↑
+                         双向绑定
+                      data  DOM ⾃动同步
+Vue.js 三⼤核⼼特性：
+特性 说明 效果
+响应式数据数据变化⾃动触发视图更新⽆需⼿动操作 DO M
+组件化 U I 拆分为可复⽤的独⽴单元代码复⽤、易维护
+渐进式 可逐步引⼊，不强制全量采⽤适合⼤⼩项⽬
+22
+
+
+--- PAGE 23 ---
+单⽂件组件（SFC）
+Vue 的核⼼⽂件格式：.vue — 模板 · 逻辑 · 样式三合⼀
+<!-- MyComponent.vue -->
+<template>               <!-- ①  视图层： HTML 模板  + Vue 指令  -->
+  <div class="card">
+    <h2>{{ title }}</h2>
+    <p> 计数： {{ count }}</p>
+    <button @click="increment">+1</button>
+  </div>
+</template>
+<script setup>           <!-- ②  逻辑层： Composition API -->
+import { ref } from 'vue'
+const title = ' 我的计数器 '
+const count = ref(0)
+const increment = () => { count.value++ }
+</script>
+<style scoped>           /* ③  样式层： scoped 防⽌样式泄漏  */
+.card { border: 1px solid #ccc; padding: 16px; }
+</style>
+23
+
+
+--- PAGE 24 ---
+单⽂件组件（SFC）：为什么这样设计？
+传统三⽂件 vs SFC
+维度 传统三⽂件（HTM L  / CSS / JS） SFC（.vue）
+⽂件组织 按技术分层 按组件聚合
+复⽤单元 零散，跨⽂件复制 组件整体复⽤，⾃包含
+样式隔离 全局 CSS 互相污染 scoped  只作⽤本组件
+维护成本 改⼀功能需跨多⽂件 改动集中在⼀个⽂件
+组件是前端⼯程化的基本单元
+SFC 让每个组件⾃包含，⼤型应⽤可拆分为数百个独⽴组件按需复⽤。
+24
+
+
+--- PAGE 25 ---
+Vue 核⼼指令速查
+指令 ⽤途 示例
+v-bind  / : 动态绑定属性 :href="url"  :class="cls"
+v-model 双向数据绑定（表单） <input v-model="name">
+v-if  / v-else 条件渲染（真正增删DOM） <p v-if="show">
+v-show 条件显示（切换 display） <p v-show="show">
+v-for 列表渲染 <li v-for="item in list" :key="item.id">
+v-on  / @ 事件监听 @click="fn"  @input="fn"
+v-if vs v-show 的选择：
+v-if  ── 元素频繁切换少，或初始不渲染  → 适合条件分⽀
+v-show ── 元素频繁切换（只改  CSS ）    → 适合  tab / 折叠⾯板
+记忆⼝诀： bind绑属性，model双向，if条件，for列表，on事件。
+25
+
+
+--- PAGE 26 ---
+O ptions API vs Com position API
+两种⽅式实现同⼀个计数器：
+<!-- Options API （ Vue 2 ⻛格，按 " 选项类型 " 组织）  -->
+<script>
+export default {
+  data() { return { count: 0 } },
+  methods: { increment() { this.count++ } },
+  mounted() { console.log(' 挂载完成 ') }
+}
+</script>
+<!-- Composition API （ Vue 3 推荐，按 " 功能逻辑 " 组织）  -->
+<script setup>
+import { ref, onMounted } from 'vue'
+const count = ref(0)
+const increment = () => { count.value++ }
+onMounted(() => { console.log(' 挂载完成 ') })
+</script>
+26
+
+
+--- PAGE 27 ---
+O ptions API vs Com position API：如何选择？
+维度 Options API Com position API
+逻辑组织 按选项类型分散 按功能聚合
+复⽤⽅式 Mixins（有冲突⻛险）Composables（清晰隔离）
+TypeScript ⽀持有限 完整⽀持
+推荐场景 简单组件 / 迁移项⽬ 新项⽬ / 复杂逻辑
+Vue 3 官⽅推荐 Composition API + <script setup>
+新项⽬直接⽤ Composition API；阅读⽼代码会遇到 O ptions API，两者都需要认识。
+27
+
+
+--- PAGE 28 ---
+ 动⼿练习：创建第⼀个 Vue 项⽬
+ 5 分钟，跟着步骤操作
+# 前提：已安装  Node.js （ node -v 验证）
+# 1. ⽤  Vite 创建项⽬
+npm create vite@latest my-app -- --template vue
+# 2. 进⼊项⽬⽬录，安装依赖
+cd my-app
+npm install
+# 3. 启动开发服务器
+npm run dev
+# 浏览器打开  http://localhost:5173
+修改 src/App.vue ，把标题改成你的名字：
+<template>
+  <h1> 你好， {{ name }} ！ </h1>
+</template>
+<script setup>
+const name = ' 张三 '  // 改成你的名字
+</script>
+28
+
+
+--- PAGE 29 ---
+PART 3
+Node.js 与全栈联动
+JavaScript ⾛向服务端
+29
+
+
+--- PAGE 30 ---
+Node.js — JavaScript 的后端⼒量
+Node.js = V8 引擎 + 事件循环 + ⾮阻塞 I/O
+传统服务器（多线程模型）：
+  请求 1 ──► 线程 1 [ 等待数据库 ] ──────────► 响应 1
+  请求 2 ──► 线程 2 [ 等待⽂件 IO] ──────────► 响应 2
+  请求 3 ──► 线程 3 [ 等待 ...]    ──────────► 响应 3
+  （线程池耗尽  → 新请求排队等待）
+Node.js （事件驱动  + ⾮阻塞）：
+  请求 1 ──► 发起 IO → [ 继续处理其他请求 ]
+  请求 2 ──► 发起 IO → [ 继续处理其他请求 ]
+  请求 3 ──► 发起 IO → [ 继续处理其他请求 ]
+  IO 完成  ──► 回调函数处理结果  ──► 响应
+  （单线程  + 事件队列，⾼并发不阻塞）
+核⼼优势：
+特性 说明
+⾼并发 事件驱动，单线程处理⼤量并发连接
+前后同语⾔全栈均⽤ JavaScript，降低切换成本
+⽣态丰富 npm 拥有 200 万+ 包 30
+
+
+--- PAGE 31 ---
+从 Hello W orld 到 HTTP 服务器
+Node.js Hello W orld：
+// hello.js
+console.log('Hello, World!');
+// 运⾏： node hello.js
+构建⼀个原⽣ HTTP 服务器：
+// server.js
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+  res.end('Hello, Node.js!');
+});
+server.listen(8080, () => {
+  console.log(' 服务器运⾏在  http://localhost:8080');
+});
+31
+
+
+--- PAGE 32 ---
+Express 框架：让路由和中间件更简洁
+原⽣ http 模块需要⼿动解析 URL ，Express 封装了常⽤模式：
+const express = require('express');
+const app = express();
+// GET 路由
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from Express!' });
+});
+// 动态路由参数
+app.get('/api/user/:id', (req, res) => {
+  res.json({ userId: req.params.id });
+});
+app.listen(3000, () => console.log('Express 服务器已启动 '));
+Express 核⼼ = 路由 + 中间件
+路由决定"谁来处理"，中间件决定"怎么处理"（⽇志、鉴权、解析 body…）
+32
+
+
+--- PAGE 33 ---
+前后端全栈联动架构
+综合案例：⽹站列表系统（Vue + Node.js + Express）
+┌──────────────────────────────────────────────────┐
+│                  浏览器  ( 客户端 )                  │
+│  Vue.js 应⽤                                      │
+│  ┌─────────────────┐   axios.get('/getWebSites') │
+│  │  WebSites.vue   │──────────────────────────►  │
+│  │  <ul v-for>     │◄──────────────────────────  │
+│  └─────────────────┘   JSON: [{name, url}, ...]  │
+└──────────────────────────────────────────────────┘
+                        HTTP (localhost:8081)
+┌──────────────────────────────────────────────────┐
+│                Node.js 服务端                     │
+│  Express 应⽤  (server.js)                        │
+│  ┌──────────────────────────────────┐            │
+│  │ app.get('/getWebSites', (req,res)│            │
+│  │ → 读取  data.json → res.json()   │            │
+│  └──────────────────────────────────┘            │
+│  data.json: [{name:"NJU", url:"nju.edu.cn"}, ...]│
+└──────────────────────────────────────────────────┘
+33
+
+
+--- PAGE 34 ---
+前后端联动：关键代码
+Express 服务端（server.js）：
+const express = require('express');
+const cors    = require('cors');
+const sites   = require('./data.json');
+const app = express();
+app.use(cors());   // 允许跨域（前端与后端不同端⼝）
+app.get('/getWebSites', (req, res) => res.json(sites));
+app.listen(8081, () => console.log('API 服务已启动 '));
+Vue 前端（WebSites.vue）调⽤：
+import axios from 'axios'
+import { ref, onMounted } from 'vue'
+const sites = ref([])
+onMounted(async () => {
+  const { data } = await axios.get('http://localhost:8081/getWebSites')
+  sites.value = data
+})
+跨域（CO RS）：浏览器安全策略禁⽌不同端⼝的请求，
+34
+
+
+--- PAGE 35 ---
+ 思考题：路由的两种形态
+前端路由（Vue Router）vs 后端路由（Express）
+前端路由（ SPA 模式）：
+  ⽤户点击  " 关于我们 "
+  → URL 变为  /about
+  → Vue Router 拦截，加载  About.vue 组件
+  → ⻚⾯不刷新，只替换组件
+  → 服务器实际上没有  /about 这个⽂件
+后端路由（传统模式）：
+  ⽤户点击  " 关于我们 "
+  → 浏览器向服务器请求  /about
+  → 服务器查找路由表，返回对应  HTML ⻚⾯
+  → 整⻚刷新
+请思考并讨论：
+维度 前端路由 后端路由
+⽤户体验  流畅，⽆⽩屏  每次刷新
+SEO  爬⾍难抓取  友好
+⾸屏加载  JS 包较⼤  直接返回 HTML 35
+
+
+--- PAGE 36 ---
+本讲⼩结
+三个核⼼结论：
+① W eb 前端 = 三层分⼯
+HTM L  定义内容与结构，CSS 控制外观与布局，JavaScript 实现交互与数据更新。三层各司其职，分离关注点，是前端⼯程
+化的基础。
+② Vue.js 以数据驱动视图
+M VVM  模式将开发者从⼿动 DO M  操作中解放出来。单⽂件组件（SFC）封装模板、逻辑、样式；Composition API 以功能
+聚合替代选项分散，更易复⽤和维护。
+③ Node.js 打通前后端
+同⼀语⾔（JavaScript）横跨浏览器和服务器，降低了全栈开发⻔槛。事件驱动的⾮阻塞 I/O 使 Node.js 擅⻓⾼并发的 API
+服务和实时场景。
+⼀条技术演进线索：
+静态 HTM L  → 动态 JS → AJAX 异步 → 前端框架 → 组件化 → 全栈 JS
+每⼀步演进都是为了解决上⼀步遗留的⼯程复杂性问题。
+36
+
+
+--- PAGE 37 ---
+课后作业
+本讲作业（4 项，⼆选⼆完成）
+A. 基础巩固
+1. ⽤原⽣ HTM L  + CSS + JS 实现⼀个"待办事项"⻚⾯：⽀持添加/删除条⽬，⽆需框架，纯⼿动 DO M  操作。体会框架出
+现前的开发⽅式。
+2. 阅读 Vue.js 官⽅⽂档"快速上⼿"章节（中⽂版），对照本讲内容，找出⾄少 3 处本讲未覆盖的知识点，写成笔记。
+B. 动⼿实践
+3. 在课堂 Vue 计数器基础上，增加"减法"按钮和"重置"按钮，并⽤ v-show  在计数为 0 时显示"归零啦"提示。
+4. 参考课堂⽹站列表案例，将 data.json  扩展为⾄少 5 条数据，为每条数据增加 category （分类）字段，并在前端⽤
+v-for  + v-if  实现按分类过滤展示。
+提交格式： 代码截图 + 运⾏效果截图，下次课前发⾄课程群。
+37
+
+
+--- PAGE 38 ---
+下课前，三分钟回顾
+今天学了什么？
+Web 前端三层架构
+├── HTML  ── ⻣架：标签、语义、结构
+├── CSS   ── ⽪肤：选择器、样式、布局
+└── JS    ── 动作： DOM 操作、事件、 Fetch
+Vue.js
+├── MVVM ：数据驱动视图，告别⼿动  DOM
+├── SFC (.vue) ： template + script + style 三合⼀
+├── 核⼼指令： v-bind / v-model / v-if / v-for / v-on
+└── Composition API ： <script setup> + ref + ⽣命周期钩⼦
+Node.js
+├── V8 引擎  + 事件循环  + ⾮阻塞  I/O
+├── 内置  http 模块  → 构建服务器
+├── Express 框架  → 路由  + 中间件
+└── 前后端联动： Vue(5173) ←axios→ Node.js(8081)
+38
+
+
+--- PAGE 39 ---
+下节预告
+第 5 讲：Java W eb 开发
+1.47 亿条个⼈信息，在 78 天内被悄悄拿⾛——它揭示了后端安全的致命代价，也是我们学 Spring Boot 的起点……
+39
+
+
+--- PAGE 40 ---
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+第 4 讲   前端开发基础
+本讲核⼼收获
+├── Web 演进：静态⻚⾯  → AJAX → SPA ，理解现代  Web 的底层逻辑
+├── Vue.js ：声明式渲染  + 响应式数据， SFC （ template/script/style ）三合⼀
+└── Node.js ： V8 + 事件循环  + Express ，前后端统⼀使⽤  JavaScript
+HTM L · CSS · JavaScript · Vue.js · Node.js
+40

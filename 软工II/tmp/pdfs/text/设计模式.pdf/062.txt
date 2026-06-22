@@ -1,0 +1,1 @@
+参与者•抽象工厂（AbstractFactory）声明了创建抽象产品的各个接口。•具体工厂（ConcreteFactory）实现了对具体产品的创建。•抽象产品（AbstractProduct）声明了一种产品的接口。•具体产品（ConcreteProduct）定义了具体工厂中创建出来的具体产品，实现了抽象产品的接口。•客户（Client）使用抽象工厂和抽象产品的类。使用抽象工厂的方法来创建产品。

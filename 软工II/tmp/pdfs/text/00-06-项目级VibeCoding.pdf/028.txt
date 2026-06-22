@@ -1,0 +1,15 @@
+Expo Go App 模拟器调试
+Expo Go 是移动端开发的核⼼调试利器：
+安装 Expo Go：在 iPhone / Android ⼿机上，从 App Store / Google Play 安装 Expo Go。
+扫码预览：
+cd demo-app-frontend
+npm start
+# 终端输出⼆维码  → ⼿机  Expo Go 扫码  → 实时预览
+热重载机制：灵码修改代码 → ⽂件保存 → Expo Go ⾃动刷新，⽆需重新编译
+模拟器调试流程：
+调试场景 操作
+界⾯布局错误Shake ⼿机 → 开启 Inspector，点击元素查看样式
+⽹络请求失败Expo Dev Tools → Network ⾯板查看请求详情
+JS 报错 红屏报错 → 直接复制给灵码，让 AI 修复
+性能问题 Expo Dev Tools → Performance M onitor
+28

@@ -1,0 +1,14 @@
+SDP 稳定依赖原则 [Robert C. M artin]
+Depend in the direction of stability.
+依赖⽅向应朝着更稳定的⽅向。
+ 
+怎么判断稳定性？
+稳定 = 很多包依赖它（被需要）→ 改动代价⼤ → 不容易变
+不稳定 = 它依赖很多包 → 容易变
+案例：不稳定度计算
+包 Ca(传⼊)Ce(传出)I = Ce/(Ca+Ce) 稳定性
+entity 4 0 0.00 最稳定 — 正确！
+controller 0 3 1.00 最不稳定 — 正确！
+service 1 2 0.67 中等
+controller（不稳定）→ service（中等）→ dao → entity（稳定） ✓  符合 SDP
+15

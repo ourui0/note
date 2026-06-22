@@ -1,0 +1,14 @@
+M ermaidSeqBench — 顺序图⽣成基准测试
+IBM Research 发布 · NeurIPS 2025
+132 个⼈⼯验证样本，覆盖多种业务场景
+6 个评分维度
+# 维度 评估内容
+1 Syntax（语法正确性） 代码能否被解析器正确解析
+2 M ermaid O nly（语法规范） 是否符合 M ermaid 顺序图语法规范
+3 L ogic（逻辑正确性） 消息顺序和参与者交互是否合理
+4 Completeness（完整性） 是否覆盖了所有关键交互步骤
+5 Activation Handling（激活框处理） 激活/停⽤时机是否正确
+6 Error & Status Tracking（错误追踪） 异常流程和状态码是否完整
+结果：各模型在激活框处理和错误追踪⽅⾯存在显著能⼒差距
+来源：arxiv.org/abs/2511.14967
+50

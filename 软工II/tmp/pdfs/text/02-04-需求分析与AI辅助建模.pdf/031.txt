@@ -1,0 +1,16 @@
+案例 —— "搜索图书"系统顺序图 [SW EBO K 4.4]
+系统操作
+searchBooks(keyword) — 基本搜索
+viewBookDetail(bookId) — 查看详情
+searchBooks(keyword, pageNum) — 翻⻚（⽅法重载）
+交互⽚段
+⽚段 含义 本图⽤法
+opt 可选（0 或 1 次） 查看详情、翻⻚
+alt 互斥分⽀ 本图未⽤
+loop 循环（0 到多次） 本图未⽤
+Java 映射
+// ⽅法重载实现翻⻚
+SearchResult searchBooks(String kw)
+SearchResult searchBooks(String kw, int page)
+BookDetail viewBookDetail(String bookId)
+31

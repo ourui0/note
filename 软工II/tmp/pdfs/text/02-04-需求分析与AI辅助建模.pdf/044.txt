@@ -1,0 +1,11 @@
+状态图指导测试⽤例编写 [SW EBO K 4.4]
+ 
+为每条转换路径编写测试
+测试⽤例 初始状态 操作 预期结果
+正常⽀付 PENDING_PAYM ENT pay() 状态 → PAID
+已发货不可⽀付SHIPPED pay() 抛出 IllegalStateException
+已⽀付可取消 PAID cancel() 状态 → CANCEL L ED，库存退还
+已完成不可取消CO M PL ETED cancel() 抛出 IllegalStateException
+ 
+状态图中的每条转换路径 + 每种⾮法转换 = 完整的测试覆盖
+44

@@ -1,0 +1,11 @@
+附录 D：AI 需求⽣成三⼤典型失效——近期实证研究
+失效类型 典型表现 实证来源
+① 遗漏隐式约束未写出边界条件、安全约束、复合条件；需求不完整或缺失约束条件Vogelsang et al. (2025)
+② 歧义保留 直接转录模糊表述，未规范化；如"正常情况下触发"未定义"正常"Jia et al. (2025)
+③ 冲突⽣成 同⼀⽂档出现⽭盾规范或验收标准；条件优先级未定义M alik et al. (2022)；Springer SE (2024)
+① 遗漏隐式约束
+Vogelsang, A., Korn, A., Broccia, G., Ferrari, A., Fischbach, J., & Arora, C. (2025).
+O n the impact of requirements smells in prompts: The case of automated traceability. arXiv preprint.
+实证了"需求味（requirements smells）"对 L L M  推理与 traceability 性能的影响。
+隐式约束未显式表达 → 归类为 requirements smell → 导致⾃动⽣成结果产⽣可量化缺陷。
+48

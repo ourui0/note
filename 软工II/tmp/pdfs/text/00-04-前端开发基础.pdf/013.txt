@@ -1,0 +1,15 @@
+CSS — 样式与表现层
+Cascading Style Sheets：控制外观
+三种引⼊⽅式（优先级由低到⾼）：
+/* ①  外部样式表（推荐）  */
+/* 在  <head> 中： <link rel="stylesheet" href="style.css"> */
+/* ②  内部样式表  */
+/* 在  <head> 中： <style> ... </style> */
+/* ③  ⾏内样式（优先级最⾼，不推荐滥⽤）  */
+/* <p style="color: red;"> */
+三类选择器：
+p      { color: #333; }        /* 元素选择器  */
+.card  { border-radius: 8px; } /* 类选择器    */
+#logo  { width: 120px; }       /* ID 选择器   */
+CSS 只负责外观和布局，不负责内容和⾏为。
+13

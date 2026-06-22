@@ -1,0 +1,9 @@
+Controller · Bad Design vs Good Design
+反例：Presentation 直接调 Domain
+问题：表现层 PO STCommand 直接调⽤领域对象
+Sale。业务逻辑泄漏到表现层，不可复⽤ / 不可测试 / 难
+以维护。
+正例：通过 Controller 解耦
+优势：表现层只发系统事件消息，由 Controller（PO ST）
+负责协调领域对象。表现层与领域层独⽴演化。
+32

@@ -1,0 +1,13 @@
+CCP 共同封闭原则 [Robert C. M artin]
+Classes that change together belong together.
+因同⼀原因变化的类应放在⼀起（包级别的 SRP）。
+ 
+含义
+当需求变更时，变更应该集中在尽可能少的包中
+违反 CCP = ⼀次需求变更要改多个包 = ⾼维护成本
+案例：在线书店
+需求变更："⽀付⽅式新增微信⽀付"
+如果按 CCP 划分 变更范围
+service.payment + dao.payment 只改 2 个包 ✓
+如果⽀付和订单混在⼀起 改动波及订单逻辑 ✗
+13

@@ -1,0 +1,12 @@
+产品需求 vs 项⽬需求 [SW EBO K 1.3]
+ 
+维度 产品需求 (Product) 项⽬需求 (Project)
+关注点 软件应有的形态、功能和质量构建软件的过程约束
+别名 Software Product Requirements Process / Business Requirements
+示例 系统应⽀持 1000 并发⽤户 项⽬预算不超过 50 万
+查询响应 < 3 秒 6 个⽉内上线
+⽀持 iO S 和 Android 团队不超过 8 ⼈
+⽂档位置 SRS 项⽬章程 / 项⽬计划
+ 
+ 本课程重点讲授产品需求。但在实际项⽬中，项⽬需求（成本、进度、⼈员）同样约束着需求决策。
+34

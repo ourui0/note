@@ -1,0 +1,8 @@
+南京⼤学 · 《软件⼯程与计算 II》  ·  2026 春季学期
+第 4 讲   前端开发基础
+本讲核⼼收获
+├── Web 演进：静态⻚⾯  → AJAX → SPA ，理解现代  Web 的底层逻辑
+├── Vue.js ：声明式渲染  + 响应式数据， SFC （ template/script/style ）三合⼀
+└── Node.js ： V8 + 事件循环  + Express ，前后端统⼀使⽤  JavaScript
+HTM L · CSS · JavaScript · Vue.js · Node.js
+40

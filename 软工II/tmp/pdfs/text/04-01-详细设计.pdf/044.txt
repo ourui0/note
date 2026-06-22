@@ -1,0 +1,13 @@
+Stevens 1974 · 结构化设计
+三⼤概念
+M odule：A set of one or more contiguous program statements having a name by which other parts of the
+system can invoke it and preferably having its own distinct set of variable names
+Coupling（耦合）：The measure of the strength of association established by a connection from one module to
+another
+Cohesiveness（内聚）：模块内部元素相关程度
+内聚 6 等级（弱→强）
+Coincidental（偶然）→ Logical（逻辑）→ Temporal（时间）→ Communicational（通信）→ Sequential（顺序）→
+Functional（功能）
+设计⽬标：追求最强的功能内聚（Functional Cohesion）。
+📖  SW EBO K v4 §1.4 · Coupling  |  §1.4 · Cohesion  |  §5.2 · Function-O riented (Structured) Design
+44

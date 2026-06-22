@@ -1,0 +1,11 @@
+软件体系结构的发展历程
+ 
+年代 ⾥程碑 关键⼈物/组织
+1969 NATO  会议⾸次提出 "software architecture" Ian P. Sharp
+1972 "O n the Criteria to Be Used in Decomposing Systems into Modules"David Parnas
+1992 "Foundations for the Study of Software Architecture" Perry & W olf
+1995 4+1 视图模型 Philippe Kruchten
+1996 Software Architecture: Perspectives on an Emerging Discipline Shaw & Garlan
+1998 Software Architecture in Practice（SEI 三部曲之⼀） Bass, Clements, Kazman
+2000 IEEE 1471 标准 IEEE/OMG
+23

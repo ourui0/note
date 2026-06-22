@@ -1,0 +1,4 @@
+QoS 约束的经济学 [SW EBO K 3.2]
+ ⾮功能需求的量化指标（如"响应 < 3 秒"）往往是拍脑袋定的。
+理解 Perfection Point 和 Fail Point 能帮助做出更理性的决策。
+36

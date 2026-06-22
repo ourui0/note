@@ -1,0 +1,11 @@
+• Pair-Reviews
+• Continuous design and code reviews
+• Ultimate in defect removal efficiency
+• Removes programmers distaste for reviews
+• 80% of all (solo) programmers don’t do them regularly or at all
+• Defect prevention always more efficient than defect removal
+• Pair Debugging
+• Talking about problem in a pair can lead to a solution becoming obvious
+• Pair-Learning
+• Continuous reviews -> learn from partners techniques, knowledge of language, 
+domain, etc.

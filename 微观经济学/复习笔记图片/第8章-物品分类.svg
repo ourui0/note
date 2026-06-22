@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#fff"/>
+  <text x="238" y="42" font-size="26" font-weight="700">四类物品：排他性 × 竞争性</text>
+  <line x1="180" y1="100" x2="680" y2="100" stroke="#334155" stroke-width="3"/>
+  <line x1="180" y1="250" x2="680" y2="250" stroke="#334155" stroke-width="3"/>
+  <line x1="180" y1="400" x2="680" y2="400" stroke="#334155" stroke-width="3"/>
+  <line x1="180" y1="100" x2="180" y2="400" stroke="#334155" stroke-width="3"/>
+  <line x1="430" y1="100" x2="430" y2="400" stroke="#334155" stroke-width="3"/>
+  <line x1="680" y1="100" x2="680" y2="400" stroke="#334155" stroke-width="3"/>
+  <text x="245" y="84" font-size="21">竞争性</text>
+  <text x="498" y="84" font-size="21">非竞争性</text>
+  <text x="95" y="180" font-size="21">排他性</text>
+  <text x="77" y="330" font-size="21">非排他性</text>
+  <rect x="190" y="112" width="230" height="126" fill="#dbeafe"/>
+  <rect x="440" y="112" width="230" height="126" fill="#dcfce7"/>
+  <rect x="190" y="262" width="230" height="126" fill="#fee2e2"/>
+  <rect x="440" y="262" width="230" height="126" fill="#fef3c7"/>
+  <text x="260" y="160" font-size="24" font-weight="700">私人物品</text>
+  <text x="235" y="200" font-size="18">饮料、饼干</text>
+  <text x="508" y="160" font-size="24" font-weight="700">俱乐部品</text>
+  <text x="475" y="200" font-size="18">有线电视、收费路</text>
+  <text x="260" y="310" font-size="24" font-weight="700">公共资源</text>
+  <text x="238" y="350" font-size="18">渔场、牧场、公路拥堵</text>
+  <text x="510" y="310" font-size="24" font-weight="700">公共物品</text>
+  <text x="500" y="350" font-size="18">国防、治安、绿化</text>
+</svg>

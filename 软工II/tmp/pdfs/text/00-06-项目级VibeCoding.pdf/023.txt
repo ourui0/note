@@ -1,0 +1,10 @@
+初始化 Expo 移动端项⽬
+在 VS Code 终端运⾏以下命令，初始化 App 前端代码库：
+# 使⽤  expo 初始化⼀个  app 的前端代码库
+npx create-expo-app@latest
+命令运⾏过程中，系统会提示为前端项⽬命名，命名为：demo-app-frontend 。运⾏完成后，⽣成代码库。
+# 进⼊该项⽬的代码库
+cd demo-app-frontend
+# 运⾏
+npm start
+23

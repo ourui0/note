@@ -1,0 +1,12 @@
+通义灵码移动端开发概览
+通义灵码（VS Code 插件 / L ingma IDE）同样⽀持移动端开发流程：
+与前⾯的 AI Studio + Claude Code ⼯作流并⾏的另⼀条路线
+适合团队已在使⽤阿⾥云⽣态（DashScope API / 通义系列模型）
+全程在 VS Code 内完成：原型描述 → ⽣成代码 → 运⾏调试
+移动端技术栈选择：
+技术栈 特点 适合场景
+Expo (React Native) JS/TS，热重载，Expo Go 预览 快速原型，跨平台
+Flutter Dart，⾼性能，UI 统⼀ 对 U I 精度要求⾼
+原⽣ Swift / Kotlin 最佳性能，学习成本⾼ ⽣产级 App
+VibeCoding 推荐：Expo (React Native) + 通义灵码，上⼿最快，与 W eb 前端知识复⽤度最⾼
+22

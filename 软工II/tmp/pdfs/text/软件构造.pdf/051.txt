@@ -1,0 +1,5 @@
+3. Standard Libraries
+• Good programmers have always used 
+libraries
+• Now provided with languages (Java, C++, 
+.NET)

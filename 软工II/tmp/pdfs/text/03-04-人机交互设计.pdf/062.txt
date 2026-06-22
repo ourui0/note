@@ -1,0 +1,26 @@
+L L M  GU I Agent — AI ⾃主操控图形界⾯
+GUI Agent：像⼈类⼀样看屏幕、移动⿏标、点击按钮、输⼊⽂字，⾃主完成复杂 GUI 操作任务。
+能⼒三要素
+能⼒ 含义 技术挑战
+Grounding 将语⾔指令映射到屏幕元素坐
+标
+⾼分辨率/⼩控件/多语
+⾔
+Action 执⾏点击/输⼊/滚动/快捷键动作序列规划与容错
+Reasoning 分解⻓任务，决策下⼀步动作⻓视野规划与状态追踪
+代表性产品
+Claude Computer U se（Anthropic, 2024） — ⾸个公
+开 beta 的前沿 AI 计算机操控能⼒
+Google Project M ariner — Chrome 内浏览器操控
+M icrosoft U FO  — W indows 应⽤ Agent
+O SW orld 基准进展
+O SW orld（NeurIPS 2024）：369 项真实 PC 任务，⼈类基
+线 72.4%
+时间 最优模型成功率
+2024 年初 ~12%（GPT-4V）
+2024 年末 ~38%（Claude Computer U se）
+2025 年中 72.6%（Agent S，⾸次超越⼈类）
+ScreenSpot-Pro（ICLR 2025）测试专业软件（23 个应
+⽤，5 个⾏业），最优模型仅 18.9%，说明专业场景仍是
+重⼤挑战。
+62

@@ -1,0 +1,17 @@
+课堂练习 · switch-case 反模式
+class Square {
+    void landOn(Player p) {
+        switch (this.Type) {
+            case Tax:    收税 ;    break;
+            case Income: 增加收⼊ ; break;
+            case Pay:    罚款 ;    break;
+            ...
+            default: 没有⾏为 ;
+        }
+    }
+}
+问题：所有 Square 类型的⾏为都耦合在⼀个 switch 语句⾥ —— 新增⼀种 Square 要修改 landOn ，违反 P11 开闭原
+则（OCP）。
+正解：建⽴⾏为继承树，⽤多态代替 switch-case —— Tax extends Square 、Income extends Square ……，各⾃
+实现 landOn(Player) 。
+64

@@ -1,0 +1,18 @@
+案例：BookService 接⼝设计
+public interface BookService {
+    
+    BookVO findById(Long id);
+    
+    List<BookVO> search(String keyword, int page, int size);
+    
+    boolean checkStock(Long bookId, int quantity);
+    
+    void addBook(BookVO bookVO);
+    
+    void updateBook(BookVO bookVO);
+}
+设计要点
+⼊参和返回值使⽤ VO （⾯向上层），内部再转换为 PO
+checkStock ⽅法体现业务逻辑：不只是查数据，还要判断库存是否充⾜
+⽅法粒度对应⽤例步骤，⽽⾮数据库 CRUD
+42

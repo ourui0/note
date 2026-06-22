@@ -1,0 +1,20 @@
+P10 · 权限最⼩化
+M inimize the accessibility of classes and members.
+— Eﬀective Java, Joshua Bloch
+Java 的四个访问级别
+修饰符 可访问范围
+private 仅本类内部
+（package-private，⽆修饰符）同⼀包内
+protected 同⼀包 + ⼦类
+public 任何地⽅
+原则：从最严格的 private 开始，只在确实需要时才放宽。
+为什么要最⼩化权限？
+每增加⼀个 public 成员，就等于增加了⼀
+个对外的承诺。 这个承诺未来很难撤回，因
+为可能有调⽤⽅依赖它。
+权限最⼩化的好处：
+接⼝更⼩ → 耦合更低
+内部实现可以⾃由修改
+降低 API 的维护成本
+提⾼安全性
+32

@@ -1,0 +1,9 @@
+MCP chrome-devtools 常⽤调试场景
+场景 对 Claude Code 说
+控制台报错 "读取当前⻚⾯的所有 Console 错误，逐⼀分析并修复"
+⽹络请求失败"查看 Network ⾯板，找出所有 4xx/5xx 请求，分析原因"
+⻚⾯样式异常"检查 .task-card  的实际计算样式，找出为什么宽度变成 0"
+性能问题 "Proﬁle ⾸⻚加载过程，找出耗时超过 100ms 的操作"
+内存泄漏 "拍摄堆内存快照，⽐较前后差异，找出未释放的对象"
+接⼝联调 "拦截 PO ST /api/tasks 请求，打印 request body 和 response"
+37

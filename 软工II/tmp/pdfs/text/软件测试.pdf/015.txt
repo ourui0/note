@@ -1,0 +1,12 @@
+Common V&V Activities
+• Static Analysis Techniques –
+• Based solely on the (manual or automated) examination of 
+project documentation of software models and code, and of 
+other related information about requirements and design
+• Generally yields valid results, but may be weak in precision
+• Dynamic Test Techniques –
+• Exercise the software in order to expose possible failures
+• Behavioral and performance properties of the program are also 
+observed
+• Yields more precise results, but only holding for the examined 
+executions

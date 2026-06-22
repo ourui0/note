@@ -1,0 +1,16 @@
+LLM 违反模块化的规律 ②：代码异味修复能⼒
+异味类型 L L M  能⼒ 研究来源
+简单异味（Magic Number、Empty Catch）  GPT-4o 解决 ~62% IEEE TSE 2025
+Broken M odularization  显著劣于⼈类 ACM TO SEM 2024
+Deﬁcient Encapsulation  显著劣于⼈类 ACM TO SEM 2024
+M ultifaceted Abstraction  显著劣于⼈类 ACM TO SEM 2024
+架构级异味（God Class 等）  iSMELL ⼯具辅助可达 F1=75% ASE 2024
+架构级异味（SmellBench 2026）  最佳解决率 47.7%；63.1% 检测为误报arXiv:2605.07001
+少样本重构（Few-shot）  异味减少率 42.97%（优化提示词） arXiv:2511.21788
+可⽤：表层语法级异味（Magic Number、空 catch）修
+复成功率可接受，适合作为 CI 流⽔线的⾃动修复步骤。
+⼯具推荐：iSM ELL = LLM  + 7 专家静态分析⼯具组合，
+God Class / Feature Envy 检测 F1 ⽐纯 LLM  提升
++35%（ASE 2024）。
+📖  SW EBO K v4 §6.3 · Quality Analysis  |  §1.4 · Encapsulation  |  §1.4 · M odularization
+42

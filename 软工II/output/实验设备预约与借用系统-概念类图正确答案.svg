@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="1400" viewBox="0 0 1900 1400">
+  <defs>
+    <marker id="triangle" markerWidth="15" markerHeight="15" refX="13" refY="7.5" orient="auto">
+      <path d="M1,1 L14,7.5 L1,14 Z" fill="#fff" stroke="#263750" stroke-width="1.7"/>
+    </marker>
+    <style>
+      text { font-family:"PingFang SC","Microsoft YaHei",sans-serif; fill:#172033; }
+      .box { fill:#fff; stroke:#263750; stroke-width:2.4; rx:7; }
+      .head { fill:#dfe8f5; stroke:#263750; stroke-width:2.4; }
+      .assoc { fill:none; stroke:#44546d; stroke-width:2.1; }
+      .inherit { fill:none; stroke:#263750; stroke-width:2.2; marker-end:url(#triangle); }
+      .name { font-size:24px; font-weight:700; text-anchor:middle; }
+      .attr { font-size:19px; }
+      .rel { font-size:17px; fill:#39475d; text-anchor:middle; }
+      .multi { font-size:17px; font-weight:600; fill:#25324a; }
+    </style>
+  </defs>
+
+  <rect width="1900" height="1400" fill="#f5f7fb"/>
+  <text x="950" y="42" font-size="34" font-weight="700" text-anchor="middle">实验设备预约与借用系统——概念类图</text>
+
+  <!-- 关系线：先画线，后画类框 -->
+  <!-- 人员泛化 -->
+  <path class="inherit" d="M430,220 L875,155"/>
+  <path class="inherit" d="M930,220 L950,155"/>
+  <path class="inherit" d="M1430,220 L1025,155"/>
+
+  <!-- 设备类型与设备 -->
+  <line class="assoc" x1="320" y1="600" x2="390" y2="600"/>
+  <text class="rel" x="355" y="582">属于</text><text class="multi" x="326" y="620">1</text><text class="multi" x="365" y="620">0..*</text>
+
+  <!-- 设备组合可用时段 -->
+  <path class="assoc" d="M530,690 L530,760 L300,760 L300,845"/>
+  <polygon points="530,690 540,705 530,720 520,705" fill="#263750"/>
+  <text class="rel" x="405" y="748">设置</text><text class="multi" x="545" y="735">1</text><text class="multi" x="315" y="835">0..*</text>
+
+  <!-- 学生提交预约 -->
+  <path class="assoc" d="M430,370 L430,455 L780,455 L780,535"/>
+  <text class="rel" x="610" y="443">提交</text><text class="multi" x="444" y="388">1</text><text class="multi" x="792" y="525">0..*</text>
+
+  <!-- 指导教师被指定 -->
+  <path class="assoc" d="M930,390 L930,535"/>
+  <text class="rel" x="982" y="470">被指定</text><text class="multi" x="944" y="410">1</text><text class="multi" x="944" y="525">0..*</text>
+
+  <!-- 设备被预约 -->
+  <line class="assoc" x1="670" y1="600" x2="750" y2="600"/>
+  <text class="rel" x="710" y="582">被预约</text><text class="multi" x="675" y="620">1</text><text class="multi" x="722" y="620">0..*</text>
+
+  <!-- 可用时段被预约占用 -->
+  <path class="assoc" d="M540,925 L675,925 L675,690 L750,690"/>
+  <text class="rel" x="682" y="817">被占用</text><text class="multi" x="550" y="915">1</text><text class="multi" x="720" y="680">0..1</text>
+
+  <!-- 预约组合审批 -->
+  <line class="assoc" x1="900" y1="735" x2="900" y2="845"/>
+  <polygon points="900,735 910,750 900,765 890,750" fill="#263750"/>
+  <text class="rel" x="950" y="800">包含</text><text class="multi" x="914" y="780">1</text><text class="multi" x="914" y="837">0..1</text>
+
+  <!-- 指导教师执行审批 -->
+  <path class="assoc" d="M1030,390 L1090,390 L1090,815 L990,815 L990,845"/>
+  <text class="rel" x="1118" y="650">执行</text><text class="multi" x="1043" y="410">1</text><text class="multi" x="1002" y="837">0..*</text>
+
+  <!-- 预约组合借用记录 -->
+  <line class="assoc" x1="1050" y1="600" x2="1140" y2="600"/>
+  <polygon points="1050,600 1065,590 1080,600 1065,610" fill="#263750"/>
+  <text class="rel" x="1095" y="582">产生</text><text class="multi" x="1080" y="620">1</text><text class="multi" x="1110" y="620">0..1</text>
+
+  <!-- 实验员办理借出 -->
+  <path class="assoc" d="M1430,390 L1430,465 L1280,465 L1280,535"/>
+  <text class="rel" x="1350" y="452">办理</text><text class="multi" x="1444" y="410">1</text><text class="multi" x="1292" y="525">0..*</text>
+
+  <!-- 预约组合归还记录 -->
+  <path class="assoc" d="M1050,690 L1100,690 L1100,925 L1140,925"/>
+  <polygon points="1050,690 1065,680 1080,690 1065,700" fill="#263750"/>
+  <text class="rel" x="1118" y="820">产生</text><text class="multi" x="1080" y="710">1</text><text class="multi" x="1110" y="915">0..1</text>
+
+  <!-- 实验员办理归还 -->
+  <path class="assoc" d="M1480,390 L1480,805 L1380,805 L1380,845"/>
+  <text class="rel" x="1435" y="793">办理</text><text class="multi" x="1493" y="410">1</text><text class="multi" x="1392" y="837">0..*</text>
+
+  <!-- 预约关联违规 -->
+  <path class="assoc" d="M1050,560 L1100,445 L1490,445 L1510,525"/>
+  <text class="rel" x="1300" y="433">可能产生</text><text class="multi" x="1070" y="555">1</text><text class="multi" x="1518" y="520">0..*</text>
+
+  <!-- 预约组合账单 -->
+  <path class="assoc" d="M1050,670 L1090,740 L1460,740 L1510,785"/>
+  <polygon points="1050,670 1063,658 1078,670 1063,682" fill="#263750"/>
+  <text class="rel" x="1280" y="728">生成</text><text class="multi" x="1070" y="690">1</text><text class="multi" x="1480" y="775">0..1</text>
+
+  <!-- 账单组合支付记录 -->
+  <line class="assoc" x1="1640" y1="935" x2="1640" y2="1045"/>
+  <polygon points="1640,935 1650,950 1640,965 1630,950" fill="#263750"/>
+  <text class="rel" x="1695" y="1000">包含</text><text class="multi" x="1654" y="975">1</text><text class="multi" x="1654" y="1037">0..*</text>
+
+  <!-- 预约组合门禁权限 -->
+  <path class="assoc" d="M790,735 L700,780 L700,1250 L760,1250"/>
+  <polygon points="790,735 805,740 810,756 795,751" fill="#263750"/>
+  <text class="rel" x="675" y="1080">生成</text><text class="multi" x="790" y="775">1</text><text class="multi" x="730" y="1240">0..1</text>
+
+  <!-- 用户 -->
+  <g><rect class="box" x="800" y="65" width="300" height="90"/><rect class="head" x="800" y="65" width="300" height="45"/><text class="name" x="950" y="95">用户</text><text class="attr" x="820" y="140">用户编号，姓名</text></g>
+
+  <!-- 三类人员 -->
+  <g><rect class="box" x="300" y="220" width="260" height="150"/><rect class="head" x="300" y="220" width="260" height="48"/><text class="name" x="430" y="252">学生</text><text class="attr" x="320" y="300">学号</text><text class="attr" x="320" y="330">费用状态</text><text class="attr" x="320" y="360">违规状态</text></g>
+  <g><rect class="box" x="800" y="220" width="260" height="170"/><rect class="head" x="800" y="220" width="260" height="48"/><text class="name" x="930" y="252">指导教师</text><text class="attr" x="820" y="305">工号</text><text class="attr" x="820" y="338">所属院系</text></g>
+  <g><rect class="box" x="1300" y="220" width="260" height="170"/><rect class="head" x="1300" y="220" width="260" height="48"/><text class="name" x="1430" y="252">实验员</text><text class="attr" x="1320" y="305">工号</text><text class="attr" x="1320" y="338">所属实验室</text></g>
+
+  <!-- 设备相关 -->
+  <g><rect class="box" x="60" y="520" width="260" height="180"/><rect class="head" x="60" y="520" width="260" height="48"/><text class="name" x="190" y="552">设备类型</text><text class="attr" x="80" y="605">类型编号</text><text class="attr" x="80" y="638">类型名称</text><text class="attr" x="80" y="671">风险等级</text></g>
+  <g><rect class="box" x="390" y="510" width="280" height="180"/><rect class="head" x="390" y="510" width="280" height="48"/><text class="name" x="530" y="542">设备</text><text class="attr" x="410" y="592">设备编号，名称</text><text class="attr" x="410" y="625">设备状态</text><text class="attr" x="410" y="658">重置价格</text></g>
+  <g><rect class="box" x="60" y="845" width="480" height="160"/><rect class="head" x="60" y="845" width="480" height="48"/><text class="name" x="300" y="877">可用时段</text><text class="attr" x="80" y="928">日期，开始时间，结束时间</text><text class="attr" x="80" y="965">状态</text></g>
+
+  <!-- 预约核心 -->
+  <g><rect class="box" x="750" y="535" width="300" height="200"/><rect class="head" x="750" y="535" width="300" height="48"/><text class="name" x="900" y="567">预约</text><text class="attr" x="770" y="617">预约编号，申请时间</text><text class="attr" x="770" y="650">使用日期，开始/结束时间</text><text class="attr" x="770" y="683">实验用途，状态</text></g>
+  <g><rect class="box" x="760" y="845" width="280" height="180"/><rect class="head" x="760" y="845" width="280" height="48"/><text class="name" x="900" y="877">审批</text><text class="attr" x="780" y="928">审批编号，审批结果</text><text class="attr" x="780" y="961">审批时间</text><text class="attr" x="780" y="994">驳回原因</text></g>
+
+  <!-- 借还 -->
+  <g><rect class="box" x="1140" y="535" width="280" height="180"/><rect class="head" x="1140" y="535" width="280" height="48"/><text class="name" x="1280" y="567">借用记录</text><text class="attr" x="1160" y="617">借用编号</text><text class="attr" x="1160" y="650">借出时间</text><text class="attr" x="1160" y="683">借出时设备状况</text></g>
+  <g><rect class="box" x="1140" y="845" width="280" height="180"/><rect class="head" x="1140" y="845" width="280" height="48"/><text class="name" x="1280" y="877">归还记录</text><text class="attr" x="1160" y="928">归还编号</text><text class="attr" x="1160" y="961">实际归还时间</text><text class="attr" x="1160" y="994">归还时设备状况</text></g>
+
+  <!-- 违规、账单、支付 -->
+  <g><rect class="box" x="1510" y="470" width="300" height="190"/><rect class="head" x="1510" y="470" width="300" height="48"/><text class="name" x="1660" y="502">违规</text><text class="attr" x="1530" y="552">违规编号，类型</text><text class="attr" x="1530" y="585">严重程度</text><text class="attr" x="1530" y="618">处理状态</text></g>
+  <g><rect class="box" x="1510" y="755" width="300" height="180"/><rect class="head" x="1510" y="755" width="300" height="48"/><text class="name" x="1660" y="787">账单</text><text class="attr" x="1530" y="837">账单编号，超时费</text><text class="attr" x="1530" y="870">损坏费，总金额</text><text class="attr" x="1530" y="903">账单状态</text></g>
+  <g><rect class="box" x="1510" y="1045" width="300" height="190"/><rect class="head" x="1510" y="1045" width="300" height="48"/><text class="name" x="1660" y="1077">支付记录</text><text class="attr" x="1530" y="1127">支付编号，支付时间</text><text class="attr" x="1530" y="1160">金额，支付状态</text><text class="attr" x="1530" y="1193">平台流水号</text></g>
+
+  <!-- 门禁权限 -->
+  <g><rect class="box" x="760" y="1170" width="420" height="160"/><rect class="head" x="760" y="1170" width="420" height="48"/><text class="name" x="970" y="1202">门禁权限</text><text class="attr" x="780" y="1252">权限编号，生效时间，失效时间</text><text class="attr" x="780" y="1287">状态</text></g>
+
+  <text x="950" y="1370" font-size="17" fill="#667085" text-anchor="middle">概念类图只包含领域概念、重要属性和关系，不包含方法</text>
+</svg>

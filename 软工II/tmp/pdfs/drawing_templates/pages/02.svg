@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">1. 用例图模板</text><text class="sub" x="75" y="115">回答“谁为了什么业务目标使用系统”</text>
+  
+  <rect class="panel" x="65" y="150" width="1180" height="1010"/>
+  <rect x="325" y="215" width="830" height="830" fill="#fbfcff" stroke="#263750" stroke-width="3" rx="12"/>
+  <text class="h" x="740" y="260" text-anchor="middle">[系统名称]</text>
+  <g transform="translate(180,360)"><circle cx="0" cy="-35" r="20" fill="none" stroke="#263750" stroke-width="3"/><path d="M0,-15 L0,55 M-38,10 L38,10 M0,55 L-30,98 M0,55 L30,98" fill="none" stroke="#263750" stroke-width="3" stroke-linecap="round"/><text class="h" x="0" y="135" text-anchor="middle">[主要参与者]</text></g><g transform="translate(180,780)"><circle cx="0" cy="-35" r="20" fill="none" stroke="#263750" stroke-width="3"/><path d="M0,-15 L0,55 M-38,10 L38,10 M0,55 L-30,98 M0,55 L30,98" fill="none" stroke="#263750" stroke-width="3" stroke-linecap="round"/><text class="h" x="0" y="135" text-anchor="middle">[次要参与者]</text></g><g transform="translate(1325,560)"><circle cx="0" cy="-35" r="20" fill="none" stroke="#263750" stroke-width="3"/><path d="M0,-15 L0,55 M-38,10 L38,10 M0,55 L-30,98 M0,55 L30,98" fill="none" stroke="#263750" stroke-width="3" stroke-linecap="round"/><text class="h" x="0" y="135" text-anchor="middle">[外部系统]</text></g>
+  <ellipse cx="550" cy="360" rx="165" ry="48" fill="#fff" stroke="#334b70" stroke-width="2.5"/><text class="t" x="550" y="368" text-anchor="middle">[核心业务用例]</text><ellipse cx="900" cy="360" rx="170" ry="48" fill="#fff" stroke="#334b70" stroke-width="2.5"/><text class="t" x="900" y="368" text-anchor="middle">[必做子用例]</text>
+  <ellipse cx="550" cy="590" rx="165" ry="48" fill="#fff" stroke="#334b70" stroke-width="2.5"/><text class="t" x="550" y="598" text-anchor="middle">[基础用例]</text><ellipse cx="900" cy="590" rx="170" ry="48" fill="#fff" stroke="#334b70" stroke-width="2.5"/><text class="t" x="900" y="598" text-anchor="middle">[条件扩展用例]</text>
+  <ellipse cx="730" cy="820" rx="190" ry="48" fill="#fff" stroke="#334b70" stroke-width="2.5"/><text class="t" x="730" y="828" text-anchor="middle">[另一完整业务目标]</text>
+  <line class="line" x1="218" y1="370" x2="385" y2="360"/><line class="line" x1="218" y1="390" x2="565" y2="820"/>
+  <line class="line" x1="218" y1="790" x2="565" y2="820"/><line class="line" x1="1155" y1="590" x2="1287" y2="570"/>
+  <path class="dep" d="M715,360 L730,360"/><text class="s" x="720" y="335" text-anchor="middle">«include»</text>
+  <path class="dep" d="M730,590 L715,590"/><text class="s" x="720" y="565" text-anchor="middle">«extend»</text>
+  <rect class="note" x="1290" y="180" width="440" height="850"/>
+  <text class="h" x="1510" y="235" text-anchor="middle">作图检查表</text>
+  <text class="t" x="1325" y="300">□ 参与者始终在边界外</text><text class="t" x="1325" y="350">□ 用例始终在边界内</text>
+  <text class="t" x="1325" y="400">□ 关联为无箭头实线</text><text class="t" x="1325" y="450">□ include：基础 → 被包含</text>
+  <text class="t" x="1325" y="500">□ extend：扩展 → 基础</text><text class="t" x="1325" y="550">□ 用例是完整业务目标</text>
+  <text class="t" x="1325" y="600">□ 不画数据库等内部组件</text><text class="t" x="1325" y="650">□ 不把单一步骤当用例</text>
+  <line x1="1325" y1="700" x2="1695" y2="700" stroke="#d9a23a"/>
+  <text class="h" x="1510" y="755" text-anchor="middle">语言</text><text class="t" x="1325" y="810">参与者、用例：中文</text><text class="t" x="1325" y="860">UML 关键字：英文</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：02-03-用例建模与用户故事，第 12-31 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">2 / 9</text>
+  </svg>

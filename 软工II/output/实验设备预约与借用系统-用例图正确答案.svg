@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <defs>
+    <marker id="openArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 10 6 L 1 11" fill="none" stroke="#25324a" stroke-width="1.6"/>
+    </marker>
+    <style>
+      text { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .boundary { fill: #fbfcff; stroke: #25324a; stroke-width: 3; rx: 14; }
+      .usecase { fill: #ffffff; stroke: #35486a; stroke-width: 2.2; }
+      .assoc { fill: none; stroke: #52617a; stroke-width: 2.1; }
+      .relation { fill: none; stroke: #25324a; stroke-width: 2; stroke-dasharray: 8 7; marker-end: url(#openArrow); }
+      .actor { fill: none; stroke: #25324a; stroke-width: 3; stroke-linecap: round; }
+      .label { font-size: 22px; text-anchor: middle; dominant-baseline: middle; }
+      .actorLabel { font-size: 23px; font-weight: 600; text-anchor: middle; }
+      .relLabel { font-size: 18px; font-style: italic; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1120" fill="#f4f6fa"/>
+  <rect class="boundary" x="260" y="45" width="1080" height="1030"/>
+  <text x="800" y="84" font-size="34" font-weight="700" text-anchor="middle">实验设备预约与借用系统</text>
+
+  <!-- 左侧参与者 -->
+  <g transform="translate(110,170)">
+    <circle class="actor" cx="0" cy="-35" r="19"/><path class="actor" d="M0,-16 L0,49 M-37,7 L37,7 M0,49 L-31,91 M0,49 L31,91"/>
+    <text class="actorLabel" x="0" y="125">学生</text>
+  </g>
+  <g transform="translate(110,520)">
+    <circle class="actor" cx="0" cy="-35" r="19"/><path class="actor" d="M0,-16 L0,49 M-37,7 L37,7 M0,49 L-31,91 M0,49 L31,91"/>
+    <text class="actorLabel" x="0" y="125">指导教师</text>
+  </g>
+  <g transform="translate(110,790)">
+    <circle class="actor" cx="0" cy="-35" r="19"/><path class="actor" d="M0,-16 L0,49 M-37,7 L37,7 M0,49 L-31,91 M0,49 L31,91"/>
+    <text class="actorLabel" x="0" y="125">实验员</text>
+  </g>
+
+  <!-- 右侧参与者 -->
+  <g transform="translate(1490,580)">
+    <circle class="actor" cx="0" cy="-35" r="19"/><path class="actor" d="M0,-16 L0,49 M-37,7 L37,7 M0,49 L-31,91 M0,49 L31,91"/>
+    <text class="actorLabel" x="0" y="125">校园统一支付平台</text>
+  </g>
+  <g transform="translate(1490,790)">
+    <circle class="actor" cx="0" cy="-35" r="19"/><path class="actor" d="M0,-16 L0,49 M-37,7 L37,7 M0,49 L-31,91 M0,49 L31,91"/>
+    <text class="actorLabel" x="0" y="125">门禁系统</text>
+  </g>
+  <g transform="translate(1490,950)">
+    <circle class="actor" cx="0" cy="-35" r="19"/><path class="actor" d="M0,-16 L0,49 M-37,7 L37,7 M0,49 L-31,91 M0,49 L31,91"/>
+    <text class="actorLabel" x="0" y="125">系统时钟</text>
+  </g>
+
+  <!-- 用例 -->
+  <g><ellipse class="usecase" cx="455" cy="145" rx="145" ry="42"/><text class="label" x="455" y="145">查询设备</text></g>
+  <g><ellipse class="usecase" cx="455" cy="240" rx="145" ry="42"/><text class="label" x="455" y="240">查看可预约时段</text></g>
+  <g><ellipse class="usecase" cx="455" cy="350" rx="145" ry="42"/><text class="label" x="455" y="350">提交预约申请</text></g>
+  <g><ellipse class="usecase" cx="455" cy="465" rx="165" ry="42"/><text class="label" x="455" y="465">取消尚未开始的预约</text></g>
+  <g><ellipse class="usecase" cx="455" cy="570" rx="145" ry="42"/><text class="label" x="455" y="570">查看预约记录</text></g>
+  <g><ellipse class="usecase" cx="455" cy="675" rx="145" ry="42"/><text class="label" x="455" y="675">缴纳费用</text></g>
+
+  <g><ellipse class="usecase" cx="790" cy="350" rx="170" ry="42"/><text class="label" x="790" y="350">检查预约资格与时段</text></g>
+  <g><ellipse class="usecase" cx="790" cy="520" rx="175" ry="42"/><text class="label" x="790" y="520">审批高风险设备预约</text></g>
+  <g><ellipse class="usecase" cx="790" cy="660" rx="145" ry="42"/><text class="label" x="790" y="660">维护设备信息</text></g>
+  <g><ellipse class="usecase" cx="790" cy="760" rx="145" ry="42"/><text class="label" x="790" y="760">设置可用时段</text></g>
+  <g><ellipse class="usecase" cx="790" cy="865" rx="145" ry="42"/><text class="label" x="790" y="865">办理借出</text></g>
+  <g><ellipse class="usecase" cx="790" cy="975" rx="175" ry="42"/><text class="label" x="790" y="975">核验预约与设备状态</text></g>
+
+  <g><ellipse class="usecase" cx="1135" cy="520" rx="145" ry="42"/><text class="label" x="1135" y="520">办理归还</text></g>
+  <g><ellipse class="usecase" cx="1135" cy="650" rx="145" ry="42"/><text class="label" x="1135" y="650">计算应收费用</text></g>
+  <g><ellipse class="usecase" cx="1135" cy="785" rx="165" ry="42"/><text class="label" x="1135" y="785">生成待支付账单</text></g>
+  <g><ellipse class="usecase" cx="1135" cy="930" rx="175" ry="42"/><text class="label" x="1135" y="930">申请临时通行权限</text></g>
+
+  <!-- 参与者关联 -->
+  <path class="assoc" d="M147,177 L310,145"/><path class="assoc" d="M147,188 L310,240"/>
+  <path class="assoc" d="M147,198 L310,350"/><path class="assoc" d="M147,211 L290,465"/>
+  <path class="assoc" d="M147,220 L310,570"/><path class="assoc" d="M147,228 L310,675"/>
+  <path class="assoc" d="M147,532 L615,520"/>
+  <path class="assoc" d="M147,800 L645,660"/><path class="assoc" d="M147,815 L645,760"/>
+  <path class="assoc" d="M147,830 L645,865"/><path class="assoc" d="M147,845 L990,520"/>
+  <path class="assoc" d="M600,675 L1453,600"/>
+  <path class="assoc" d="M1310,930 L1453,810"/><path class="assoc" d="M1310,930 L1453,960"/>
+
+  <!-- include / extend -->
+  <path class="relation" d="M600,350 L620,350"/>
+  <text class="relLabel" x="610" y="326">«include»</text>
+
+  <path class="relation" d="M790,907 L790,933"/>
+  <text class="relLabel" x="875" y="927">«include»</text>
+
+  <path class="relation" d="M1135,562 L1135,608"/>
+  <text class="relLabel" x="1220" y="590">«include»</text>
+
+  <path class="relation" d="M1010,758 C900,715 900,585 1012,540"/>
+  <text class="relLabel" x="930" y="672">«extend»</text>
+  <text x="930" y="697" font-size="17" text-anchor="middle">[应收金额 &gt; 0]</text>
+
+  <text x="800" y="1100" font-size="16" fill="#667085" text-anchor="middle">UML 用例图参考答案</text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220">
+  <defs>
+    <marker id="solidArrow" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/>
+    </marker>
+    <marker id="openArrow" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/>
+    </marker>
+    <style>
+      text { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; fill:#172033; }
+      .head { fill:#fff; stroke:#24324a; stroke-width:2.5; rx:8; }
+      .lifeline { stroke:#65728a; stroke-width:2; stroke-dasharray:9 8; }
+      .call { stroke:#24324a; stroke-width:2.5; marker-end:url(#solidArrow); }
+      .return { stroke:#465773; stroke-width:2.2; stroke-dasharray:9 7; marker-end:url(#openArrow); }
+      .msg { font-size:21px; text-anchor:middle; }
+      .frame { fill:#fff; stroke:#24324a; stroke-width:2.2; }
+      .separator { stroke:#7b879b; stroke-width:1.8; stroke-dasharray:8 7; }
+      .guard { font-size:20px; font-weight:600; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1220" fill="#f5f7fb"/>
+  <text x="800" y="48" font-size="34" font-weight="700" text-anchor="middle">“学生预约高风险设备”系统顺序图</text>
+
+  <!-- 参与者与系统 -->
+  <rect class="head" x="105" y="80" width="250" height="72"/>
+  <rect class="head" x="675" y="80" width="250" height="72"/>
+  <rect class="head" x="1245" y="80" width="250" height="72"/>
+  <text x="230" y="125" font-size="27" font-weight="600" text-anchor="middle">学生</text>
+  <text x="800" y="125" font-size="27" font-weight="600" text-anchor="middle">:系统</text>
+  <text x="1370" y="125" font-size="27" font-weight="600" text-anchor="middle">指导教师</text>
+
+  <line class="lifeline" x1="230" y1="152" x2="230" y2="1165"/>
+  <line class="lifeline" x1="800" y1="152" x2="800" y2="1165"/>
+  <line class="lifeline" x1="1370" y1="152" x2="1370" y2="1165"/>
+
+  <!-- 基本交互 -->
+  <line class="call" x1="230" y1="205" x2="800" y2="205"/>
+  <text class="msg" x="515" y="190">1. 查看可预约时段（设备、日期）</text>
+
+  <line class="return" x1="800" y1="270" x2="230" y2="270"/>
+  <text class="msg" x="515" y="255">2. 返回可预约时段</text>
+
+  <line class="call" x1="230" y1="340" x2="800" y2="340"/>
+  <text class="msg" x="515" y="322">3. 提交高风险设备预约申请（设备、时段、用途、指导教师）</text>
+
+  <!-- alt 组合片段 -->
+  <rect class="frame" x="70" y="390" width="1460" height="735"/>
+  <path d="M70,390 H180 L205,414 L180,438 H70 Z" fill="#e7ecf5" stroke="#24324a" stroke-width="2.2"/>
+  <text x="125" y="422" font-size="22" font-weight="700" text-anchor="middle">alt</text>
+
+  <!-- 分支一 -->
+  <text class="guard" x="105" y="475">[存在未缴费用或未处理的严重违规]</text>
+  <line class="return" x1="800" y1="540" x2="230" y2="540"/>
+  <text class="msg" x="515" y="523">4. 返回预约失败信息（资格检查不通过及原因）</text>
+
+  <line class="separator" x1="70" y1="595" x2="1530" y2="595"/>
+
+  <!-- 分支二 -->
+  <text class="guard" x="105" y="640">[申请时段与已有有效预约冲突]</text>
+  <line class="return" x1="800" y1="705" x2="230" y2="705"/>
+  <text class="msg" x="515" y="688">5. 返回预约失败信息（时段冲突）</text>
+
+  <line class="separator" x1="70" y1="760" x2="1530" y2="760"/>
+
+  <!-- 分支三 -->
+  <text class="guard" x="105" y="805">[资格检查和时段检查均通过]</text>
+  <line class="call" x1="800" y1="870" x2="1370" y2="870"/>
+  <text class="msg" x="1085" y="852">6. 通知待审批预约（预约编号、设备、时段、用途）</text>
+
+  <line class="call" x1="1370" y1="945" x2="800" y2="945"/>
+  <text class="msg" x="1085" y="927">7. 提交审批结果（批准）</text>
+
+  <line class="return" x1="800" y1="1030" x2="230" y2="1030"/>
+  <text class="msg" x="515" y="1012">8. 返回预约成功信息（预约编号、状态为已批准）</text>
+
+  <text x="800" y="1195" font-size="17" fill="#667085" text-anchor="middle">系统作为黑箱，不展开 Controller、Service、DAO 或数据库</text>
+</svg>

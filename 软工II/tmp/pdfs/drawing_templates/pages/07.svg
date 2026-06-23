@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">6. 4+1 视图模板</text><text class="sub" x="75" y="115">四个工程视图由场景视图驱动并相互验证</text>
+  
+  <rect class="panel" x="70" y="150" width="1660" height="960"/>
+  <rect x="700" y="480" width="400" height="220" rx="110" fill="#5b3f91"/><text x="900" y="565" text-anchor="middle" font-size="34" font-weight="800" fill="#fff">场景视图 +1</text><text x="900" y="610" text-anchor="middle" font-size="23" fill="#fff">用例图 / 用例场景</text><text x="900" y="648" text-anchor="middle" font-size="20" fill="#fff">驱动并验证其他四个视图</text>
+  <rect class="accent" x="170" y="235" width="480" height="225" rx="20"/><text class="h" x="410" y="285" text-anchor="middle">逻辑视图</text><text class="t" x="410" y="335" text-anchor="middle">功能、类与包的组织</text><text class="t" x="410" y="380" text-anchor="middle">类图 / 包图</text><text class="s" x="410" y="420" text-anchor="middle">架构师、开发者</text>
+  <rect class="accent" x="1150" y="235" width="480" height="225" rx="20"/><text class="h" x="1390" y="285" text-anchor="middle">开发视图</text><text class="t" x="1390" y="335" text-anchor="middle">代码组织、模块划分</text><text class="t" x="1390" y="380" text-anchor="middle">组件图</text><text class="s" x="1390" y="420" text-anchor="middle">开发者</text>
+  <rect class="accent" x="170" y="760" width="480" height="225" rx="20"/><text class="h" x="410" y="810" text-anchor="middle">进程视图</text><text class="t" x="410" y="860" text-anchor="middle">并发、同步、性能</text><text class="t" x="410" y="905" text-anchor="middle">活动图 / 顺序图</text><text class="s" x="410" y="945" text-anchor="middle">系统集成者</text>
+  <rect class="accent" x="1150" y="760" width="480" height="225" rx="20"/><text class="h" x="1390" y="810" text-anchor="middle">物理视图</text><text class="t" x="1390" y="860" text-anchor="middle">部署拓扑、硬件映射</text><text class="t" x="1390" y="905" text-anchor="middle">部署图</text><text class="s" x="1390" y="945" text-anchor="middle">运维工程师</text>
+  <path class="dep" d="M720,510 L620,440"/><path class="dep" d="M1080,510 L1180,440"/><path class="dep" d="M720,670 L620,790"/><path class="dep" d="M1080,670 L1180,790"/>
+  <rect class="good" x="600" y="1030" width="600" height="70"/><text class="t" x="900" y="1073" text-anchor="middle">同一系统的不同关注点，不是五张互不相干的图</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：03-03-体系结构设计实践与验证，第 27-28 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">7 / 9</text>
+  </svg>

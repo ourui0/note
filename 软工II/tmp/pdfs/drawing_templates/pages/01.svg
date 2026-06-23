@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">软件工程 II 画图模板册</text><text class="sub" x="75" y="115">用课件一致的符号骨架，快速迁移到任意考试情景</text>
+  
+  <rect class="panel" x="95" y="170" width="1610" height="910"/>
+  <text x="900" y="300" text-anchor="middle" font-size="58" font-weight="800" fill="#4c347f">八类高频图，一册带走</text>
+  <g class="t">
+    <rect class="accent" x="210" y="390" width="360" height="105" rx="16"/><text x="390" y="455" text-anchor="middle">用例图</text>
+    <rect class="accent" x="720" y="390" width="360" height="105" rx="16"/><text x="900" y="455" text-anchor="middle">系统顺序图</text>
+    <rect class="accent" x="1230" y="390" width="360" height="105" rx="16"/><text x="1410" y="455" text-anchor="middle">概念类图</text>
+    <rect class="accent" x="210" y="560" width="360" height="105" rx="16"/><text x="390" y="625" text-anchor="middle">详细顺序图</text>
+    <rect class="accent" x="720" y="560" width="360" height="105" rx="16"/><text x="900" y="625" text-anchor="middle">物理包图</text>
+    <rect class="accent" x="1230" y="560" width="360" height="105" rx="16"/><text x="1410" y="625" text-anchor="middle">4+1 视图</text>
+    <rect class="accent" x="465" y="730" width="360" height="105" rx="16"/><text x="645" y="795" text-anchor="middle">状态图</text>
+    <rect class="accent" x="975" y="730" width="360" height="105" rx="16"/><text x="1155" y="795" text-anchor="middle">程序流程图</text>
+  </g>
+  <rect class="good" x="330" y="910" width="1140" height="105"/><text class="t" x="900" y="955" text-anchor="middle">分析阶段：业务语言优先　　设计阶段：名称与代码一致</text><text class="s" x="900" y="990" text-anchor="middle">每页均为可直接临摹的“骨架图 + 得分检查表”</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：课程各相关章节综合</text><text class="tiny" x="1725" y="1250" text-anchor="end">1 / 9</text>
+  </svg>

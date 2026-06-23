@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">4. 详细顺序图模板</text><text class="sub" x="75" y="115">展开系统内部对象如何通过消息协作完成职责</text>
+  
+  <rect class="panel" x="55" y="150" width="1390" height="1010"/>
+  <rect class="node" x="95" y="205" width="175" height="80"/><text class="s" x="182" y="238" text-anchor="middle">[参与者]</text><text class="s" x="182" y="266" text-anchor="middle"></text><line class="dash" x1="182" y1="285" x2="182" y2="1080"/><rect class="node" x="320" y="205" width="175" height="80"/><text class="s" x="407" y="238" text-anchor="middle">«boundary»</text><text class="s" x="407" y="266" text-anchor="middle">[界面]</text><line class="dash" x1="407" y1="285" x2="407" y2="1080"/><rect class="node" x="545" y="205" width="175" height="80"/><text class="s" x="632" y="238" text-anchor="middle">«control»</text><text class="s" x="632" y="266" text-anchor="middle">[Controller]</text><line class="dash" x1="632" y1="285" x2="632" y2="1080"/><rect class="node" x="770" y="205" width="175" height="80"/><text class="s" x="857" y="238" text-anchor="middle">[Service]</text><text class="s" x="857" y="266" text-anchor="middle"></text><line class="dash" x1="857" y1="285" x2="857" y2="1080"/><rect class="node" x="995" y="205" width="175" height="80"/><text class="s" x="1082" y="238" text-anchor="middle">[DAO]</text><text class="s" x="1082" y="266" text-anchor="middle"></text><line class="dash" x1="1082" y1="285" x2="1082" y2="1080"/><rect class="node" x="1220" y="205" width="175" height="80"/><text class="s" x="1307" y="238" text-anchor="middle">[实体/PO]</text><text class="s" x="1307" y="266" text-anchor="middle"></text><line class="dash" x1="1307" y1="285" x2="1307" y2="1080"/>
+  <line class="call" x1="182" y1="360" x2="407" y2="360"/><text class="s" x="294" y="342" text-anchor="middle">1. 操作()</text>
+  <line class="call" x1="407" y1="430" x2="632" y2="430"/><text class="s" x="520" y="412" text-anchor="middle">2. request()</text>
+  <line class="call" x1="632" y1="500" x2="857" y2="500"/><text class="s" x="745" y="482" text-anchor="middle">3. execute()</text>
+  <line class="call" x1="857" y1="570" x2="1082" y2="570"/><text class="s" x="970" y="552" text-anchor="middle">4. find(id)</text>
+  <line class="ret" x1="1307" y1="640" x2="1082" y2="640"/><text class="s" x="1194" y="622" text-anchor="middle">5. EntityPO</text>
+  <rect x="80" y="710" width="1320" height="300" fill="#fff" stroke="#263750" stroke-width="2.2"/><path d="M80,710 H165 L190,735 L165,760 H80 Z" fill="#e6eefb" stroke="#263750" stroke-width="2.2"/><text class="h" x="120" y="746">alt</text>
+  <text class="t" x="110" y="805">[成功]</text><line class="ret" x1="857" y1="850" x2="407" y2="850"/><text class="s" x="632" y="832" text-anchor="middle">6. ResultVO</text>
+  <line x1="80" y1="890" x2="1400" y2="890" stroke="#77859b" stroke-dasharray="8 7" stroke-width="2"/><text class="t" x="110" y="935">[失败]</text><line class="ret" x1="857" y1="975" x2="407" y2="975"/><text class="s" x="632" y="957" text-anchor="middle">7. Error</text>
+  <rect class="note" x="1480" y="180" width="250" height="880"/>
+  <text class="h" x="1605" y="235" text-anchor="middle">检查表</text>
+  <text class="s" x="1505" y="295">□ 内部对象齐全</text><text class="s" x="1505" y="340">□ 消息自上而下</text>
+  <text class="s" x="1505" y="385">□ 有调用与返回</text><text class="s" x="1505" y="430">□ 必要时画创建</text>
+  <text class="s" x="1505" y="475">□ 用 alt / opt / loop</text><text class="s" x="1505" y="520">□ 对象源自类图</text>
+  <text class="s" x="1505" y="565">□ VO/PO 使用合理</text><text class="s" x="1505" y="610">□ 不跨层乱调用</text>
+  <line x1="1505" y1="675" x2="1705" y2="675" stroke="#d9a23a"/><text class="h" x="1605" y="730" text-anchor="middle">语言</text><text class="s" x="1505" y="785">对象、类、方法：</text><text class="s" x="1505" y="825">建议英文并与代码一致</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：04-01-详细设计，第 20-21 页；第 11 章第 87-89 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">5 / 9</text>
+  </svg>

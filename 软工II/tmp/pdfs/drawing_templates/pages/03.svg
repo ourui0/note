@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">2. 系统顺序图模板</text><text class="sub" x="75" y="115">把待开发系统看成一个黑箱，只展开外部交互</text>
+  
+  <rect class="panel" x="65" y="150" width="1260" height="1010"/>
+  <rect class="node" x="120" y="195" width="230" height="70"/><rect class="node" x="555" y="195" width="230" height="70"/><rect class="node" x="990" y="195" width="250" height="70"/>
+  <text class="h" x="235" y="240" text-anchor="middle">[参与者]</text><text class="h" x="670" y="240" text-anchor="middle">:系统</text><text class="h" x="1115" y="240" text-anchor="middle">[外部系统]</text>
+  <line class="dash" x1="235" y1="265" x2="235" y2="1085"/><line class="dash" x1="670" y1="265" x2="670" y2="1085"/><line class="dash" x1="1115" y1="265" x2="1115" y2="1085"/>
+  <line class="call" x1="235" y1="335" x2="670" y2="335"/><text class="s" x="452" y="318" text-anchor="middle">1. [提交业务请求（参数）]</text>
+  <line class="ret" x1="670" y1="410" x2="235" y2="410"/><text class="s" x="452" y="392" text-anchor="middle">2. [返回业务结果]</text>
+  <rect x="90" y="470" width="1170" height="520" fill="#fff" stroke="#263750" stroke-width="2.3"/>
+  <path d="M90,470 H185 L210,495 L185,520 H90 Z" fill="#e6eefb" stroke="#263750" stroke-width="2.3"/><text class="h" x="140" y="505">alt</text>
+  <text class="t" x="120" y="565">[条件一：成功]</text><line class="call" x1="235" y1="625" x2="670" y2="625"/><text class="s" x="452" y="607" text-anchor="middle">3. [系统操作]</text>
+  <line class="call" x1="670" y1="690" x2="1115" y2="690"/><text class="s" x="892" y="672" text-anchor="middle">4. [调用外部服务]</text>
+  <line x1="90" y1="745" x2="1260" y2="745" stroke="#77859b" stroke-dasharray="8 7" stroke-width="2"/>
+  <text class="t" x="120" y="795">[条件二：失败]</text><line class="ret" x1="670" y1="860" x2="235" y2="860"/><text class="s" x="452" y="842" text-anchor="middle">5. [返回失败原因]</text>
+  <rect class="note" x="1360" y="180" width="370" height="860"/>
+  <text class="h" x="1545" y="235" text-anchor="middle">作图检查表</text>
+  <text class="t" x="1390" y="300">□ 系统写成 :系统</text><text class="t" x="1390" y="350">□ 时间自上而下</text>
+  <text class="t" x="1390" y="400">□ 请求：实线实心箭头</text><text class="t" x="1390" y="450">□ 返回：虚线箭头</text>
+  <text class="t" x="1390" y="500">□ 异常用 alt / opt</text><text class="t" x="1390" y="550">□ 一张图覆盖多场景</text>
+  <text class="t" x="1390" y="600">□ 不出现 Controller</text><text class="t" x="1390" y="650">□ 不出现 Service / DAO</text>
+  <text class="t" x="1390" y="700">□ 不出现数据库</text><line x1="1390" y1="750" x2="1700" y2="750" stroke="#d9a23a"/>
+  <text class="h" x="1545" y="805" text-anchor="middle">语言</text><text class="t" x="1390" y="860">全部中文可以</text><text class="s" x="1390" y="905">但命名必须清楚、统一</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：02-04-需求分析与AI辅助建模，第 30-32 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">3 / 9</text>
+  </svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">5. 物理包图模板</text><text class="sub" x="75" y="115">表达客户端/服务器、分层、接口实现以及 VO/PO 依赖</text>
+  
+  <rect class="panel" x="55" y="150" width="1410" height="1015"/>
+  <rect class="node" x="90" y="180" width="1315" height="135"/><text class="h" x="120" y="220">«device» Client / Browser</text>
+  <g><rect class="node" x="180" y="245" width="1100" height="45"/><rect class="accent" x="180" y="223" width="310" height="44"/><text class="h" x="335" y="254" text-anchor="middle">web</text></g><text class="t" x="730" y="292" text-anchor="middle">HTML　　CSS　　JavaScript</text>
+  <path class="dep" d="M730,315 L730,385"/><text class="s" x="840" y="365">HTTP + REST API</text>
+  <rect class="node" x="90" y="385" width="1315" height="755"/><text class="h" x="120" y="425">«node» Server</text>
+  <g><rect class="node" x="150" y="475" width="940" height="70"/><rect class="accent" x="150" y="453" width="310" height="44"/><text class="h" x="305" y="484" text-anchor="middle">presentation</text></g><g><rect class="node" x="150" y="610" width="940" height="70"/><rect class="accent" x="150" y="588" width="310" height="44"/><text class="h" x="305" y="619" text-anchor="middle">Service Interface</text></g><g><rect class="node" x="150" y="745" width="940" height="70"/><rect class="accent" x="150" y="723" width="310" height="44"/><text class="h" x="305" y="754" text-anchor="middle">Service Impl</text></g><g><rect class="node" x="150" y="880" width="940" height="70"/><rect class="accent" x="150" y="858" width="310" height="44"/><text class="h" x="305" y="889" text-anchor="middle">DAO Interface</text></g><g><rect class="node" x="150" y="1015" width="940" height="70"/><rect class="accent" x="150" y="993" width="310" height="44"/><text class="h" x="305" y="1024" text-anchor="middle">DAO Impl</text></g>
+  <text class="s" x="620" y="525" text-anchor="middle">[domain1]　[domain2]　[domain3]　[domain4]　[domain5]</text>
+  <text class="s" x="620" y="660" text-anchor="middle">IService　IService　IService ...</text><text class="s" x="620" y="795" text-anchor="middle">ServiceImpl　ServiceImpl ...</text><text class="s" x="620" y="930" text-anchor="middle">IDao　IDao　IDao ...</text><text class="s" x="620" y="1065" text-anchor="middle">DaoImpl　DaoImpl　DaoImpl ...</text>
+  <g><rect class="node" x="1140" y="535" width="210" height="200"/><rect class="accent" x="1140" y="513" width="100.8" height="44"/><text class="h" x="1190.4" y="544" text-anchor="middle">VO</text></g><g><rect class="node" x="1140" y="805" width="210" height="230"/><rect class="accent" x="1140" y="783" width="100.8" height="44"/><text class="h" x="1190.4" y="814" text-anchor="middle">PO</text></g>
+  <text class="s" x="1245" y="620" text-anchor="middle">Value Object</text><text class="s" x="1245" y="660" text-anchor="middle">面向展示</text><text class="s" x="1245" y="900" text-anchor="middle">Persistent Object</text><text class="s" x="1245" y="940" text-anchor="middle">面向持久化</text>
+  <path class="dep" d="M430,545 L430,610"/><path class="realize" d="M650,745 L650,680"/><path class="dep" d="M430,815 L430,880"/><path class="realize" d="M650,1015 L650,950"/>
+  <path class="dep" d="M1090,510 L1140,590"/><path class="dep" d="M1090,645 L1140,645"/><path class="dep" d="M1090,780 L1140,860"/><path class="dep" d="M1090,915 L1140,915"/><path class="dep" d="M1090,1050 L1140,990"/>
+  <rect class="note" x="1490" y="180" width="240" height="900"/><text class="h" x="1610" y="235" text-anchor="middle">检查表</text>
+  <text class="s" x="1515" y="295">□ 客户端/服务器</text><text class="s" x="1515" y="340">□ HTTP/REST</text>
+  <text class="s" x="1515" y="385">□ 五个功能域</text><text class="s" x="1515" y="430">□ 接口独立成层</text>
+  <text class="s" x="1515" y="475">□ 实现指向接口</text><text class="s" x="1515" y="520">□ 上层依赖接口</text>
+  <text class="s" x="1515" y="565">□ VO/PO 分离</text><text class="s" x="1515" y="610">□ 依赖方向向下</text>
+  <text class="s" x="1515" y="655">□ 展示层不碰 DAO</text><text class="s" x="1515" y="700">□ Service 不碰 DAO Impl</text>
+  <line x1="1515" y1="760" x2="1705" y2="760" stroke="#d9a23a"/><text class="h" x="1610" y="815" text-anchor="middle">语言</text><text class="s" x="1515" y="865">包、接口、类：</text><text class="s" x="1515" y="905">使用英文代码命名</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：03-02-体系结构风格与设计过程，第 18、49-51 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">6 / 9</text>
+  </svg>

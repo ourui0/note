@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">8. 程序流程图模板</text><text class="sub" x="75" y="115">描述一个方法内部的输入、处理、判断、循环与输出</text>
+  
+  <rect class="panel" x="65" y="150" width="1230" height="1010"/>
+  <rect class="node" x="520" y="190" width="300" height="80" rx="40"/><text class="h" x="670" y="240" text-anchor="middle">Start</text>
+  <polygon points="500,330 840,330 800,420 460,420" fill="#fff" stroke="#263750" stroke-width="2.5"/><text class="h" x="650" y="385" text-anchor="middle">READ input</text>
+  <rect class="node" x="500" y="480" width="340" height="90"/><text class="h" x="670" y="535" text-anchor="middle">process / initialize</text>
+  <polygon points="670,640 850,740 670,840 490,740" fill="#fff" stroke="#263750" stroke-width="2.5"/><text class="h" x="670" y="735" text-anchor="middle">condition?</text>
+  <polygon points="500,900 840,900 800,990 460,990" fill="#fff" stroke="#263750" stroke-width="2.5"/><text class="h" x="650" y="955" text-anchor="middle">PRINT result</text>
+  <rect class="node" x="520" y="1040" width="300" height="80" rx="40"/><text class="h" x="670" y="1090" text-anchor="middle">End</text>
+  <line class="call" x1="670" y1="270" x2="670" y2="330"/><line class="call" x1="670" y1="420" x2="670" y2="480"/><line class="call" x1="670" y1="570" x2="670" y2="640"/>
+  <line class="call" x1="670" y1="840" x2="670" y2="900"/><text class="t" x="700" y="875">Yes</text><line class="call" x1="670" y1="990" x2="670" y2="1040"/>
+  <path class="call" d="M490,740 L300,740 L300,525 L500,525"/><text class="t" x="345" y="715">No</text><text class="s" x="315" y="625">update / loop</text>
+  <rect class="note" x="1360" y="180" width="370" height="860"/><text class="h" x="1545" y="235" text-anchor="middle">作图检查表</text>
+  <text class="t" x="1390" y="300">□ 圆角框：开始/结束</text><text class="t" x="1390" y="350">□ 平行四边形：输入/输出</text>
+  <text class="t" x="1390" y="400">□ 矩形：处理</text><text class="t" x="1390" y="450">□ 菱形：判断</text>
+  <text class="t" x="1390" y="500">□ 分支标 Yes / No</text><text class="t" x="1390" y="550">□ 循环有返回边</text>
+  <text class="t" x="1390" y="600">□ 循环有退出条件</text><text class="t" x="1390" y="650">□ 不混入跨对象消息</text>
+  <line x1="1390" y1="710" x2="1700" y2="710" stroke="#d9a23a"/><text class="h" x="1545" y="765" text-anchor="middle">语言</text><text class="t" x="1390" y="820">变量、表达式、方法：</text><text class="t" x="1390" y="860">使用英文并与代码一致</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：代码设计，第 44-46 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">9 / 9</text>
+  </svg>

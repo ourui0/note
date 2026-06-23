@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1273" viewBox="0 0 1800 1273">
+  
+<defs>
+  <marker id="solid" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/></marker>
+  <marker id="open" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/></marker>
+  <marker id="triangle" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#6f42a0" stroke-width="1.8"/></marker>
+  <style>
+    text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+    .title{font-size:42px;font-weight:800}.sub{font-size:23px;fill:#53627a}.h{font-size:27px;font-weight:700}.t{font-size:22px}.s{font-size:19px}.tiny{font-size:17px}
+    .panel{fill:#fff;stroke:#d3dbea;stroke-width:2;rx:18}.node{fill:#fff;stroke:#2f4262;stroke-width:2.5;rx:8}.accent{fill:#e6eefb;stroke:#2f4262;stroke-width:2.5}
+    .call{fill:none;stroke:#24324a;stroke-width:2.5;marker-end:url(#solid)}.ret{fill:none;stroke:#465773;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}
+    .dep{fill:none;stroke:#314b70;stroke-width:2.2;stroke-dasharray:9 7;marker-end:url(#open)}.realize,.inherit{fill:none;stroke:#6f42a0;stroke-width:2.3;stroke-dasharray:9 7;marker-end:url(#triangle)}
+    .line{fill:none;stroke:#3f506a;stroke-width:2.2}.dash{fill:none;stroke:#65728a;stroke-width:2;stroke-dasharray:9 8}
+    .note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}.good{fill:#eef8f1;stroke:#4b8b5b;stroke-width:2;rx:12}
+  </style>
+</defs><rect width="1800" height="1273" fill="#f4f7fc"/>
+  <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
+  <text class="title" x="75" y="78">7. 状态图模板</text><text class="sub" x="75" y="115">描述一个明确主体在其生命周期中的合法状态转换</text>
+  
+  <rect class="panel" x="65" y="150" width="1250" height="1010"/>
+  <circle cx="300" cy="260" r="20" fill="#263750"/><line class="call" x1="320" y1="260" x2="480" y2="330"/><text class="s" x="400" y="270">create</text>
+  <rect class="node" x="480" y="300" width="260" height="100"/><text class="h" x="610" y="360" text-anchor="middle">State A</text>
+  <rect class="node" x="900" y="300" width="260" height="100"/><text class="h" x="1030" y="360" text-anchor="middle">State B</text>
+  <rect class="node" x="690" y="650" width="260" height="100"/><text class="h" x="820" y="710" text-anchor="middle">State C</text>
+  <path class="call" d="M740,350 L900,350"/><text class="s" x="820" y="325" text-anchor="middle">event [guard] / action</text>
+  <path class="call" d="M1030,400 C1040,530 930,600 860,650"/><text class="s" x="1015" y="545">event</text>
+  <path class="call" d="M750,650 C650,565 590,500 610,400"/><text class="s" x="625" y="550">retry [condition]</text>
+  <path class="call" d="M950,700 L1140,700"/><circle cx="1200" cy="700" r="27" fill="none" stroke="#263750" stroke-width="3"/><circle cx="1200" cy="700" r="18" fill="#263750"/><text class="s" x="1050" y="675">finish</text>
+  <rect class="note" x="1360" y="180" width="370" height="860"/><text class="h" x="1545" y="235" text-anchor="middle">作图检查表</text>
+  <text class="t" x="1390" y="300">□ 先写清状态机主体</text><text class="t" x="1390" y="350">□ 状态是稳定情形</text>
+  <text class="t" x="1390" y="400">□ 操作写在转换线上</text><text class="t" x="1390" y="450">□ 有初态和终态</text>
+  <text class="t" x="1390" y="500">□ 事件触发转换</text><text class="t" x="1390" y="550">□ 守卫条件写在 []</text>
+  <text class="t" x="1390" y="600">□ 动作写在 / 后</text><text class="t" x="1390" y="650">□ 不画非法跨状态跳转</text>
+  <line x1="1390" y1="710" x2="1700" y2="710" stroke="#d9a23a"/><text class="h" x="1545" y="765" text-anchor="middle">标准格式</text><text class="t" x="1390" y="820">事件 [守卫条件] / 动作</text><text class="s" x="1390" y="875">若需映射枚举和方法，</text><text class="s" x="1390" y="910">状态及事件建议用英文</text>
+
+  <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
+  <text class="tiny" x="75" y="1250">课件依据：02-04-需求分析与AI辅助建模，第 38-43 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">8 / 9</text>
+  </svg>

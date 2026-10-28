@@ -1,0 +1,222 @@
+%\documentclass[a4paper]{article}
+%\usepackage{geometry}
+%\geometry{a4paper,scale=0.8}
+\documentclass[8pt]{article}
+\usepackage{ctex}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{CJK}
+\usepackage[fleqn]{amsmath}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+% 设置页眉
+\fancyhead[L]{2026年秋季}
+\fancyhead[C]{机器学习}
+\fancyhead[R]{作业二}
+
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+% 定义Python代码风格
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,     
+    captionpos=b,        
+    keepspaces=true,     
+    numbers=left,        
+    numbersep=5pt,       
+    showspaces=false,    showstringspaces=false,
+    showtabs=false,      
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\begin{document}
+
+\textbf{\color{blue} \Large 姓名：张三 \ \ \ 学号：123456789 \ \ \ \today}
+
+
+
+\section*{一. (30 points) 线性回归与冗余属性}
+考虑一元线性回归模型 $\hat y=wx+b$，最小化 $J(w,b)=\frac12\sum_{i=1}^{m}(y_i-wx_i-b)^2$。数据如下，记训练集均值为 $\bar x$ 与 $\bar y$。
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+训练样本 & 1 & 2 & 3 & 4 \\
+\midrule
+$x$ & 0 & 1 & 2 & 3 \\
+$y$ & 1 & 2 & 2 & 3 \\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{ccc}
+\toprule
+测试样本 & 1 & 2 \\
+\midrule
+$x$ & 4 & 5 \\
+$y$ & 4 & 4 \\
+\bottomrule
+\end{tabular}
+\end{center}
+1. 对 $J$ 分别关于 $b$ 和 $w$ 求导，推导 $b^*=\bar y-w^*\bar x$ 与 $w^*$ 的表达式。假设 $\sum_i(x_i-\bar x)^2>0$。（10 points）
+
+2. 求本题训练集上的 $w^*,b^*$，计算两个测试样本的预测值及测试集均方误差 $\mathrm{MSE}=\frac1n\sum_i(y_i-\hat y_i)^2$。（5 points）
+
+3. 为每个样本增加属性 $x_2=2x$，模型变为 $\hat y=w_1x+w_2x_2+b$。说明 $(w_1,w_2)$ 是否唯一，并写出两组能得到与第2问相同预测的参数。测试样本也满足 $x_2=2x$。（5 points）
+
+4. 补全以下代码中的两个函数，输出参数、测试预测值和 MSE。只能使用 NumPy 实现核心计算，不使用现成回归模型。（10 points）
+\begin{lstlisting}[language=Python,caption=线性回归代码样例]
+import numpy as np
+X_train = np.array([[0.], [1.], [2.], [3.]])
+y_train = np.array([1., 2., 2., 3.])
+X_test = np.array([[4.], [5.]])
+y_test = np.array([4., 4.])
+def linear_regression(X_train, y_train):
+    # X_train: (m, 1); y_train: (m,)
+    pass  # Return scalar w and scalar b.
+def MSE(y_true, y_pred):
+    pass  # Return the mean squared error.
+w, b = linear_regression(X_train, y_train)
+y_pred = w * X_test[:, 0] + b
+print(w, b, y_pred, MSE(y_test, y_pred))
+\end{lstlisting}
+
+\textbf{\large 解:}
+
+\newpage
+\section*{二. (25 points) 对数几率回归与类别不平衡}
+某二分类任务规定少数类为正类 $y=1$，多数类为负类 $y=0$。对数几率回归输出正类概率
+\[
+p(\mathbf{x})=\frac{1}{1+\exp[-(\textbf{w}^{\top}\mathbf{x}+b)]}.
+\]
+给定已训练模型在10个评价样本上的输出如下。此模型的训练集共有100个样本，其中正类20个、负类80个；下表不是训练集。
+\begin{center}
+\begin{tabular}{c*{10}{c}}
+\toprule
+编号 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\midrule
+$y$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+$p$ & .05 & .10 & .15 & .20 & .25 & .30 & .35 & .55 & .40 & .80 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{规定：}使用阈值 $t$ 时，$p\geq t$ 判为正类，否则判为负类。所有问题均保持模型参数不变。
+
+1. 当阈值为 $0.5$ 时，将预测规则等价改写为关于 $\mathbf{w}^{\top}\mathbf{x}+b$ 的不等式（消去概率 $p$），并说明该模型决策边界的形状。（5分）
+
+
+2. 分别在阈值 $0.5$ 与 $0.3$ 下，计算 $TP,FP,TN,FN$ 及准确率、查准率、查全率。说明降低阈值对本题结果的影响。（8 points）
+
+3. 按教材第3.6节的再缩放思想，本题规定当
+\[
+\frac{p}{1-p}\geq\frac{m^+}{m^-}
+\]
+时判为正类，其中 $m^+,m^-$ 分别为训练集正、负例数。推导等价的概率阈值，求其在本题的数值。简述这种固定模型调整阈值的方法与欠采样后重新训练的区别，不要求二者效果相同。（7 points）
+
+4. 补全以下函数，返回第2问所需的计数和指标，并用两个阈值核对手算结果。（5 points）
+\begin{lstlisting}[language=Python,caption=分类评价代码框架]
+import numpy as np
+y = np.array([0, 0, 0, 0, 0, 0, 0, 0, 1, 1])
+p = np.array([.05, .10, .15, .20, .25,
+              .30, .35, .55, .40, .80])
+def evaluate(y, p, threshold):
+    # Return: TP, FP, TN, FN, accuracy, precision, recall.
+    # If a metric denominator is zero, return 0.
+    pass
+for t in [0.5, 0.3]:
+    print(t, evaluate(y, p, t))
+\end{lstlisting}
+\noindent 提示：准确率 $=\frac{TP+TN}{TP+FP+TN+FN}$，查准率 $=\frac{TP}{TP+FP}$，查全率 $=\frac{TP}{TP+FN}$。
+
+\textbf{\large 解:}
+
+\newpage
+\section*{三. (20 points) 连续属性划分与缺失值}
+二分类数据集 $D$ 含8个样本，连续属性 $x$ 与类别 $y$ 如下。每个样本的初始权重均为1；$\tilde D$ 表示属性 $x$ 不缺失的样本集合。对数以2为底，结果保留三位小数。
+\begin{center}
+\begin{tabular}{c*{8}{c}}
+\toprule
+编号 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\midrule
+$x$ & 1 & 2 & 3 & 4 & 5 & 6 & 缺失 & 缺失 \\
+$y$ & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+按 $x\leq t$ 和 $x>t$ 将非缺失样本划分为左、右两个分支。
+
+1. 列出由相邻不同属性值的中点构成的全部候选阈值，计算非缺失样本集合的熵 $H(\tilde D)$。（5 points）
+
+2. 为减少计算，本问只比较 $t=2.5$ 与 $t=4.5$。分别计算它们在 $\tilde D$ 上的信息增益，并从这两个阈值中选出更优者。（5 points）
+
+3. 考虑缺失值时，按教材方法使用
+\[
+\mathrm{Gain}(D,x,t)=\rho\,\mathrm{Gain}(\tilde D,x,t),
+\qquad \rho=\frac{|\tilde D|}{|D|}.
+\]
+计算第2问两个阈值修正后的信息增益，判断选择是否改变。（5 points）
+
+4. 使用第2问选出的阈值。按非缺失样本在各分支的权重占比，将每个缺失样本以相应权重同时下传到左右分支。写出样本7和8各自在左右分支的权重，并计算分配后左右分支的正、负类权重总和。（5 points）
+
+\noindent 提示：$H(S)=-\sum_{c\in\{0,1\}}p_c\log_2p_c$，规定 $0\log_2 0=0$。第2问只在非缺失样本上计算
+\[
+\mathrm{Gain}(\tilde D,x,t)=H(\tilde D)
+-\frac{|\tilde D_L|}{|\tilde D|}H(\tilde D_L)
+-\frac{|\tilde D_R|}{|\tilde D|}H(\tilde D_R).
+\]
+
+\textbf{\large 解:}
+
+\newpage
+\section*{四. (25 points) 决策树的预剪枝与后剪枝}
+某数据集有两个二值属性 $A,B\in\{0,1\}$。训练集与验证集的样本统计如下，每行表示相同属性取值下各类别的样本数量。
+\begin{center}
+\begin{tabular}{ccrrrr}
+\toprule
+\multicolumn{2}{c}{属性} & \multicolumn{2}{c}{训练集} & \multicolumn{2}{c}{验证集} \\
+$A$ & $B$ & $y=0$ & $y=1$ & $y=0$ & $y=1$ \\
+\midrule
+0 & 0 & 7 & 0 & 3 & 0 \\
+0 & 1 & 0 & 3 & 0 & 2 \\
+1 & 0 & 0 & 4 & 0 & 2 \\
+1 & 1 & 2 & 0 & 3 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+本题\textbf{固定划分顺序}：先在根节点按 $A$ 划分，再在两个子节点分别按 $B$ 划分，不要求比较划分指标。叶节点的预测类别始终由到达该节点的\textbf{训练样本多数类}决定；若数量相同则预测0。
+
+1. 写出根节点不划分时的预测类别、按 $A$ 划分后两个叶节点的预测类别，以及完整两层树四个叶节点的预测类别。（5 points）
+
+2. 预剪枝规则为：只有划分后\textbf{整棵树的验证准确率严格提高}，才允许该划分。计算根节点划分前、后的验证准确率，确定预剪枝结果。（7 points）
+
+3. 从完整两层树开始进行后剪枝，顺序为：先检查 $A=0$ 子树，再检查 $A=1$ 子树，最后检查根节点。每次把待检查子树替换为一个多数类叶节点；若整棵树的验证准确率不下降，就保留该剪枝，否则恢复子树。计算各次候选剪枝后的验证准确率，画出或用清晰规则表示最终树。（8 points）
+
+4. 结合本题解释为什么预剪枝和后剪枝可能得到不同结果，并说明验证集与测试集在剪枝实验中的不同用途。（5 points）
+
+\noindent 提示：训练集共16个样本，验证集共10个样本。后剪枝被拒绝后，下一步仍以恢复后的树为基础。本题只需手算与分析，不要求另选数据集或实现剪枝算法。
+
+\textbf{\large 解:}
+
+\end{document}

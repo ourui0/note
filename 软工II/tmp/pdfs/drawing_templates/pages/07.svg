@@ -15,17 +15,34 @@
   </style>
 </defs><rect width="1800" height="1273" fill="#f4f7fc"/>
   <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
-  <text class="title" x="75" y="78">6. 4+1 视图模板</text><text class="sub" x="75" y="115">四个工程视图由场景视图驱动并相互验证</text>
+  <text class="title" x="75" y="78">6. 逻辑包图模板</text><text class="sub" x="75" y="115">表达系统内部的分层包、业务功能包及自上而下的依赖</text>
   
-  <rect class="panel" x="70" y="150" width="1660" height="960"/>
-  <rect x="700" y="480" width="400" height="220" rx="110" fill="#5b3f91"/><text x="900" y="565" text-anchor="middle" font-size="34" font-weight="800" fill="#fff">场景视图 +1</text><text x="900" y="610" text-anchor="middle" font-size="23" fill="#fff">用例图 / 用例场景</text><text x="900" y="648" text-anchor="middle" font-size="20" fill="#fff">驱动并验证其他四个视图</text>
-  <rect class="accent" x="170" y="235" width="480" height="225" rx="20"/><text class="h" x="410" y="285" text-anchor="middle">逻辑视图</text><text class="t" x="410" y="335" text-anchor="middle">功能、类与包的组织</text><text class="t" x="410" y="380" text-anchor="middle">类图 / 包图</text><text class="s" x="410" y="420" text-anchor="middle">架构师、开发者</text>
-  <rect class="accent" x="1150" y="235" width="480" height="225" rx="20"/><text class="h" x="1390" y="285" text-anchor="middle">开发视图</text><text class="t" x="1390" y="335" text-anchor="middle">代码组织、模块划分</text><text class="t" x="1390" y="380" text-anchor="middle">组件图</text><text class="s" x="1390" y="420" text-anchor="middle">开发者</text>
-  <rect class="accent" x="170" y="760" width="480" height="225" rx="20"/><text class="h" x="410" y="810" text-anchor="middle">进程视图</text><text class="t" x="410" y="860" text-anchor="middle">并发、同步、性能</text><text class="t" x="410" y="905" text-anchor="middle">活动图 / 顺序图</text><text class="s" x="410" y="945" text-anchor="middle">系统集成者</text>
-  <rect class="accent" x="1150" y="760" width="480" height="225" rx="20"/><text class="h" x="1390" y="810" text-anchor="middle">物理视图</text><text class="t" x="1390" y="860" text-anchor="middle">部署拓扑、硬件映射</text><text class="t" x="1390" y="905" text-anchor="middle">部署图</text><text class="s" x="1390" y="945" text-anchor="middle">运维工程师</text>
-  <path class="dep" d="M720,510 L620,440"/><path class="dep" d="M1080,510 L1180,440"/><path class="dep" d="M720,670 L620,790"/><path class="dep" d="M1080,670 L1180,790"/>
-  <rect class="good" x="600" y="1030" width="600" height="70"/><text class="t" x="900" y="1073" text-anchor="middle">同一系统的不同关注点，不是五张互不相干的图</text>
+  <rect class="panel" x="55" y="150" width="1390" height="1015"/>
+  <g><rect class="node" x="95" y="190" width="1310" height="900"/><rect class="accent" x="95" y="168" width="310" height="44"/><text class="h" x="250" y="199" text-anchor="middle">[系统根包 / 项目包]</text></g>
+  <g><rect class="node" x="145" y="265" width="1210" height="215"/><rect class="accent" x="145" y="243" width="310" height="44"/><text class="h" x="300" y="274" text-anchor="middle">presentation / web</text></g>
+  <g><rect class="node" x="145" y="550" width="1210" height="215"/><rect class="accent" x="145" y="528" width="310" height="44"/><text class="h" x="300" y="559" text-anchor="middle">service</text></g>
+  <g><rect class="node" x="145" y="835" width="1210" height="215"/><rect class="accent" x="145" y="813" width="310" height="44"/><text class="h" x="300" y="844" text-anchor="middle">dao / entity</text></g>
+
+  <g><rect class="node" x="230" y="335" width="245" height="80"/><rect class="accent" x="230" y="313" width="117.6" height="44"/><text class="h" x="288.8" y="344" text-anchor="middle">[业务模块 A]</text></g><g><rect class="node" x="625" y="335" width="245" height="80"/><rect class="accent" x="625" y="313" width="117.6" height="44"/><text class="h" x="683.8" y="344" text-anchor="middle">[核心模块]</text></g><g><rect class="node" x="1020" y="335" width="245" height="80"/><rect class="accent" x="1020" y="313" width="117.6" height="44"/><text class="h" x="1078.8" y="344" text-anchor="middle">[业务模块 B]</text></g>
+  <g><rect class="node" x="330" y="620" width="285" height="80"/><rect class="accent" x="330" y="598" width="136.79999999999998" height="44"/><text class="h" x="398.4" y="629" text-anchor="middle">[核心业务服务]</text></g><g><rect class="node" x="850" y="620" width="285" height="80"/><rect class="accent" x="850" y="598" width="136.79999999999998" height="44"/><text class="h" x="918.4" y="629" text-anchor="middle">[辅助业务服务]</text></g>
+  <g><rect class="node" x="220" y="905" width="280" height="80"/><rect class="accent" x="220" y="883" width="134.4" height="44"/><text class="h" x="287.2" y="914" text-anchor="middle">[实体 A / DAO]</text></g><g><rect class="node" x="585" y="905" width="280" height="80"/><rect class="accent" x="585" y="883" width="134.4" height="44"/><text class="h" x="652.2" y="914" text-anchor="middle">[实体 B / DAO]</text></g><g><rect class="node" x="950" y="905" width="280" height="80"/><rect class="accent" x="950" y="883" width="134.4" height="44"/><text class="h" x="1017.2" y="914" text-anchor="middle">[实体 C / DAO]</text></g>
+
+  <path class="dep" d="M475,375 L625,375"/><path class="dep" d="M1020,375 L870,375"/>
+  <path class="dep" d="M705,415 L520,620"/><path class="dep" d="M760,415 L990,620"/>
+  <path class="dep" d="M470,700 L360,905"/><path class="dep" d="M520,700 L725,905"/>
+  <path class="dep" d="M990,700 L725,905"/><path class="dep" d="M1030,700 L1090,905"/>
+  <path class="dep" d="M750,480 L750,550"/><path class="dep" d="M750,765 L750,835"/>
+
+  <text class="s" x="150" y="1135">依赖原则：presentation/web → service → dao/entity；上层可以依赖下层，下层不能反向依赖上层。</text>
+  <rect class="note" x="1480" y="180" width="250" height="900"/><text class="h" x="1605" y="235" text-anchor="middle">检查表</text>
+  <text class="s" x="1505" y="295">□ 画系统根包</text><text class="s" x="1505" y="340">□ 标明分层包</text>
+  <text class="s" x="1505" y="385">□ 各层按业务细分</text><text class="s" x="1505" y="430">□ 包使用文件夹符号</text>
+  <text class="s" x="1505" y="475">□ 虚线箭头指被依赖包</text><text class="s" x="1505" y="520">□ 依赖总体向下</text>
+  <text class="s" x="1505" y="565">□ web 不越层访问 DAO</text><text class="s" x="1505" y="610">□ DAO 不依赖 Service</text>
+  <text class="s" x="1505" y="655">□ 不画设备和通信协议</text><text class="s" x="1505" y="700">□ 不把它画成类图</text>
+  <line x1="1505" y1="760" x2="1705" y2="760" stroke="#d9a23a"/><text class="h" x="1605" y="815" text-anchor="middle">语言</text>
+  <text class="s" x="1505" y="865">层名、包名：</text><text class="s" x="1505" y="905">建议英文并与代码一致</text><text class="s" x="1505" y="950">说明文字可使用中文</text>
 
   <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
-  <text class="tiny" x="75" y="1250">课件依据：03-03-体系结构设计实践与验证，第 27-28 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">7 / 9</text>
+  <text class="tiny" x="75" y="1250">课件依据：03-03-体系结构设计实践与验证，第 29 页；用户提供的分层逻辑包图</text><text class="tiny" x="1725" y="1250" text-anchor="end">7 / 10</text>
   </svg>

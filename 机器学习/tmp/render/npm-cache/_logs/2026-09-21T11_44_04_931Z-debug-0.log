@@ -1,0 +1,100 @@
+0 verbose cli /Users/or/.nvm/versions/node/v24.21.0/bin/node /Users/or/.nvm/versions/node/v24.21.0/bin/npm
+1 info using npm@11.19.0
+2 info using node@v24.21.0
+3 silly config load:file:/Users/or/.nvm/versions/node/v24.21.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/or/Desktop/note/机器学习/tmp/render/.npmrc
+5 silly config load:file:/Users/or/.npmrc
+6 silly config load:file:/Users/or/.nvm/versions/node/v24.21.0/etc/npmrc
+7 verbose title npm install mathjax-full@3
+8 verbose argv "install" "mathjax-full@3" "--cache" "./npm-cache" "--no-audit" "--no-fund"
+9 verbose logfile logs-max:10 dir:/Users/or/Desktop/note/机器学习/tmp/render/npm-cache/_logs/2026-09-21T11_44_04_931Z-
+10 verbose logfile /Users/or/Desktop/note/机器学习/tmp/render/npm-cache/_logs/2026-09-21T11_44_04_931Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 silly idealTree buildDeps
+14 silly fetch manifest mathjax-full@3
+15 silly packumentCache full:https://registry.npmjs.org/mathjax-full cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/mathjax-full 1210ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/mathjax-full set size:undefined disposed:false
+18 silly placeDep ROOT mathjax-full@3.2.1 OK for: render@1.0.0 want: 3
+19 silly fetch manifest esm@^3.2.25
+20 silly packumentCache full:https://registry.npmjs.org/esm cache-miss
+21 silly fetch manifest mhchemparser@^4.1.0
+22 silly packumentCache full:https://registry.npmjs.org/mhchemparser cache-miss
+23 silly fetch manifest mj-context-menu@^0.6.1
+24 silly packumentCache full:https://registry.npmjs.org/mj-context-menu cache-miss
+25 silly fetch manifest speech-rule-engine@^4.0.6
+26 silly packumentCache full:https://registry.npmjs.org/speech-rule-engine cache-miss
+27 http fetch GET 200 https://registry.npmjs.org/npm 1381ms
+28 http fetch GET 200 https://registry.npmjs.org/esm 434ms (cache miss)
+29 silly packumentCache full:https://registry.npmjs.org/esm set size:undefined disposed:false
+30 http fetch GET 200 https://registry.npmjs.org/mhchemparser 698ms (cache miss)
+31 silly packumentCache full:https://registry.npmjs.org/mhchemparser set size:undefined disposed:false
+32 http fetch GET 200 https://registry.npmjs.org/speech-rule-engine 1566ms (cache miss)
+33 silly packumentCache full:https://registry.npmjs.org/speech-rule-engine set size:undefined disposed:false
+34 http fetch GET 200 https://registry.npmjs.org/mj-context-menu 1993ms (cache miss)
+35 silly packumentCache full:https://registry.npmjs.org/mj-context-menu set size:undefined disposed:false
+36 silly placeDep ROOT esm@3.2.25 OK for: mathjax-full@3.2.1 want: ^3.2.25
+37 silly placeDep ROOT mhchemparser@4.2.1 OK for: mathjax-full@3.2.1 want: ^4.1.0
+38 silly placeDep ROOT mj-context-menu@0.6.1 OK for: mathjax-full@3.2.1 want: ^0.6.1
+39 silly placeDep ROOT speech-rule-engine@4.1.4 OK for: mathjax-full@3.2.1 want: ^4.0.6
+40 silly fetch manifest commander@13.1.0
+41 silly packumentCache full:https://registry.npmjs.org/commander cache-miss
+42 silly fetch manifest @xmldom/xmldom@0.9.10
+43 silly packumentCache full:https://registry.npmjs.org/@xmldom%2fxmldom cache-miss
+44 silly fetch manifest wicked-good-xpath@1.3.0
+45 silly packumentCache full:https://registry.npmjs.org/wicked-good-xpath cache-miss
+46 http fetch GET 200 https://registry.npmjs.org/wicked-good-xpath 186ms (cache miss)
+47 silly packumentCache full:https://registry.npmjs.org/wicked-good-xpath set size:undefined disposed:false
+48 http fetch GET 200 https://registry.npmjs.org/commander 401ms (cache miss)
+49 silly packumentCache full:https://registry.npmjs.org/commander set size:undefined disposed:false
+50 http fetch GET 200 https://registry.npmjs.org/@xmldom%2fxmldom 433ms (cache miss)
+51 silly packumentCache full:https://registry.npmjs.org/@xmldom%2fxmldom set size:undefined disposed:false
+52 silly placeDep ROOT @xmldom/xmldom@0.9.10 OK for: speech-rule-engine@4.1.4 want: 0.9.10
+53 silly placeDep ROOT commander@13.1.0 OK for: speech-rule-engine@4.1.4 want: 13.1.0
+54 silly placeDep ROOT wicked-good-xpath@1.3.0 OK for: speech-rule-engine@4.1.4 want: 1.3.0
+55 silly reify moves {}
+56 http cache commander@https://registry.npmjs.org/commander/-/commander-13.1.0.tgz 0ms (cache hit)
+57 http cache mj-context-menu@https://registry.npmjs.org/mj-context-menu/-/mj-context-menu-0.6.1.tgz 0ms (cache hit)
+58 http cache @xmldom/xmldom@https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.9.10.tgz 0ms (cache hit)
+59 http cache wicked-good-xpath@https://registry.npmjs.org/wicked-good-xpath/-/wicked-good-xpath-1.3.0.tgz 0ms (cache hit)
+60 http cache esm@https://registry.npmjs.org/esm/-/esm-3.2.25.tgz 0ms (cache hit)
+61 http cache mhchemparser@https://registry.npmjs.org/mhchemparser/-/mhchemparser-4.2.1.tgz 0ms (cache hit)
+62 http cache mathjax-full@https://registry.npmjs.org/mathjax-full/-/mathjax-full-3.2.1.tgz 0ms (cache hit)
+63 http cache speech-rule-engine@https://registry.npmjs.org/speech-rule-engine/-/speech-rule-engine-4.1.4.tgz 0ms (cache hit)
+64 silly tarball no local data for commander@https://registry.npmjs.org/commander/-/commander-13.1.0.tgz. Extracting by manifest.
+65 silly tarball no local data for mj-context-menu@https://registry.npmjs.org/mj-context-menu/-/mj-context-menu-0.6.1.tgz. Extracting by manifest.
+66 silly tarball no local data for @xmldom/xmldom@https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.9.10.tgz. Extracting by manifest.
+67 silly tarball no local data for wicked-good-xpath@https://registry.npmjs.org/wicked-good-xpath/-/wicked-good-xpath-1.3.0.tgz. Extracting by manifest.
+68 silly tarball no local data for esm@https://registry.npmjs.org/esm/-/esm-3.2.25.tgz. Extracting by manifest.
+69 silly tarball no local data for mhchemparser@https://registry.npmjs.org/mhchemparser/-/mhchemparser-4.2.1.tgz. Extracting by manifest.
+70 silly tarball no local data for mathjax-full@https://registry.npmjs.org/mathjax-full/-/mathjax-full-3.2.1.tgz. Extracting by manifest.
+71 silly tarball no local data for speech-rule-engine@https://registry.npmjs.org/speech-rule-engine/-/speech-rule-engine-4.1.4.tgz. Extracting by manifest.
+72 http fetch GET 200 https://registry.npmjs.org/wicked-good-xpath/-/wicked-good-xpath-1.3.0.tgz 203ms (cache miss)
+73 http fetch GET 200 https://registry.npmjs.org/commander/-/commander-13.1.0.tgz 208ms (cache miss)
+74 http fetch GET 200 https://registry.npmjs.org/esm/-/esm-3.2.25.tgz 264ms (cache miss)
+75 http fetch GET 200 https://registry.npmjs.org/mj-context-menu/-/mj-context-menu-0.6.1.tgz 664ms (cache miss)
+76 http fetch GET 200 https://registry.npmjs.org/mhchemparser/-/mhchemparser-4.2.1.tgz 697ms (cache miss)
+77 http fetch GET 200 https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.9.10.tgz 1133ms (cache miss)
+78 warn deprecated @xmldom/xmldom@0.9.10: this version has critical issues, please update to the latest version
+79 http fetch GET 200 https://registry.npmjs.org/speech-rule-engine/-/speech-rule-engine-4.1.4.tgz 2007ms (cache miss)
+80 http fetch GET 200 https://registry.npmjs.org/mathjax-full/-/mathjax-full-3.2.1.tgz 4138ms (cache miss)
+81 silly ADD node_modules/wicked-good-xpath
+82 silly ADD node_modules/commander
+83 silly ADD node_modules/@xmldom/xmldom
+84 silly ADD node_modules/speech-rule-engine
+85 silly ADD node_modules/mj-context-menu
+86 silly ADD node_modules/mhchemparser
+87 silly ADD node_modules/esm
+88 silly ADD node_modules/mathjax-full
+89 verbose cwd /Users/or/Desktop/note/机器学习/tmp/render
+90 verbose os Darwin 25.6.0
+91 verbose node v24.21.0
+92 verbose npm  v11.19.0
+93 notice
+93 notice New major version of npm available! 11.19.0 -> 12.0.2
+93 notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+93 notice To update run: npm install -g npm@12.0.2
+93 notice  { force: true, Symbol(proc-log.meta): true }
+94 verbose exit 0
+95 info ok

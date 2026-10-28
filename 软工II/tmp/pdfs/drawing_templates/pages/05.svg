@@ -36,5 +36,5 @@
   <line x1="1505" y1="675" x2="1705" y2="675" stroke="#d9a23a"/><text class="h" x="1605" y="730" text-anchor="middle">语言</text><text class="s" x="1505" y="785">对象、类、方法：</text><text class="s" x="1505" y="825">建议英文并与代码一致</text>
 
   <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
-  <text class="tiny" x="75" y="1250">课件依据：04-01-详细设计，第 20-21 页；第 11 章第 87-89 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">5 / 9</text>
+  <text class="tiny" x="75" y="1250">课件依据：04-01-详细设计，第 20-21 页；第 11 章第 87-89 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">5 / 10</text>
   </svg>

@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8">
+<body><div id=out>PENDING</div>
+<iframe id=f src="submission.html" style="width:794px;height:1123px;border:0"></iframe>
+<script>
+const f=document.getElementById('f');
+f.onload=()=>{
+  setTimeout(()=>{
+    try{
+      const d=f.contentDocument, m=d.querySelector('main');
+      const cw=m.clientWidth;
+      const res=[];
+      d.querySelectorAll('table').forEach((t,i)=>{
+        const w=t.getBoundingClientRect().width;
+        res.push('T'+i+'='+w.toFixed(0)+'px/'+(w*0.72).toFixed(1)+'pt'+(w>cw+1?' OVER':''));
+      });
+      d.querySelectorAll('svg.tikz').forEach((s,i)=>{
+        const w=s.getBoundingClientRect().width;
+        res.push('F'+i+'='+(w*0.72).toFixed(1)+'pt');
+      });
+      document.getElementById('out').textContent='MEASURE contentWidth='+cw+'px/'+(cw*0.72).toFixed(1)+'pt(432pt=6in) '+res.join(' ');
+    }catch(e){document.getElementById('out').textContent='MEASURE ERROR '+e;}
+  },2500);
+};
+</script>

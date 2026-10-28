@@ -28,7 +28,7 @@ function page(title, subtitle, body, source, n) {
   <text class="title" x="75" y="78">${title}</text><text class="sub" x="75" y="115">${subtitle}</text>
   ${body}
   <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
-  <text class="tiny" x="75" y="1250">课件依据：${source}</text><text class="tiny" x="1725" y="1250" text-anchor="end">${n} / 9</text>
+  <text class="tiny" x="75" y="1250">课件依据：${source}</text><text class="tiny" x="1725" y="1250" text-anchor="end">${n} / 10</text>
   </svg>`;
 }
 
@@ -41,18 +41,19 @@ const pages = [];
 
 pages.push(page('软件工程 II 画图模板册','用课件一致的符号骨架，快速迁移到任意考试情景',`
   <rect class="panel" x="95" y="170" width="1610" height="910"/>
-  <text x="900" y="300" text-anchor="middle" font-size="58" font-weight="800" fill="#4c347f">八类高频图，一册带走</text>
+  <text x="900" y="280" text-anchor="middle" font-size="58" font-weight="800" fill="#4c347f">九类高频图，一册带走</text>
   <g class="t">
-    <rect class="accent" x="210" y="390" width="360" height="105" rx="16"/><text x="390" y="455" text-anchor="middle">用例图</text>
-    <rect class="accent" x="720" y="390" width="360" height="105" rx="16"/><text x="900" y="455" text-anchor="middle">系统顺序图</text>
-    <rect class="accent" x="1230" y="390" width="360" height="105" rx="16"/><text x="1410" y="455" text-anchor="middle">概念类图</text>
-    <rect class="accent" x="210" y="560" width="360" height="105" rx="16"/><text x="390" y="625" text-anchor="middle">详细顺序图</text>
-    <rect class="accent" x="720" y="560" width="360" height="105" rx="16"/><text x="900" y="625" text-anchor="middle">物理包图</text>
-    <rect class="accent" x="1230" y="560" width="360" height="105" rx="16"/><text x="1410" y="625" text-anchor="middle">4+1 视图</text>
-    <rect class="accent" x="465" y="730" width="360" height="105" rx="16"/><text x="645" y="795" text-anchor="middle">状态图</text>
-    <rect class="accent" x="975" y="730" width="360" height="105" rx="16"/><text x="1155" y="795" text-anchor="middle">程序流程图</text>
+    <rect class="accent" x="210" y="350" width="360" height="90" rx="16"/><text x="390" y="405" text-anchor="middle">用例图</text>
+    <rect class="accent" x="720" y="350" width="360" height="90" rx="16"/><text x="900" y="405" text-anchor="middle">系统顺序图</text>
+    <rect class="accent" x="1230" y="350" width="360" height="90" rx="16"/><text x="1410" y="405" text-anchor="middle">概念类图</text>
+    <rect class="accent" x="210" y="500" width="360" height="90" rx="16"/><text x="390" y="555" text-anchor="middle">详细顺序图</text>
+    <rect class="accent" x="720" y="500" width="360" height="90" rx="16"/><text x="900" y="555" text-anchor="middle">物理包图</text>
+    <rect class="accent" x="1230" y="500" width="360" height="90" rx="16"/><text x="1410" y="555" text-anchor="middle">逻辑包图</text>
+    <rect class="accent" x="210" y="650" width="360" height="90" rx="16"/><text x="390" y="705" text-anchor="middle">4+1 视图</text>
+    <rect class="accent" x="720" y="650" width="360" height="90" rx="16"/><text x="900" y="705" text-anchor="middle">状态图</text>
+    <rect class="accent" x="1230" y="650" width="360" height="90" rx="16"/><text x="1410" y="705" text-anchor="middle">程序流程图</text>
   </g>
-  <rect class="good" x="330" y="910" width="1140" height="105"/><text class="t" x="900" y="955" text-anchor="middle">分析阶段：业务语言优先　　设计阶段：名称与代码一致</text><text class="s" x="900" y="990" text-anchor="middle">每页均为可直接临摹的“骨架图 + 得分检查表”</text>
+  <rect class="good" x="330" y="850" width="1140" height="105"/><text class="t" x="900" y="895" text-anchor="middle">分析阶段：业务语言优先　　设计阶段：名称与代码一致</text><text class="s" x="900" y="930" text-anchor="middle">每页均为可直接临摹的“骨架图 + 得分检查表”</text>
 `,'课程各相关章节综合',1));
 
 pages.push(page('1. 用例图模板','回答“谁为了什么业务目标使用系统”',`
@@ -164,7 +165,35 @@ pages.push(page('5. 物理包图模板','表达客户端/服务器、分层、�
   <line x1="1515" y1="760" x2="1705" y2="760" stroke="#d9a23a"/><text class="h" x="1610" y="815" text-anchor="middle">语言</text><text class="s" x="1515" y="865">包、接口、类：</text><text class="s" x="1515" y="905">使用英文代码命名</text>
 `,'03-02-体系结构风格与设计过程，第 18、49-51 页',6));
 
-pages.push(page('6. 4+1 视图模板','四个工程视图由场景视图驱动并相互验证',`
+pages.push(page('6. 逻辑包图模板','表达系统内部的分层包、业务功能包及自上而下的依赖',`
+  <rect class="panel" x="55" y="150" width="1390" height="1015"/>
+  ${pkg(95,190,1310,900,'[系统根包 / 项目包]')}
+  ${pkg(145,265,1210,215,'presentation / web')}
+  ${pkg(145,550,1210,215,'service')}
+  ${pkg(145,835,1210,215,'dao / entity')}
+
+  ${pkg(230,335,245,80,'[业务模块 A]')}${pkg(625,335,245,80,'[核心模块]')}${pkg(1020,335,245,80,'[业务模块 B]')}
+  ${pkg(330,620,285,80,'[核心业务服务]')}${pkg(850,620,285,80,'[辅助业务服务]')}
+  ${pkg(220,905,280,80,'[实体 A / DAO]')}${pkg(585,905,280,80,'[实体 B / DAO]')}${pkg(950,905,280,80,'[实体 C / DAO]')}
+
+  <path class="dep" d="M475,375 L625,375"/><path class="dep" d="M1020,375 L870,375"/>
+  <path class="dep" d="M705,415 L520,620"/><path class="dep" d="M760,415 L990,620"/>
+  <path class="dep" d="M470,700 L360,905"/><path class="dep" d="M520,700 L725,905"/>
+  <path class="dep" d="M990,700 L725,905"/><path class="dep" d="M1030,700 L1090,905"/>
+  <path class="dep" d="M750,480 L750,550"/><path class="dep" d="M750,765 L750,835"/>
+
+  <text class="s" x="150" y="1135">依赖原则：presentation/web → service → dao/entity；上层可以依赖下层，下层不能反向依赖上层。</text>
+  <rect class="note" x="1480" y="180" width="250" height="900"/><text class="h" x="1605" y="235" text-anchor="middle">检查表</text>
+  <text class="s" x="1505" y="295">□ 画系统根包</text><text class="s" x="1505" y="340">□ 标明分层包</text>
+  <text class="s" x="1505" y="385">□ 各层按业务细分</text><text class="s" x="1505" y="430">□ 包使用文件夹符号</text>
+  <text class="s" x="1505" y="475">□ 虚线箭头指被依赖包</text><text class="s" x="1505" y="520">□ 依赖总体向下</text>
+  <text class="s" x="1505" y="565">□ web 不越层访问 DAO</text><text class="s" x="1505" y="610">□ DAO 不依赖 Service</text>
+  <text class="s" x="1505" y="655">□ 不画设备和通信协议</text><text class="s" x="1505" y="700">□ 不把它画成类图</text>
+  <line x1="1505" y1="760" x2="1705" y2="760" stroke="#d9a23a"/><text class="h" x="1605" y="815" text-anchor="middle">语言</text>
+  <text class="s" x="1505" y="865">层名、包名：</text><text class="s" x="1505" y="905">建议英文并与代码一致</text><text class="s" x="1505" y="950">说明文字可使用中文</text>
+`,'03-03-体系结构设计实践与验证，第 29 页；用户提供的分层逻辑包图',7));
+
+pages.push(page('7. 4+1 视图模板','四个工程视图由场景视图驱动并相互验证',`
   <rect class="panel" x="70" y="150" width="1660" height="960"/>
   <rect x="700" y="480" width="400" height="220" rx="110" fill="#5b3f91"/><text x="900" y="565" text-anchor="middle" font-size="34" font-weight="800" fill="#fff">场景视图 +1</text><text x="900" y="610" text-anchor="middle" font-size="23" fill="#fff">用例图 / 用例场景</text><text x="900" y="648" text-anchor="middle" font-size="20" fill="#fff">驱动并验证其他四个视图</text>
   <rect class="accent" x="170" y="235" width="480" height="225" rx="20"/><text class="h" x="410" y="285" text-anchor="middle">逻辑视图</text><text class="t" x="410" y="335" text-anchor="middle">功能、类与包的组织</text><text class="t" x="410" y="380" text-anchor="middle">类图 / 包图</text><text class="s" x="410" y="420" text-anchor="middle">架构师、开发者</text>
@@ -173,9 +202,9 @@ pages.push(page('6. 4+1 视图模板','四个工程视图由场景视图驱动�
   <rect class="accent" x="1150" y="760" width="480" height="225" rx="20"/><text class="h" x="1390" y="810" text-anchor="middle">物理视图</text><text class="t" x="1390" y="860" text-anchor="middle">部署拓扑、硬件映射</text><text class="t" x="1390" y="905" text-anchor="middle">部署图</text><text class="s" x="1390" y="945" text-anchor="middle">运维工程师</text>
   <path class="dep" d="M720,510 L620,440"/><path class="dep" d="M1080,510 L1180,440"/><path class="dep" d="M720,670 L620,790"/><path class="dep" d="M1080,670 L1180,790"/>
   <rect class="good" x="600" y="1030" width="600" height="70"/><text class="t" x="900" y="1073" text-anchor="middle">同一系统的不同关注点，不是五张互不相干的图</text>
-`,'03-03-体系结构设计实践与验证，第 27-28 页',7));
+`,'03-03-体系结构设计实践与验证，第 27-28 页',8));
 
-pages.push(page('7. 状态图模板','描述一个明确主体在其生命周期中的合法状态转换',`
+pages.push(page('8. 状态图模板','描述一个明确主体在其生命周期中的合法状态转换',`
   <rect class="panel" x="65" y="150" width="1250" height="1010"/>
   <circle cx="300" cy="260" r="20" fill="#263750"/><line class="call" x1="320" y1="260" x2="480" y2="330"/><text class="s" x="400" y="270">create</text>
   <rect class="node" x="480" y="300" width="260" height="100"/><text class="h" x="610" y="360" text-anchor="middle">State A</text>
@@ -191,9 +220,9 @@ pages.push(page('7. 状态图模板','描述一个明确主体在其生命周期
   <text class="t" x="1390" y="500">□ 事件触发转换</text><text class="t" x="1390" y="550">□ 守卫条件写在 []</text>
   <text class="t" x="1390" y="600">□ 动作写在 / 后</text><text class="t" x="1390" y="650">□ 不画非法跨状态跳转</text>
   <line x1="1390" y1="710" x2="1700" y2="710" stroke="#d9a23a"/><text class="h" x="1545" y="765" text-anchor="middle">标准格式</text><text class="t" x="1390" y="820">事件 [守卫条件] / 动作</text><text class="s" x="1390" y="875">若需映射枚举和方法，</text><text class="s" x="1390" y="910">状态及事件建议用英文</text>
-`,'02-04-需求分析与AI辅助建模，第 38-43 页',8));
+`,'02-04-需求分析与AI辅助建模，第 38-43 页',9));
 
-pages.push(page('8. 程序流程图模板','描述一个方法内部的输入、处理、判断、循环与输出',`
+pages.push(page('9. 程序流程图模板','描述一个方法内部的输入、处理、判断、循环与输出',`
   <rect class="panel" x="65" y="150" width="1230" height="1010"/>
   <rect class="node" x="520" y="190" width="300" height="80" rx="40"/><text class="h" x="670" y="240" text-anchor="middle">Start</text>
   <polygon points="500,330 840,330 800,420 460,420" fill="#fff" stroke="#263750" stroke-width="2.5"/><text class="h" x="650" y="385" text-anchor="middle">READ input</text>
@@ -210,7 +239,7 @@ pages.push(page('8. 程序流程图模板','描述一个方法内部的输入、
   <text class="t" x="1390" y="500">□ 分支标 Yes / No</text><text class="t" x="1390" y="550">□ 循环有返回边</text>
   <text class="t" x="1390" y="600">□ 循环有退出条件</text><text class="t" x="1390" y="650">□ 不混入跨对象消息</text>
   <line x1="1390" y1="710" x2="1700" y2="710" stroke="#d9a23a"/><text class="h" x="1545" y="765" text-anchor="middle">语言</text><text class="t" x="1390" y="820">变量、表达式、方法：</text><text class="t" x="1390" y="860">使用英文并与代码一致</text>
-`,'代码设计，第 44-46 页',9));
+`,'代码设计，第 44-46 页',10));
 
 (async () => {
   for (let i = 0; i < pages.length; i++) {

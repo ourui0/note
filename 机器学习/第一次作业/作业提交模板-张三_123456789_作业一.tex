@@ -1,0 +1,177 @@
+% !TEX program = xelatex
+%\documentclass[a4paper]{article}
+%\usepackage{geometry}
+%\geometry{a4paper,scale=0.8}
+\documentclass[8pt]{article}
+\usepackage{ctex}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{CJK}
+\usepackage[fleqn]{amsmath}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\pagestyle{fancy}
+% 设置页眉
+\fancyhead[L]{2026年秋季}
+\fancyhead[C]{机器学习}
+\fancyhead[R]{作业一}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\begin{document}
+
+\textbf{\color{blue} \Large
+姓名：张三 \ \ \ 学号：123456789 \ \ \ \today}
+
+\section*{一. (30 points) 性能度量}
+
+某学习器 $\mathcal{L}$ 在一个三分类任务上的预测结果如表~\ref{tab:confusion} 所示。表中行表示真实类别，列表示预测类别。除特别说明外，结果可用分数或保留两位小数表示。
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\multirow{2}{*}{\textbf{真实类别}} & \multicolumn{3}{c}{\textbf{预测类别}} \\
+\cmidrule(lr){2-4}
+ & \textbf{第 1 类} & \textbf{第 2 类} & \textbf{第 3 类} \\
+\midrule
+\textbf{第 1 类} & 9 & 2 & 1 \\
+\textbf{第 2 类} & 1 & 7 & 2 \\
+\textbf{第 3 类} & 3 & 1 & 10 \\
+\bottomrule
+\end{tabular}
+\caption{学习器 $\mathcal{L}$ 的三分类混淆矩阵}
+\label{tab:confusion}
+\end{table}
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.45em]
+  \item 计算该学习器的预测准确率。（5 points）
+  \item 采用 one-vs-rest 方式分别构造每一类的混淆矩阵，并在四个位置标明 TP、TN、FP、FN，计算 micro-P、macro-P、micro-R 和 macro-R。（10 points）
+  \item 计算 micro-F1 和 macro-F1；其中 macro-F1 定义为各类别 F1 的算术平均。（5 points）
+  \item 在多标签分类任务中，每个样例可以同时具有多个标签。表~\ref{tab:multilabel} 给出了 5 个样例的真实标签和学习器预测。计算 micro-P、micro-R、micro-F1、macro-P、macro-R 和 macro-F1。其中 macro 指先对每个标签分别计算指标，再对标签取算术平均。（10 points）
+\end{enumerate}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{样例} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ \\
+\midrule
+\textbf{真实标签} & 1,4 & 2 & 1,2,3 & 3,4 & 1,3 \\
+\textbf{预测标签} & 1,3 & 2,4 & 1,2 & 2,3,4 & 1,3 \\
+\bottomrule
+\end{tabular}
+\caption{多标签分类结果}
+\label{tab:multilabel}
+\end{table}
+
+\textbf{\large 解:}
+
+\clearpage
+\section*{二. (30 points) 排序与曲线性能度量}
+
+某二分类数据集包含 10 个样例。标签 1 表示正例，标签 0 表示负例。学习器输出值表示样例属于正类的置信度，且已按从高到低排序，如表~\ref{tab:scores} 所示。
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4.4pt}
+\begin{tabular}{l*{10}{c}}
+\toprule
+\textbf{样例} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $x_7$ & $x_8$ & $x_9$ & $x_{10}$ \\
+\midrule
+\textbf{标签} & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+\textbf{输出值} & 0.94 & 0.87 & 0.81 & 0.72 & 0.66 & 0.58 & 0.47 & 0.35 & 0.22 & 0.11 \\
+\bottomrule
+\end{tabular}
+\caption{二分类样例及学习器输出}
+\label{tab:scores}
+\end{table}
+
+从阈值高于 0.94 开始逐步降低阈值。对于 $k=1,2,\ldots,10$，将前 $k$ 个样例判为正例，其余样例判为负例。按 P-R 曲线绘图惯例取初始点 $(0,1)$。
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.55em]
+  \item 计算每一步 P-R 曲线端点的坐标 $(R,P)$ 并绘制 P-R 曲线。绘图时可加入初始点 $(0,1)$。（8 points）
+  \item 计算包括初始点在内的 ROC 曲线端点坐标 $(\mathrm{FPR},\mathrm{TPR})$，并绘制 ROC 曲线。（8 points）
+  \item 使用梯形法计算 ROC 曲线下面积 AUC，结果保留两位小数。（6 points）
+  \item FPR80 表示真正例率为 $80\%$ 时的假正例率。说明该指标越高越好还是越低越好，并求阈值下降过程中首次达到 $\mathrm{TPR}=80\%$ 时的 FPR80。（8 points）
+\end{enumerate}
+
+\textbf{\large 解:}
+
+
+\clearpage
+\section*{三. (10 points) 数据预处理}
+
+某一维特征在 5 个样例上的取值为
+\[
+18,\quad 21,\quad 24,\quad 27,\quad 30.
+\]
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.55em]
+  \item 写出将特征映射到区间 $[x'_{\min},x'_{\max}]$ 的 Min-max 归一化公式，以及 Z-score 标准化公式。（2 points）
+  \item 使用 Min-max 归一化将全部取值映射到区间 $[-1,1]$。（3 points）
+  \item 使用 Z-score 对全部取值进行标准化。本题中的标准差采用总体标准差，即分母为样本数 $m$。（3 points）
+  \item 若在数据中加入一个新的取值 60，不必重新计算所有结果，请分别说明它会如何影响原有样例的 Min-max 归一化值和 Z-score 标准化值。（2 points）
+\end{enumerate}
+
+\textbf{\large 解:}
+
+\clearpage
+\section*{四. (30 points) 模型比较检验}
+
+在一个二分类任务中，需要比较学习器 $A$ 与学习器 $B$ 的泛化性能。研究者进行了 5 次 2 折交叉验证；每次实验前都重新随机打乱并划分数据，尽量避免 5 次实验采用重复的数据划分，再交换训练集与测试集完成两折测试。表~\ref{tab:5x2cv} 给出了两种学习器在每一折上的测试错误率（错误率越低越好）。
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\toprule
+\textbf{实验次数} & $A$：第 1 折 & $B$：第 1 折 & $A$：第 2 折 & $B$：第 2 折 \\
+\midrule
+1 & 0.18 & 0.24 & 0.22 & 0.26 \\
+2 & 0.20 & 0.25 & 0.19 & 0.22 \\
+3 & 0.17 & 0.24 & 0.23 & 0.26 \\
+4 & 0.21 & 0.25 & 0.20 & 0.22 \\
+5 & 0.16 & 0.22 & 0.21 & 0.25 \\
+\bottomrule
+\end{tabular}
+\caption{5×2 交叉验证测试错误率}
+\label{tab:5x2cv}
+\end{table}
+定义第 $i$ 次实验两折上的成对差值为
+\[
+\Delta_i^{(j)}=E_{A,i}^{(j)}-E_{B,i}^{(j)},\qquad j\in\{1,2\},
+\]
+并令
+\[
+\bar{\Delta}_i=\frac{\Delta_i^{(1)}+\Delta_i^{(2)}}{2},\qquad
+\sigma_i^2=\left(\Delta_i^{(1)}-\bar{\Delta}_i\right)^2+
+\left(\Delta_i^{(2)}-\bar{\Delta}_i\right)^2.
+\]
+检验统计量定义为
+\[
+\tau_t=\frac{\bar{\Delta}_1}{\sqrt{\frac{1}{5}\sum_{i=1}^{5}\sigma_i^2}}.
+\]
+
+原假设 $H_0$ 为“两种学习器的泛化性能相同”。按本题给出的 5×2 交叉验证检验规则，在 $H_0$ 下将统计量 $\tau_t$ 与自由度为 5 的 t 分布进行比较。本题采用双边检验；显著性水平 $\alpha=0.05$ 和 $\alpha=0.01$ 对应的临界值分别为 2.5706 和 4.0321。
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.55em]
+  \item 说明为什么必须对同一次数据划分上的结果作“配对”比较，并简述 5×2 交叉验证相对普通 k 折交叉验证配对 t 检验的主要作用。（6 points）
+  \item 计算十个差值 $\Delta_i^{(j)}$、五个均值 $\bar{\Delta}_i$ 和五个方差 $\sigma_i^2$。（8 points）
+  \item 计算检验统计量 $\tau_t$。（8 points）
+  \item 分别在 $\alpha=0.05$ 和 $\alpha=0.01$ 下判断两种学习器是否存在显著性能差异；若存在，请指出哪一种学习器更优并说明依据。（8 points）
+\end{enumerate}
+
+\textbf{\large 解:}
+
+\end{document}

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1650" viewBox="0 0 2100 1650">
+  <defs>
+    <marker id="solidArrow" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#24324a"/>
+    </marker>
+    <marker id="openArrow" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#24324a" stroke-width="1.8"/>
+    </marker>
+    <style>
+      text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172033}
+      .head{fill:#fff;stroke:#273b5b;stroke-width:2.4;rx:7}.control{fill:#eee7fa}.entity{fill:#eaf4fb}.boundary{fill:#fff4df}
+      .life{stroke:#718098;stroke-width:2;stroke-dasharray:9 8}.call{fill:none;stroke:#24324a;stroke-width:2.4;marker-end:url(#solidArrow)}
+      .ret{fill:none;stroke:#435774;stroke-width:2.1;stroke-dasharray:9 7;marker-end:url(#openArrow)}
+      .msg{font-size:19px;text-anchor:middle}.name{font-size:21px;font-weight:700;text-anchor:middle}.stereo{font-size:16px;text-anchor:middle;fill:#5c6678}
+      .frame{fill:#fff;stroke:#273b5b;stroke-width:2.2}.guard{font-size:20px;font-weight:700}.note{fill:#fff9e9;stroke:#d79b31;stroke-width:2;rx:12}
+      .activation{fill:#dce7f6;stroke:#36537c;stroke-width:1.6}
+    </style>
+  </defs>
+
+  <rect width="2100" height="1650" fill="#f4f7fb"/>
+  <rect x="0" y="0" width="2100" height="18" fill="#563d87"/>
+  <text x="1050" y="65" font-size="36" font-weight="800" text-anchor="middle">2022 年往年卷第五题：校园卡充值详细顺序图</text>
+  <text x="1050" y="102" font-size="19" fill="#5f6c80" text-anchor="middle">Coupon 与 ThirdPayment 均通过多态选择具体实现</text>
+
+  <!-- 参与者与对象 -->
+  <g transform="translate(95,150)"><circle cx="0" cy="-35" r="19" fill="none" stroke="#273b5b" stroke-width="3"/><path d="M0,-16 L0,48 M-35,7 L35,7 M0,48 L-29,88 M0,48 L29,88" fill="none" stroke="#273b5b" stroke-width="3"/><text class="name" x="0" y="122">用户</text></g>
+
+  <g><rect class="head boundary" x="200" y="125" width="210" height="82"/><text class="stereo" x="305" y="153">«boundary»</text><text class="name" x="305" y="184">ui:RechargeUI</text></g>
+  <g><rect class="head control" x="450" y="115" width="245" height="102"/><text class="stereo" x="572" y="143">«control»</text><text class="name" x="572" y="174">controller:</text><text class="name" x="572" y="201">RechargeController</text></g>
+  <g><rect class="head entity" x="745" y="125" width="190" height="82"/><text class="stereo" x="840" y="153">«entity»</text><text class="name" x="840" y="184">user:User</text></g>
+  <g><rect class="head entity" x="995" y="125" width="190" height="82"/><text class="stereo" x="1090" y="153">«entity»</text><text class="name" x="1090" y="184">card:Card</text></g>
+  <g><rect class="head entity" x="1245" y="115" width="230" height="102"/><text class="stereo" x="1360" y="143">«strategy»</text><text class="name" x="1360" y="173">coupon:Coupon</text><text class="stereo" x="1360" y="200">Fixed / Percentage</text></g>
+  <g><rect class="head entity" x="1530" y="115" width="250" height="102"/><text class="stereo" x="1655" y="143">«strategy»</text><text class="name" x="1655" y="173">payment:ThirdPayment</text><text class="stereo" x="1655" y="200">Alipay / WeChat</text></g>
+
+  <!-- PaymentRecord 在 create 时出现 -->
+  <g><rect class="head entity" x="1835" y="890" width="230" height="102"/><text class="stereo" x="1950" y="918">«entity»</text><text class="name" x="1950" y="949">record:</text><text class="name" x="1950" y="976">PaymentRecord</text></g>
+
+  <!-- 生命线 -->
+  <line class="life" x1="95" y1="238" x2="95" y2="1540"/><line class="life" x1="305" y1="207" x2="305" y2="1540"/>
+  <line class="life" x1="572" y1="217" x2="572" y2="1540"/><line class="life" x1="840" y1="207" x2="840" y2="1540"/>
+  <line class="life" x1="1090" y1="207" x2="1090" y2="1540"/><line class="life" x1="1360" y1="217" x2="1360" y2="1540"/>
+  <line class="life" x1="1655" y1="217" x2="1655" y2="1540"/><line class="life" x1="1950" y1="992" x2="1950" y2="1540"/>
+
+  <!-- 激活条 -->
+  <rect class="activation" x="296" y="310" width="18" height="1130"/><rect class="activation" x="563" y="385" width="18" height="1000"/>
+
+  <!-- 主流程 -->
+  <line class="call" x1="95" y1="325" x2="305" y2="325"/><text class="msg" x="200" y="305">1. 提交充值</text>
+  <text class="msg" x="200" y="348">(cardId, amount, couponId, paymentType)</text>
+
+  <line class="call" x1="305" y1="395" x2="572" y2="395"/><text class="msg" x="438" y="377">2. recharge(cardId, amount, couponId, paymentType)</text>
+
+  <line class="call" x1="572" y1="465" x2="840" y2="465"/><text class="msg" x="706" y="447">3. getCard(cardId)</text>
+  <line class="ret" x1="840" y1="510" x2="572" y2="510"/><text class="msg" x="706" y="492">4. card</text>
+
+  <line class="call" x1="572" y1="565" x2="840" y2="565"/><text class="msg" x="706" y="547">5. getCoupon(couponId)</text>
+  <line class="ret" x1="840" y1="610" x2="572" y2="610"/><text class="msg" x="706" y="592">6. coupon</text>
+
+  <line class="call" x1="572" y1="670" x2="1360" y2="670"/><text class="msg" x="966" y="652">7. calculatePayable(amount)</text>
+  <line class="ret" x1="1360" y1="720" x2="572" y2="720"/><text class="msg" x="966" y="702">8. payableAmount</text>
+
+  <line class="call" x1="572" y1="785" x2="1655" y2="785"/><text class="msg" x="1114" y="767">9. pay(payableAmount)</text>
+  <line class="ret" x1="1655" y1="840" x2="572" y2="840"/><text class="msg" x="1114" y="822">10. paymentResult(success, transactionNo)</text>
+
+  <!-- 创建充值记录：成功失败都记录 -->
+  <line class="call" x1="572" y1="895" x2="840" y2="895"/><text class="msg" x="706" y="877">11. createPaymentRecord(card, amount, payableAmount, paymentResult)</text>
+  <line class="call" x1="840" y1="940" x2="1835" y2="940"/><text class="msg" x="1338" y="922">12. «create» PaymentRecord(...)</text>
+
+  <!-- alt 成功/失败 -->
+  <rect class="frame" x="55" y="1010" width="2010" height="450"/>
+  <path d="M55,1010 H150 L175,1035 L150,1060 H55 Z" fill="#e6eefb" stroke="#273b5b" stroke-width="2.2"/>
+  <text x="102" y="1045" font-size="24" font-weight="700" text-anchor="middle">alt</text>
+  <text class="guard" x="85" y="1090">[paymentResult.success]</text>
+
+  <line class="call" x1="572" y1="1140" x2="1090" y2="1140"/><text class="msg" x="831" y="1122">13. increaseBalance(amount)</text>
+  <line class="call" x1="572" y1="1195" x2="1360" y2="1195"/><text class="msg" x="966" y="1177">14. markUsed()</text>
+  <line class="ret" x1="572" y1="1250" x2="305" y2="1250"/><text class="msg" x="438" y="1232">15. RechargeResult(success, newBalance)</text>
+  <line class="ret" x1="305" y1="1300" x2="95" y2="1300"/><text class="msg" x="200" y="1282">16. 显示充值成功</text>
+
+  <line x1="55" y1="1330" x2="2065" y2="1330" stroke="#77859b" stroke-width="1.8" stroke-dasharray="8 7"/>
+  <text class="guard" x="85" y="1370">[else：支付失败]</text>
+  <line class="ret" x1="572" y1="1400" x2="305" y2="1400"/><text class="msg" x="438" y="1382">13F. RechargeResult(failed, reason)</text>
+  <line class="ret" x1="305" y1="1440" x2="95" y2="1440"/><text class="msg" x="200" y="1422">14F. 显示支付失败及原因</text>
+
+  <!-- 说明 -->
+  <rect class="note" x="1120" y="1500" width="900" height="80"/>
+  <text x="1145" y="1532" font-size="18">说明：支付失败时不增加卡余额、不消耗优惠券；PaymentRecord 仍保存失败状态，便于查询与审计。</text>
+  <text x="1050" y="1625" font-size="17" fill="#677386" text-anchor="middle">对象名称与消息采用设计阶段英文命名；中文仅用于参与者和结果说明</text>
+</svg>

@@ -15,24 +15,17 @@
   </style>
 </defs><rect width="1800" height="1273" fill="#f4f7fc"/>
   <rect x="0" y="0" width="1800" height="18" fill="#5b3f91"/>
-  <text class="title" x="75" y="78">7. 状态图模板</text><text class="sub" x="75" y="115">描述一个明确主体在其生命周期中的合法状态转换</text>
+  <text class="title" x="75" y="78">7. 4+1 视图模板</text><text class="sub" x="75" y="115">四个工程视图由场景视图驱动并相互验证</text>
   
-  <rect class="panel" x="65" y="150" width="1250" height="1010"/>
-  <circle cx="300" cy="260" r="20" fill="#263750"/><line class="call" x1="320" y1="260" x2="480" y2="330"/><text class="s" x="400" y="270">create</text>
-  <rect class="node" x="480" y="300" width="260" height="100"/><text class="h" x="610" y="360" text-anchor="middle">State A</text>
-  <rect class="node" x="900" y="300" width="260" height="100"/><text class="h" x="1030" y="360" text-anchor="middle">State B</text>
-  <rect class="node" x="690" y="650" width="260" height="100"/><text class="h" x="820" y="710" text-anchor="middle">State C</text>
-  <path class="call" d="M740,350 L900,350"/><text class="s" x="820" y="325" text-anchor="middle">event [guard] / action</text>
-  <path class="call" d="M1030,400 C1040,530 930,600 860,650"/><text class="s" x="1015" y="545">event</text>
-  <path class="call" d="M750,650 C650,565 590,500 610,400"/><text class="s" x="625" y="550">retry [condition]</text>
-  <path class="call" d="M950,700 L1140,700"/><circle cx="1200" cy="700" r="27" fill="none" stroke="#263750" stroke-width="3"/><circle cx="1200" cy="700" r="18" fill="#263750"/><text class="s" x="1050" y="675">finish</text>
-  <rect class="note" x="1360" y="180" width="370" height="860"/><text class="h" x="1545" y="235" text-anchor="middle">作图检查表</text>
-  <text class="t" x="1390" y="300">□ 先写清状态机主体</text><text class="t" x="1390" y="350">□ 状态是稳定情形</text>
-  <text class="t" x="1390" y="400">□ 操作写在转换线上</text><text class="t" x="1390" y="450">□ 有初态和终态</text>
-  <text class="t" x="1390" y="500">□ 事件触发转换</text><text class="t" x="1390" y="550">□ 守卫条件写在 []</text>
-  <text class="t" x="1390" y="600">□ 动作写在 / 后</text><text class="t" x="1390" y="650">□ 不画非法跨状态跳转</text>
-  <line x1="1390" y1="710" x2="1700" y2="710" stroke="#d9a23a"/><text class="h" x="1545" y="765" text-anchor="middle">标准格式</text><text class="t" x="1390" y="820">事件 [守卫条件] / 动作</text><text class="s" x="1390" y="875">若需映射枚举和方法，</text><text class="s" x="1390" y="910">状态及事件建议用英文</text>
+  <rect class="panel" x="70" y="150" width="1660" height="960"/>
+  <rect x="700" y="480" width="400" height="220" rx="110" fill="#5b3f91"/><text x="900" y="565" text-anchor="middle" font-size="34" font-weight="800" fill="#fff">场景视图 +1</text><text x="900" y="610" text-anchor="middle" font-size="23" fill="#fff">用例图 / 用例场景</text><text x="900" y="648" text-anchor="middle" font-size="20" fill="#fff">驱动并验证其他四个视图</text>
+  <rect class="accent" x="170" y="235" width="480" height="225" rx="20"/><text class="h" x="410" y="285" text-anchor="middle">逻辑视图</text><text class="t" x="410" y="335" text-anchor="middle">功能、类与包的组织</text><text class="t" x="410" y="380" text-anchor="middle">类图 / 包图</text><text class="s" x="410" y="420" text-anchor="middle">架构师、开发者</text>
+  <rect class="accent" x="1150" y="235" width="480" height="225" rx="20"/><text class="h" x="1390" y="285" text-anchor="middle">开发视图</text><text class="t" x="1390" y="335" text-anchor="middle">代码组织、模块划分</text><text class="t" x="1390" y="380" text-anchor="middle">组件图</text><text class="s" x="1390" y="420" text-anchor="middle">开发者</text>
+  <rect class="accent" x="170" y="760" width="480" height="225" rx="20"/><text class="h" x="410" y="810" text-anchor="middle">进程视图</text><text class="t" x="410" y="860" text-anchor="middle">并发、同步、性能</text><text class="t" x="410" y="905" text-anchor="middle">活动图 / 顺序图</text><text class="s" x="410" y="945" text-anchor="middle">系统集成者</text>
+  <rect class="accent" x="1150" y="760" width="480" height="225" rx="20"/><text class="h" x="1390" y="810" text-anchor="middle">物理视图</text><text class="t" x="1390" y="860" text-anchor="middle">部署拓扑、硬件映射</text><text class="t" x="1390" y="905" text-anchor="middle">部署图</text><text class="s" x="1390" y="945" text-anchor="middle">运维工程师</text>
+  <path class="dep" d="M720,510 L620,440"/><path class="dep" d="M1080,510 L1180,440"/><path class="dep" d="M720,670 L620,790"/><path class="dep" d="M1080,670 L1180,790"/>
+  <rect class="good" x="600" y="1030" width="600" height="70"/><text class="t" x="900" y="1073" text-anchor="middle">同一系统的不同关注点，不是五张互不相干的图</text>
 
   <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
-  <text class="tiny" x="75" y="1250">课件依据：02-04-需求分析与AI辅助建模，第 38-43 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">8 / 9</text>
+  <text class="tiny" x="75" y="1250">课件依据：03-03-体系结构设计实践与验证，第 27-28 页</text><text class="tiny" x="1725" y="1250" text-anchor="end">8 / 10</text>
   </svg>

@@ -537,6 +537,47 @@ sections = [
     ),
 ]
 
+# 依据往年卷直接命题、复习提纲强调程度，以及与画图/代码综合题的联动性筛选。
+# 有意控制数量，避免“全是重点”等于没有重点。
+HIGH_PROBABILITY = {
+    "什么是软件工程？",
+    "配置管理中的变更控制过程是什么？",
+    "业务需求、用户需求和系统级需求如何区分？",
+    "需求有哪些常见类型？",
+    "什么是用例、场景和用户故事？",
+    "什么是概念类图、系统顺序图和状态图？",
+    "如何检查并修正需求中的常见错误？",
+    "什么是软件体系结构？",
+    "常见体系结构风格的优缺点是什么？",
+    "体系结构设计的一般过程是什么？",
+    "包的原则有哪些？",
+    "体系结构构件的供接口和需接口是什么？",
+    "什么是 Stub 和 Driver？",
+    "什么是 4+1 视图？",
+    "PO、VO 和 DAO 分别是什么？",
+    "什么是可用性？",
+    "至少列出五条界面设计注意事项并解释。",
+    "如何分析一个界面体现或违反了哪些原则？",
+    "如何进行职责分配？",
+    "集中式、委托式和分散式控制有什么区别？",
+    "什么是耦合？",
+    "常见耦合类型如何判断？",
+    "如何改善控制耦合和印记耦合？",
+    "什么是信息隐藏？",
+    "什么是接口隔离原则（ISP）？",
+    "什么是里氏替换原则（LSP）？",
+    "什么是单一职责原则（SRP）？",
+    "什么是开闭原则（OCP）？",
+    "什么是依赖倒置原则（DIP）？",
+    "什么是策略模式？",
+    "如何使用数据结构消减复杂判定？",
+    "语句覆盖、分支覆盖和路径覆盖如何区别？",
+    "什么是条件覆盖？",
+    "如何依据设计图设计集成测试？",
+    "迭代增量模型与演化模型有什么差异？",
+    "如何根据场景选择过程模型？",
+}
+
 
 def safe(text):
     return escape(text).replace("\n", "<br/>")
@@ -581,6 +622,7 @@ cover_box = Table([
     [Paragraph("收录范围", h2), Paragraph("固定名词解释、通用简答、LSP 例题、判断与修正框架", intro_style)],
     [Paragraph("未直接作答", h2), Paragraph("必须依赖现场题干的画图、接口代码、具体测试数据；相关方法已归纳为答题框架", intro_style)],
     [Paragraph("建议用法", h2), Paragraph("先背关键词，再用自己的话展开；简答题至少写定义、作用/理由、关键步骤或例子", intro_style)],
+    [Paragraph("高频标记", h2), Paragraph(f"橙色题框与“★ 高频必看”表示优先复习，共 {len(HIGH_PROBABILITY)} 题；依据往年卷、课件强调和综合命题能力筛选，不代表官方押题。", intro_style)],
 ], colWidths=[35 * mm, 120 * mm])
 cover_box.setStyle(TableStyle([
     ("BACKGROUND", (0, 0), (0, -1), PURPLE_LIGHT),
@@ -598,7 +640,9 @@ story.append(PageBreak())
 
 story.append(Paragraph("目录", h1))
 for idx, (title, _, items) in enumerate(sections, 1):
-    story.append(Paragraph(f"{title}　（{len(items)} 题）", toc_style))
+    high_count = sum(1 for item in items if item["q"] in HIGH_PROBABILITY)
+    suffix = f"，高频 {high_count} 题" if high_count else ""
+    story.append(Paragraph(f"{title}　（{len(items)} 题{suffix}）", toc_style))
 story.append(Spacer(1, 6 * mm))
 story.append(Paragraph(
     "答题提醒：题目若要求“结合实验”，请保留本答案的工程活动框架，并替换为自己项目的真实工具、规则、制品和效果。题目若要求“结合例子”，必须把原则落到具体代码或界面行为，不能只背定义。",
@@ -610,11 +654,14 @@ global_no = 1
 for s_idx, (title, source, items) in enumerate(sections, 1):
     story.append(Paragraph(title, h1))
     for item in items:
-        tag_color = BLUE_LIGHT if item["kind"] == "名词解释" else PURPLE_LIGHT
-        q_table = Table([[Paragraph(f"{global_no}. 【{item['kind']}】{safe(item['q'])}", question_style)]], colWidths=[doc.width])
+        is_high = item["q"] in HIGH_PROBABILITY
+        tag_color = ORANGE_LIGHT if is_high else (BLUE_LIGHT if item["kind"] == "名词解释" else PURPLE_LIGHT)
+        border_color = colors.HexColor("#D88A22") if is_high else LINE
+        prefix = "★ 高频必看　" if is_high else ""
+        q_table = Table([[Paragraph(f"{prefix}{global_no}. 【{item['kind']}】{safe(item['q'])}", question_style)]], colWidths=[doc.width])
         q_table.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, -1), tag_color),
-            ("BOX", (0, 0), (-1, -1), 0.7, LINE),
+            ("BOX", (0, 0), (-1, -1), 1.15 if is_high else 0.7, border_color),
             ("LEFTPADDING", (0, 0), (-1, -1), 7),
             ("RIGHTPADDING", (0, 0), (-1, -1), 7),
             ("TOPPADDING", (0, 0), (-1, -1), 5),

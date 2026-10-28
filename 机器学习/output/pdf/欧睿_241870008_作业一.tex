@@ -1,0 +1,428 @@
+% !TEX program = xelatex
+\documentclass[8pt]{article}
+\usepackage{ctex}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage[a4paper,total={6in,8in}]{geometry}
+\usepackage{CJK}
+\usepackage[fleqn]{amsmath}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\pagestyle{fancy}
+\fancyhead[L]{2026年秋季}
+\fancyhead[C]{机器学习}
+\fancyhead[R]{作业一}
+\setlength{\headheight}{12pt}
+\newcommand{\ans}{\par\noindent\textbf{\large 解:}\par}
+
+\begin{document}
+
+\textbf{\color{blue}\Large
+姓名：欧睿\ \ \ 学号：241870008\ \ \ \today}
+
+\section*{一. (30 points) 性能度量}
+
+某学习器 $\mathcal{L}$ 在一个三分类任务上的预测结果如表~\ref{tab:confusion} 所示。表中行表示真实类别，列表示预测类别。除特别说明外，结果可用分数或保留两位小数表示。
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\multirow{2}{*}{\textbf{真实类别}} & \multicolumn{3}{c}{\textbf{预测类别}} \\
+\cmidrule(lr){2-4}
+ & \textbf{第 1 类} & \textbf{第 2 类} & \textbf{第 3 类} \\
+\midrule
+\textbf{第 1 类} & 9 & 2 & 1 \\
+\textbf{第 2 类} & 1 & 7 & 2 \\
+\textbf{第 3 类} & 3 & 1 & 10 \\
+\bottomrule
+\end{tabular}
+\caption{学习器 $\mathcal{L}$ 的三分类混淆矩阵}
+\label{tab:confusion}
+\end{table}
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.45em]
+  \item 计算该学习器的预测准确率。（5 points）
+  \item 采用 one-vs-rest 方式分别构造每一类的混淆矩阵，并在四个位置标明 TP、TN、FP、FN，计算 micro-P、macro-P、micro-R 和 macro-R。（10 points）
+  \item 计算 micro-F1 和 macro-F1；其中 macro-F1 定义为各类别 F1 的算术平均。（5 points）
+  \item 在多标签分类任务中，每个样例可以同时具有多个标签。表~\ref{tab:multilabel} 给出了 5 个样例的真实标签和学习器预测。计算 micro-P、micro-R、micro-F1、macro-P、macro-R 和 macro-F1。其中 macro 指先对每个标签分别计算指标，再对标签取算术平均。（10 points）
+\end{enumerate}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{样例} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ \\
+\midrule
+\textbf{真实标签} & 1,4 & 2 & 1,2,3 & 3,4 & 1,3 \\
+\textbf{预测标签} & 1,3 & 2,4 & 1,2 & 2,3,4 & 1,3 \\
+\bottomrule
+\end{tabular}
+\caption{多标签分类结果}
+\label{tab:multilabel}
+\end{table}
+
+\ans
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.8em]
+\item 样例总数为 $12+10+14=36$，对角线上预测正确的样例数为 $9+7+10=26$。因此
+\[
+\mathrm{Accuracy}=\frac{26}{36}=\frac{13}{18}\approx 0.72.
+\]
+
+\item 约定二分混淆矩阵的行为真实的“正/负”，列为预测的“正/负”。三个 one-vs-rest 矩阵为
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c}
+\text{第1类} & \text{第2类} & \text{第3类}\\[2pt]
+\begin{array}{c|cc}
+ & \hat{+}&\hat{-}\\\hline
++&9\,(TP)&3\,(FN)\\
+-&4\,(FP)&20\,(TN)
+\end{array}
+&
+\begin{array}{c|cc}
+ & \hat{+}&\hat{-}\\\hline
++&7\,(TP)&3\,(FN)\\
+-&3\,(FP)&23\,(TN)
+\end{array}
+&
+\begin{array}{c|cc}
+ & \hat{+}&\hat{-}\\\hline
++&10\,(TP)&4\,(FN)\\
+-&3\,(FP)&19\,(TN)
+\end{array}.
+\end{array}
+\]
+各类的查准率为
+\[
+P_1=\frac9{13},\qquad P_2=\frac7{10},\qquad P_3=\frac{10}{13},
+\]
+各类的查全率为
+\[
+R_1=\frac9{12}=\frac34,\qquad R_2=\frac7{10},\qquad R_3=\frac{10}{14}=\frac57.
+\]
+在单标签多分类中，对所有类汇总后 $\sum TP=26$、$\sum FP=10$、$\sum FN=10$，故
+\[
+\mathrm{micro\mbox{-}P}=\mathrm{micro\mbox{-}R}=\frac{26}{36}=\frac{13}{18}\approx0.72.
+\]
+\[
+\mathrm{macro\mbox{-}P}=\frac13\left(\frac9{13}+\frac7{10}+\frac{10}{13}\right)
+=\frac{281}{390}\approx0.72,
+\]
+\[
+\mathrm{macro\mbox{-}R}=\frac13\left(\frac34+\frac7{10}+\frac57\right)
+=\frac{101}{140}\approx0.72.
+\]
+
+\item 因为 micro-P 与 micro-R 相等，所以
+\[
+\mathrm{micro\mbox{-}F1}=\frac{13}{18}\approx0.72.
+\]
+三类的 F1 分别为
+\[
+F1_1=\frac{2\times9}{2\times9+4+3}=\frac{18}{25},\quad
+F1_2=\frac{14}{20}=\frac7{10},\quad
+F1_3=\frac{20}{27}.
+\]
+因而
+\[
+\mathrm{macro\mbox{-}F1}=\frac13\left(\frac{18}{25}+\frac7{10}+\frac{20}{27}\right)
+=\frac{2917}{4050} \approx0.72.
+\]
+
+\item 按标签统计的 TP、FP、FN 及指标如下：
+\begin{center}
+\begin{tabular}{c@{\quad}ccc@{\quad}ccc}
+\toprule
+标签 & TP & FP & FN & $P$ & $R$ & $F1$\\
+\midrule
+1&3&0&0&$1$&$1$&$1$\\
+2&2&1&0&$2/3$&$1$&$4/5$\\
+3&2&1&1&$2/3$&$2/3$&$2/3$\\
+4&1&1&1&$1/2$&$1/2$&$1/2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+汇总得 $TP=8$、$FP=3$、$FN=2$，故
+\[
+\mathrm{micro\mbox{-}P}=\frac8{11}\approx0.73,\qquad
+\mathrm{micro\mbox{-}R}=\frac8{10}=0.80,
+\]
+\[
+\mathrm{micro\mbox{-}F1}=\frac{2\times8}{2\times8+3+2}=\frac{16}{21}\approx0.76.
+\]
+对四个标签取算术平均，得
+\[
+\mathrm{macro\mbox{-}P}=\frac{17}{24}\approx0.71,\qquad
+\mathrm{macro\mbox{-}R}=\frac{19}{24}\approx0.79,
+\]
+\[
+\mathrm{macro\mbox{-}F1}=\frac14\left(1+\frac45+\frac23+\frac12\right)
+=\frac{89}{120}\approx0.74.
+\]
+\end{enumerate}
+
+\clearpage
+\section*{二. (30 points) 排序与曲线性能度量}
+
+某二分类数据集包含 10 个样例。标签 1 表示正例，标签 0 表示负例。学习器输出值表示样例属于正类的置信度，且已按从高到低排序，如表~\ref{tab:scores} 所示。
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{4.4pt}
+\begin{tabular}{l*{10}{c}}
+\toprule
+\textbf{样例} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $x_7$ & $x_8$ & $x_9$ & $x_{10}$ \\
+\midrule
+\textbf{标签} & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+\textbf{输出值} & 0.94 & 0.87 & 0.81 & 0.72 & 0.66 & 0.58 & 0.47 & 0.35 & 0.22 & 0.11 \\
+\bottomrule
+\end{tabular}
+\caption{二分类样例及学习器输出}
+\label{tab:scores}
+\end{table}
+
+从阈值高于 0.94 开始逐步降低阈值。对于 $k=1,2,\ldots,10$，将前 $k$ 个样例判为正例，其余样例判为负例。按 P-R 曲线绘图惯例取初始点 $(0,1)$。
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.55em]
+  \item 计算每一步 P-R 曲线端点的坐标 $(R,P)$ 并绘制 P-R 曲线。绘图时可加入初始点 $(0,1)$。（8 points）
+  \item 计算包括初始点在内的 ROC 曲线端点坐标 $(\mathrm{FPR},\mathrm{TPR})$，并绘制 ROC 曲线。（8 points）
+  \item 使用梯形法计算 ROC 曲线下面积 AUC，结果保留两位小数。（6 points）
+  \item FPR80 表示真正例率为 $80\%$ 时的假正例率。说明该指标越高越好还是越低越好，并求阈值下降过程中首次达到 $\mathrm{TPR}=80\%$ 时的 FPR80。（8 points）
+\end{enumerate}
+
+\ans
+数据中有 5 个正例和 5 个负例。令前 $k$ 个样例为预测正例，逐步统计结果如下。
+\begin{center}
+\small
+\setlength{\tabcolsep}{3.8pt}
+\begin{tabular}{c|rrrrrrrrrrr}
+\toprule
+$k$ &0&1&2&3&4&5&6&7&8&9&10\\
+\midrule
+$TP$&0&1&1&2&3&3&3&4&4&5&5\\
+$FP$&0&0&1&1&1&2&3&3&4&4&5\\
+$R=TP/5$&0&.20&.20&.40&.60&.60&.60&.80&.80&1&1\\
+$P$&1&1&.50&.67&.75&.60&.50&.57&.50&.56&.50\\
+$\mathrm{FPR}=FP/5$&0&0&.20&.20&.20&.40&.60&.60&.80&.80&1\\
+$\mathrm{TPR}=TP/5$&0&.20&.20&.40&.60&.60&.60&.80&.80&1&1\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.8em]
+\item P-R 端点依次为
+\[
+(0,1),(.2,1),(.2,.5),(.4,.667),(.6,.75),(.6,.6),(.6,.5),
+(.8,.571),(.8,.5),(1,.556),(1,.5).
+\]
+\begin{center}
+\begin{tikzpicture}[x=5.2cm,y=3.6cm]
+  \draw[->] (0,0) -- (1.08,0) node[right] {$R$};
+  \draw[->] (0,0) -- (0,1.08) node[above] {$P$};
+  \foreach \v in {0,0.2,0.4,0.6,0.8,1.0}{
+    \draw (\v,0.015)--(\v,-0.015) node[below] {\scriptsize \v};
+    \draw (0.015,\v)--(-0.015,\v) node[left] {\scriptsize \v};}
+  \draw[blue,thick] plot coordinates {(0,1) (.2,1) (.2,.5) (.4,.667) (.6,.75) (.6,.6) (.6,.5) (.8,.571) (.8,.5) (1,.556) (1,.5)};
+  \foreach \p in {(0,1),(.2,1),(.2,.5),(.4,.667),(.6,.75),(.6,.6),(.6,.5),(.8,.571),(.8,.5),(1,.556),(1,.5)} \fill[blue] \p circle (1.4pt);
+  \node at (.54,1.05) {\small P-R 曲线};
+\end{tikzpicture}
+\end{center}
+
+\item ROC 端点依次为
+\[
+(0,0),(0,.2),(.2,.2),(.2,.4),(.2,.6),(.4,.6),(.6,.6),
+(.6,.8),(.8,.8),(.8,1),(1,1).
+\]
+\begin{center}
+\begin{tikzpicture}[x=5.2cm,y=3.6cm]
+  \draw[->] (0,0) -- (1.08,0) node[right] {FPR};
+  \draw[->] (0,0) -- (0,1.08) node[above] {TPR};
+  \foreach \v in {0,0.2,0.4,0.6,0.8,1.0}{
+    \draw (\v,0.015)--(\v,-0.015) node[below] {\scriptsize \v};
+    \draw (0.015,\v)--(-0.015,\v) node[left] {\scriptsize \v};}
+  \draw[gray,dashed] (0,0)--(1,1);
+  \draw[red,thick] plot coordinates {(0,0) (0,.2) (.2,.2) (.2,.4) (.2,.6) (.4,.6) (.6,.6) (.6,.8) (.8,.8) (.8,1) (1,1)};
+  \foreach \p in {(0,0),(0,.2),(.2,.2),(.2,.4),(.2,.6),(.4,.6),(.6,.6),(.6,.8),(.8,.8),(.8,1),(1,1)} \fill[red] \p circle (1.4pt);
+  \node at (.54,1.05) {\small ROC 曲线};
+\end{tikzpicture}
+\end{center}
+
+\item ROC 曲线的竖直段水平宽度为 0，每个水平段宽度为 $0.2$。用梯形法（此处等价于矩形面积求和）得
+\[
+\mathrm{AUC}=0.2\times(0.2+0.6+0.6+0.8+1.0)=0.64.
+\]
+
+\item FPR80 表示在检出 $80\%$ 正例时误报的负例比例，因此越低越好。阈值下降时，在 $k=7$（纳入 $x_7$）首次达到
+\[
+\mathrm{TPR}=\frac45=0.80.
+\]
+此时 $FP=3$，故
+\[
+\mathrm{FPR80}=\frac{FP}{N}=\frac35=0.60.
+\]
+\end{enumerate}
+
+\clearpage
+\section*{三. (10 points) 数据预处理}
+
+某一维特征在 5 个样例上的取值为
+\[
+18,\quad 21,\quad 24,\quad 27,\quad 30.
+\]
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.55em]
+  \item 写出将特征映射到区间 $[x'_{\min},x'_{\max}]$ 的 Min-max 归一化公式，以及 Z-score 标准化公式。（2 points）
+  \item 使用 Min-max 归一化将全部取值映射到区间 $[-1,1]$。（3 points）
+  \item 使用 Z-score 对全部取值进行标准化。本题中的标准差采用总体标准差，即分母为样本数 $m$。（3 points）
+  \item 若在数据中加入一个新的取值 60，不必重新计算所有结果，请分别说明它会如何影响原有样例的 Min-max 归一化值和 Z-score 标准化值。（2 points）
+\end{enumerate}
+
+\ans
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.85em]
+\item 设原特征的最小值、最大值为 $x_{\min},x_{\max}$，则
+\[
+x'=x'_{\min}+\frac{x-x_{\min}}{x_{\max}-x_{\min}}
+\left(x'_{\max}-x'_{\min}\right).
+\]
+Z-score 标准化为
+\[
+z=\frac{x-\mu}{\sigma},\qquad
+\mu=\frac1m\sum_{i=1}^{m}x_i,\qquad
+\sigma=\sqrt{\frac1m\sum_{i=1}^{m}(x_i-\mu)^2}.
+\]
+
+\item 此时 $x_{\min}=18$、$x_{\max}=30$，目标区间为 $[-1,1]$，故
+\[
+x'=-1+\frac{x-18}{30-18}\times2=\frac{x-24}{6}.
+\]
+因而 $18,21,24,27,30$ 分别映射为
+\[
+-1,\quad-\frac12,\quad0,\quad\frac12,\quad1.
+\]
+
+\item
+\[
+\mu=\frac{18+21+24+27+30}{5}=24,
+\]
+\[
+\sigma=\sqrt{\frac{(-6)^2+(-3)^2+0^2+3^2+6^2}{5}}
+=\sqrt{18}=3\sqrt2.
+\]
+所以标准化结果为
+\[
+-\sqrt2,\quad-\frac1{\sqrt2},\quad0,\quad\frac1{\sqrt2},\quad\sqrt2
+\]
+即约为 $-1.41,-0.71,0,0.71,1.41$。
+
+\item 加入 60 后，最小值仍为 18，最大值改为 60。原有值的 Min-max 结果改为
+\[
+x'=-1+\frac{x-18}{60-18}\times2=-1+\frac{x-18}{21}.
+\]
+因此除最小值 18 仍为 $-1$ 外，其余原有值都向 $-1$ 方向压缩，30 也不再映射为 1。
+
+对 Z-score，离群的大值 60 使均值由 24 升到 30，同时使标准差显著增大（新标准差为 $\sqrt{195}$）。原有各点的新结果为 $(x-30)/\sqrt{195}$：它们的顺序不变，整体向负方向移动，且由于分母变大，彼此间距被压缩。
+\end{enumerate}
+
+\clearpage
+\section*{四. (30 points) 模型比较检验}
+
+在一个二分类任务中，需要比较学习器 $A$ 与学习器 $B$ 的泛化性能。研究者进行了 5 次 2 折交叉验证；每次实验前都重新随机打乱并划分数据，尽量避免 5 次实验采用重复的数据划分，再交换训练集与测试集完成两折测试。表~\ref{tab:5x2cv} 给出了两种学习器在每一折上的测试错误率（错误率越低越好）。
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\toprule
+\textbf{实验次数} & $A$：第 1 折 & $B$：第 1 折 & $A$：第 2 折 & $B$：第 2 折 \\
+\midrule
+1 & 0.18 & 0.24 & 0.22 & 0.26 \\
+2 & 0.20 & 0.25 & 0.19 & 0.22 \\
+3 & 0.17 & 0.24 & 0.23 & 0.26 \\
+4 & 0.21 & 0.25 & 0.20 & 0.22 \\
+5 & 0.16 & 0.22 & 0.21 & 0.25 \\
+\bottomrule
+\end{tabular}
+\caption{5$\times$2 交叉验证测试错误率}
+\label{tab:5x2cv}
+\end{table}
+
+定义第 $i$ 次实验两折上的成对差值为
+\[
+\Delta_i^{(j)}=E_{A,i}^{(j)}-E_{B,i}^{(j)},\qquad j\in\{1,2\},
+\]
+并令
+\[
+\bar{\Delta}_i=\frac{\Delta_i^{(1)}+\Delta_i^{(2)}}{2},\qquad
+\sigma_i^2=\left(\Delta_i^{(1)}-\bar{\Delta}_i\right)^2+
+\left(\Delta_i^{(2)}-\bar{\Delta}_i\right)^2.
+\]
+检验统计量定义为
+\[
+\tau_t=\frac{\bar{\Delta}_1}{\sqrt{\frac{1}{5}\sum_{i=1}^{5}\sigma_i^2}}.
+\]
+
+原假设 $H_0$ 为“两种学习器的泛化性能相同”。按本题给出的 5$\times$2 交叉验证检验规则，在 $H_0$ 下将统计量 $\tau_t$ 与自由度为 5 的 t 分布进行比较。本题采用双边检验；显著性水平 $\alpha=0.05$ 和 $\alpha=0.01$ 对应的临界值分别为 2.5706 和 4.0321。
+
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.55em]
+  \item 说明为什么必须对同一次数据划分上的结果作“配对”比较，并简述 5$\times$2 交叉验证相对普通 k 折交叉验证配对 t 检验的主要作用。（6 points）
+  \item 计算十个差值 $\Delta_i^{(j)}$、五个均值 $\bar{\Delta}_i$ 和五个方差 $\sigma_i^2$。（8 points）
+  \item 计算检验统计量 $\tau_t$。（8 points）
+  \item 分别在 $\alpha=0.05$ 和 $\alpha=0.01$ 下判断两种学习器是否存在显著性能差异；若存在，请指出哪一种学习器更优并说明依据。（8 points）
+\end{enumerate}
+
+\ans
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.9em]
+\item 不同数据划分的难度可能明显不同。将 $A$ 和 $B$ 在同一训练/测试划分上的错误率相减，可以抵消这种“划分难度”的共同影响，使差值主要反映学习器本身的差异；若不配对，划分造成的波动会混入比较。
+
+普通 k 折交叉验证中，各折的训练集大量重叠，各个差值并不独立，直接使用普通配对 t 检验容易低估方差。5$\times$2 方法进行 5 次尽量独立的随机二分，每次再交换训练集与测试集，用两折差值估计该次划分的变异，从而更谨慎地处理重采样带来的相关性和方差估计问题。
+
+\item 按题定义逐行计算：
+\begin{center}
+\begin{tabular}{c@{\qquad}rrrr}
+\toprule
+$i$ & $\Delta_i^{(1)}$ & $\Delta_i^{(2)}$ & $\bar{\Delta}_i$ & $\sigma_i^2$\\
+\midrule
+1&$-0.06$&$-0.04$&$-0.05$&$0.0002$\\
+2&$-0.05$&$-0.03$&$-0.04$&$0.0002$\\
+3&$-0.07$&$-0.03$&$-0.05$&$0.0008$\\
+4&$-0.04$&$-0.02$&$-0.03$&$0.0002$\\
+5&$-0.06$&$-0.04$&$-0.05$&$0.0002$\\
+\bottomrule
+\end{tabular}
+\end{center}
+例如第 1 次中，$\bar{\Delta}_1=(-0.06-0.04)/2=-0.05$，且
+\[
+\sigma_1^2=(-0.06+0.05)^2+(-0.04+0.05)^2=0.0002.
+\]
+
+\item
+\[
+\sum_{i=1}^{5}\sigma_i^2=0.0002+0.0002+0.0008+0.0002+0.0002=0.0016,
+\]
+因此
+\[
+\tau_t=\frac{-0.05}{\sqrt{0.0016/5}}
+=\frac{-0.05}{\sqrt{0.00032}}
+\approx\frac{-0.05}{0.01789}
+\approx-2.80.
+\]
+
+\item 双边检验比较 $|\tau_t|=2.80$ 与临界值：
+\begin{itemize}[leftmargin=2em,itemsep=0.35em]
+\item 当 $\alpha=0.05$ 时，$2.80>2.5706$，拒绝 $H_0$，认为两学习器存在显著性能差异。
+\item 当 $\alpha=0.01$ 时，$2.80<4.0321$，不拒绝 $H_0$，现有证据不足以在 $1\%$ 显著性水平下认定性能不同。
+\end{itemize}
+在 $\alpha=0.05$ 的显著结论中，$\Delta=E_A-E_B$ 的各次均值均为负，且 $\tau_t<0$，说明 $A$ 的错误率显著低于 $B$，因而学习器 $A$ 更优。
+\end{enumerate}
+
+\end{document}

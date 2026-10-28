@@ -18,19 +18,20 @@
   <text class="title" x="75" y="78">软件工程 II 画图模板册</text><text class="sub" x="75" y="115">用课件一致的符号骨架，快速迁移到任意考试情景</text>
   
   <rect class="panel" x="95" y="170" width="1610" height="910"/>
-  <text x="900" y="300" text-anchor="middle" font-size="58" font-weight="800" fill="#4c347f">八类高频图，一册带走</text>
+  <text x="900" y="280" text-anchor="middle" font-size="58" font-weight="800" fill="#4c347f">九类高频图，一册带走</text>
   <g class="t">
-    <rect class="accent" x="210" y="390" width="360" height="105" rx="16"/><text x="390" y="455" text-anchor="middle">用例图</text>
-    <rect class="accent" x="720" y="390" width="360" height="105" rx="16"/><text x="900" y="455" text-anchor="middle">系统顺序图</text>
-    <rect class="accent" x="1230" y="390" width="360" height="105" rx="16"/><text x="1410" y="455" text-anchor="middle">概念类图</text>
-    <rect class="accent" x="210" y="560" width="360" height="105" rx="16"/><text x="390" y="625" text-anchor="middle">详细顺序图</text>
-    <rect class="accent" x="720" y="560" width="360" height="105" rx="16"/><text x="900" y="625" text-anchor="middle">物理包图</text>
-    <rect class="accent" x="1230" y="560" width="360" height="105" rx="16"/><text x="1410" y="625" text-anchor="middle">4+1 视图</text>
-    <rect class="accent" x="465" y="730" width="360" height="105" rx="16"/><text x="645" y="795" text-anchor="middle">状态图</text>
-    <rect class="accent" x="975" y="730" width="360" height="105" rx="16"/><text x="1155" y="795" text-anchor="middle">程序流程图</text>
+    <rect class="accent" x="210" y="350" width="360" height="90" rx="16"/><text x="390" y="405" text-anchor="middle">用例图</text>
+    <rect class="accent" x="720" y="350" width="360" height="90" rx="16"/><text x="900" y="405" text-anchor="middle">系统顺序图</text>
+    <rect class="accent" x="1230" y="350" width="360" height="90" rx="16"/><text x="1410" y="405" text-anchor="middle">概念类图</text>
+    <rect class="accent" x="210" y="500" width="360" height="90" rx="16"/><text x="390" y="555" text-anchor="middle">详细顺序图</text>
+    <rect class="accent" x="720" y="500" width="360" height="90" rx="16"/><text x="900" y="555" text-anchor="middle">物理包图</text>
+    <rect class="accent" x="1230" y="500" width="360" height="90" rx="16"/><text x="1410" y="555" text-anchor="middle">逻辑包图</text>
+    <rect class="accent" x="210" y="650" width="360" height="90" rx="16"/><text x="390" y="705" text-anchor="middle">4+1 视图</text>
+    <rect class="accent" x="720" y="650" width="360" height="90" rx="16"/><text x="900" y="705" text-anchor="middle">状态图</text>
+    <rect class="accent" x="1230" y="650" width="360" height="90" rx="16"/><text x="1410" y="705" text-anchor="middle">程序流程图</text>
   </g>
-  <rect class="good" x="330" y="910" width="1140" height="105"/><text class="t" x="900" y="955" text-anchor="middle">分析阶段：业务语言优先　　设计阶段：名称与代码一致</text><text class="s" x="900" y="990" text-anchor="middle">每页均为可直接临摹的“骨架图 + 得分检查表”</text>
+  <rect class="good" x="330" y="850" width="1140" height="105"/><text class="t" x="900" y="895" text-anchor="middle">分析阶段：业务语言优先　　设计阶段：名称与代码一致</text><text class="s" x="900" y="930" text-anchor="middle">每页均为可直接临摹的“骨架图 + 得分检查表”</text>
 
   <line x1="70" y1="1218" x2="1730" y2="1218" stroke="#ccd5e4" stroke-width="2"/>
-  <text class="tiny" x="75" y="1250">课件依据：课程各相关章节综合</text><text class="tiny" x="1725" y="1250" text-anchor="end">1 / 9</text>
+  <text class="tiny" x="75" y="1250">课件依据：课程各相关章节综合</text><text class="tiny" x="1725" y="1250" text-anchor="end">1 / 10</text>
   </svg>

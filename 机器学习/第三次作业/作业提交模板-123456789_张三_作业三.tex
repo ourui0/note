@@ -1,0 +1,204 @@
+%\documentclass[a4paper]{article}
+%\usepackage{geometry}
+%\geometry{a4paper,scale=0.8}
+\documentclass[8pt]{article}
+\usepackage{ctex}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{CJK}
+\usepackage[fleqn]{amsmath}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+% 设置页眉
+\fancyhead[L]{2026年秋季}
+\fancyhead[C]{机器学习}
+\fancyhead[R]{作业三}
+
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+% 定义Python代码风格
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,     
+    captionpos=b,        
+    keepspaces=true,     
+    numbers=left,        
+    numbersep=5pt,       
+    showspaces=false,    showstringspaces=false,
+    showtabs=false,      
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\begin{document}
+
+\textbf{\color{blue} \Large 姓名：张三 \ \ \ 学号：123456789 \ \ \ \today}
+
+
+
+\section*{一. (20 points) 激活函数与梯度传播}
+
+激活函数是神经网络的重要组成部分。请回答以下问题：
+
+\begin{enumerate}
+    \item 若一个多层全连接神经网络的所有层均不使用激活函数，
+    每层仅进行仿射变换
+    $\mathbf{h}^{(l)}=\mathbf{W}^{(l)}\mathbf{h}^{(l-1)}
+    +\mathbf{b}^{(l)}$，
+    请说明为什么增加网络层数仍不能使其表示非线性映射。
+    可用两层网络的公式进行说明。（4 points）
+
+    \item Sigmoid 函数定义为
+    \begin{equation}
+        \sigma(x)=\frac{1}{1+e^{-x}}.
+    \end{equation}
+    请画出其示意图，求其导数及导数的最大值，
+    并结合链式法则解释：为什么在深层网络的隐层中使用
+    Sigmoid 函数容易出现梯度消失？（8 points）
+
+    \item ReLU 函数定义为
+    \begin{equation}
+        f(x)=\max(0,x).
+    \end{equation}
+    请画出其示意图并计算导数
+    （导数不存在时请指出）。
+    与 Sigmoid 相比，ReLU 在梯度传播方面有何优点？
+    如果某个神经元对所有训练样本的激活前输入均为负数，
+    其输出和梯度会出现什么现象？这会如何影响训练？
+    （8 points）
+\end{enumerate}
+
+% \textbf{\large 解:}
+
+\textbf{\large 解:}
+
+\newpage
+
+\section*{二. (30 points) 神经网络实战}
+
+请使用 NumPy 实现一个具有单隐藏层的全连接神经网络，
+并通过反向传播算法训练该网络，完成鸢尾花三分类任务。
+实验数据采用 \texttt{scikit-learn} 提供的
+\texttt{load\_iris} 数据集。
+该数据集包含 150 个样本，每个样本具有 4 个特征，
+类别标签为 3 种鸢尾花的品种。
+
+\begin{enumerate}
+    \item 使用 NumPy 手动实现网络的前向传播、
+    损失计算、反向传播和参数更新。（15 points）
+
+    \item 分别设置隐藏层节点数为 4、8 和 16，
+    比较网络规模对训练过程和分类性能的影响。（5 points）
+
+    \item 训练网络，绘制损失和准确率曲线，
+    比较不同学习率下的收敛情况，并分析实验结果。
+    （10 points）
+\end{enumerate}
+
+
+
+\textbf{\large 解:}
+
+\newpage
+
+
+
+\section*{三. (15 points) SVM理论探究}
+
+给定训练集
+$\mathcal{D}=\{(\boldsymbol{x}_i,y_i)\}_{i=1}^{m}$，
+其中 $\boldsymbol{x}_i\in\mathbb{R}^{d}$，
+$y_i\in\{-1,+1\}$。
+考虑如下软间隔 SVM：
+\[
+\begin{aligned}
+    \min_{\boldsymbol{w},b,\boldsymbol{\xi}}
+    \quad &
+    \frac{1}{2}\|\boldsymbol{w}\|_2^2
+    +C\sum_{i=1}^{m}\xi_i \\
+    \text{s.t.}\quad &
+    y_i(\boldsymbol{w}^{\top}\boldsymbol{x}_i+b)
+    \geq 1-\xi_i,\quad i=1,\ldots,m,\\
+    & \xi_i\geq 0,\quad i=1,\ldots,m,
+\end{aligned}
+\]
+其中 $C>0$ 为惩罚系数，
+$\xi_i$ 为第 $i$ 个样本对应的松弛变量。
+
+\begin{enumerate}
+    \item 消去松弛变量 $\boldsymbol{\xi}$，
+    将上述问题写为仅包含 $\boldsymbol{w}$ 和 $b$
+    的无约束优化问题，并指出其中使用的损失函数。
+    简要解释该损失函数在什么情况下取零。
+    （5 points）
+
+    \item 引入拉格朗日乘子，
+    推导上述软间隔 SVM 的对偶优化问题，
+    并写出对偶变量的全部约束条件。
+    （5 points）
+
+    \item 设 $\alpha_i$ 为第 $i$ 个间隔约束
+    对应的拉格朗日乘子。
+    根据 KKT 条件，分别讨论
+    $\alpha_i=0$、$0<\alpha_i<C$ 和 $\alpha_i=C$
+    时，样本点可能位于间隔边界的什么位置。
+    判断“支持向量一定被正确分类”是否成立，
+    并说明理由。（5 points）
+\end{enumerate}
+
+\textbf{\large 解:}
+
+\newpage
+
+\section*{四. (35 points) SVM 编程}
+
+在本题中，你将使用支持向量机（SVM）对一个非线性可分的数据集进行分类，并进一步与其他典型分类模型（BP神经网络与C4.5决策树）进行对比分析。实验数据采用 \texttt{scikit-learn} 提供的 \texttt{make\_moons} 数据集。
+
+\begin{enumerate}
+    \item 在提供的 \texttt{make\_moons} 数据集上训练一个非线性核（如 RBF 核）的支持向量机模型，并绘制分类边界。（5 points）
+
+    \item 调整正则化系数 $C$ 与 RBF 核宽度 $\gamma$，观察分类边界的变化情况，并分析参数对模型复杂度与过拟合的影响。（5 points）
+
+    \item 比较 RBF 核与线性核 SVM 的分类效果，简要说明两者在处理非线性数据时的差异原因。（5 points）
+
+    \item 在训练集上随机翻转一部分标签（例如 20\%）,比较SVM的性能变化，并分析SVM对噪声敏感的原因。（5 points）
+
+    \item 进一步在相同数据分布下分别使用原始数据集和加噪数据集进行训练与测试。：
+    \begin{itemize}
+        \item 一个基于反向传播算法的多层感知机（BP 神经网络）；
+        \item 一个基于信息增益率划分的 C4.5 决策树模型。
+    \end{itemize}
+    对三种模型（SVM、BP神经网络、C4.5决策树）进行分类结果可视化与性能比较（准确率、精确率、召回率、F1分数）。（10 points）
+
+    \item 根据实验结果，从模型结构、非线性拟合能力、泛化性能和对噪声敏感度等角度，对三者的优劣进行综合分析。（5 points）
+\end{enumerate}
+
+
+
+
+\textbf{\large 解:}
+
+\end{document}
